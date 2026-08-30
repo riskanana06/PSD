@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tugas PSD - Kualitas Udara</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        /* Header atas */
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        /* Layout Sidebar dan Konten */
+        .container {
+            display: flex;
+            min-height: 500px;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #34495e;
+            color: white;
+            padding: 20px;
+        }
+        .sidebar h3 {
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin: 15px 0;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+        img {
+            max-width: 100%;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Proyek Sains Data (PSD)</h1>
+        <p>Analisis Time Series Kualitas Udara Lokal</p>
+    </div>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h3>PROFIL</h3>
+            <p><b>Nama:</b> Riska Nana Nuril Fadilah</p>
+            <p><b>NIM:</b> 2404111100081</p>
+            <p><b>Kelas:</b> PSD - A</p>
+            <hr>
+            <ul>
+                <li><a href="#business">Business Understanding</a></li>
+                <li><a href="#data">Data Understanding</a></li>
+                <li><a href="#grafik">Grafik & Dataset</a></li>
+            </ul>
+        </div>
+
+        <!-- KONTEN -->
+        <div class="content">
+            
+            <!-- SECTION 1 -->
+            <div id="business">
+                <h2>Business Understanding</h2>
+                <p>Latar Belakang & Tujuan Proyek
+                Kualitas udara merupakan salah satu faktor lingkungan yang berpengaruh langsung terhadap kesehatan masyarakat dan stabilitas ekosistem. Proyek ini dilakukan untuk mengekstraksi, memetakan, serta menganalisis pola time series parameter polutan di tingkat lokal.</p>
+                <p>Tujuan Utama:
+                Mengidentifikasi tren konsentrasi polutan harian dan musiman selama periode 1 tahun (01 september 2025 – 31 Agustus 2026).
+                Menyediakan basis data historis yang valid untuk pemetaan tingkat risiko pencemaran udara wilayah lokal.</p>
+                <p>Manfaat Analisis:
+                Preventif Kesehatan: Memberikan gambaran pola fluktuasi polusi agar masyarakat dapat mengantisipasi paparan polutan berbahaya.
+                Pengambilan Kebijakan: Menyediakan data terstruktur yang berguna sebagai acuan evaluasi kebijakan emisi kendaraan dan industri lokal.</p>
+            </div>
+            <hr>
+
+            <!-- SECTION 2 -->
+            <div id="data">
+                <h2>Data Understanding</h2>
+                <p>Data diambil dari Open-Meteo Air Quality API berdasarkan titik koordinat GeoJSON lokasi lokal.</p>
+                
+                <h3>Tabel Fitur Polutan</h3>
+                <table>
+                     <tr>
+                            <td><b>PM2.5</b></td>
+                            <td>Partikulat halus diameter &le; 2.5 µm. Berbahaya karena dapat menembus saluran pernapasan dalam.</td>
+                            <td>Emisi pembakaran kendaraan, aktivitas industri.</td>
+                        </tr>
+                        <tr>
+                            <td><b>PM10</b></td>
+                            <td>Partikulat kasar diameter &le; 10 µm. Mengiritasi saluran pernapasan bagian atas.</td>
+                            <td>Debu jalanan, aktivitas konstruksi/pembangunan.</td>
+                        </tr>
+                        <tr>
+                            <td><b>CO</b></td>
+                            <td>Karbon Monoksida. Gas beracun tak berbau pemicu penurunan kadar oksigen dalam darah.</td>
+                            <td>Pembakaran bahan bakar fosil tidak sempurna.</td>
+                        </tr>
+                        <tr>
+                            <td><b>NO2</b></td>
+                            <td>Nitrogen Dioksida. Gas reaktif penyebab iritasi paru-paru dan komponen hujan asam.</td>
+                            <td>Gas buang kendaraan bermotor, pembangkit listrik.</td>
+                        </tr>
+                        <tr>
+                            <td><b>SO2</b></td>
+                            <td>Sulfur Dioksida. Gas berbau menyengat yang memicu gangguan pernapasan akut.</td>
+                            <td>Pembakaran batu bara dan pemrosesan minyak bumi.</td>
+                        </tr>
+                        <tr>
+                            <td><b>O3</b></td>
+                            <td>Ozon Permukaan (Troposferik). Oksidator kuat pemicu masalah pernapasan.</td>
+                            <td>Reaksi fotokimia antara NOx dan VOC dengan bantuan sinar matahari.</td>
+                        </tr>
+
+                </table>
+                <p><i>Catatan Data:</i> Data diperiksa untuk memastikan tidak ada interval waktu yang hilang dan tidak ada data aneh (outlier/nilai negatif).</p>
+            </div>
+            <hr>
+
+            <!-- SECTION 3 -->
+            <div id="grafik">
+                <h2>Visualisasi Time Series & Data CSV</h2>
+                <p>Berikut adalah grafik time series polutan PM2.5 dan PM10 dari periode Agustus 2025 hingga Agustus 2026:</p>
+                
+                <img src="download.png" alt="Grafik Time Series Kualitas Udara">
+                <img src="download(1).png" alt="Grafik Time Series Kualitas Udara">
+                <img src="download(2).png" alt="Grafik Time Series Kualitas Udara">
+                <img src="download(3).png" alt="Grafik Time Series Kualitas Udara">
+                
+                <br><br>
+                <p> Unduh file data mentah (.CSV):</p>
+                <a href="data_polutan_surabaya.csv" download><b>[Download File data_polutan.csv]</b></a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
