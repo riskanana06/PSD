@@ -1,172 +1,1101 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Tugas PSD - Kualitas Udara</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        /* Header atas */
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        /* Layout Sidebar dan Konten */
-        .container {
-            display: flex;
-            min-height: 500px;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #34495e;
-            color: white;
-            padding: 20px;
-        }
-        .sidebar h3 {
-            border-bottom: 1px solid #555;
-            padding-bottom: 10px;
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar li {
-            margin: 15px 0;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .content {
-            flex: 1;
-            padding: 20px;
-            background-color: white;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 10px;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #eee;
-        }
-        img {
-            max-width: 100%;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSD | Kualitas Udara Surabaya</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f5f7f8;
+    color:#26383d;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#0b3039;
+    color:white;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.logo{
+    padding:5px 8px 18px;
+    border-bottom:1px solid #426069;
+    margin-bottom:18px;
+}
+
+.logo h1{
+    font-size:30px;
+    letter-spacing:2px;
+}
+
+.logo p{
+    font-size:11px;
+    color:#a9c0c5;
+    margin-top:4px;
+}
+
+/* PROFIL DI SIDEBAR */
+.profile{
+    background:#15434d;
+    padding:17px 10px;
+    border-radius:14px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.profile-icon{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#e1f0f2;
+    color:#15434d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 10px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.profile h3{
+    font-size:15px;
+    margin-bottom:9px;
+}
+
+.profile p{
+    font-size:11px;
+    color:#c7d8dc;
+    line-height:1.5;
+    margin:6px 0;
+}
+
+.menu-title{
+    font-size:10px;
+    color:#7899a2;
+    letter-spacing:2px;
+    margin:18px 8px 8px;
+}
+
+.menu a{
+    display:block;
+    padding:10px 11px;
+    margin:4px 0;
+    color:#cbdadd;
+    text-decoration:none;
+    border-radius:8px;
+    font-size:12px;
+}
+
+.menu a:hover{
+    background:#205966;
+    color:white;
+}
+
+.sidebar-bottom{
+    border-top:1px solid #426069;
+    margin-top:20px;
+    padding-top:15px;
+    text-align:center;
+}
+
+.sidebar-bottom p{
+    font-size:11px;
+}
+
+.sidebar-bottom small{
+    display:block;
+    color:#7899a2;
+    font-size:9px;
+    margin-top:4px;
+}
+
+/* MAIN */
+.main{
+    margin-left:250px;
+}
+
+/* BERANDA */
+.hero{
+    min-height:450px;
+    padding:70px 8%;
+    display:flex;
+    align-items:center;
+    background:#e5f2f4;
+}
+
+.label{
+    font-size:10px;
+    color:#397984;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    color:#092d36;
+    font-size:50px;
+    line-height:1.08;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#3d808b;
+}
+
+.hero p{
+    max-width:750px;
+    color:#596c72;
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* SECTION */
+section{
+    padding:60px 8%;
+}
+
+.number{
+    color:#5f8993;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+section h2{
+    font-size:29px;
+    color:#0c3039;
+    margin-bottom:14px;
+}
+
+.intro{
+    color:#68797e;
+    font-size:13px;
+    line-height:1.8;
+    max-width:850px;
+    margin-bottom:25px;
+}
+
+/* BUSINESS */
+.goal{
+    background:#0d3540;
+    color:white;
+    padding:30px;
+    border-radius:17px;
+}
+
+.goal h3{
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.goal p{
+    color:#c8d9dd;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.benefit{
+    background:#164650;
+    padding:17px;
+    border-radius:10px;
+    color:#d6e3e6;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.benefit b{
+    display:block;
+    color:white;
+    margin-bottom:5px;
+}
+
+/* DATA */
+.table-box{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#123d47;
+    color:white;
+    padding:13px;
+    text-align:left;
+    font-size:12px;
+}
+
+td{
+    padding:13px;
+    border-bottom:1px solid #e2eaec;
+    font-size:12px;
+    color:#607277;
+    line-height:1.6;
+}
+
+/* EKSPLORASI */
+.cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:22px;
+    border-radius:14px;
+    border-left:4px solid #3d7e89;
+}
+
+.card h3{
+    font-size:16px;
+    color:#173e47;
+    margin-bottom:9px;
+}
+
+.card p,
+.card li{
+    font-size:12px;
+    color:#64767b;
+    line-height:1.7;
+}
+
+.card ul{
+    padding-left:18px;
+}
+
+/* PETA */
+.map{
+    background:white;
+    padding:18px;
+    border-radius:17px;
+}
+
+.map img{
+    width:100%;
+    max-height:600px;
+    object-fit:contain;
+    display:block;
+    border-radius:10px;
+}
+
+.caption{
+    text-align:center;
+    color:#697a7f;
+    font-size:11px;
+    margin-top:10px;
+}
+
+/* CSV */
+.csv-box{
+    background:white;
+    padding:20px;
+    border-radius:17px;
+}
+
+.csv-title{
+    color:#153e48;
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.csv-desc{
+    color:#718085;
+    font-size:11px;
+    margin-bottom:15px;
+}
+
+.csv-scroll{
+    max-height:450px;
+    overflow:auto;
+}
+
+.csv-table{
+    min-width:600px;
+}
+
+.csv-table th{
+    position:sticky;
+    top:0;
+}
+
+.csv-status{
+    font-size:11px;
+    color:#718085;
+    margin-top:12px;
+}
+
+/* GRAFIK */
+.graphs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.graph{
+    background:white;
+    padding:18px;
+    border-radius:17px;
+}
+
+.graph h3{
+    color:#153e48;
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.graph img{
+    width:100%;
+    display:block;
+}
+
+/* KESIMPULAN */
+.conclusion{
+    background:#e8f3f5;
+}
+
+.conclusion-box{
+    background:white;
+    padding:28px;
+    border-radius:17px;
+}
+
+.conclusion-box p{
+    color:#607277;
+    font-size:13px;
+    line-height:1.8;
+    margin-bottom:13px;
+}
+
+.highlights{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.highlight{
+    background:#f0f6f7;
+    padding:17px;
+    border-radius:10px;
+    font-size:12px;
+    color:#52666c;
+}
+
+.highlight b{
+    display:block;
+    color:#143d47;
+    margin-bottom:5px;
+}
+
+/* FOOTER */
+footer{
+    background:#0b3039;
+    color:#91aab0;
+    padding:25px 8%;
+    font-size:11px;
+    line-height:1.7;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .benefits,
+    .cards,
+    .graphs,
+    .highlights{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:45px 6%;
+    }
+
+    .hero{
+        padding:55px 6%;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="header">
-        <h1>Proyek Sains Data (PSD)</h1>
-        <p>Analisis Time Series Kualitas Udara Lokal</p>
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+    <!-- PROFIL -->
+    <div class="profile">
+
+        <div class="profile-icon">N</div>
+
+        <h3>Profil Mahasiswa</h3>
+
+        <p>
+            <b>Nama</b><br>
+            Riska Nana Nuril Fadilah
+        </p>
+
+        <p>
+            <b>NIM</b><br>
+            240411100081
+        </p>
+
+        <p>
+            <b>Kelas</b><br>
+            PSD - A
+        </p>
+
     </div>
 
-    <div class="container">
-        <!-- SIDEBAR -->
-        <div class="sidebar">
-            <h3>PROFIL</h3>
-            <p><b>Nama:</b> Riska Nana Nuril Fadilah</p>
-            <p><b>NIM:</b> 2404111100081</p>
-            <p><b>Kelas:</b> PSD - A</p>
-            <hr>
+    <div class="menu-title">
+        MENU
+    </div>
+
+    <nav class="menu">
+
+        <a href="#beranda">🏠 &nbsp; Beranda</a>
+
+        <a href="#bisnis">🎯 &nbsp; Business Understanding</a>
+
+        <a href="#data">📊 &nbsp; Data Understanding</a>
+
+        <a href="#eksplorasi">🔎 &nbsp; Eksplorasi Data</a>
+
+        <a href="#peta">📍 &nbsp; Peta Wilayah</a>
+
+        <a href="#csv">📁 &nbsp; Data CSV</a>
+
+        <a href="#grafik">📈 &nbsp; Grafik</a>
+
+        <a href="#kesimpulan">💡 &nbsp; Kesimpulan</a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <p>PROJECT PSD</p>
+
+        <small>Analisis Kualitas Udara</small>
+
+        <small>Surabaya 2025–2026</small>
+
+    </div>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+<!-- BERANDA -->
+
+<section class="hero" id="beranda">
+
+    <div>
+
+        <div class="label">
+            PROJECT PSD
+        </div>
+
+        <h1>
+            Analisis<br>
+            <span>Kualitas Udara</span><br>
+            Kota Surabaya
+        </h1>
+
+        <p>
+            Website ini berisi hasil pengumpulan dan
+            analisis data polutan udara di wilayah Surabaya.
+            Data yang digunakan merupakan data periode
+            September 2025 sampai 31 Agustus 2026.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- BUSINESS UNDERSTANDING -->
+
+<section id="bisnis">
+
+    <div class="number">
+        01 — BUSINESS UNDERSTANDING
+    </div>
+
+    <h2>
+        Tujuan Analisis
+    </h2>
+
+    <p class="intro">
+        Business Understanding dilakukan untuk mengetahui
+        tujuan dari analisis kualitas udara dan manfaat
+        dari data yang digunakan.
+    </p>
+
+    <div class="goal">
+
+        <h3>
+            Mengetahui Kualitas Udara di Surabaya
+        </h3>
+
+        <p>
+            Tujuan dari tugas ini adalah mengetahui kondisi
+            kualitas udara di wilayah Surabaya berdasarkan
+            data beberapa polutan dalam periode pengamatan
+            minimal satu tahun.
+        </p>
+
+        <div class="benefits">
+
+            <div class="benefit">
+                <b>Monitoring</b>
+                Melihat perubahan polutan dari waktu ke waktu.
+            </div>
+
+            <div class="benefit">
+                <b>Mengetahui Pola</b>
+                Melihat waktu ketika nilai polutan naik atau turun.
+            </div>
+
+            <div class="benefit">
+                <b>Informasi</b>
+                Memberikan gambaran kondisi udara di Surabaya.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DATA UNDERSTANDING -->
+
+<section id="data">
+
+    <div class="number">
+        02 — DATA UNDERSTANDING
+    </div>
+
+    <h2>
+        Data Polutan
+    </h2>
+
+    <p class="intro">
+        Data yang digunakan terdiri dari tanggal dan
+        beberapa parameter polutan udara.
+    </p>
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Fitur</th>
+                    <th>Jenis</th>
+                    <th>Penjelasan</th>
+                    <th>Sumber</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td><b>Tanggal</b></td>
+                    <td>Date</td>
+                    <td>Tanggal atau waktu pengambilan data.</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td><b>PM2.5</b></td>
+                    <td>Numerik</td>
+                    <td>Partikel udara berukuran sekitar 2,5 mikrometer atau lebih kecil.</td>
+                    <td>Kendaraan, pembakaran dan aktivitas industri.</td>
+                </tr>
+
+                <tr>
+                    <td><b>PM10</b></td>
+                    <td>Numerik</td>
+                    <td>Partikel udara dengan ukuran sampai sekitar 10 mikrometer.</td>
+                    <td>Debu, kendaraan, konstruksi dan industri.</td>
+                </tr>
+
+                <tr>
+                    <td><b>NO₂</b></td>
+                    <td>Numerik</td>
+                    <td>Nitrogen dioksida yang berkaitan dengan proses pembakaran.</td>
+                    <td>Kendaraan dan aktivitas industri.</td>
+                </tr>
+
+                <tr>
+                    <td><b>CO₂</b></td>
+                    <td>Numerik</td>
+                    <td>Karbon dioksida yang dihasilkan antara lain dari proses pembakaran.</td>
+                    <td>Pembakaran bahan bakar dan aktivitas manusia.</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- EKSPLORASI -->
+
+<section id="eksplorasi">
+
+    <div class="number">
+        03 — EKSPLORASI DATA
+    </div>
+
+    <h2>
+        Eksplorasi Data
+    </h2>
+
+    <p class="intro">
+        Eksplorasi dilakukan untuk mengetahui karakteristik
+        data dan melihat perubahan nilai polutan.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                PM2.5
+            </h3>
+
+            <p>
+                PM2.5 merupakan partikel kecil yang dapat
+                berasal dari kendaraan, pembakaran dan
+                aktivitas industri.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                PM10
+            </h3>
+
+            <p>
+                PM10 merupakan partikulat udara yang dapat
+                berasal dari debu, kendaraan, konstruksi
+                dan industri.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                NO₂
+            </h3>
+
+            <p>
+                NO₂ merupakan gas yang berkaitan dengan
+                proses pembakaran dan salah satu sumbernya
+                adalah kendaraan bermotor.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                CO₂
+            </h3>
+
+            <p>
+                CO₂ merupakan karbon dioksida yang dapat
+                dihasilkan dari proses pembakaran bahan bakar.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Data Aneh
+            </h3>
+
+            <p>
+                Pada grafik terdapat beberapa nilai yang
+                mengalami kenaikan cukup tinggi. Nilai tersebut
+                perlu diperiksa kembali untuk mengetahui
+                apakah termasuk kondisi tertentu atau anomali.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Periode Data
+            </h3>
+
             <ul>
-                <li><a href="#business">Business Understanding</a></li>
-                <li><a href="#data">Data Understanding</a></li>
-                <li><a href="#grafik">Grafik & Dataset</a></li>
+                <li>September 2025</li>
+                <li>Oktober 2025 - Juli 2026</li>
+                <li>Agustus 2026</li>
+                <li>Sampai 31 Agustus 2026</li>
             </ul>
-        </div>
-
-        <!-- KONTEN -->
-        <div class="content">
-            
-            <!-- SECTION 1 -->
-            <div id="business">
-                <h2>Business Understanding</h2>
-                <p>Latar Belakang & Tujuan Proyek
-                Kualitas udara merupakan salah satu faktor lingkungan yang berpengaruh langsung terhadap kesehatan masyarakat dan stabilitas ekosistem. Proyek ini dilakukan untuk mengekstraksi, memetakan, serta menganalisis pola time series parameter polutan di tingkat lokal.</p>
-                <p>Tujuan Utama:
-                Mengidentifikasi tren konsentrasi polutan harian dan musiman selama periode 1 tahun (01 september 2025 – 31 Agustus 2026).
-                Menyediakan basis data historis yang valid untuk pemetaan tingkat risiko pencemaran udara wilayah lokal.</p>
-                <p>Manfaat Analisis:
-                Preventif Kesehatan: Memberikan gambaran pola fluktuasi polusi agar masyarakat dapat mengantisipasi paparan polutan berbahaya.
-                Pengambilan Kebijakan: Menyediakan data terstruktur yang berguna sebagai acuan evaluasi kebijakan emisi kendaraan dan industri lokal.</p>
-            </div>
-            <hr>
-
-            <!-- SECTION 2 -->
-            <div id="data">
-                <h2>Data Understanding</h2>
-                <p>Data diambil dari Open-Meteo Air Quality API berdasarkan titik koordinat GeoJSON lokasi lokal.</p>
-                
-                <h3>Tabel Fitur Polutan</h3>
-                <table>
-                     <tr>
-                            <td><b>PM2.5</b></td>
-                            <td>Partikulat halus diameter &le; 2.5 µm. Berbahaya karena dapat menembus saluran pernapasan dalam.</td>
-                            <td>Emisi pembakaran kendaraan, aktivitas industri.</td>
-                        </tr>
-                        <tr>
-                            <td><b>PM10</b></td>
-                            <td>Partikulat kasar diameter &le; 10 µm. Mengiritasi saluran pernapasan bagian atas.</td>
-                            <td>Debu jalanan, aktivitas konstruksi/pembangunan.</td>
-                        </tr>
-                        <tr>
-                            <td><b>CO</b></td>
-                            <td>Karbon Monoksida. Gas beracun tak berbau pemicu penurunan kadar oksigen dalam darah.</td>
-                            <td>Pembakaran bahan bakar fosil tidak sempurna.</td>
-                        </tr>
-                        <tr>
-                            <td><b>NO2</b></td>
-                            <td>Nitrogen Dioksida. Gas reaktif penyebab iritasi paru-paru dan komponen hujan asam.</td>
-                            <td>Gas buang kendaraan bermotor, pembangkit listrik.</td>
-                        </tr>
-                        <tr>
-                            <td><b>SO2</b></td>
-                            <td>Sulfur Dioksida. Gas berbau menyengat yang memicu gangguan pernapasan akut.</td>
-                            <td>Pembakaran batu bara dan pemrosesan minyak bumi.</td>
-                        </tr>
-                        <tr>
-                            <td><b>O3</b></td>
-                            <td>Ozon Permukaan (Troposferik). Oksidator kuat pemicu masalah pernapasan.</td>
-                            <td>Reaksi fotokimia antara NOx dan VOC dengan bantuan sinar matahari.</td>
-                        </tr>
-
-                </table>
-                <p><i>Catatan Data:</i> Data diperiksa untuk memastikan tidak ada interval waktu yang hilang dan tidak ada data aneh (outlier/nilai negatif).</p>
-            </div>
-            <hr>
-
-            <!-- SECTION 3 -->
-            <div id="grafik">
-                <h2>Visualisasi Time Series & Data CSV</h2>
-                <p>Berikut adalah grafik time series polutan PM2.5 dan PM10 dari periode Agustus 2025 hingga Agustus 2026:</p>
-                
-                <img src="download.png" alt="Grafik Time Series Kualitas Udara">
-                <img src="download (1).png" alt="Grafik Time Series Kualitas Udara">
-                <img src="download (2).png" alt="Grafik Time Series Kualitas Udara">
-                <img src="download (3).png" alt="Grafik Time Series Kualitas Udara">
-                
-                <br><br>
-                <p> Unduh file data mentah (.CSV):</p>
-                <a href="data_polutan_surabaya.csv" download><b>[Download File data_polutan.csv]</b></a>
-            </div>
 
         </div>
+
     </div>
+
+</section>
+
+
+<!-- PETA -->
+
+<section id="peta">
+
+    <div class="number">
+        04 — PETA WILAYAH
+    </div>
+
+    <h2>
+        Wilayah Pengambilan Data
+    </h2>
+
+    <p class="intro">
+        Wilayah pengambilan data dibatasi menggunakan
+        GeoJSON sesuai wilayah penelitian.
+    </p>
+
+    <div class="map">
+
+        <!-- FOTO PETA KAMU -->
+        <img src="peta surabaya.png" alt="Peta wilayah Surabaya">
+
+        <div class="caption">
+            Peta wilayah pengambilan data polutan.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CSV -->
+
+<section id="csv">
+
+    <div class="number">
+        05 — DATA CSV
+    </div>
+
+    <h2>
+        Data Hasil Crawling
+    </h2>
+
+    <p class="intro">
+        Data hasil crawling disimpan dalam bentuk CSV
+        dan ditampilkan di bawah ini.
+    </p>
+
+    <div class="csv-box">
+
+        <h3 class="csv-title">
+            data.csv
+        </h3>
+
+        <p class="csv-desc">
+            Dataset kualitas udara yang digunakan dalam analisis.
+        </p>
+
+        <div class="csv-scroll">
+
+            <table class="csv-table">
+
+                <thead id="csvHead"></thead>
+
+                <tbody id="csvBody"></tbody>
+
+            </table>
+
+        </div>
+
+        <p
+            class="csv-status"
+            id="csvStatus">
+            Membaca data.csv...
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- GRAFIK -->
+
+<section id="grafik">
+
+    <div class="number">
+        06 — TIME SERIES
+    </div>
+
+    <h2>
+        Grafik Time Series
+    </h2>
+
+    <p class="intro">
+        Grafik menunjukkan perubahan nilai masing-masing
+        polutan selama periode pengamatan.
+    </p>
+
+    <div class="graphs">
+
+        <div class="graph">
+
+            <h3>
+                PM2.5
+            </h3>
+
+            <img src="download (1)png" alt="Grafik PM2.5">
+
+        </div>
+
+        <div class="graph">
+
+            <h3>
+                CO₂
+            </h3>
+
+            <img src="download (2).png" alt="Grafik CO2">
+
+        </div>
+
+        <div class="graph">
+
+            <h3>
+                NO₂
+            </h3>
+
+            <img src="download (3).png" alt="Grafik NO2">
+
+        </div>
+
+        <div class="graph">
+
+            <h3>
+                PM10
+            </h3>
+
+            <img src="download.png" alt="Grafik PM10">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- KESIMPULAN -->
+
+<section
+    id="kesimpulan"
+    class="conclusion">
+
+    <div class="number">
+        07 — KESIMPULAN
+    </div>
+
+    <h2>
+        Kesimpulan
+    </h2>
+
+    <div class="conclusion-box">
+
+        <p>
+            Berdasarkan hasil eksplorasi dan grafik time series,
+            nilai polutan udara di wilayah Surabaya mengalami
+            perubahan selama periode pengamatan.
+        </p>
+
+        <p>
+            Setiap polutan memiliki pola perubahan yang berbeda.
+            Terdapat beberapa nilai yang mengalami kenaikan
+            cukup tinggi sehingga perlu diperiksa lebih lanjut.
+        </p>
+
+        <p>
+            Data ini dapat digunakan sebagai gambaran awal
+            untuk mengetahui perubahan kualitas udara di
+            wilayah Surabaya.
+        </p>
+
+        <div class="highlights">
+
+            <div class="highlight">
+                <b>Wilayah</b>
+                Surabaya
+            </div>
+
+            <div class="highlight">
+                <b>Periode</b>
+                September 2025 - 31 Agustus 2026
+            </div>
+
+            <div class="highlight">
+                <b>Polutan</b>
+                PM2.5, PM10, NO₂, CO₂
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <b>PSD — Pengolahan dan Analisis Data</b>
+    <br>
+    Analisis Kualitas Udara Kota Surabaya
+    <br>
+    September 2025 - 31 Agustus 2026
+
+</footer>
+
+</main>
+
+
+<!-- ================= JAVASCRIPT CSV ================= -->
+
+<script>
+
+fetch("Data_Polutan_surabaya.csv")
+
+.then(function(response){
+
+    if(!response.ok){
+        throw new Error("data.csv tidak ditemukan");
+    }
+
+    return response.text();
+
+})
+
+.then(function(data){
+
+    var lines = data.trim().split(/\r?\n/);
+
+    var head = document.getElementById("csvHead");
+    var body = document.getElementById("csvBody");
+
+    var header = lines[0].split(",");
+
+    var headerRow = document.createElement("tr");
+
+    header.forEach(function(column){
+
+        var th = document.createElement("th");
+
+        th.textContent = column.trim();
+
+        headerRow.appendChild(th);
+
+    });
+
+    head.appendChild(headerRow);
+
+
+    for(var i = 1; i < lines.length; i++){
+
+        var values = lines[i].split(",");
+
+        var row = document.createElement("tr");
+
+        values.forEach(function(value){
+
+            var td = document.createElement("td");
+
+            td.textContent = value.trim();
+
+            row.appendChild(td);
+
+        });
+
+        body.appendChild(row);
+
+    }
+
+
+    document.getElementById("csvStatus").textContent =
+        "Data CSV berhasil ditampilkan: " +
+        (lines.length - 1) +
+        " baris.";
+
+})
+
+.catch(function(error){
+
+    document.getElementById("csvStatus").textContent =
+        "data.csv belum ditemukan. Pastikan file data.csv ada di folder yang sama dengan index.html.";
+
+});
+
+</script>
 
 </body>
 </html>
