@@ -200,6 +200,8 @@
             <li><a href="#wilayah">Wilayah</a></li>
             <li><a href="#datacsv">Data CSV</a></li>
             <li><a href="#eksplorasi">Eksplorasi Data</a></li>
+            <li><a href="#aiven">PostgreSQL Aiven</a></li>
+            <li><a href="#knime">KNIME</a></li>
         </ul>
     </div>
 
@@ -208,7 +210,7 @@
         <div id="beranda" class="card">
             <h1>Beranda</h1>
             <p style="margin-bottom: 12px;">
-                Selamat datang di website statis sederhana untuk pemenuhan tugas mata kuliah <b>Penambangan & Sains Data (PSD)</b>. Website ini menyajikan analisis pola fluktuasi dan kualitas udara harian di wilayah Surabaya menggunakan metode <i>time series</i>.
+                Selamat datang di website statis sederhana untuk pemenuhan tugas mata kuliah <b>Proyek Sains Data (PSD)</b>. Website ini menyajikan analisis pola fluktuasi dan kualitas udara harian di wilayah Surabaya menggunakan metode <i>time series</i>.
             </p>
             <p>
                 Seluruh data yang dianalisis diperoleh langsung dari <b>Open-Meteo Air Quality API</b> untuk periode pengamatan selama satu tahun penuh, terhitung mulai dari <b>1 September 2025 hingga 31 Agustus 2026</b>.
@@ -378,6 +380,89 @@
                 <img src="download (3).png" alt="Grafik Time Series NO2" class="responsive-img">
                 <p class="img-caption">Gambar 5: Grafik Time Series NO2 di Surabaya</p>
             </div>
+        </div>
+
+        <div id="aiven" class="card">
+            <h2>PostgreSQL Aiven</h2>
+            <p>Data time series kualitas udara yang telah dibersihkan disimpan pada database PostgreSQL yang disediakan oleh Aiven. PostgreSQL digunakan sebagai tempat penyimpanan data sebelum data dibaca dan dianalisis menggunakan KNIME.</p>
+
+            <h3>Informasi Database</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Komponen</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Database</td>
+                        <td>PostgreSQL Aiven</td>
+                    </tr>
+                    <tr>
+                        <td>Database Name</td>
+                        <td>defaultdb</td>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td>avnadmin</td>
+                    </tr>
+                    <tr>
+                        <td>Data</td>
+                        <td>Time series kualitas udara Surabaya</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><b>Catatan:</b> Password dan informasi kredensial sensitif tidak ditampilkan pada website untuk menjaga keamanan database.</p>
+
+            <h3>Alur Penyimpanan Data</h3>
+            <p>CSV yang telah dibersihkan → PostgreSQL Aiven → data dapat diakses oleh KNIME untuk proses analisis statistik.</p>
+        </div>
+
+        <div id="knime" class="card">
+            <h2>KNIME</h2>
+            <p>KNIME digunakan untuk mengambil data dari PostgreSQL Aiven dan melakukan analisis statistik terhadap fitur kualitas udara.</p>
+
+            <h3>Workflow KNIME</h3>
+            <img src="workflow_knime.png" alt="workflow knime" class="responsive-img">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Node</th>
+                        <th>Fungsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>PostgreSQL Connector</td>
+                        <td>Menghubungkan KNIME dengan database PostgreSQL Aiven.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>DB Table Selector</td>
+                        <td>Memilih tabel yang berisi data kualitas udara.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>DB Reader</td>
+                        <td>Membaca data dari database ke dalam workflow KNIME.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Statistics</td>
+                        <td>Menghasilkan statistik seperti minimum, maksimum, mean, standard deviation, variance, dan skewness.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Fitur yang Dianalisis</h3>
+            <p>Analisis statistik dilakukan pada <b>PM10, PM2.5, CO2, NO2, dan CO</b>. Kolom <b>time</b> digunakan sebagai penanda waktu pada data time series.</p>
+
+            <h3>Alur Analisis</h3>
+            <p>PostgreSQL Aiven → PostgreSQL Connector → DB Table Selector → DB Reader → Statistics → Hasil Statistik.</p>
         </div>
 
     </div>
