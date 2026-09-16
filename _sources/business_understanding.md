@@ -32,7 +32,7 @@ Berdasarkan latar belakang tersebut, rumusan masalah yang diselesaikan adalah:
 
 ---
 
-## 4. Tolok Ukur Keberhasilan (*Success Criteria*)
+## 4. Tolak Ukur Keberhasilan (*Success Criteria*)
 
 Keberhasilan proyek ini diukur berdasarkan dua aspek:
 
