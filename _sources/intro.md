@@ -1,11 +1,20 @@
-# Welcome to your Jupyter Book
+# Proyek Sains Data
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Dokumentasi dan laporan praktikum mata kuliah **Proyek Sains Data**.
 
-Check out the content pages bundled with this sample book to see more.
+---
 
-```{tableofcontents}
-```
+## Profil Mahasiswa
+
+| Biodata | Keterangan |
+| :--- | :--- |
+| **Nama Lengkap** | Riska Nana Nuril Fadilah |
+| **NIM** | [240411100081] |
+| **Program Studi** | Teknik Informatika |
+| **Mata Kuliah** | Proyek Sains Data |
+
+---
+
+## Deskripsi
+
+Buku web ini berisi catatan materi, tugas, eksplorasi data, dan pemodelan machine learning selama semester ini. Silakan navigasi melalui menu di samping kiri.
