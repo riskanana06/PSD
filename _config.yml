@@ -1,0 +1,15 @@
+title: Proyek Sains Data
+author: Riska nana nuril fadilah
+logo: logo.png
+
+execute:
+  execute_notebooks: 'off'
+
+repository:
+  url: https://github.com/riskanana06/PSD
+  branch: main
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+  home_page_in_navbar: true
