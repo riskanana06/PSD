@@ -1,4 +1,4 @@
-# Time Series $\text{NO}_2$
+# Time Series NO2
 
 Grafik membaca file `NO2_AsemRowo_daily_clean.csv` dari folder project.
 
@@ -7,4 +7,4 @@ Grafik membaca file `NO2_AsemRowo_daily_clean.csv` dari folder project.
 align: center
 alt: Grafik Time Series NO2 Kecamatan Asem Rowo
 ---
-Time Series $\text{NO}_2$ Kecamatan Asem Rowo
+Time Series NO2 Kecamatan Asem Rowo
