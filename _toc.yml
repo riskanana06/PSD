@@ -1,9 +1,11 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: intro
+
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+  - file: business_understanding
+  - file: data_understanding
+  - file: wilayah
+  - file: preprocessing
+  - file: time_series
+  - file: tsfel_features
+  - file: postgresql_aiven

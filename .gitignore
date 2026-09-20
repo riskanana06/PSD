@@ -1,0 +1,7 @@
+# Kredensial dan konfigurasi lokal
+.env
+**/.env
+
+# Cache Python
+__pycache__/
+*.pyc
