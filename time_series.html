@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Time Series NO2 &#8212; Riska Nana Nuril Fadilah</title>
+    <title>Analisis Time Series Polutan Udara &#8212; Riska Nana Nuril Fadilah</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,11 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'time_series';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="68 Fitur TSFEL" href="tsfel_features.html" />
     <link rel="prev" title="Preprocessing" href="preprocessing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -185,7 +184,8 @@
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wilayah.html">Wilayah Pengamatan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Time Series NO2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Analisis Time Series Polutan Udara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">68 Fitur TSFEL</a></li>
 </ul>
 
     </div>
@@ -358,7 +358,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -369,11 +371,27 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Time Series NO2</h1>
+    <h1>Analisis Time Series Polutan Udara</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-time-series">1. Gambaran Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafik-time-series-data-mentah">2. Grafik Time Series Data Mentah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-co">3. Time Series CO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-no2">4. Time Series NO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-so2">5. Time Series SO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolasi-missing-value">6. Interpolasi Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafik-setelah-interpolasi">7. Grafik Setelah Interpolasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-awal">8. Interpretasi Awal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -383,17 +401,155 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="time-series-no2">
-<h1>Time Series NO2<a class="headerlink" href="#time-series-no2" title="Link to this heading">#</a></h1>
-<p>Grafik membaca file <code class="docutils literal notranslate"><span class="pre">NO2_AsemRowo_daily_clean.csv</span></code> dari folder project.</p>
-<p align="center">
-  <img src="timeseries_no2.png" alt="Grafik Time Series NO2 Kecamatan Asem Rowo" width="90%">
-  <br>
-  <em>Time Series NO2 Kecamatan Asem Rowo</em>
-</p>
-<blockquote>
-<div><p><strong>Keterangan:</strong> Grafik menampilkan perubahan nilai <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> harian dari 31-08-2025 sampai 31-08-2026.</p>
-</div></blockquote>
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-time-series-polutan-udara">
+<h1>Analisis Time Series Polutan Udara<a class="headerlink" href="#analisis-time-series-polutan-udara" title="Link to this heading">#</a></h1>
+<section id="gambaran-time-series">
+<h2>1. Gambaran Time Series<a class="headerlink" href="#gambaran-time-series" title="Link to this heading">#</a></h2>
+<p>Analisis time series digunakan untuk melihat perubahan nilai polutan berdasarkan urutan waktu. Data yang dianalisis meliputi CO, NO₂, dan SO₂ di Kecamatan Asem Rowo selama periode 31 Agustus 2025 sampai 31 Agustus 2026.</p>
+<p>Dataset mempunyai 366 tanggal pengamatan harian. Namun, tidak semua tanggal mempunyai nilai pengamatan satelit yang valid.</p>
+<p>Ringkasan missing value pada data mentah adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Jumlah Data</p></th>
+<th class="head text-right"><p>Data Terisi</p></th>
+<th class="head text-right"><p>Missing Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>199</p></td>
+<td class="text-right"><p>167</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>191</p></td>
+<td class="text-right"><p>175</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>225</p></td>
+<td class="text-right"><p>141</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="grafik-time-series-data-mentah">
+<h2>2. Grafik Time Series Data Mentah<a class="headerlink" href="#grafik-time-series-data-mentah" title="Link to this heading">#</a></h2>
+<figure class="align-default" id="grafik-timeseries-mentah">
+<a class="reference internal image-reference" href="_images/timeseries_raw_co_no2_so2.png"><img alt="_images/timeseries_raw_co_no2_so2.png" src="_images/timeseries_raw_co_no2_so2.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Time series mentah CO, NO₂, dan SO₂ di Kecamatan Asem Rowo.</span><a class="headerlink" href="#grafik-timeseries-mentah" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Grafik data mentah menampilkan nilai yang berasal dari hasil pengamatan Sentinel-5P. Garis pada beberapa bagian terlihat terputus karena terdapat missing value.</p>
+<p>Garis yang terputus tidak berarti nilai polutan sama dengan nol. Kondisi tersebut menunjukkan bahwa pada tanggal tersebut tidak tersedia hasil pengamatan yang valid.</p>
+</section>
+<section id="time-series-co">
+<h2>3. Time Series CO<a class="headerlink" href="#time-series-co" title="Link to this heading">#</a></h2>
+<p>CO mempunyai 199 data terisi dan 167 missing value. Nilai CO pada data mentah berada pada rentang:</p>
+<ul class="simple">
+<li><p>Minimum: 0.019625 pada 20 September 2025.</p></li>
+<li><p>Maksimum: 0.042720 pada 7 Oktober 2025.</p></li>
+<li><p>Rata-rata: 0.030106.</p></li>
+<li><p>Median: 0.030043.</p></li>
+</ul>
+<p>Pola CO mengalami kenaikan dan penurunan sepanjang periode pengamatan. Berdasarkan metode IQR, terdapat enam nilai yang terdeteksi sebagai outlier. Nilai tersebut perlu diperiksa sebelum digunakan dalam ekstraksi fitur.</p>
+</section>
+<section id="time-series-no2">
+<h2>4. Time Series NO₂<a class="headerlink" href="#time-series-no2" title="Link to this heading">#</a></h2>
+<p>NO₂ mempunyai 191 data terisi dan 175 missing value. Nilai NO₂ pada data mentah berada pada rentang:</p>
+<ul class="simple">
+<li><p>Minimum: 0.00000511 pada 2 Agustus 2026.</p></li>
+<li><p>Maksimum: 0.00033235 pada 23 September 2025.</p></li>
+<li><p>Rata-rata: 0.00005843.</p></li>
+<li><p>Median: 0.00005019.</p></li>
+</ul>
+<p>NO₂ mempunyai jumlah missing value paling banyak dibandingkan CO dan SO₂. Berdasarkan metode IQR, terdapat 12 nilai yang terdeteksi sebagai outlier.</p>
+<p>Perbedaan yang cukup besar antara nilai maksimum dan median menunjukkan adanya beberapa lonjakan nilai NO₂ pada periode tertentu.</p>
+</section>
+<section id="time-series-so2">
+<h2>5. Time Series SO₂<a class="headerlink" href="#time-series-so2" title="Link to this heading">#</a></h2>
+<p>SO₂ mempunyai 225 data terisi dan 141 missing value. Nilai SO₂ pada data mentah berada pada rentang:</p>
+<ul class="simple">
+<li><p>Minimum: -0.00107618 pada 28 Juli 2026.</p></li>
+<li><p>Maksimum: 0.00147138 pada 10 Juni 2026.</p></li>
+<li><p>Rata-rata: 0.00007109.</p></li>
+<li><p>Median: 0.00006744.</p></li>
+</ul>
+<p>SO₂ mempunyai tingkat kelengkapan data paling tinggi. Namun, terdapat 93 nilai negatif dan empat outlier berdasarkan metode IQR.</p>
+<p>Nilai negatif pada produk satelit tidak langsung diartikan sebagai konsentrasi fisik negatif. Nilai tersebut dapat berkaitan dengan noise, ketidakpastian instrumen, koreksi latar belakang, atau sinyal SO₂ yang sangat rendah.</p>
+</section>
+<section id="interpolasi-missing-value">
+<h2>6. Interpolasi Missing Value<a class="headerlink" href="#interpolasi-missing-value" title="Link to this heading">#</a></h2>
+<p>Missing value diisi menggunakan interpolasi berdasarkan waktu. Interpolasi memperkirakan nilai kosong berdasarkan nilai sebelum dan sesudah tanggal tersebut.</p>
+<p>Apabila masih terdapat nilai kosong pada awal atau akhir periode, digunakan metode <code class="docutils literal notranslate"><span class="pre">forward</span> <span class="pre">fill</span></code> dan <code class="docutils literal notranslate"><span class="pre">backward</span> <span class="pre">fill</span></code>.</p>
+<p>Tahapan yang digunakan adalah:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_interpolasi</span><span class="p">[</span><span class="n">nama</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_interpolasi</span><span class="p">[</span><span class="n">nama</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"time"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Setelah interpolasi, jumlah missing value menjadi:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Missing Sebelum</p></th>
+<th class="head text-right"><p>Missing Setelah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>167</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>175</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>141</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="grafik-setelah-interpolasi">
+<h2>7. Grafik Setelah Interpolasi<a class="headerlink" href="#grafik-setelah-interpolasi" title="Link to this heading">#</a></h2>
+<figure class="align-default" id="grafik-timeseries-interpolasi">
+<a class="reference internal image-reference" href="_images/timeseries_interpolasi_co_no2_so2.png"><img alt="_images/timeseries_interpolasi_co_no2_so2.png" src="_images/timeseries_interpolasi_co_no2_so2.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Time series CO, NO₂, dan SO₂ setelah missing value diisi menggunakan interpolasi waktu.</span><a class="headerlink" href="#grafik-timeseries-interpolasi" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Grafik setelah interpolasi mempunyai garis yang tersambung karena seluruh tanggal telah memiliki nilai. Nilai hasil interpolasi merupakan estimasi dan harus dibedakan dari hasil pengamatan asli satelit.</p>
+<p>Grafik ini digunakan untuk membantu melihat pola time series secara utuh. Dataset mentah tetap dipertahankan sebagai sumber data asli.</p>
+</section>
+<section id="interpretasi-awal">
+<h2>8. Interpretasi Awal<a class="headerlink" href="#interpretasi-awal" title="Link to this heading">#</a></h2>
+<p>Berdasarkan visualisasi time series, diperoleh beberapa temuan awal:</p>
+<ol class="arabic simple">
+<li><p>Ketiga polutan mengalami perubahan nilai dari waktu ke waktu.</p></li>
+<li><p>Data mentah mempunyai banyak bagian yang terputus karena missing value.</p></li>
+<li><p>NO₂ mempunyai jumlah missing value paling banyak.</p></li>
+<li><p>SO₂ mempunyai data terisi paling banyak, tetapi juga memiliki nilai negatif.</p></li>
+<li><p>CO mempunyai rentang nilai yang lebih stabil dibandingkan NO₂ dan SO₂.</p></li>
+<li><p>NO₂ dan SO₂ memperlihatkan beberapa lonjakan nilai yang perlu diperiksa sebagai kemungkinan outlier.</p></li>
+<li><p>Interpolasi membuat rangkaian data lengkap, tetapi hasilnya merupakan estimasi.</p></li>
+<li><p>Preprocessing diperlukan sebelum ekstraksi fitur dan clustering.</p></li>
+</ol>
+</section>
+<section id="kesimpulan">
+<h2>9. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Visualisasi time series berhasil menunjukkan pola harian CO, NO₂, dan SO₂ di Kecamatan Asem Rowo selama 366 hari.</p>
+<p>Data mentah tetap digunakan sebagai dokumentasi hasil pengamatan satelit. Data hasil interpolasi digunakan sebagai bagian dari persiapan preprocessing, tetapi deteksi dan penanganan outlier tetap perlu dilakukan sebelum ekstraksi fitur TSFEL.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -435,12 +591,44 @@ document.write(`
         <p class="prev-next-title">Preprocessing</p>
       </div>
     </a>
+    <a class="right-next"
+       href="tsfel_features.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">68 Fitur TSFEL</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-time-series">1. Gambaran Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafik-time-series-data-mentah">2. Grafik Time Series Data Mentah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-co">3. Time Series CO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-no2">4. Time Series NO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-so2">5. Time Series SO₂</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolasi-missing-value">6. Interpolasi Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grafik-setelah-interpolasi">7. Grafik Setelah Interpolasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-awal">8. Interpretasi Awal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">9. Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

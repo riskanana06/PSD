@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -187,6 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="wilayah.html">Wilayah Pengamatan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Time Series NO2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">68 Fitur TSFEL</a></li>
 </ul>
 
     </div>
@@ -382,8 +383,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-no-2"><span class="math notranslate nohighlight">\(\text{NO}_2\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi">Eksplorasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-dataset">1. Gambaran Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karbon-monoksida-co">2. Karbon Monoksida (CO)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nitrogen-dioksida-no2">3. Nitrogen Dioksida (NO₂)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sulfur-dioksida-so2">4. Sulfur Dioksida (SO₂)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelengkapan-data">5. Kelengkapan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-metode-iqr">6. Deteksi Outlier dengan Metode IQR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-data-aneh">7. Temuan Data Aneh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rencana-penanganan-data">8. Rencana Penanganan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-data-understanding">9. Kesimpulan Data Understanding</a></li>
 </ul>
             </nav>
         </div>
@@ -397,45 +405,336 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
 <h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
-<p>Tahap ini memaparkan gambaran umum dataset polutan udara, cakupan wilayah pengamatan, serta proses eksplorasi awal sebelum dilakukan pemrosesan lebih lanjut.</p>
-<hr class="docutils" />
+<section id="gambaran-dataset">
+<h2>1. Gambaran Dataset<a class="headerlink" href="#gambaran-dataset" title="Link to this heading">#</a></h2>
+<p>Dataset yang digunakan berisi data time series harian tiga polutan udara di Kecamatan Asem Rowo, Kota Surabaya. Data diperoleh dari Sentinel-5P melalui layanan openEO dengan batas wilayah menggunakan GeoJSON Kecamatan Asem Rowo.</p>
+<p>Periode data dimulai pada 31 Agustus 2025 sampai 31 Agustus 2026. Setelah seluruh tanggal disusun secara berurutan, dataset mempunyai 366 baris pengamatan.</p>
+<p>Dataset terdiri atas empat kolom:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Komponen</p></th>
-<th class="head text-left"><p>Keterangan</p></th>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Tipe Data</p></th>
+<th class="head"><p>Deskripsi</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><strong>Wilayah</strong></p></td>
-<td class="text-left"><p>Kecamatan Asem Rowo, Kota Surabaya, Jawa Timur</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></td>
+<td><p>Datetime</p></td>
+<td><p>Tanggal pengamatan harian</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Polutan</strong></p></td>
-<td class="text-left"><p><span class="math notranslate nohighlight">\(\text{NO}_2\)</span> (nitrogen dioksida)</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CO</span></code></p></td>
+<td><p>Numerik</p></td>
+<td><p>Nilai pengamatan karbon monoksida</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Periode</strong></p></td>
-<td class="text-left"><p>31-08-2025 sampai 31-08-2026</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NO2</span></code></p></td>
+<td><p>Numerik</p></td>
+<td><p>Nilai pengamatan nitrogen dioksida</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Frekuensi analisis</strong></p></td>
-<td class="text-left"><p>Harian</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><strong>Jumlah tanggal</strong></p></td>
-<td class="text-left"><p>366</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Sumber</strong></p></td>
-<td class="text-left"><p>Sentinel-5P melalui openEO</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SO2</span></code></p></td>
+<td><p>Numerik</p></td>
+<td><p>Nilai pengamatan sulfur dioksida</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<hr class="docutils" />
-<section id="text-no-2">
-<h2><span class="math notranslate nohighlight">\(\text{NO}_2\)</span><a class="headerlink" href="#text-no-2" title="Link to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\text{NO}_2\)</span> adalah nitrogen dioksida, salah satu polutan udara yang dapat berkaitan dengan aktivitas pembakaran, terutama emisi kendaraan dan sumber pembakaran lainnya. Dalam proyek ini yang dianalisis adalah deret waktu <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> untuk wilayah Asem Rowo.</p>
+<p>Nilai polutan berasal dari pengamatan kolom atmosfer Sentinel-5P. Nilai tersebut tidak langsung dianggap sebagai konsentrasi udara pada permukaan atau tingkat paparan yang dihirup manusia.</p>
 </section>
-<hr class="docutils" />
-<section id="eksplorasi">
-<h2>Eksplorasi<a class="headerlink" href="#eksplorasi" title="Link to this heading">#</a></h2>
-<p>Data awal memiliki nilai yang hilang karena tidak semua tanggal memiliki nilai hasil agregasi. Deteksi <em>outlier</em> dilakukan menggunakan metode <strong>IQR (Interquartile Range)</strong>. Setelah proses deteksi, terdapat <strong>12 outlier</strong> yang ditangani sebelum imputasi.</p>
+<section id="karbon-monoksida-co">
+<h2>2. Karbon Monoksida (CO)<a class="headerlink" href="#karbon-monoksida-co" title="Link to this heading">#</a></h2>
+<p>Karbon monoksida atau CO merupakan gas yang tidak berwarna dan tidak berbau. CO terbentuk akibat proses pembakaran yang tidak sempurna.</p>
+<p>Beberapa sumber CO antara lain:</p>
+<ul class="simple">
+<li><p>emisi kendaraan bermotor;</p></li>
+<li><p>pembakaran bahan bakar;</p></li>
+<li><p>aktivitas industri;</p></li>
+<li><p>pembakaran sampah;</p></li>
+<li><p>kebakaran lahan atau vegetasi.</p></li>
+</ul>
+<p>Dalam konsentrasi tinggi, CO dapat mengganggu kemampuan darah dalam membawa oksigen. Pada penelitian ini, data CO digunakan untuk melihat pola perubahan nilai CO secara harian di wilayah Asem Rowo.</p>
+<p>Hasil pemeriksaan data CO:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Statistik</p></th>
+<th class="head text-right"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah tanggal</p></td>
+<td class="text-right"><p>366</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data terisi</p></td>
+<td class="text-right"><p>199</p></td>
+</tr>
+<tr class="row-even"><td><p>Data kosong</p></td>
+<td class="text-right"><p>167</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rata-rata</p></td>
+<td class="text-right"><p>0.030106</p></td>
+</tr>
+<tr class="row-even"><td><p>Median</p></td>
+<td class="text-right"><p>0.030043</p></td>
+</tr>
+<tr class="row-odd"><td><p>Standar deviasi</p></td>
+<td class="text-right"><p>0.003769</p></td>
+</tr>
+<tr class="row-even"><td><p>Minimum</p></td>
+<td class="text-right"><p>0.019625</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maksimum</p></td>
+<td class="text-right"><p>0.042720</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah nilai negatif</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah outlier IQR</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data CO memiliki 167 missing value. Berdasarkan metode Interquartile Range, ditemukan enam nilai outlier. Tidak ditemukan nilai CO negatif maupun nilai nol.</p>
+</section>
+<section id="nitrogen-dioksida-no2">
+<h2>3. Nitrogen Dioksida (NO₂)<a class="headerlink" href="#nitrogen-dioksida-no2" title="Link to this heading">#</a></h2>
+<p>Nitrogen dioksida atau NO₂ merupakan gas reaktif yang umumnya dihasilkan oleh proses pembakaran pada suhu tinggi.</p>
+<p>Beberapa sumber NO₂ antara lain:</p>
+<ul class="simple">
+<li><p>kendaraan bermotor;</p></li>
+<li><p>pembangkit listrik;</p></li>
+<li><p>pembakaran bahan bakar fosil;</p></li>
+<li><p>aktivitas industri;</p></li>
+<li><p>alat berat dan mesin pembakaran.</p></li>
+</ul>
+<p>Paparan NO₂ dalam jumlah tinggi dapat mengganggu sistem pernapasan. NO₂ juga berperan dalam pembentukan polutan sekunder di atmosfer.</p>
+<p>Hasil pemeriksaan data NO₂:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Statistik</p></th>
+<th class="head text-right"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah tanggal</p></td>
+<td class="text-right"><p>366</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data terisi</p></td>
+<td class="text-right"><p>191</p></td>
+</tr>
+<tr class="row-even"><td><p>Data kosong</p></td>
+<td class="text-right"><p>175</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rata-rata</p></td>
+<td class="text-right"><p>0.00005843</p></td>
+</tr>
+<tr class="row-even"><td><p>Median</p></td>
+<td class="text-right"><p>0.00005019</p></td>
+</tr>
+<tr class="row-odd"><td><p>Standar deviasi</p></td>
+<td class="text-right"><p>0.00003835</p></td>
+</tr>
+<tr class="row-even"><td><p>Minimum</p></td>
+<td class="text-right"><p>0.00000511</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maksimum</p></td>
+<td class="text-right"><p>0.00033235</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah nilai negatif</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah outlier IQR</p></td>
+<td class="text-right"><p>12</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>NO₂ memiliki jumlah missing value paling banyak, yaitu 175 data. Berdasarkan metode IQR, ditemukan 12 nilai outlier. Tidak ditemukan nilai NO₂ negatif maupun nilai nol.</p>
+</section>
+<section id="sulfur-dioksida-so2">
+<h2>4. Sulfur Dioksida (SO₂)<a class="headerlink" href="#sulfur-dioksida-so2" title="Link to this heading">#</a></h2>
+<p>Sulfur dioksida atau SO₂ merupakan gas yang terutama dihasilkan dari pembakaran bahan bakar yang mengandung sulfur.</p>
+<p>Beberapa sumber SO₂ antara lain:</p>
+<ul class="simple">
+<li><p>aktivitas industri;</p></li>
+<li><p>pembakaran batu bara dan minyak;</p></li>
+<li><p>pembangkit listrik;</p></li>
+<li><p>proses peleburan logam;</p></li>
+<li><p>aktivitas vulkanik.</p></li>
+</ul>
+<p>SO₂ dapat menyebabkan iritasi pada sistem pernapasan dan berperan dalam pembentukan hujan asam.</p>
+<p>Hasil pemeriksaan data SO₂:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Statistik</p></th>
+<th class="head text-right"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah tanggal</p></td>
+<td class="text-right"><p>366</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data terisi</p></td>
+<td class="text-right"><p>225</p></td>
+</tr>
+<tr class="row-even"><td><p>Data kosong</p></td>
+<td class="text-right"><p>141</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rata-rata</p></td>
+<td class="text-right"><p>0.00007109</p></td>
+</tr>
+<tr class="row-even"><td><p>Median</p></td>
+<td class="text-right"><p>0.00006744</p></td>
+</tr>
+<tr class="row-odd"><td><p>Standar deviasi</p></td>
+<td class="text-right"><p>0.00031341</p></td>
+</tr>
+<tr class="row-even"><td><p>Minimum</p></td>
+<td class="text-right"><p>-0.00107618</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maksimum</p></td>
+<td class="text-right"><p>0.00147138</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah nilai negatif</p></td>
+<td class="text-right"><p>93</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah outlier IQR</p></td>
+<td class="text-right"><p>4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SO₂ mempunyai 141 missing value dan empat outlier berdasarkan metode IQR. Selain itu, terdapat 93 nilai negatif.</p>
+<p>Nilai negatif pada data produk satelit tidak berarti terdapat konsentrasi SO₂ fisik yang benar-benar negatif. Nilai tersebut dapat muncul akibat noise, ketidakpastian instrumen, koreksi latar belakang, keterbatasan sensitivitas, atau proses pengolahan data ketika sinyal polutan sangat rendah. Nilai negatif perlu didokumentasikan dan ditangani secara konsisten pada tahap preprocessing.</p>
+</section>
+<section id="kelengkapan-data">
+<h2>5. Kelengkapan Data<a class="headerlink" href="#kelengkapan-data" title="Link to this heading">#</a></h2>
+<p>Ringkasan kelengkapan data setiap polutan adalah sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Total Data</p></th>
+<th class="head text-right"><p>Terisi</p></th>
+<th class="head text-right"><p>Kosong</p></th>
+<th class="head text-right"><p>Persentase Terisi</p></th>
+<th class="head text-right"><p>Persentase Kosong</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>199</p></td>
+<td class="text-right"><p>167</p></td>
+<td class="text-right"><p>54.37%</p></td>
+<td class="text-right"><p>45.63%</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>191</p></td>
+<td class="text-right"><p>175</p></td>
+<td class="text-right"><p>52.19%</p></td>
+<td class="text-right"><p>47.81%</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>225</p></td>
+<td class="text-right"><p>141</p></td>
+<td class="text-right"><p>61.48%</p></td>
+<td class="text-right"><p>38.52%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SO₂ mempunyai tingkat kelengkapan paling tinggi, sedangkan NO₂ mempunyai jumlah missing value paling banyak. Missing value dapat terjadi karena tidak semua tanggal menghasilkan pengamatan satelit yang valid pada wilayah penelitian.</p>
+</section>
+<section id="deteksi-outlier-dengan-metode-iqr">
+<h2>6. Deteksi Outlier dengan Metode IQR<a class="headerlink" href="#deteksi-outlier-dengan-metode-iqr" title="Link to this heading">#</a></h2>
+<p>Outlier dideteksi menggunakan metode Interquartile Range. Rumus yang digunakan adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+IQR = Q_3 - Q_1
+\]</div>
+<p>Batas bawah dihitung menggunakan:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Batas bawah} = Q_1 - 1.5(IQR)
+\]</div>
+<p>Batas atas dihitung menggunakan:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Batas atas} = Q_3 + 1.5(IQR)
+\]</div>
+<p>Nilai yang lebih kecil dari batas bawah atau lebih besar dari batas atas dianggap sebagai outlier.</p>
+<p>Hasil deteksi awal:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Q1</p></th>
+<th class="head text-right"><p>Q3</p></th>
+<th class="head text-right"><p>Batas Bawah</p></th>
+<th class="head text-right"><p>Batas Atas</p></th>
+<th class="head text-right"><p>Outlier</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>0.02778410</p></td>
+<td class="text-right"><p>0.03216637</p></td>
+<td class="text-right"><p>0.02121070</p></td>
+<td class="text-right"><p>0.03873977</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>0.00003989</p></td>
+<td class="text-right"><p>0.00006456</p></td>
+<td class="text-right"><p>0.00000289</p></td>
+<td class="text-right"><p>0.00010156</p></td>
+<td class="text-right"><p>12</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>-0.00011281</p></td>
+<td class="text-right"><p>0.00025075</p></td>
+<td class="text-right"><p>-0.00065815</p></td>
+<td class="text-right"><p>0.00079609</p></td>
+<td class="text-right"><p>4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Outlier tidak langsung dianggap sebagai kesalahan. Nilai tersebut perlu diperiksa berdasarkan tanggal, pola time series, dan karakteristik pengamatan satelit sebelum ditangani.</p>
+</section>
+<section id="temuan-data-aneh">
+<h2>7. Temuan Data Aneh<a class="headerlink" href="#temuan-data-aneh" title="Link to this heading">#</a></h2>
+<p>Beberapa kondisi data yang perlu diperhatikan adalah:</p>
+<ol class="arabic simple">
+<li><p>Dataset memiliki missing value dalam jumlah cukup besar pada ketiga polutan.</p></li>
+<li><p>Data CO mempunyai enam outlier.</p></li>
+<li><p>Data NO₂ mempunyai 12 outlier dan variasi nilai maksimum yang cukup jauh dari median.</p></li>
+<li><p>Data SO₂ mempunyai empat outlier.</p></li>
+<li><p>Terdapat 93 nilai SO₂ negatif.</p></li>
+<li><p>Skala nilai CO jauh lebih besar dibandingkan NO₂ dan SO₂.</p></li>
+<li><p>Ketiga polutan tidak boleh dibandingkan langsung hanya berdasarkan besar angkanya karena karakteristik dan skala pengukurannya berbeda.</p></li>
+<li><p>Data perlu distandardisasi sebelum digunakan dalam PCA dan K-Means clustering.</p></li>
+</ol>
+</section>
+<section id="rencana-penanganan-data">
+<h2>8. Rencana Penanganan Data<a class="headerlink" href="#rencana-penanganan-data" title="Link to this heading">#</a></h2>
+<p>Tahapan yang dilakukan setelah data understanding adalah:</p>
+<ol class="arabic simple">
+<li><p>Mempertahankan dataset mentah sebagai data referensi.</p></li>
+<li><p>Mengubah nilai outlier menjadi missing value agar dapat diimputasi.</p></li>
+<li><p>Menangani nilai SO₂ negatif secara konsisten dan mendokumentasikan metode yang digunakan.</p></li>
+<li><p>Mengisi missing value menggunakan interpolasi berdasarkan waktu.</p></li>
+<li><p>Menggunakan <code class="docutils literal notranslate"><span class="pre">ffill</span></code> dan <code class="docutils literal notranslate"><span class="pre">bfill</span></code> untuk menangani nilai kosong yang tersisa pada awal atau akhir periode.</p></li>
+<li><p>Memastikan seluruh polutan mempunyai 366 data dan tidak memiliki missing value.</p></li>
+<li><p>Menyimpan hasil preprocessing dalam CSV terpisah.</p></li>
+<li><p>Melakukan ekstraksi fitur menggunakan TSFEL.</p></li>
+<li><p>Melakukan standardisasi sebelum PCA dan clustering.</p></li>
+</ol>
+</section>
+<section id="kesimpulan-data-understanding">
+<h2>9. Kesimpulan Data Understanding<a class="headerlink" href="#kesimpulan-data-understanding" title="Link to this heading">#</a></h2>
+<p>Dataset telah mencakup periode satu tahun penuh, tetapi belum siap langsung digunakan untuk analisis lanjutan. Masih terdapat missing value, outlier, serta nilai negatif pada SO₂.</p>
+<p>CO mempunyai 167 missing value dan enam outlier. NO₂ mempunyai 175 missing value dan 12 outlier. SO₂ mempunyai 141 missing value, empat outlier, serta 93 nilai negatif.</p>
+<p>Oleh karena itu, tahap preprocessing diperlukan agar dataset menjadi lengkap, konsisten, dan dapat digunakan untuk ekstraksi fitur, PCA, serta K-Means clustering.</p>
 </section>
 </section>
 
@@ -503,8 +802,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-no-2"><span class="math notranslate nohighlight">\(\text{NO}_2\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi">Eksplorasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-dataset">1. Gambaran Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karbon-monoksida-co">2. Karbon Monoksida (CO)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nitrogen-dioksida-no2">3. Nitrogen Dioksida (NO₂)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sulfur-dioksida-so2">4. Sulfur Dioksida (SO₂)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelengkapan-data">5. Kelengkapan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-dengan-metode-iqr">6. Deteksi Outlier dengan Metode IQR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-data-aneh">7. Temuan Data Aneh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rencana-penanganan-data">8. Rencana Penanganan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-data-understanding">9. Kesimpulan Data Understanding</a></li>
 </ul>
   </nav></div>
 
