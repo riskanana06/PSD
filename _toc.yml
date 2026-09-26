@@ -9,3 +9,4 @@ chapters:
   - file: time_series
   - file: tsfel_features
   - file: postgresql_aiven
+  - file: clustering
