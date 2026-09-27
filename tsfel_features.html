@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>68 Fitur TSFEL &#8212; Riska Nana Nuril Fadilah</title>
+    <title>Ekstraksi 68 Fitur TSFEL &#8212; Riska Nana Nuril Fadilah</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -187,7 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="wilayah.html">Wilayah Pengamatan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series Polutan Udara</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">68 Fitur TSFEL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ekstraksi 68 Fitur TSFEL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clustering.html">Ekstraksi Fitur dan Clustering</a></li>
 </ul>
@@ -375,7 +375,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>68 Fitur TSFEL</h1>
+    <h1>Ekstraksi 68 Fitur TSFEL</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,7 +386,24 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-ekstraksi-fitur">1. Domain Ekstraksi Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ekstraksi-fitur-python">2. Kode Ekstraksi Fitur (Python)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-fitur">2. Hasil Ekstraksi Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-spectral-decrease-dan-spectral-distance">3. Fitur Spectral Decrease dan Spectral Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sinyal">4. Contoh Sinyal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-decrease">5. Spectral Decrease</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">5.1 Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">5.2 Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual">5.3 Perhitungan Manual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-distance">6. Spectral Distance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1 Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2 Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.3 Perhitungan Manual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-menggunakan-tsfel">7. Pembuktian Menggunakan TSFEL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-pada-data-polutan-asem-rowo">8. Penerapan pada Data Polutan Asem Rowo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">9. Interpretasi Hasil</a></li>
 </ul>
             </nav>
         </div>
@@ -398,38 +415,303 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="fitur-tsfel">
-<h1>68 Fitur TSFEL<a class="headerlink" href="#fitur-tsfel" title="Link to this heading">#</a></h1>
-<p>Tahap ekstraksi fitur (<em>feature extraction</em>) dilakukan untuk mengubah deret waktu mentah <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> menjadi representasi numerik yang menangkap karakteristik domain statistik, temporal, dan spektral menggunakan pustaka <strong>TSFEL</strong> (<em>Time Series Feature Extraction Library</em>).</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ekstraksi-68-fitur-tsfel">
+<h1>Ekstraksi 68 Fitur TSFEL<a class="headerlink" href="#ekstraksi-68-fitur-tsfel" title="Link to this heading">#</a></h1>
+<p>Tahap ekstraksi fitur (<em>feature extraction</em>) dilakukan untuk mengubah data deret waktu CO, NO₂, dan SO₂ menjadi representasi numerik. Ekstraksi dilakukan menggunakan pustaka <strong>TSFEL</strong> (<em>Time Series Feature Extraction Library</em>).</p>
+<p>Setiap polutan diekstraksi menjadi 68 fitur sehingga keseluruhan data menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+68 \times 3 = 204 \text{ fitur}
+\]</div>
 <section id="domain-ekstraksi-fitur">
 <h2>1. Domain Ekstraksi Fitur<a class="headerlink" href="#domain-ekstraksi-fitur" title="Link to this heading">#</a></h2>
-<p>Ekstraksi fitur TSFEL mencakup tiga kelompok domain utama:</p>
+<p>Fitur TSFEL yang digunakan berasal dari beberapa domain berikut:</p>
 <ul class="simple">
-<li><p><strong>Statistical Features:</strong> Menangkap distribusi nilai polutan, seperti mean, median, skewness, kurtosis, dan standar deviasi.</p></li>
-<li><p><strong>Temporal Features:</strong> Mengukur pola ketergantungan waktu, autokorelasi, zero-crossing rate, serta dinamika perubahan sinyal.</p></li>
-<li><p><strong>Spectral Features:</strong> Menganalisis karakteristik frekuensi melalui transformasi Fourier, energi spektral, dan spectral roll-off.</p></li>
+<li><p><strong>Statistical Features:</strong> Menjelaskan distribusi nilai sinyal, seperti mean, median, skewness, kurtosis, variansi, dan standar deviasi.</p></li>
+<li><p><strong>Temporal Features:</strong> Menjelaskan perubahan sinyal berdasarkan waktu, seperti autokorelasi, zero crossing, slope, dan turning point.</p></li>
+<li><p><strong>Spectral Features:</strong> Menjelaskan karakteristik sinyal dalam domain frekuensi menggunakan transformasi Fourier.</p></li>
+<li><p><strong>Fractal Features:</strong> Menjelaskan tingkat kompleksitas dan pola perubahan sinyal.</p></li>
 </ul>
 </section>
-<section id="kode-ekstraksi-fitur-python">
-<h2>2. Kode Ekstraksi Fitur (Python)<a class="headerlink" href="#kode-ekstraksi-fitur-python" title="Link to this heading">#</a></h2>
-<p>Kode berikut digunakan untuk memproses file deret waktu bersih <code class="docutils literal notranslate"><span class="pre">NO2_AsemRowo_daily_clean.csv</span></code> menjadi 68 fitur:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel</span>
+<section id="hasil-ekstraksi-fitur">
+<h2>2. Hasil Ekstraksi Fitur<a class="headerlink" href="#hasil-ekstraksi-fitur" title="Link to this heading">#</a></h2>
+<p>Ekstraksi dilakukan terhadap ketiga polutan dengan hasil:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Jumlah Baris</p></th>
+<th class="head text-right"><p>Jumlah Fitur</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>68</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>68</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>68</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gabungan</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-right"><p>204</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>File hasil ekstraksi yang dihasilkan adalah:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CO_AsemRowo_TSFEL_68_Clean.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO2_AsemRowo_TSFEL_68_Clean.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SO2_AsemRowo_TSFEL_68_Clean.csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AsemRowo_TSFEL_204_Clean.csv</span></code></p></li>
+</ul>
+<p>Untuk keperluan PCA dan K-Means, ekstraksi juga dilakukan menggunakan sistem window sehingga diperoleh 49 baris dan 204 fitur.</p>
+</section>
+<section id="fitur-spectral-decrease-dan-spectral-distance">
+<h2>3. Fitur Spectral Decrease dan Spectral Distance<a class="headerlink" href="#fitur-spectral-decrease-dan-spectral-distance" title="Link to this heading">#</a></h2>
+<p>Berdasarkan pembagian fitur ekstraksi, fitur yang dibahas pada bagian ini adalah:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">spectral_decrease(signal,</span> <span class="pre">fs)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spectral_distance(signal,</span> <span class="pre">fs)</span></code></p></li>
+</ol>
+<p>Kedua fitur termasuk dalam domain spectral dan dihitung berdasarkan magnitudo hasil transformasi Fourier.</p>
+</section>
+<section id="contoh-sinyal">
+<h2>4. Contoh Sinyal<a class="headerlink" href="#contoh-sinyal" title="Link to this heading">#</a></h2>
+<p>Contoh perhitungan manual menggunakan sinyal:</p>
+<div class="math notranslate nohighlight">
+\[
+x=[1,2,3,4]
+\]</div>
+<p>Frekuensi sampling:</p>
+<div class="math notranslate nohighlight">
+\[
+f_s=1
+\]</div>
+<p>Magnitudo <em>Real Fast Fourier Transform</em> (RFFT) dari sinyal tersebut adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+A=[10,\ 2.828427,\ 2]
+\]</div>
+</section>
+<section id="spectral-decrease">
+<h2>5. Spectral Decrease<a class="headerlink" href="#spectral-decrease" title="Link to this heading">#</a></h2>
+<section id="pengertian">
+<h3>5.1 Pengertian<a class="headerlink" href="#pengertian" title="Link to this heading">#</a></h3>
+<p>Spectral decrease mengukur besarnya penurunan amplitudo spektrum dari komponen frekuensi pertama menuju komponen frekuensi berikutnya.</p>
+<p>Nilai yang semakin negatif menunjukkan penurunan amplitudo spektrum yang semakin besar.</p>
+</section>
+<section id="rumus">
+<h3>5.2 Rumus<a class="headerlink" href="#rumus" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+SD=
+\frac{
+\displaystyle\sum_{k=1}^{M-1}
+\frac{A_k-A_0}{k}
+}{
+\displaystyle\sum_{k=1}^{M-1}A_k
+}
+\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_0\)</span> adalah amplitudo FFT pertama.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_k\)</span> adalah amplitudo FFT pada indeks ke-<span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(M\)</span> adalah jumlah komponen FFT.</p></li>
+</ul>
+</section>
+<section id="perhitungan-manual">
+<h3>5.3 Perhitungan Manual<a class="headerlink" href="#perhitungan-manual" title="Link to this heading">#</a></h3>
+<p>Diketahui:</p>
+<div class="math notranslate nohighlight">
+\[
+A=[10,\ 2.828427,\ 2]
+\]</div>
+<p>Hitung pembilang:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{2.828427-10}{1}
++
+\frac{2-10}{2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+=-7.171573-4
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+=-11.171573
+\]</div>
+<p>Hitung penyebut:</p>
+<div class="math notranslate nohighlight">
+\[
+2.828427+2=4.828427
+\]</div>
+<p>Maka:</p>
+<div class="math notranslate nohighlight">
+\[
+SD=\frac{-11.171573}{4.828427}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+SD=-2.313708
+\]</div>
+</section>
+</section>
+<section id="spectral-distance">
+<h2>6. Spectral Distance<a class="headerlink" href="#spectral-distance" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>6.1 Pengertian<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Spectral distance mengukur jarak antara <em>cumulative sum</em> magnitudo FFT dan garis linear yang dibentuk dari nol hingga nilai <em>cumulative sum</em> terakhir.</p>
+<p>Fitur ini menunjukkan seberapa jauh distribusi energi frekuensi menyimpang dari distribusi linear.</p>
+</section>
+<section id="id2">
+<h3>6.2 Rumus<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p><em>Cumulative sum</em> magnitudo FFT:</p>
+<div class="math notranslate nohighlight">
+\[
+C_k=\sum_{i=0}^{k}A_i
+\]</div>
+<p>Garis linear pembanding:</p>
+<div class="math notranslate nohighlight">
+\[
+L_k=\frac{k}{M-1}C_{M-1}
+\]</div>
+<p>Spectral distance:</p>
+<div class="math notranslate nohighlight">
+\[
+D=\sum_{k=0}^{M-1}(L_k-C_k)
+\]</div>
+</section>
+<section id="id3">
+<h3>6.3 Perhitungan Manual<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p><em>Cumulative sum</em> dari magnitudo FFT adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+C=[10,\ 12.828427,\ 14.828427]
+\]</div>
+<p>Garis linear pembanding adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+L=[0,\ 7.414214,\ 14.828427]
+\]</div>
+<p>Selisih garis linear dengan <em>cumulative sum</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+L-C=[-10,\ -5.414213,\ 0]
+\]</div>
+<p>Maka:</p>
+<div class="math notranslate nohighlight">
+\[
+D=-10-5.414213+0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+D=-15.414213
+\]</div>
+</section>
+</section>
+<section id="pembuktian-menggunakan-tsfel">
+<h2>7. Pembuktian Menggunakan TSFEL<a class="headerlink" href="#pembuktian-menggunakan-tsfel" title="Link to this heading">#</a></h2>
+<p>Kode berikut digunakan untuk membuktikan hasil perhitungan manual:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="c1"># 1. Muat dataset deret waktu bersih</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"NO2_AsemRowo_daily_clean.csv"</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">spectral_decrease</span><span class="p">,</span>
+    <span class="n">spectral_distance</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="c1"># 2. Ambil konfigurasi domain fitur lengkap</span>
-<span class="n">cfg</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">get_features_by_domain</span><span class="p">()</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="c1"># 3. Ekstraksi 68 fitur dari data NO2</span>
-<span class="n">fitur_tsfel</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">time_series_features_extractor</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">"value"</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fft_magnitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">rfft</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span>
 
-<span class="c1"># 4. Simpan ke berkas CSV</span>
-<span class="n">fitur_tsfel</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"NO2_AsemRowo_TSFEL_68.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total fitur yang dihasilkan: </span><span class="si">{</span><span class="n">fitur_tsfel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> kolom"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Magnitudo FFT:"</span><span class="p">,</span> <span class="n">fft_magnitude</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Spectral decrease:"</span><span class="p">,</span> <span class="n">spectral_decrease</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Spectral distance:"</span><span class="p">,</span> <span class="n">spectral_distance</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">))</span>
 </pre></div>
 </div>
+<p>Hasil program:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Magnitudo FFT: [10.          2.82842712  2.        ]
+Spectral decrease: -2.313708
+Spectral distance: -15.414214
+</pre></div>
+</div>
+<p>Hasil perhitungan TSFEL sama dengan hasil perhitungan manual. Dengan demikian, perhitungan kedua fitur berhasil dibuktikan.</p>
+</section>
+<section id="penerapan-pada-data-polutan-asem-rowo">
+<h2>8. Penerapan pada Data Polutan Asem Rowo<a class="headerlink" href="#penerapan-pada-data-polutan-asem-rowo" title="Link to this heading">#</a></h2>
+<p>Kode berikut digunakan untuk menghitung kedua fitur pada data CO, NO₂, dan SO₂:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">spectral_decrease</span><span class="p">,</span>
+    <span class="n">spectral_distance</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">folder</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">data_polutan</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"CO"</span><span class="p">:</span> <span class="s2">"CO_AsemRowo_Timeseries_Clean.csv"</span><span class="p">,</span>
+    <span class="s2">"NO2"</span><span class="p">:</span> <span class="s2">"NO2_AsemRowo_Timeseries_Clean.csv"</span><span class="p">,</span>
+    <span class="s2">"SO2"</span><span class="p">:</span> <span class="s2">"SO2_AsemRowo_Timeseries_Clean.csv"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">hasil</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">polutan</span><span class="p">,</span> <span class="n">nama_file</span> <span class="ow">in</span> <span class="n">data_polutan</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder</span> <span class="o">/</span> <span class="n">nama_file</span><span class="p">)</span>
+    <span class="n">sinyal</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">polutan</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+    <span class="n">hasil</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">"polutan"</span><span class="p">:</span> <span class="n">polutan</span><span class="p">,</span>
+            <span class="s2">"spectral_decrease"</span><span class="p">:</span> <span class="n">spectral_decrease</span><span class="p">(</span><span class="n">sinyal</span><span class="p">,</span> <span class="n">fs</span><span class="p">),</span>
+            <span class="s2">"spectral_distance"</span><span class="p">:</span> <span class="n">spectral_distance</span><span class="p">(</span><span class="n">sinyal</span><span class="p">,</span> <span class="n">fs</span><span class="p">),</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+<span class="n">df_hasil</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hasil</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_hasil</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil ekstraksi kedua fitur adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Spectral Decrease</p></th>
+<th class="head text-right"><p>Spectral Distance</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>-7.450080</p></td>
+<td class="text-right"><p>-1238.463923</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>-2.896352</p></td>
+<td class="text-right"><p>-2.793965</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>-1.172661</p></td>
+<td class="text-right"><p>-22.046128</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="interpretasi-hasil">
+<h2>9. Interpretasi Hasil<a class="headerlink" href="#interpretasi-hasil" title="Link to this heading">#</a></h2>
+<p>CO mempunyai nilai spectral decrease paling negatif, yaitu <code class="docutils literal notranslate"><span class="pre">-7.450080</span></code>. Hal ini menunjukkan amplitudo spektrum CO mengalami penurunan yang lebih besar dibandingkan NO₂ dan SO₂.</p>
+<p>CO juga mempunyai spectral distance dengan magnitudo paling besar, yaitu <code class="docutils literal notranslate"><span class="pre">-1238.463923</span></code>. Hal ini menunjukkan <em>cumulative spectrum</em> CO memiliki penyimpangan paling besar terhadap garis linear pembanding.</p>
+<p>Perbedaan nilai ketiga polutan menunjukkan bahwa CO, NO₂, dan SO₂ mempunyai karakteristik distribusi frekuensi yang berbeda.</p>
 </section>
 </section>
 
@@ -498,7 +780,24 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-ekstraksi-fitur">1. Domain Ekstraksi Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ekstraksi-fitur-python">2. Kode Ekstraksi Fitur (Python)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-fitur">2. Hasil Ekstraksi Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-spectral-decrease-dan-spectral-distance">3. Fitur Spectral Decrease dan Spectral Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sinyal">4. Contoh Sinyal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-decrease">5. Spectral Decrease</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">5.1 Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">5.2 Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual">5.3 Perhitungan Manual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-distance">6. Spectral Distance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.1 Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.2 Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.3 Perhitungan Manual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuktian-menggunakan-tsfel">7. Pembuktian Menggunakan TSFEL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-pada-data-polutan-asem-rowo">8. Penerapan pada Data Polutan Asem Rowo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">9. Interpretasi Hasil</a></li>
 </ul>
   </nav></div>
 
