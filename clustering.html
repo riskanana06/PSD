@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,10 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'clustering';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="PostgreSQL Aiven" href="postgresql_aiven.html" />
+    <link rel="prev" title="PostgreSQL Aiven dan Analisis Statistik KNIME" href="postgresql_aiven.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,8 +186,8 @@
 <li class="toctree-l1"><a class="reference internal" href="wilayah.html">Wilayah Pengamatan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series Polutan Udara</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">68 Fitur TSFEL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">Ekstraksi 68 Fitur TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven dan Analisis Statistik KNIME</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Ekstraksi Fitur dan Clustering</a></li>
 </ul>
 
@@ -387,9 +389,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-menggunakan-pca">3. Reduksi Dimensi Menggunakan PCA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-menggunakan-k-means">4. Clustering Menggunakan K-Means</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">5. Workflow KNIME</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-silhouette-coefficient">6. Hasil Silhouette Coefficient</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-clustering">7. Visualisasi Hasil Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">8. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-silhouette-coefficient-knime">6. Hasil Silhouette Coefficient KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-clustering-knime">7. Visualisasi Hasil Clustering KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-pca-dan-clustering-menggunakan-code">8. Analisis PCA dan Clustering Menggunakan Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-variance-filter">8.1 Low Variance Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-menjadi-37-komponen">8.2 Reduksi Menjadi 37 Komponen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penentuan-jumlah-cluster-terbaik">8.3 Penentuan Jumlah Cluster Terbaik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-pca-37-dan-fitur-asli">9. Perbandingan Hasil PCA 37 dan Fitur Asli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbedaan-hasil-knime-dan-code">10. Perbedaan Hasil KNIME dan Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -405,28 +415,35 @@ document.write(`
 <h1>Ekstraksi Fitur dan Clustering<a class="headerlink" href="#ekstraksi-fitur-dan-clustering" title="Link to this heading">#</a></h1>
 <section id="pengambilan-data">
 <h2>1. Pengambilan Data<a class="headerlink" href="#pengambilan-data" title="Link to this heading">#</a></h2>
-<p>Data yang digunakan merupakan hasil ekstraksi fitur dari tiga jenis polutan, yaitu CO, NO2, dan SO2. Setiap polutan memiliki 68 fitur hasil ekstraksi menggunakan TSFEL sehingga seluruhnya menghasilkan 204 fitur.</p>
-<p>Data hasil ekstraksi disimpan di database MySQL pada tiga tabel berbeda. Ketiga tabel tersebut kemudian diambil dan digabungkan menggunakan node <strong>MySQL Connector</strong> dan <strong>DB Query Reader</strong> pada KNIME.</p>
-<p>Data gabungan yang berhasil diperoleh terdiri atas 36 baris data mahasiswa dengan fitur dari ketiga polutan.</p>
+<p>Data yang digunakan merupakan hasil ekstraksi fitur dari tiga jenis polutan, yaitu CO, NO₂, dan SO₂. Setiap polutan memiliki 68 fitur hasil ekstraksi menggunakan TSFEL sehingga seluruhnya menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+68 \times 3 = 204 \text{ fitur}
+\]</div>
+<p>Data hasil ekstraksi disimpan dalam database MySQL pada tiga tabel berbeda. Ketiga tabel tersebut kemudian diambil dan digabungkan menggunakan node <strong>MySQL Connector</strong> dan <strong>DB Query Reader</strong> pada KNIME.</p>
+<p>Data gabungan yang digunakan pada analisis KNIME terdiri atas 36 baris data mahasiswa dengan fitur dari ketiga polutan.</p>
 </section>
 <section id="preprocessing-data">
 <h2>2. Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
 <p>Sebelum dilakukan clustering, data melewati beberapa tahap preprocessing berikut:</p>
 <ol class="arabic simple">
 <li><p><strong>Low Variance Filter</strong> digunakan untuk menghapus fitur yang memiliki nilai konstan atau variansi sangat rendah.</p></li>
-<li><p><strong>Column Filter</strong> digunakan untuk memilih kolom yang diperlukan serta menyisakan satu kolom <code class="docutils literal notranslate"><span class="pre">nama</span></code> dan satu kolom <code class="docutils literal notranslate"><span class="pre">daerah</span></code>.</p></li>
+<li><p><strong>Column Filter</strong> digunakan untuk memilih kolom yang diperlukan, menghapus kolom identitas yang tidak digunakan dalam perhitungan, serta menyisakan satu kolom <code class="docutils literal notranslate"><span class="pre">nama</span></code> dan satu kolom <code class="docutils literal notranslate"><span class="pre">daerah</span></code>.</p></li>
 <li><p><strong>Normalizer</strong> digunakan untuk menyamakan skala setiap fitur agar fitur dengan nilai besar tidak mendominasi proses clustering.</p></li>
 </ol>
+<p>Normalisasi diperlukan karena nilai dari setiap fitur TSFEL mempunyai rentang yang berbeda.</p>
 </section>
 <section id="reduksi-dimensi-menggunakan-pca">
 <h2>3. Reduksi Dimensi Menggunakan PCA<a class="headerlink" href="#reduksi-dimensi-menggunakan-pca" title="Link to this heading">#</a></h2>
 <p>Data hasil normalisasi memiliki jumlah fitur yang cukup banyak. Oleh karena itu, digunakan metode <strong>Principal Component Analysis (PCA)</strong> untuk mengurangi jumlah dimensi data.</p>
-<p>Proses PCA menghasilkan 37 komponen utama dengan nilai <strong>information preservation sebesar 100%</strong>. Artinya, seluruh informasi pada data yang digunakan masih dapat dipertahankan dalam 37 komponen utama tersebut.</p>
+<p>PCA bekerja dengan mengubah sekumpulan fitur yang saling berhubungan menjadi sejumlah komponen utama yang tidak saling berkorelasi.</p>
+<p>Pada workflow KNIME, proses PCA menghasilkan 37 komponen utama dengan nilai <strong>information preservation sebesar 100%</strong>. Artinya, informasi pada data yang digunakan masih dapat dipertahankan dalam komponen utama yang dihasilkan.</p>
 </section>
 <section id="clustering-menggunakan-k-means">
 <h2>4. Clustering Menggunakan K-Means<a class="headerlink" href="#clustering-menggunakan-k-means" title="Link to this heading">#</a></h2>
-<p>Hasil PCA kemudian digunakan sebagai masukan pada metode <strong>K-Means</strong>. Jumlah cluster terbaik ditentukan dengan membandingkan nilai <strong>Silhouette Coefficient</strong> untuk beberapa nilai <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
-<p>Hasil pengujian jumlah cluster adalah sebagai berikut:</p>
+<p>Hasil PCA digunakan sebagai masukan pada metode <strong>K-Means</strong>. K-Means membagi data ke dalam beberapa kelompok berdasarkan kedekatan karakteristik setiap data.</p>
+<p>Jumlah cluster terbaik ditentukan dengan membandingkan nilai <strong>Silhouette Coefficient</strong> untuk beberapa nilai <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<p>Hasil pengujian jumlah cluster pada KNIME adalah:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-right"><p>Jumlah Cluster</p></th>
@@ -446,11 +463,11 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Nilai Silhouette Coefficient tertinggi diperoleh pada <strong>k = 2</strong>, yaitu sebesar <strong>0.637</strong>. Oleh karena itu, jumlah cluster yang digunakan pada hasil akhir adalah dua cluster.</p>
+<p>Nilai Silhouette Coefficient tertinggi diperoleh pada <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">2</span></code>, yaitu sebesar <code class="docutils literal notranslate"><span class="pre">0.637</span></code>. Oleh karena itu, jumlah cluster yang digunakan pada hasil akhir adalah dua cluster.</p>
 </section>
 <section id="workflow-knime">
 <h2>5. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h2>
-<p>Berikut merupakan workflow KNIME yang digunakan untuk melakukan pengambilan data, preprocessing, reduksi dimensi menggunakan PCA, clustering K-Means, dan evaluasi hasil clustering.</p>
+<p>Berikut merupakan workflow KNIME yang digunakan untuk melakukan pengambilan data, preprocessing, reduksi dimensi menggunakan PCA, K-Means, dan evaluasi hasil clustering.</p>
 <figure class="align-default" id="workflow-knime-pca">
 <a class="reference internal image-reference" href="_images/workflow_knime_pca.jpeg"><img alt="_images/workflow_knime_pca.jpeg" src="_images/workflow_knime_pca.jpeg" style="width: 100%;" /></a>
 <figcaption>
@@ -460,19 +477,31 @@ document.write(`
 <p>Workflow tersebut terdiri atas beberapa node berikut:</p>
 <ul class="simple">
 <li><p><strong>MySQL Connector</strong> untuk menghubungkan KNIME dengan database MySQL.</p></li>
-<li><p><strong>DB Query Reader</strong> untuk mengambil dan menggabungkan data hasil ekstraksi fitur CO, NO2, dan SO2.</p></li>
+<li><p><strong>DB Query Reader</strong> untuk mengambil dan menggabungkan data hasil ekstraksi fitur CO, NO₂, dan SO₂.</p></li>
 <li><p><strong>Low Variance Filter</strong> untuk menghapus fitur dengan variansi rendah.</p></li>
-<li><p><strong>Column Filter</strong> untuk memilih kolom yang digunakan.</p></li>
+<li><p><strong>Column Filter</strong> untuk memilih fitur dan kolom identitas yang diperlukan.</p></li>
 <li><p><strong>Normalizer</strong> untuk menyamakan skala setiap fitur.</p></li>
 <li><p><strong>PCA Compute</strong> untuk menghitung model PCA.</p></li>
-<li><p><strong>PCA Apply</strong> untuk menghasilkan 37 komponen utama.</p></li>
-<li><p><strong>K-Means</strong> untuk membagi data menjadi dua cluster.</p></li>
+<li><p><strong>PCA Apply</strong> untuk menghasilkan komponen utama.</p></li>
+<li><p><strong>K-Means</strong> untuk membagi data menjadi beberapa cluster.</p></li>
 <li><p><strong>Silhouette Coefficient</strong> untuk mengevaluasi kualitas hasil clustering.</p></li>
 <li><p><strong>Scatter Plot</strong> untuk menampilkan persebaran hasil cluster.</p></li>
 </ul>
 </section>
-<section id="hasil-silhouette-coefficient">
-<h2>6. Hasil Silhouette Coefficient<a class="headerlink" href="#hasil-silhouette-coefficient" title="Link to this heading">#</a></h2>
+<section id="hasil-silhouette-coefficient-knime">
+<h2>6. Hasil Silhouette Coefficient KNIME<a class="headerlink" href="#hasil-silhouette-coefficient-knime" title="Link to this heading">#</a></h2>
+<p>Silhouette Coefficient digunakan untuk mengukur kesesuaian setiap data terhadap cluster tempat data tersebut berada.</p>
+<p>Nilai silhouette berada pada rentang:</p>
+<div class="math notranslate nohighlight">
+\[
+-1 \leq s(i) \leq 1
+\]</div>
+<p>Interpretasi nilai silhouette adalah:</p>
+<ul class="simple">
+<li><p>Nilai mendekati 1 menunjukkan data berada pada cluster yang sesuai.</p></li>
+<li><p>Nilai mendekati 0 menunjukkan data berada di antara dua cluster.</p></li>
+<li><p>Nilai negatif menunjukkan data kemungkinan berada pada cluster yang kurang sesuai.</p></li>
+</ul>
 <p>Berikut merupakan hasil evaluasi clustering menggunakan Silhouette Coefficient untuk dua cluster.</p>
 <figure class="align-default" id="silhouette-pca">
 <a class="reference internal image-reference" href="_images/silhouette_pca.jpeg"><img alt="_images/silhouette_pca.jpeg" src="_images/silhouette_pca.jpeg" style="width: 100%;" /></a>
@@ -480,24 +509,170 @@ document.write(`
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text">Hasil Silhouette Coefficient pada K-Means dengan dua cluster.</span><a class="headerlink" href="#silhouette-pca" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Hasil evaluasi menunjukkan nilai silhouette untuk masing-masing cluster sebesar <strong>0.690</strong> dan <strong>-0.266</strong>, sedangkan nilai silhouette keseluruhan adalah <strong>0.637</strong>.</p>
-<p>Nilai keseluruhan sebesar <strong>0.637</strong> menunjukkan bahwa hasil clustering memiliki struktur pengelompokan yang cukup baik. Sebagian besar data sudah berada pada kelompok yang sesuai, walaupun masih terdapat beberapa data yang memiliki kemiripan dengan cluster lainnya.</p>
+<p>Hasil evaluasi menunjukkan nilai silhouette untuk masing-masing cluster sebesar <code class="docutils literal notranslate"><span class="pre">0.690</span></code> dan <code class="docutils literal notranslate"><span class="pre">-0.266</span></code>, sedangkan nilai silhouette keseluruhan adalah <code class="docutils literal notranslate"><span class="pre">0.637</span></code>.</p>
+<p>Nilai keseluruhan sebesar <code class="docutils literal notranslate"><span class="pre">0.637</span></code> menunjukkan bahwa hasil clustering memiliki struktur pengelompokan yang cukup baik. Sebagian besar data sudah berada pada kelompok yang sesuai, walaupun masih terdapat beberapa data yang memiliki kemiripan dengan cluster lainnya.</p>
 </section>
-<section id="visualisasi-hasil-clustering">
-<h2>7. Visualisasi Hasil Clustering<a class="headerlink" href="#visualisasi-hasil-clustering" title="Link to this heading">#</a></h2>
-<p>Hasil clustering membagi data menjadi dua kelompok, yaitu <code class="docutils literal notranslate"><span class="pre">cluster_0</span></code> dan <code class="docutils literal notranslate"><span class="pre">cluster_1</span></code>. Setiap titik pada grafik mewakili nama mahasiswa berdasarkan gabungan fitur hasil ekstraksi CO, NO2, dan SO2.</p>
+<section id="visualisasi-hasil-clustering-knime">
+<h2>7. Visualisasi Hasil Clustering KNIME<a class="headerlink" href="#visualisasi-hasil-clustering-knime" title="Link to this heading">#</a></h2>
+<p>Hasil clustering membagi data menjadi dua kelompok, yaitu <code class="docutils literal notranslate"><span class="pre">cluster_0</span></code> dan <code class="docutils literal notranslate"><span class="pre">cluster_1</span></code>. Setiap titik pada grafik mewakili nama mahasiswa berdasarkan gabungan fitur hasil ekstraksi CO, NO₂, dan SO₂.</p>
 <figure class="align-default" id="scatter-cluster-pca">
 <a class="reference internal image-reference" href="_images/Scatter_Plot.png"><img alt="_images/Scatter_Plot.png" src="_images/Scatter_Plot.png" style="width: 100%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Visualisasi hasil clustering menggunakan PCA dan K-Means.</span><a class="headerlink" href="#scatter-cluster-pca" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Visualisasi hasil clustering menggunakan PCA dan K-Means pada KNIME.</span><a class="headerlink" href="#scatter-cluster-pca" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Berdasarkan visualisasi tersebut, sebagian besar data termasuk dalam <code class="docutils literal notranslate"><span class="pre">cluster_1</span></code>, sedangkan beberapa data lainnya termasuk dalam <code class="docutils literal notranslate"><span class="pre">cluster_0</span></code>. Data atas nama <strong>Riska Nana Nuril Fadilah</strong> termasuk dalam <code class="docutils literal notranslate"><span class="pre">cluster_0</span></code>.</p>
+<p>Berdasarkan visualisasi tersebut, sebagian besar data termasuk dalam <code class="docutils literal notranslate"><span class="pre">cluster_1</span></code>, sedangkan beberapa data lainnya termasuk dalam <code class="docutils literal notranslate"><span class="pre">cluster_0</span></code>.</p>
+<p>Data atas nama <strong>Riska Nana Nuril Fadilah</strong> termasuk dalam <code class="docutils literal notranslate"><span class="pre">cluster_0</span></code>.</p>
+</section>
+<section id="analisis-pca-dan-clustering-menggunakan-code">
+<h2>8. Analisis PCA dan Clustering Menggunakan Code<a class="headerlink" href="#analisis-pca-dan-clustering-menggunakan-code" title="Link to this heading">#</a></h2>
+<p>Selain analisis menggunakan KNIME, pengujian juga dilakukan menggunakan Python terhadap data hasil ekstraksi window.</p>
+<p>Data yang digunakan terdiri atas 49 window dan 204 fitur gabungan dari CO, NO₂, dan SO₂.</p>
+<section id="low-variance-filter">
+<h3>8.1 Low Variance Filter<a class="headerlink" href="#low-variance-filter" title="Link to this heading">#</a></h3>
+<p>Sebelum PCA dilakukan, fitur konstan dihapus menggunakan Low Variance Filter.</p>
+<p>Hasil proses tersebut adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Keterangan</p></th>
+<th class="head text-right"><p>Jumlah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah fitur awal</p></td>
+<td class="text-right"><p>204</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fitur konstan</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p>Fitur setelah filter</p></td>
+<td class="text-right"><p>174</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Perhitungannya adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+204-30=174 \text{ fitur}
+\]</div>
+<p>Sebanyak 174 fitur kemudian dinormalisasi agar memiliki skala yang sebanding.</p>
+</section>
+<section id="reduksi-menjadi-37-komponen">
+<h3>8.2 Reduksi Menjadi 37 Komponen<a class="headerlink" href="#reduksi-menjadi-37-komponen" title="Link to this heading">#</a></h3>
+<p>PCA digunakan untuk mereduksi 174 fitur menjadi 37 komponen utama.</p>
+<p>Total explained variance yang dipertahankan oleh PCA 37 adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+0.989319 \times 100\%=98.9319\%
+\]</div>
+<p>Artinya, PCA 37 masih mempertahankan sekitar 98,93% informasi dari data setelah Low Variance Filter.</p>
+</section>
+<section id="penentuan-jumlah-cluster-terbaik">
+<h3>8.3 Penentuan Jumlah Cluster Terbaik<a class="headerlink" href="#penentuan-jumlah-cluster-terbaik" title="Link to this heading">#</a></h3>
+<p>Jumlah cluster terbaik diuji menggunakan nilai silhouette untuk beberapa nilai <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<p>Pengujian dilakukan pada dua jenis data:</p>
+<ol class="arabic simple">
+<li><p>Data setelah reduksi menjadi PCA 37.</p></li>
+<li><p>Data fitur asli setelah Low Variance Filter dan normalisasi.</p></li>
+</ol>
+<figure class="align-default" id="elbow-pca37-dan-fitur-asli">
+<a class="reference internal image-reference" href="_images/elbow_pca37_dan_204.png"><img alt="_images/elbow_pca37_dan_204.png" src="_images/elbow_pca37_dan_204.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Perbandingan evaluasi jumlah cluster pada PCA 37 dan fitur asli.</span><a class="headerlink" href="#elbow-pca37-dan-fitur-asli" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="silhouette-pca37-dan-fitur-asli">
+<a class="reference internal image-reference" href="_images/silhouette_pca37_dan_204.png"><img alt="_images/silhouette_pca37_dan_204.png" src="_images/silhouette_pca37_dan_204.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Perbandingan Silhouette Coefficient pada PCA 37 dan fitur asli.</span><a class="headerlink" href="#silhouette-pca37-dan-fitur-asli" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="perbandingan-hasil-pca-37-dan-fitur-asli">
+<h2>9. Perbandingan Hasil PCA 37 dan Fitur Asli<a class="headerlink" href="#perbandingan-hasil-pca-37-dan-fitur-asli" title="Link to this heading">#</a></h2>
+<p>Hasil perbandingan clustering adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metode</p></th>
+<th class="head text-right"><p>Jumlah Data</p></th>
+<th class="head text-right"><p>Jumlah Dimensi</p></th>
+<th class="head text-right"><p>Cluster Terbaik</p></th>
+<th class="head text-right"><p>Silhouette</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PCA 37</p></td>
+<td class="text-right"><p>49</p></td>
+<td class="text-right"><p>37</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.204031</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fitur asli setelah filter</p></td>
+<td class="text-right"><p>49</p></td>
+<td class="text-right"><p>174</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.201475</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Kedua metode menghasilkan jumlah cluster terbaik yang sama, yaitu dua cluster.</p>
+<p>Nilai silhouette PCA 37 sebesar <code class="docutils literal notranslate"><span class="pre">0.204031</span></code>, sedangkan fitur asli menghasilkan nilai <code class="docutils literal notranslate"><span class="pre">0.201475</span></code>.</p>
+<p>Selisih nilai silhouette adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+0.204031-0.201475=0.002556
+\]</div>
+<p>PCA 37 menghasilkan nilai silhouette yang sedikit lebih tinggi. Hasil ini menunjukkan bahwa PCA dapat mengurangi jumlah dimensi secara signifikan tanpa menghilangkan sebagian besar informasi dan tanpa menurunkan kualitas clustering.</p>
+<figure class="align-default" id="hasil-cluster-pca37-code">
+<a class="reference internal image-reference" href="_images/cluster_pca37.png"><img alt="_images/cluster_pca37.png" src="_images/cluster_pca37.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Visualisasi hasil K-Means pada data PCA 37 menggunakan Python.</span><a class="headerlink" href="#hasil-cluster-pca37-code" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="perbedaan-hasil-knime-dan-code">
+<h2>10. Perbedaan Hasil KNIME dan Code<a class="headerlink" href="#perbedaan-hasil-knime-dan-code" title="Link to this heading">#</a></h2>
+<p>Nilai silhouette hasil KNIME tidak dibandingkan secara langsung dengan hasil Python karena kedua proses menggunakan susunan data yang berbeda.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Proses</p></th>
+<th class="head"><p>Data yang Digunakan</p></th>
+<th class="head text-right"><p>Silhouette Terbaik</p></th>
+<th class="head text-right"><p>Cluster Terbaik</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KNIME</p></td>
+<td><p>Data gabungan mahasiswa</p></td>
+<td class="text-right"><p>0.637</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Python PCA 37</p></td>
+<td><p>49 window time series</p></td>
+<td class="text-right"><p>0.204031</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Python fitur asli</p></td>
+<td><p>49 window time series</p></td>
+<td class="text-right"><p>0.201475</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Analisis KNIME menggunakan data hasil ekstraksi setiap mahasiswa, sedangkan analisis Python menggunakan hasil ekstraksi window dari data time series Asem Rowo.</p>
+<p>Walaupun nilai silhouette berbeda, seluruh pengujian menghasilkan jumlah cluster terbaik yang sama, yaitu dua cluster.</p>
 </section>
 <section id="kesimpulan">
-<h2>8. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
-<p>Berdasarkan proses yang telah dilakukan, data hasil ekstraksi fitur CO, NO2, dan SO2 berhasil digabungkan dan diproses menggunakan KNIME. PCA berhasil mengurangi dimensi data menjadi 37 komponen utama dengan mempertahankan 100% informasi.</p>
-<p>Hasil evaluasi menunjukkan bahwa jumlah cluster terbaik adalah <strong>dua cluster</strong> dengan nilai Silhouette Coefficient sebesar <strong>0.637</strong>. Dengan demikian, kombinasi PCA dan K-Means dapat digunakan untuk mengelompokkan data berdasarkan kemiripan karakteristik fitur polutan.</p>
+<h2>11. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Data hasil ekstraksi fitur CO, NO₂, dan SO₂ berhasil dianalisis menggunakan KNIME dan Python.</p>
+<p>Pada analisis KNIME, PCA menghasilkan komponen utama yang digunakan untuk K-Means. Jumlah cluster terbaik adalah dua cluster dengan Silhouette Coefficient sebesar <code class="docutils literal notranslate"><span class="pre">0.637</span></code>.</p>
+<p>Pada analisis menggunakan Python, PCA 37 mempertahankan sekitar 98,93% informasi. Cluster terbaik pada PCA 37 adalah dua cluster dengan silhouette sebesar <code class="docutils literal notranslate"><span class="pre">0.204031</span></code>.</p>
+<p>Pengujian pada fitur asli setelah Low Variance Filter juga menghasilkan dua cluster dengan silhouette sebesar <code class="docutils literal notranslate"><span class="pre">0.201475</span></code>.</p>
+<p>Hasil tersebut menunjukkan bahwa PCA 37 mampu mengurangi jumlah dimensi data dengan tetap mempertahankan hampir seluruh informasi. PCA 37 juga menghasilkan kualitas clustering yang sedikit lebih baik daripada penggunaan fitur asli setelah Low Variance Filter.</p>
 </section>
 </section>
 
@@ -537,7 +712,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">PostgreSQL Aiven</p>
+        <p class="prev-next-title">PostgreSQL Aiven dan Analisis Statistik KNIME</p>
       </div>
     </a>
 </div>
@@ -561,9 +736,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-dimensi-menggunakan-pca">3. Reduksi Dimensi Menggunakan PCA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-menggunakan-k-means">4. Clustering Menggunakan K-Means</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">5. Workflow KNIME</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-silhouette-coefficient">6. Hasil Silhouette Coefficient</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-clustering">7. Visualisasi Hasil Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">8. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-silhouette-coefficient-knime">6. Hasil Silhouette Coefficient KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-hasil-clustering-knime">7. Visualisasi Hasil Clustering KNIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-pca-dan-clustering-menggunakan-code">8. Analisis PCA dan Clustering Menggunakan Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-variance-filter">8.1 Low Variance Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduksi-menjadi-37-komponen">8.2 Reduksi Menjadi 37 Komponen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penentuan-jumlah-cluster-terbaik">8.3 Penentuan Jumlah Cluster Terbaik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-pca-37-dan-fitur-asli">9. Perbandingan Hasil PCA 37 dan Fitur Asli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbedaan-hasil-knime-dan-code">10. Perbedaan Hasil KNIME dan Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
   </nav></div>
 
