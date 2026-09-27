@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -183,7 +183,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wilayah.html">Wilayah Pengamatan</a></li>
-<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series Polutan Udara</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">Ekstraksi 68 Fitur TSFEL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven dan Analisis Statistik KNIME</a></li>
@@ -385,11 +385,15 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1. Latar Belakang</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permasalahan">2. Permasalahan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">3. Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">4. Manfaat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">5. Ruang Lingkup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batasan-analisis">6. Batasan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriteria-keberhasilan">7. Kriteria Keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-analisis">3. Pertanyaan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">4. Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">5. Manfaat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">6. Ruang Lingkup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-analisis">7. Tahapan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batasan-analisis">8. Batasan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriteria-keberhasilan">9. Kriteria Keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-yang-diharapkan">10. Hasil yang Diharapkan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -405,10 +409,16 @@ document.write(`
 <h1>Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
 <section id="latar-belakang">
 <h2>1. Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
-<p>Kualitas udara merupakan salah satu faktor lingkungan yang dapat memengaruhi kesehatan manusia dan kondisi ekosistem. Aktivitas transportasi, industri, pembakaran bahan bakar, pergudangan, dan kegiatan masyarakat dapat menghasilkan berbagai polutan udara.</p>
-<p>Kecamatan Asem Rowo merupakan salah satu wilayah di Kota Surabaya yang memiliki aktivitas permukiman, transportasi, industri, dan pergudangan. Kondisi tersebut membuat pemantauan perubahan polutan udara di wilayah Asem Rowo penting untuk dilakukan.</p>
-<p>Pada proyek ini, kualitas udara diamati menggunakan tiga parameter polutan, yaitu karbon monoksida (CO), nitrogen dioksida (NO₂), dan sulfur dioksida (SO₂). Data diperoleh dari pengamatan satelit Sentinel-5P melalui layanan openEO. GeoJSON Kecamatan Asem Rowo digunakan untuk membatasi wilayah pengambilan data.</p>
-<p>Periode pengamatan dimulai pada 31 Agustus 2025 sampai 31 Agustus 2026. Data disusun sebagai time series harian dengan total 366 tanggal pengamatan.</p>
+<p>Kualitas udara merupakan salah satu faktor lingkungan yang dapat memengaruhi kesehatan manusia dan kondisi ekosistem. Aktivitas transportasi, industri, pembakaran bahan bakar, pergudangan, dan kegiatan masyarakat dapat menghasilkan berbagai jenis polutan udara.</p>
+<p>Kecamatan Asem Rowo merupakan salah satu wilayah di Kota Surabaya yang mempunyai aktivitas permukiman, transportasi, industri, dan pergudangan. Kondisi tersebut membuat pemantauan perubahan polutan udara di wilayah Asem Rowo penting untuk dilakukan.</p>
+<p>Pada proyek ini, kualitas udara diamati menggunakan tiga parameter polutan, yaitu:</p>
+<ul class="simple">
+<li><p>Karbon monoksida (CO).</p></li>
+<li><p>Nitrogen dioksida (NO₂).</p></li>
+<li><p>Sulfur dioksida (SO₂).</p></li>
+</ul>
+<p>Data diperoleh dari pengamatan satelit Sentinel-5P melalui layanan openEO. Polygon GeoJSON digunakan untuk membatasi area pengambilan data agar penelitian berfokus pada wilayah Kecamatan Asem Rowo.</p>
+<p>Periode pengamatan dimulai pada <strong>31 Agustus 2025 sampai 31 Agustus 2026</strong>. Data disusun sebagai deret waktu harian dengan total 366 tanggal pengamatan.</p>
 </section>
 <section id="permasalahan">
 <h2>2. Permasalahan<a class="headerlink" href="#permasalahan" title="Link to this heading">#</a></h2>
@@ -441,68 +451,200 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Selain missing value, data juga dapat mengandung nilai ekstrem atau outlier. Pada data CO ditemukan enam nilai yang berada di luar batas metode Interquartile Range (IQR). Data SO₂ juga memiliki beberapa nilai negatif yang perlu diperiksa karena dapat berkaitan dengan noise, ketidakpastian pengukuran, atau proses pengolahan data satelit.</p>
-<p>Oleh karena itu, data perlu dieksplorasi dan diproses terlebih dahulu sebelum digunakan untuk ekstraksi fitur dan analisis lanjutan.</p>
+<p>Selain missing value, data juga mengandung beberapa kondisi yang perlu ditangani:</p>
+<ul class="simple">
+<li><p>Data CO mempunyai enam outlier.</p></li>
+<li><p>Data NO₂ mempunyai 12 outlier.</p></li>
+<li><p>Data mentah SO₂ mempunyai empat outlier.</p></li>
+<li><p>Data SO₂ mempunyai 93 nilai negatif.</p></li>
+<li><p>Skala nilai ketiga polutan berbeda.</p></li>
+<li><p>Jumlah fitur hasil ekstraksi cukup besar sehingga diperlukan reduksi dimensi.</p></li>
+</ul>
+<p>Data perlu dieksplorasi dan diproses terlebih dahulu sebelum digunakan untuk ekstraksi fitur dan analisis clustering.</p>
+</section>
+<section id="pertanyaan-analisis">
+<h2>3. Pertanyaan Analisis<a class="headerlink" href="#pertanyaan-analisis" title="Link to this heading">#</a></h2>
+<p>Beberapa pertanyaan yang ingin dijawab melalui proyek ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Bagaimana perubahan harian CO, NO₂, dan SO₂ di Kecamatan Asem Rowo?</p></li>
+<li><p>Berapa jumlah missing value, nilai negatif, dan outlier pada setiap polutan?</p></li>
+<li><p>Bagaimana cara menghasilkan dataset yang lengkap tanpa missing value?</p></li>
+<li><p>Karakteristik apa saja yang dapat diperoleh dari ekstraksi fitur TSFEL?</p></li>
+<li><p>Bagaimana menggabungkan fitur dari ketiga polutan menjadi satu dataset?</p></li>
+<li><p>Berapa jumlah komponen PCA yang digunakan untuk mewakili data?</p></li>
+<li><p>Berapa jumlah cluster terbaik berdasarkan hasil evaluasi K-Means?</p></li>
+<li><p>Seberapa baik kualitas hasil clustering berdasarkan Silhouette Coefficient?</p></li>
+</ol>
 </section>
 <section id="tujuan">
-<h2>3. Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<h2>4. Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
 <p>Proyek ini bertujuan untuk:</p>
 <ol class="arabic simple">
 <li><p>Mengumpulkan data harian CO, NO₂, dan SO₂ di Kecamatan Asem Rowo.</p></li>
-<li><p>Membatasi wilayah pengambilan data menggunakan GeoJSON Kecamatan Asem Rowo.</p></li>
+<li><p>Membatasi wilayah pengambilan data menggunakan polygon GeoJSON.</p></li>
 <li><p>Menyimpan hasil pengambilan data dalam format CSV.</p></li>
-<li><p>Mengetahui pola perubahan harian ketiga polutan melalui visualisasi time series.</p></li>
+<li><p>Mengetahui pola perubahan harian ketiga polutan melalui visualisasi deret waktu.</p></li>
 <li><p>Mengidentifikasi missing value, outlier, dan nilai yang tidak wajar.</p></li>
-<li><p>Menyiapkan data yang bersih untuk proses ekstraksi fitur menggunakan TSFEL.</p></li>
-<li><p>Menyediakan dasar data untuk analisis PCA dan K-Means clustering pada tahap berikutnya.</p></li>
+<li><p>Menghasilkan data bersih tanpa missing value dan nilai negatif.</p></li>
+<li><p>Mengekstraksi 68 fitur TSFEL dari setiap polutan.</p></li>
+<li><p>Menggabungkan hasil ekstraksi ketiga polutan menjadi 204 fitur.</p></li>
+<li><p>Menyimpan data deret waktu dan hasil ekstraksi fitur ke basis data.</p></li>
+<li><p>Menghubungkan basis data dengan KNIME.</p></li>
+<li><p>Mengurangi dimensi data menggunakan PCA.</p></li>
+<li><p>Menentukan jumlah cluster terbaik menggunakan K-Means dan Silhouette Coefficient.</p></li>
+<li><p>Menampilkan hasil analisis melalui Jupyter Book dan GitHub Pages.</p></li>
 </ol>
 </section>
 <section id="manfaat">
-<h2>4. Manfaat<a class="headerlink" href="#manfaat" title="Link to this heading">#</a></h2>
+<h2>5. Manfaat<a class="headerlink" href="#manfaat" title="Link to this heading">#</a></h2>
 <p>Hasil analisis ini diharapkan dapat memberikan manfaat sebagai berikut:</p>
 <ol class="arabic simple">
-<li><p>Memberikan gambaran perubahan nilai CO, NO₂, dan SO₂ di Kecamatan Asem Rowo selama satu tahun.</p></li>
+<li><p>Memberikan gambaran perubahan CO, NO₂, dan SO₂ di Kecamatan Asem Rowo selama satu tahun.</p></li>
 <li><p>Membantu mengidentifikasi periode ketika nilai polutan mengalami kenaikan atau penurunan.</p></li>
 <li><p>Menjadi sumber informasi awal untuk memahami kondisi polutan udara di wilayah Asem Rowo.</p></li>
-<li><p>Mendukung proses pembelajaran mengenai pengolahan data time series, deteksi outlier, imputasi missing value, ekstraksi fitur, reduksi dimensi, dan clustering.</p></li>
+<li><p>Menunjukkan proses penanganan missing value, nilai negatif, dan outlier pada data satelit.</p></li>
+<li><p>Memberikan representasi numerik data deret waktu melalui ekstraksi fitur TSFEL.</p></li>
+<li><p>Mendukung pengelompokan data berdasarkan kemiripan karakteristik fitur polutan.</p></li>
+<li><p>Mendukung proses pembelajaran mengenai openEO, GeoJSON, PostgreSQL, MySQL, KNIME, TSFEL, PCA, dan K-Means.</p></li>
 <li><p>Menjadi dasar untuk pengembangan analisis kualitas udara yang lebih lanjut.</p></li>
-<li><p>Membantu pihak terkait dalam melakukan pemantauan lingkungan berbasis data penginderaan jauh.</p></li>
 </ol>
 </section>
 <section id="ruang-lingkup">
-<h2>5. Ruang Lingkup<a class="headerlink" href="#ruang-lingkup" title="Link to this heading">#</a></h2>
+<h2>6. Ruang Lingkup<a class="headerlink" href="#ruang-lingkup" title="Link to this heading">#</a></h2>
 <p>Ruang lingkup proyek ini meliputi:</p>
-<ul class="simple">
-<li><p>Wilayah penelitian: Kecamatan Asem Rowo, Kota Surabaya, Jawa Timur.</p></li>
-<li><p>Periode penelitian: 31 Agustus 2025 sampai 31 Agustus 2026.</p></li>
-<li><p>Interval data: harian.</p></li>
-<li><p>Jumlah tanggal: 366 hari.</p></li>
-<li><p>Polutan yang dianalisis: CO, NO₂, dan SO₂.</p></li>
-<li><p>Sumber data: Sentinel-5P melalui layanan openEO Copernicus Data Space.</p></li>
-<li><p>Batas wilayah: GeoJSON Kecamatan Asem Rowo.</p></li>
-<li><p>Format penyimpanan: CSV.</p></li>
-<li><p>Analisis awal: eksplorasi data dan visualisasi time series.</p></li>
-<li><p>Analisis lanjutan: preprocessing, ekstraksi fitur TSFEL, PCA, dan K-Means clustering.</p></li>
-</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Wilayah penelitian</p></td>
+<td><p>Kecamatan Asem Rowo, Kota Surabaya</p></td>
+</tr>
+<tr class="row-odd"><td><p>Provinsi</p></td>
+<td><p>Jawa Timur</p></td>
+</tr>
+<tr class="row-even"><td><p>Periode penelitian</p></td>
+<td><p>31 Agustus 2025–31 Agustus 2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interval data</p></td>
+<td><p>Harian</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah tanggal</p></td>
+<td><p>366 hari</p></td>
+</tr>
+<tr class="row-odd"><td><p>Polutan</p></td>
+<td><p>CO, NO₂, dan SO₂</p></td>
+</tr>
+<tr class="row-even"><td><p>Sumber data</p></td>
+<td><p>Sentinel-5P melalui layanan openEO</p></td>
+</tr>
+<tr class="row-odd"><td><p>Batas wilayah</p></td>
+<td><p>Polygon GeoJSON</p></td>
+</tr>
+<tr class="row-even"><td><p>Format penyimpanan awal</p></td>
+<td><p>CSV</p></td>
+</tr>
+<tr class="row-odd"><td><p>Basis data</p></td>
+<td><p>PostgreSQL Aiven dan database yang digunakan pada KNIME</p></td>
+</tr>
+<tr class="row-even"><td><p>Ekstraksi fitur</p></td>
+<td><p>TSFEL</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah fitur setiap polutan</p></td>
+<td><p>68 fitur</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah fitur gabungan</p></td>
+<td><p>204 fitur</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reduksi dimensi</p></td>
+<td><p>PCA menjadi 37 komponen</p></td>
+</tr>
+<tr class="row-even"><td><p>Metode clustering</p></td>
+<td><p>K-Means</p></td>
+</tr>
+<tr class="row-odd"><td><p>Evaluasi clustering</p></td>
+<td><p>Silhouette Coefficient</p></td>
+</tr>
+<tr class="row-even"><td><p>Publikasi hasil</p></td>
+<td><p>Jupyter Book dan GitHub Pages</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tahapan-analisis">
+<h2>7. Tahapan Analisis<a class="headerlink" href="#tahapan-analisis" title="Link to this heading">#</a></h2>
+<p>Tahapan yang dilakukan pada proyek ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Menentukan wilayah penelitian menggunakan GeoJSON.</p></li>
+<li><p>Mengambil data CO, NO₂, dan SO₂ melalui openEO.</p></li>
+<li><p>Menyusun data menjadi deret waktu harian.</p></li>
+<li><p>Menyimpan data mentah dalam format CSV.</p></li>
+<li><p>Melakukan eksplorasi dan data understanding.</p></li>
+<li><p>Mendeteksi missing value, nilai negatif, dan outlier.</p></li>
+<li><p>Melakukan imputasi menggunakan interpolasi.</p></li>
+<li><p>Memastikan data hasil preprocessing tidak memiliki missing value.</p></li>
+<li><p>Mengekstraksi 68 fitur TSFEL dari setiap polutan.</p></li>
+<li><p>Menggabungkan hasil ekstraksi menjadi 204 fitur.</p></li>
+<li><p>Menggunakan sistem window untuk menghasilkan beberapa sampel analisis.</p></li>
+<li><p>Menyimpan data ke basis data.</p></li>
+<li><p>Mengambil data melalui KNIME.</p></li>
+<li><p>Melakukan penyaringan fitur dengan variansi rendah.</p></li>
+<li><p>Melakukan normalisasi data.</p></li>
+<li><p>Melakukan reduksi dimensi menggunakan PCA.</p></li>
+<li><p>Melakukan clustering menggunakan K-Means.</p></li>
+<li><p>Mengevaluasi hasil clustering.</p></li>
+<li><p>Menampilkan hasil analisis pada website statis.</p></li>
+</ol>
 </section>
 <section id="batasan-analisis">
-<h2>6. Batasan Analisis<a class="headerlink" href="#batasan-analisis" title="Link to this heading">#</a></h2>
-<p>Data yang digunakan merupakan hasil penginderaan jauh Sentinel-5P yang dirata-ratakan secara spasial dalam batas wilayah Kecamatan Asem Rowo. Data tersebut menggambarkan pengamatan kolom atmosfer dan bukan hasil pengukuran langsung menggunakan stasiun pemantau kualitas udara di permukaan.</p>
+<h2>8. Batasan Analisis<a class="headerlink" href="#batasan-analisis" title="Link to this heading">#</a></h2>
+<p>Data yang digunakan merupakan hasil penginderaan jauh Sentinel-5P yang dirata-ratakan secara spasial dalam batas wilayah penelitian. Data tersebut menggambarkan pengamatan kolom atmosfer dan bukan hasil pengukuran langsung menggunakan stasiun pemantau kualitas udara di permukaan.</p>
 <p>Oleh karena itu, nilai yang diperoleh tidak langsung diartikan sebagai tingkat paparan udara yang dihirup masyarakat. Analisis ini lebih tepat digunakan untuk mempelajari pola perubahan polutan dari waktu ke waktu.</p>
 <p>Missing value yang diisi melalui interpolasi merupakan nilai estimasi berdasarkan data pada tanggal terdekat. Nilai hasil interpolasi harus dibedakan dari nilai pengamatan asli agar interpretasi hasil tetap transparan.</p>
+<p>Hasil clustering menunjukkan kemiripan karakteristik data berdasarkan fitur yang digunakan. Cluster yang terbentuk tidak secara langsung menunjukkan kategori resmi kualitas udara seperti baik, sedang, atau berbahaya.</p>
 </section>
 <section id="kriteria-keberhasilan">
-<h2>7. Kriteria Keberhasilan<a class="headerlink" href="#kriteria-keberhasilan" title="Link to this heading">#</a></h2>
+<h2>9. Kriteria Keberhasilan<a class="headerlink" href="#kriteria-keberhasilan" title="Link to this heading">#</a></h2>
 <p>Proyek dinyatakan berhasil apabila:</p>
 <ol class="arabic simple">
 <li><p>Data CO, NO₂, dan SO₂ berhasil diperoleh untuk periode yang ditentukan.</p></li>
 <li><p>Seluruh tanggal dalam periode penelitian tersedia dalam dataset.</p></li>
-<li><p>Data mentah tersimpan dalam format CSV.</p></li>
-<li><p>Missing value dan outlier dapat diidentifikasi serta didokumentasikan.</p></li>
-<li><p>Grafik time series ketiga polutan berhasil dibuat.</p></li>
-<li><p>Data hasil preprocessing tidak memiliki missing value.</p></li>
-<li><p>Data dapat digunakan untuk ekstraksi fitur dan analisis lanjutan.</p></li>
+<li><p>Data mentah berhasil disimpan dalam format CSV.</p></li>
+<li><p>Missing value, outlier, dan nilai negatif berhasil diidentifikasi.</p></li>
+<li><p>Grafik deret waktu ketiga polutan berhasil dibuat.</p></li>
+<li><p>Data hasil preprocessing mempunyai 366 baris tanpa missing value dan nilai negatif.</p></li>
+<li><p>Setiap polutan berhasil diekstraksi menjadi 68 fitur TSFEL.</p></li>
+<li><p>Ketiga hasil ekstraksi berhasil digabungkan menjadi 204 fitur.</p></li>
+<li><p>Data berhasil disimpan dan diakses melalui basis data.</p></li>
+<li><p>Data berhasil diproses menggunakan KNIME.</p></li>
+<li><p>PCA berhasil menghasilkan 37 komponen utama.</p></li>
+<li><p>Jumlah cluster terbaik berhasil ditentukan menggunakan evaluasi clustering.</p></li>
+<li><p>Seluruh hasil berhasil ditampilkan pada Jupyter Book dan GitHub Pages.</p></li>
 </ol>
+</section>
+<section id="hasil-yang-diharapkan">
+<h2>10. Hasil yang Diharapkan<a class="headerlink" href="#hasil-yang-diharapkan" title="Link to this heading">#</a></h2>
+<p>Hasil akhir yang diharapkan dari proyek ini adalah:</p>
+<ul class="simple">
+<li><p>Dataset mentah CO, NO₂, dan SO₂.</p></li>
+<li><p>Dataset bersih berisi 366 data harian.</p></li>
+<li><p>Grafik deret waktu sebelum dan sesudah preprocessing.</p></li>
+<li><p>Hasil ekstraksi 68 fitur dari setiap polutan.</p></li>
+<li><p>Dataset gabungan berisi 204 fitur.</p></li>
+<li><p>Dataset hasil normalisasi dan PCA.</p></li>
+<li><p>Hasil K-Means clustering.</p></li>
+<li><p>Hasil evaluasi jumlah cluster.</p></li>
+<li><p>Workflow KNIME.</p></li>
+<li><p>Dokumentasi proyek dalam bentuk website statis.</p></li>
+</ul>
+</section>
+<section id="kesimpulan">
+<h2>11. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Proyek ini berfokus pada pengolahan dan analisis data polutan CO, NO₂, dan SO₂ di Kecamatan Asem Rowo. Proses dimulai dari pengambilan data menggunakan openEO dan GeoJSON, dilanjutkan dengan preprocessing, ekstraksi fitur TSFEL, penyimpanan basis data, reduksi dimensi PCA, serta clustering menggunakan K-Means.</p>
+<p>Hasil analisis diharapkan dapat memberikan gambaran perubahan karakteristik polutan selama periode 31 Agustus 2025 sampai 31 Agustus 2026 serta menunjukkan penerapan pengolahan data deret waktu secara lengkap.</p>
 </section>
 </section>
 
@@ -572,11 +714,15 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1. Latar Belakang</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permasalahan">2. Permasalahan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">3. Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">4. Manfaat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">5. Ruang Lingkup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batasan-analisis">6. Batasan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriteria-keberhasilan">7. Kriteria Keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-analisis">3. Pertanyaan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">4. Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">5. Manfaat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">6. Ruang Lingkup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-analisis">7. Tahapan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batasan-analisis">8. Batasan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriteria-keberhasilan">9. Kriteria Keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-yang-diharapkan">10. Hasil yang Diharapkan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
   </nav></div>
 

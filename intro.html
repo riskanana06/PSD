@@ -190,6 +190,11 @@
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series Polutan Udara</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">Ekstraksi 68 Fitur TSFEL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven dan Analisis Statistik KNIME</a></li>
+
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="clustering.html">Ekstraksi Fitur dan Clustering</a></li>
 </ul>
 
@@ -387,6 +392,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profil-mahasiswa">Profil Mahasiswa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#judul-proyek">Judul Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-proyek">Gambaran Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-proyek">Tahapan Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-data">Ringkasan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-utama">Hasil Utama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isi-dokumentasi">Isi Dokumentasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-dokumentasi">Tujuan Dokumentasi</a></li>
 </ul>
             </nav>
         </div>
@@ -400,34 +412,149 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="proyek-sains-data">
 <h1>Proyek Sains Data<a class="headerlink" href="#proyek-sains-data" title="Link to this heading">#</a></h1>
-<p>Dokumentasi dan laporan praktikum mata kuliah <strong>Proyek Sains Data</strong>.</p>
-<hr class="docutils" />
+<p>Selamat datang di dokumentasi proyek mata kuliah <strong>Proyek Sains Data</strong>. Proyek ini membahas pengolahan dan analisis data polutan udara di Kecamatan Asem Rowo, Kota Surabaya.</p>
 <section id="profil-mahasiswa">
 <h2>Profil Mahasiswa<a class="headerlink" href="#profil-mahasiswa" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Biodata</p></th>
-<th class="head text-left"><p>Keterangan</p></th>
+<tr class="row-odd"><th class="head"><p>Biodata</p></th>
+<th class="head"><p>Keterangan</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><strong>Nama Lengkap</strong></p></td>
-<td class="text-left"><p>Riska Nana Nuril Fadilah</p></td>
+<tr class="row-even"><td><p>Nama Lengkap</p></td>
+<td><p>Riska Nana Nuril Fadilah</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>NIM</strong></p></td>
-<td class="text-left"><p>[240411100081]</p></td>
+<tr class="row-odd"><td><p>NIM</p></td>
+<td><p>240411100081</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Program Studi</strong></p></td>
-<td class="text-left"><p>Teknik Informatika</p></td>
+<tr class="row-even"><td><p>Program Studi</p></td>
+<td><p>Teknik Informatika</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Mata Kuliah</strong></p></td>
-<td class="text-left"><p>Proyek Sains Data</p></td>
+<tr class="row-odd"><td><p>Mata Kuliah</p></td>
+<td><p>Proyek Sains Data</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<hr class="docutils" />
+<section id="judul-proyek">
+<h2>Judul Proyek<a class="headerlink" href="#judul-proyek" title="Link to this heading">#</a></h2>
+<p><strong>Analisis Deret Waktu dan Clustering Data Polutan Udara CO, NO₂, dan SO₂ di Kecamatan Asem Rowo</strong></p>
+</section>
+<section id="gambaran-proyek">
+<h2>Gambaran Proyek<a class="headerlink" href="#gambaran-proyek" title="Link to this heading">#</a></h2>
+<p>Proyek ini menggunakan data tiga jenis polutan udara, yaitu:</p>
+<ul class="simple">
+<li><p>Karbon monoksida (CO).</p></li>
+<li><p>Nitrogen dioksida (NO₂).</p></li>
+<li><p>Sulfur dioksida (SO₂).</p></li>
+</ul>
+<p>Data diperoleh dari pengamatan satelit Sentinel-5P melalui layanan openEO. Wilayah pengambilan data dibatasi menggunakan polygon GeoJSON agar penelitian berfokus pada Kecamatan Asem Rowo, Kota Surabaya.</p>
+<p>Periode data yang digunakan adalah <strong>31 Agustus 2025 sampai 31 Agustus 2026</strong> dengan interval pengamatan harian. Dataset lengkap mempunyai 366 tanggal pengamatan.</p>
+</section>
+<section id="tahapan-proyek">
+<h2>Tahapan Proyek<a class="headerlink" href="#tahapan-proyek" title="Link to this heading">#</a></h2>
+<p>Tahapan yang dilakukan dalam proyek ini meliputi:</p>
+<ol class="arabic simple">
+<li><p>Menentukan wilayah pengamatan menggunakan GeoJSON.</p></li>
+<li><p>Mengambil data CO, NO₂, dan SO₂ melalui openEO.</p></li>
+<li><p>Menyimpan data deret waktu dalam format CSV.</p></li>
+<li><p>Melakukan eksplorasi dan data understanding.</p></li>
+<li><p>Mendeteksi missing value, nilai negatif, dan outlier.</p></li>
+<li><p>Melakukan preprocessing dan interpolasi data.</p></li>
+<li><p>Menyimpan data ke PostgreSQL Aiven.</p></li>
+<li><p>Membaca dan menganalisis data menggunakan KNIME.</p></li>
+<li><p>Mengekstraksi 68 fitur TSFEL dari setiap polutan.</p></li>
+<li><p>Menggabungkan seluruh hasil ekstraksi menjadi 204 fitur.</p></li>
+<li><p>Melakukan normalisasi dan reduksi dimensi menggunakan PCA.</p></li>
+<li><p>Melakukan clustering menggunakan K-Means.</p></li>
+<li><p>Mengevaluasi hasil clustering menggunakan Silhouette Coefficient.</p></li>
+<li><p>Menampilkan hasil analisis melalui Jupyter Book dan GitHub Pages.</p></li>
+</ol>
+</section>
+<section id="ringkasan-data">
+<h2>Ringkasan Data<a class="headerlink" href="#ringkasan-data" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Wilayah</p></td>
+<td><p>Kecamatan Asem Rowo, Kota Surabaya</p></td>
+</tr>
+<tr class="row-odd"><td><p>Periode</p></td>
+<td><p>31 Agustus 2025–31 Agustus 2026</p></td>
+</tr>
+<tr class="row-even"><td><p>Interval</p></td>
+<td><p>Harian</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah tanggal</p></td>
+<td><p>366</p></td>
+</tr>
+<tr class="row-even"><td><p>Polutan</p></td>
+<td><p>CO, NO₂, dan SO₂</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sumber data</p></td>
+<td><p>Sentinel-5P melalui openEO</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah fitur setiap polutan</p></td>
+<td><p>68</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah fitur gabungan</p></td>
+<td><p>204</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah data windowed</p></td>
+<td><p>49</p></td>
+</tr>
+<tr class="row-odd"><td><p>Komponen PCA</p></td>
+<td><p>37</p></td>
+</tr>
+<tr class="row-even"><td><p>Metode clustering</p></td>
+<td><p>K-Means</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cluster terbaik</p></td>
+<td><p>2 cluster</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="hasil-utama">
+<h2>Hasil Utama<a class="headerlink" href="#hasil-utama" title="Link to this heading">#</a></h2>
+<p>Beberapa hasil utama yang diperoleh adalah:</p>
+<ul class="simple">
+<li><p>Data bersih mempunyai 366 baris tanpa missing value.</p></li>
+<li><p>Tidak terdapat nilai negatif pada data hasil preprocessing.</p></li>
+<li><p>CO, NO₂, dan SO₂ masing-masing berhasil diekstraksi menjadi 68 fitur.</p></li>
+<li><p>Seluruh fitur berhasil digabungkan menjadi 204 fitur.</p></li>
+<li><p>Ekstraksi menggunakan sistem window menghasilkan 49 sampel.</p></li>
+<li><p>Low Variance Filter menyisakan 174 fitur.</p></li>
+<li><p>PCA berhasil mengurangi data menjadi 37 komponen utama.</p></li>
+<li><p>Total explained variance dari 37 komponen PCA mencapai sekitar 98,93%.</p></li>
+<li><p>Jumlah cluster terbaik berdasarkan analisis data windowed adalah dua cluster.</p></li>
+</ul>
+</section>
+<section id="isi-dokumentasi">
+<h2>Isi Dokumentasi<a class="headerlink" href="#isi-dokumentasi" title="Link to this heading">#</a></h2>
+<p>Dokumentasi ini terdiri atas beberapa bagian:</p>
+<ul class="simple">
+<li><p><strong>Business Understanding</strong> menjelaskan latar belakang, tujuan, manfaat, dan ruang lingkup penelitian.</p></li>
+<li><p><strong>Wilayah Pengamatan</strong> menjelaskan lokasi, koordinat, dan penggunaan GeoJSON.</p></li>
+<li><p><strong>Data Understanding</strong> menjelaskan karakteristik data CO, NO₂, dan SO₂.</p></li>
+<li><p><strong>Preprocessing</strong> menjelaskan penanganan missing value, nilai negatif, dan outlier.</p></li>
+<li><p><strong>Time Series</strong> menampilkan perubahan nilai polutan berdasarkan waktu.</p></li>
+<li><p><strong>PostgreSQL Aiven</strong> menjelaskan penyimpanan data dan analisis Statistics menggunakan KNIME.</p></li>
+<li><p><strong>Ekstraksi Fitur TSFEL</strong> menjelaskan ekstraksi fitur dan perhitungan manual fitur spectral.</p></li>
+<li><p><strong>Clustering</strong> menjelaskan Low Variance Filter, normalisasi, PCA, K-Means, dan evaluasi cluster.</p></li>
+</ul>
+</section>
+<section id="tujuan-dokumentasi">
+<h2>Tujuan Dokumentasi<a class="headerlink" href="#tujuan-dokumentasi" title="Link to this heading">#</a></h2>
+<p>Website ini dibuat sebagai dokumentasi seluruh proses pengerjaan proyek, mulai dari pengambilan data hingga analisis clustering. Dokumentasi disusun agar setiap proses, data, hasil, dan metode yang digunakan dapat dipahami serta diperiksa kembali.</p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -488,6 +615,13 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profil-mahasiswa">Profil Mahasiswa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#judul-proyek">Judul Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-proyek">Gambaran Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-proyek">Tahapan Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-data">Ringkasan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-utama">Hasil Utama</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isi-dokumentasi">Isi Dokumentasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-dokumentasi">Tujuan Dokumentasi</a></li>
 </ul>
   </nav></div>
 
