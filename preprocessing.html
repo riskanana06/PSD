@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Preprocessing &#8212; Riska Nana Nuril Fadilah</title>
+    <title>Preprocessing Data &#8212; Riska Nana Nuril Fadilah</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,8 +57,6 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'preprocessing';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -185,7 +183,7 @@
 <li class="toctree-l1"><a class="reference internal" href="business_understanding.html">Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_understanding.html">Data Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wilayah.html">Wilayah Pengamatan</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocessing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocessing Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series Polutan Udara</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">Ekstraksi 68 Fitur TSFEL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven dan Analisis Statistik KNIME</a></li>
@@ -375,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Preprocessing</h1>
+    <h1>Preprocessing Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -385,10 +383,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeragaman-periode">1. Penyeragaman periode</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-iqr">2. Deteksi outlier — IQR</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value">3. Imputasi missing value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil-preprocessing">Ringkasan Hasil Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeragaman-periode">1. Penyeragaman Periode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-missing-value">2. Pemeriksaan Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-nilai-negatif">3. Pemeriksaan Nilai Negatif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-menggunakan-iqr">4. Deteksi Outlier Menggunakan IQR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value">5. Imputasi Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-preprocessing">6. Hasil Akhir Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -400,50 +401,204 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="preprocessing">
-<h1>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h1>
-<p>Tahapan persiapan dan pembersihan data sebelum analisis deret waktu:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="preprocessing-data">
+<h1>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h1>
+<p>Preprocessing dilakukan untuk membersihkan data deret waktu CO, NO₂, dan SO₂ sebelum digunakan pada tahap ekstraksi fitur. Tahapan ini meliputi penyeragaman periode, pemeriksaan nilai negatif, deteksi outlier, dan imputasi missing value.</p>
 <section id="penyeragaman-periode">
-<h2>1. Penyeragaman periode<a class="headerlink" href="#penyeragaman-periode" title="Link to this heading">#</a></h2>
-<p>Data dibatasi tepat pada tanggal <strong>31-08-2025 sampai 31-08-2026</strong> dan direindex menjadi 366 tanggal harian.</p>
-<hr class="docutils" />
-</section>
-<section id="deteksi-outlier-iqr">
-<h2>2. Deteksi outlier — IQR<a class="headerlink" href="#deteksi-outlier-iqr" title="Link to this heading">#</a></h2>
-<p>Rumus batas ambang pencilan:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\text{Lower Bound} &amp;= Q_1 - 1,5 \times \text{IQR} \\
-\text{Upper Bound} &amp;= Q_3 + 1,5 \times \text{IQR} \\
-\text{IQR} &amp;= Q_3 - Q_1
-\end{aligned}
-\end{split}\]</div>
-<p>Dari data yang digunakan, diperoleh <strong>12 nilai</strong> yang ditandai sebagai <em>outlier</em>.</p>
-<hr class="docutils" />
-</section>
-<section id="imputasi-missing-value">
-<h2>3. Imputasi missing value<a class="headerlink" href="#imputasi-missing-value" title="Link to this heading">#</a></h2>
-<p>Nilai <em>outlier</em> dikosongkan terlebih dahulu, kemudian nilai yang kosong diisi menggunakan <strong>interpolasi berbasis waktu</strong>. Hasil akhir memiliki <strong>0 missing value</strong>.</p>
-<hr class="docutils" />
-</section>
-<section id="ringkasan-hasil-preprocessing">
-<h2>Ringkasan Hasil Preprocessing<a class="headerlink" href="#ringkasan-hasil-preprocessing" title="Link to this heading">#</a></h2>
+<h2>1. Penyeragaman Periode<a class="headerlink" href="#penyeragaman-periode" title="Link to this heading">#</a></h2>
+<p>Data dibatasi mulai <strong>31 Agustus 2025 sampai 31 Agustus 2026</strong>. Seluruh data kemudian disusun ulang menggunakan interval harian.</p>
+<p>Periode tersebut menghasilkan:</p>
+<p>[
+366 \text{ tanggal pengamatan}
+]</p>
+<p>Struktur data setelah penyeragaman periode terdiri atas:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p>366</p></th>
-<th class="head text-center"><p>12</p></th>
-<th class="head text-center"><p>0</p></th>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Keterangan</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p><strong>Jumlah data akhir</strong></p></td>
-<td class="text-center"><p><strong>Outlier ditangani</strong></p></td>
-<td class="text-center"><p><strong>Missing value akhir</strong></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></td>
+<td><p>Tanggal pengamatan harian</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CO</span></code></p></td>
+<td><p>Nilai karbon monoksida</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NO2</span></code></p></td>
+<td><p>Nilai nitrogen dioksida</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SO2</span></code></p></td>
+<td><p>Nilai sulfur dioksida</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+</section>
+<section id="pemeriksaan-missing-value">
+<h2>2. Pemeriksaan Missing Value<a class="headerlink" href="#pemeriksaan-missing-value" title="Link to this heading">#</a></h2>
+<p>Missing value merupakan kondisi ketika nilai polutan pada tanggal tertentu tidak tersedia. Pemeriksaan awal menunjukkan bahwa setiap polutan masih memiliki missing value.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Jumlah data</p></th>
+<th class="head text-right"><p>Missing value awal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>167</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>175</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>141</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Missing value tersebut perlu ditangani agar data dapat digunakan dalam proses ekstraksi fitur dan analisis lanjutan.</p>
+</section>
+<section id="pemeriksaan-nilai-negatif">
+<h2>3. Pemeriksaan Nilai Negatif<a class="headerlink" href="#pemeriksaan-nilai-negatif" title="Link to this heading">#</a></h2>
+<p>Konsentrasi polutan tidak seharusnya memiliki nilai negatif. Oleh karena itu, dilakukan pemeriksaan terhadap nilai yang lebih kecil dari nol.</p>
+<p>Hasil pemeriksaan menunjukkan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Nilai negatif</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>93</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sebanyak <strong>93 nilai negatif ditemukan pada SO₂</strong>. Nilai tersebut dianggap sebagai data tidak valid, kemudian dikosongkan agar dapat diperbaiki melalui proses imputasi.</p>
+</section>
+<section id="deteksi-outlier-menggunakan-iqr">
+<h2>4. Deteksi Outlier Menggunakan IQR<a class="headerlink" href="#deteksi-outlier-menggunakan-iqr" title="Link to this heading">#</a></h2>
+<p>Outlier merupakan nilai yang berada jauh dari sebagian besar data. Deteksi outlier dilakukan menggunakan metode <strong>Interquartile Range (IQR)</strong>.</p>
+<p>Rumus IQR adalah:</p>
+<p>[
+IQR = Q_3-Q_1
+]</p>
+<p>Batas bawah dihitung menggunakan:</p>
+<p>[
+\text{Lower Bound}=Q_1-1{,}5\times IQR
+]</p>
+<p>Batas atas dihitung menggunakan:</p>
+<p>[
+\text{Upper Bound}=Q_3+1{,}5\times IQR
+]</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>(Q_1) merupakan kuartil pertama atau persentil ke-25.</p></li>
+<li><p>(Q_3) merupakan kuartil ketiga atau persentil ke-75.</p></li>
+<li><p>(IQR) merupakan selisih antara (Q_3) dan (Q_1).</p></li>
+<li><p>Nilai yang lebih kecil dari batas bawah atau lebih besar dari batas atas dikategorikan sebagai outlier.</p></li>
+</ul>
+<p>Hasil deteksi outlier adalah sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Batas bawah</p></th>
+<th class="head text-right"><p>Batas atas</p></th>
+<th class="head text-right"><p>Jumlah outlier</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>0.021211</p></td>
+<td class="text-right"><p>0.038740</p></td>
+<td class="text-right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>0.000003</p></td>
+<td class="text-right"><p>0.000102</p></td>
+<td class="text-right"><p>12</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>-0.000302</p></td>
+<td class="text-right"><p>0.000802</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai yang terdeteksi sebagai outlier dikosongkan terlebih dahulu agar tidak memengaruhi pola data.</p>
+</section>
+<section id="imputasi-missing-value">
+<h2>5. Imputasi Missing Value<a class="headerlink" href="#imputasi-missing-value" title="Link to this heading">#</a></h2>
+<p>Setelah nilai negatif dan outlier ditandai sebagai data kosong, dilakukan imputasi menggunakan metode <strong>interpolasi</strong>.</p>
+<p>Interpolasi memperkirakan nilai yang kosong berdasarkan nilai sebelum dan sesudahnya. Secara sederhana, interpolasi linear dapat dituliskan sebagai:</p>
+<p>[
+y=y_1+\frac{x-x_1}{x_2-x_1}(y_2-y_1)
+]</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>(y) adalah nilai yang akan diperkirakan.</p></li>
+<li><p>(y_1) adalah nilai sebelum data kosong.</p></li>
+<li><p>(y_2) adalah nilai setelah data kosong.</p></li>
+<li><p>(x_1) dan (x_2) adalah posisi waktu dari kedua nilai tersebut.</p></li>
+<li><p>(x) adalah posisi waktu data yang kosong.</p></li>
+</ul>
+<p>Metode ini dipilih karena data yang digunakan merupakan data deret waktu harian sehingga nilai yang berdekatan masih mempunyai hubungan berdasarkan waktu.</p>
+</section>
+<section id="hasil-akhir-preprocessing">
+<h2>6. Hasil Akhir Preprocessing<a class="headerlink" href="#hasil-akhir-preprocessing" title="Link to this heading">#</a></h2>
+<p>Setelah seluruh tahap preprocessing selesai, diperoleh hasil berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head text-right"><p>Jumlah data akhir</p></th>
+<th class="head text-right"><p>Missing value akhir</p></th>
+<th class="head text-right"><p>Nilai negatif akhir</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td class="text-right"><p>366</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dataset gabungan setelah preprocessing memiliki ukuran:</p>
+<p>[
+366 \text{ baris}\times4 \text{ kolom}
+]</p>
+<p>Empat kolom tersebut terdiri atas satu kolom tanggal dan tiga kolom polutan.</p>
+<p>File hasil preprocessing disimpan dengan nama:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Timeseries_CO_NO2_SO2_AsemRowo_Clean.csv</span></code></p>
+</section>
+<section id="kesimpulan">
+<h2>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Preprocessing berhasil dilakukan terhadap data CO, NO₂, dan SO₂ di Kecamatan Asem Rowo. Proses ini mencakup penyeragaman periode, pemeriksaan missing value, penanganan nilai negatif, deteksi outlier menggunakan IQR, dan imputasi menggunakan interpolasi.</p>
+<p>Hasil akhir terdiri atas 366 data harian untuk setiap polutan dengan <strong>0 missing value</strong> dan <strong>0 nilai negatif</strong>. Dengan demikian, data sudah siap digunakan untuk ekstraksi fitur TSFEL dan analisis selanjutnya.</p>
 </section>
 </section>
 
@@ -511,10 +666,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeragaman-periode">1. Penyeragaman periode</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-iqr">2. Deteksi outlier — IQR</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value">3. Imputasi missing value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil-preprocessing">Ringkasan Hasil Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyeragaman-periode">1. Penyeragaman Periode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-missing-value">2. Pemeriksaan Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-nilai-negatif">3. Pemeriksaan Nilai Negatif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-menggunakan-iqr">4. Deteksi Outlier Menggunakan IQR</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value">5. Imputasi Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir-preprocessing">6. Hasil Akhir Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
 </ul>
   </nav></div>
 
