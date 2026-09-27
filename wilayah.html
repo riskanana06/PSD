@@ -185,8 +185,8 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Wilayah Pengamatan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series Polutan Udara</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">68 Fitur TSFEL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">Ekstraksi 68 Fitur TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven dan Analisis Statistik KNIME</a></li>
 <li class="toctree-l1"><a class="reference internal" href="clustering.html">Ekstraksi Fitur dan Clustering</a></li>
 </ul>
 
@@ -360,7 +360,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -376,6 +378,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-pengamatan">1. Lokasi Pengamatan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-wilayah">2. Visualisasi Wilayah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-koordinat-asem-rowo">3. Batas Koordinat Asem Rowo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penggunaan-geojson">4. Penggunaan GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-pembatasan-wilayah">5. Fungsi Pembatasan Wilayah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-polutan-yang-diambil">6. Data Polutan yang Diambil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -387,35 +403,184 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="wilayah-pengamatan">
 <h1>Wilayah Pengamatan<a class="headerlink" href="#wilayah-pengamatan" title="Link to this heading">#</a></h1>
-<p>Cakupan area pengamatan dan parameter batas geospasial yang digunakan dalam analisis:</p>
+<section id="lokasi-pengamatan">
+<h2>1. Lokasi Pengamatan<a class="headerlink" href="#lokasi-pengamatan" title="Link to this heading">#</a></h2>
+<p>Wilayah yang digunakan dalam penelitian ini adalah <strong>Kecamatan Asem Rowo, Kota Surabaya, Provinsi Jawa Timur</strong>. Penelitian dilakukan untuk mengetahui karakteristik kualitas udara berdasarkan konsentrasi polutan CO, NO₂, dan SO₂.</p>
+<p>Data yang digunakan berupa data deret waktu harian mulai <strong>31 Agustus 2025 sampai 31 Agustus 2026</strong>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Komponen</p></th>
-<th class="head text-left"><p>Nilai</p></th>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head"><p>Keterangan</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><strong>Kecamatan</strong></p></td>
-<td class="text-left"><p>Asem Rowo</p></td>
+<tr class="row-even"><td><p>Kecamatan</p></td>
+<td><p>Asem Rowo</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Kota</strong></p></td>
-<td class="text-left"><p>Kota Surabaya</p></td>
+<tr class="row-odd"><td><p>Kota</p></td>
+<td><p>Surabaya</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Provinsi</strong></p></td>
-<td class="text-left"><p>Jawa Timur</p></td>
+<tr class="row-even"><td><p>Provinsi</p></td>
+<td><p>Jawa Timur</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><strong>Metode batas wilayah</strong></p></td>
-<td class="text-left"><p>Polygon GeoJSON pada proses openEO</p></td>
+<tr class="row-odd"><td><p>Negara</p></td>
+<td><p>Indonesia</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><strong>Bounding box</strong></p></td>
-<td class="text-left"><p>112.65905874–112.717742297 E; -7.258364782–-7.218571725 S</p></td>
+<tr class="row-even"><td><p>Periode pengamatan</p></td>
+<td><p>31 Agustus 2025–31 Agustus 2026</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interval data</p></td>
+<td><p>Harian</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah tanggal</p></td>
+<td><p>366 hari</p></td>
+</tr>
+<tr class="row-odd"><td><p>Polutan</p></td>
+<td><p>CO, NO₂, dan SO₂</p></td>
+</tr>
+<tr class="row-even"><td><p>Metode pembatasan wilayah</p></td>
+<td><p>Polygon GeoJSON</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tools pengambilan data</p></td>
+<td><p>openEO</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<blockquote>
-<div><p><strong>Catatan Berkas:</strong> File batas wilayah yang digunakan: <code class="docutils literal notranslate"><span class="pre">wilayah_asemrowo.GeoJson</span></code>.</p>
-</div></blockquote>
+</section>
+<section id="visualisasi-wilayah">
+<h2>2. Visualisasi Wilayah<a class="headerlink" href="#visualisasi-wilayah" title="Link to this heading">#</a></h2>
+<p>Penentuan wilayah pengamatan dilakukan menggunakan polygon dalam format GeoJSON. Polygon tersebut digunakan sebagai batas geografis dalam proses pengambilan data polutan.</p>
+<p>Gambar berikut menunjukkan visualisasi polygon GeoJSON pada wilayah Kota Surabaya yang digunakan sebagai acuan penentuan area penelitian.</p>
+<figure class="align-default" id="peta-wilayah-surabaya">
+<a class="reference internal image-reference" href="_images/peta_surabaya.png"><img alt="_images/peta_surabaya.png" src="_images/peta_surabaya.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Visualisasi polygon GeoJSON wilayah pengambilan data di Kota Surabaya.</span><a class="headerlink" href="#peta-wilayah-surabaya" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Setelah wilayah Kota Surabaya ditentukan, area pengamatan difokuskan pada <strong>Kecamatan Asem Rowo</strong> menggunakan batas koordinat yang telah ditentukan.</p>
+</section>
+<section id="batas-koordinat-asem-rowo">
+<h2>3. Batas Koordinat Asem Rowo<a class="headerlink" href="#batas-koordinat-asem-rowo" title="Link to this heading">#</a></h2>
+<p>Batas wilayah pengamatan Kecamatan Asem Rowo ditentukan berdasarkan nilai longitude dan latitude berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Batas Koordinat</p></th>
+<th class="head text-right"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Longitude minimum</p></td>
+<td class="text-right"><p>112.65905874</p></td>
+</tr>
+<tr class="row-odd"><td><p>Longitude maksimum</p></td>
+<td class="text-right"><p>112.717742297</p></td>
+</tr>
+<tr class="row-even"><td><p>Latitude minimum</p></td>
+<td class="text-right"><p>-7.258364782</p></td>
+</tr>
+<tr class="row-odd"><td><p>Latitude maksimum</p></td>
+<td class="text-right"><p>-7.218571725</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Berdasarkan nilai tersebut, bounding box wilayah pengamatan dapat dituliskan sebagai:</p>
+<p>[
+[112.65905874,\ -7.258364782,\ 112.717742297,\ -7.218571725]
+]</p>
+<p>Urutan nilai bounding box tersebut adalah:</p>
+<p>[
+[\text{longitude minimum},\ \text{latitude minimum},<br />
+\text{longitude maksimum},\ \text{latitude maksimum}]
+]</p>
+<p>Longitude menunjukkan posisi wilayah dari arah barat ke timur, sedangkan latitude menunjukkan posisi wilayah dari arah utara ke selatan.</p>
+</section>
+<section id="penggunaan-geojson">
+<h2>4. Penggunaan GeoJSON<a class="headerlink" href="#penggunaan-geojson" title="Link to this heading">#</a></h2>
+<p>GeoJSON merupakan format penyimpanan data geografis berbasis JSON. Format ini dapat digunakan untuk menyimpan titik, garis, polygon, serta informasi lokasi lainnya.</p>
+<p>Pada penelitian ini, GeoJSON digunakan untuk membentuk polygon batas wilayah pengamatan. Berkas batas wilayah yang digunakan adalah:</p>
+<p><code class="docutils literal notranslate"><span class="pre">wilayah_asemrowo.GeoJson</span></code></p>
+<p>Berkas tersebut digunakan dalam proses pengambilan data melalui openEO. Polygon GeoJSON membantu memastikan bahwa data yang diambil sesuai dengan area penelitian dan tidak mencakup wilayah yang terlalu luas.</p>
+<p>Struktur umum data GeoJSON yang digunakan adalah sebagai berikut:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FeatureCollection"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"features"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feature"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"kecamatan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asem Rowo"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"kota"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surabaya"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"provinsi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jawa Timur"</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"geometry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Polygon"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Bagian <code class="docutils literal notranslate"><span class="pre">geometry</span></code> menunjukkan bahwa bentuk wilayah yang digunakan adalah polygon. Sementara itu, bagian <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> berisi kumpulan titik koordinat yang membentuk batas wilayah pengamatan.</p>
+<p>Koordinat lengkap tetap tersimpan dalam berkas <code class="docutils literal notranslate"><span class="pre">wilayah_asemrowo.GeoJson</span></code>.</p>
+</section>
+<section id="fungsi-pembatasan-wilayah">
+<h2>5. Fungsi Pembatasan Wilayah<a class="headerlink" href="#fungsi-pembatasan-wilayah" title="Link to this heading">#</a></h2>
+<p>Penggunaan polygon GeoJSON dalam penelitian ini mempunyai beberapa fungsi, yaitu:</p>
+<ol class="arabic simple">
+<li><p>Membatasi proses pengambilan data pada wilayah yang telah ditentukan.</p></li>
+<li><p>Memastikan data yang dianalisis sesuai dengan Kecamatan Asem Rowo.</p></li>
+<li><p>Menghindari tercampurnya data dengan wilayah lain.</p></li>
+<li><p>Membuat proses pengambilan data lebih terarah.</p></li>
+<li><p>Mendukung analisis kualitas udara berdasarkan wilayah.</p></li>
+<li><p>Mempermudah proses visualisasi lokasi pengamatan.</p></li>
+</ol>
+</section>
+<section id="data-polutan-yang-diambil">
+<h2>6. Data Polutan yang Diambil<a class="headerlink" href="#data-polutan-yang-diambil" title="Link to this heading">#</a></h2>
+<p>Data kualitas udara yang diambil terdiri atas tiga jenis polutan, yaitu CO, NO₂, dan SO₂.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head"><p>Nama Lengkap</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td><p>Karbon monoksida</p></td>
+<td><p>Gas yang umumnya dihasilkan dari proses pembakaran tidak sempurna</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO₂</p></td>
+<td><p>Nitrogen dioksida</p></td>
+<td><p>Polutan yang dapat berasal dari kendaraan bermotor dan proses pembakaran</p></td>
+</tr>
+<tr class="row-even"><td><p>SO₂</p></td>
+<td><p>Sulfur dioksida</p></td>
+<td><p>Polutan yang dapat berasal dari pembakaran bahan bakar yang mengandung sulfur</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data ketiga polutan tersebut diambil dalam bentuk deret waktu harian selama satu tahun. Periode pengambilan data dimulai pada 31 Agustus 2025 dan berakhir pada 31 Agustus 2026 sehingga menghasilkan 366 tanggal pengamatan.</p>
+<p>Data yang diperoleh selanjutnya digunakan untuk proses:</p>
+<ol class="arabic simple">
+<li><p>Eksplorasi data.</p></li>
+<li><p>Pemeriksaan missing value.</p></li>
+<li><p>Deteksi outlier.</p></li>
+<li><p>Imputasi data.</p></li>
+<li><p>Visualisasi deret waktu.</p></li>
+<li><p>Ekstraksi fitur TSFEL.</p></li>
+<li><p>Reduksi dimensi menggunakan PCA.</p></li>
+<li><p>Clustering menggunakan K-Means.</p></li>
+</ol>
+</section>
+<section id="kesimpulan">
+<h2>7. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Kecamatan Asem Rowo digunakan sebagai wilayah utama dalam penelitian kualitas udara ini. Penentuan wilayah dilakukan menggunakan polygon GeoJSON dan batas koordinat geografis.</p>
+<p>Penggunaan batas wilayah membantu memastikan bahwa data CO, NO₂, dan SO₂ yang dianalisis sesuai dengan lokasi penelitian. Data tersebut kemudian digunakan untuk analisis deret waktu, preprocessing, ekstraksi fitur, reduksi dimensi, dan clustering.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -472,6 +637,27 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-pengamatan">1. Lokasi Pengamatan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-wilayah">2. Visualisasi Wilayah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-koordinat-asem-rowo">3. Batas Koordinat Asem Rowo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penggunaan-geojson">4. Penggunaan GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-pembatasan-wilayah">5. Fungsi Pembatasan Wilayah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-polutan-yang-diambil">6. Data Polutan yang Diambil</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">7. Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
