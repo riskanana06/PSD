@@ -1,10 +1,8 @@
 # PostgreSQL Aiven dan Analisis Statistik KNIME
 
-Tahap ini mencakup penyimpanan data polutan CO, NOâ‚‚, dan SOâ‚‚ ke basis data cloud menggunakan **Aiven for PostgreSQL**. Data dari Aiven kemudian dibaca menggunakan KNIME untuk dianalisis melalui node **Statistics**.
+Tahap ini mencakup penyimpanan data polutan CO, NO2, dan SO2 ke basis data cloud menggunakan **Aiven for PostgreSQL**. Data dari Aiven kemudian dibaca menggunakan KNIME untuk dianalisis melalui node **Statistics**.
 
 ## 1. Konfigurasi PostgreSQL Aiven
-
-Koneksi PostgreSQL Aiven menggunakan beberapa parameter berikut:
 
 | Parameter | Keterangan |
 |---|---|
@@ -12,10 +10,10 @@ Koneksi PostgreSQL Aiven menggunakan beberapa parameter berikut:
 | User | `avnadmin` |
 | SSL Mode | `require` |
 | Tabel time series | `timeseries_asemrowo_clean` |
-| Tabel NOâ‚‚ | `no2_asemrowo_clean` |
+| Tabel NO2 | `no2_asemrowo_clean` |
 | Tabel fitur CO | `co_asemrowo_tsfel_68` |
-| Tabel fitur NOâ‚‚ | `no2_asemrowo_tsfel_68` |
-| Tabel fitur SOâ‚‚ | `so2_asemrowo_tsfel_68` |
+| Tabel fitur NO2 | `no2_asemrowo_tsfel_68` |
+| Tabel fitur SO2 | `so2_asemrowo_tsfel_68` |
 | Tabel fitur gabungan | `asemrowo_tsfel_204` |
 | Tabel fitur windowed | `asemrowo_tsfel_204_windowed` |
 | Tabel fitur normalisasi | `asemrowo_tsfel_204_normalized` |
@@ -68,35 +66,33 @@ Hasil verifikasi menunjukkan bahwa koneksi ke PostgreSQL Aiven berhasil dan tabe
 
 ## 3. Data yang Disimpan di Aiven
 
-Beberapa kelompok data yang disimpan di PostgreSQL Aiven adalah:
-
-## 3.1 Data Time Series
+### 3.1 Data Time Series
 
 | Tabel | Jumlah Baris | Keterangan |
 |---|---:|---|
-| `timeseries_asemrowo_clean` | 366 | Data bersih CO, NOâ‚‚, dan SOâ‚‚ |
-| `no2_asemrowo_clean` | 366 | Data bersih khusus NOâ‚‚ |
+| `timeseries_asemrowo_clean` | 366 | Data bersih CO, NO2, dan SO2 |
+| `no2_asemrowo_clean` | 366 | Data bersih khusus NO2 |
 
-## 3.2 Data Ekstraksi Fitur
-
-| Tabel | Ukuran Data | Keterangan |
-|---|---:|---|
-| `co_asemrowo_tsfel_68` | 1 Ã— 68 | Hasil ekstraksi 68 fitur CO |
-| `no2_asemrowo_tsfel_68` | 1 Ã— 68 | Hasil ekstraksi 68 fitur NOâ‚‚ |
-| `so2_asemrowo_tsfel_68` | 1 Ã— 68 | Hasil ekstraksi 68 fitur SOâ‚‚ |
-| `asemrowo_tsfel_204` | 1 Ã— 204 | Gabungan fitur CO, NOâ‚‚, dan SOâ‚‚ |
-| `asemrowo_tsfel_204_windowed` | 49 Ã— 204 | Ekstraksi fitur menggunakan sistem window |
-
-## 3.3 Data PCA dan Clustering
+### 3.2 Data Ekstraksi Fitur
 
 | Tabel | Ukuran Data | Keterangan |
 |---|---:|---|
-| `asemrowo_tsfel_204_normalized` | 49 Ã— 174 | Fitur setelah low variance filter dan normalisasi |
-| `asemrowo_pca_37` | 49 Ã— 37 | Hasil reduksi PCA menjadi 37 komponen |
-| `asemrowo_evaluasi_cluster` | 9 Ã— 5 | Hasil evaluasi beberapa jumlah cluster |
-| `asemrowo_pca37_clustered` | 49 Ã— 38 | Hasil PCA ditambah label cluster |
-| `asemrowo_204fitur_clustered` | 49 Ã— 175 | Fitur normalisasi ditambah label cluster |
-| `asemrowo_pca_explained_variance` | 37 Ã— 3 | Explained variance dari 37 komponen PCA |
+| `co_asemrowo_tsfel_68` | 1 x 68 | Hasil ekstraksi 68 fitur CO |
+| `no2_asemrowo_tsfel_68` | 1 x 68 | Hasil ekstraksi 68 fitur NO2 |
+| `so2_asemrowo_tsfel_68` | 1 x 68 | Hasil ekstraksi 68 fitur SO2 |
+| `asemrowo_tsfel_204` | 1 x 204 | Gabungan fitur CO, NO2, dan SO2 |
+| `asemrowo_tsfel_204_windowed` | 49 x 204 | Ekstraksi fitur menggunakan sistem window |
+
+### 3.3 Data PCA dan Clustering
+
+| Tabel | Ukuran Data | Keterangan |
+|---|---:|---|
+| `asemrowo_tsfel_204_normalized` | 49 x 174 | Fitur setelah Low Variance Filter dan normalisasi |
+| `asemrowo_pca_37` | 49 x 37 | Hasil reduksi PCA menjadi 37 komponen |
+| `asemrowo_evaluasi_cluster` | 9 x 5 | Hasil evaluasi beberapa jumlah cluster |
+| `asemrowo_pca37_clustered` | 49 x 38 | Hasil PCA ditambah label cluster |
+| `asemrowo_204fitur_clustered` | 49 x 175 | Fitur normalisasi ditambah label cluster |
+| `asemrowo_pca_explained_variance` | 37 x 3 | Explained variance dari 37 komponen PCA |
 
 ## 4. Alur Pengambilan Data di KNIME
 
@@ -105,7 +101,7 @@ Data PostgreSQL dibaca menggunakan rangkaian node berikut:
 1. **PostgreSQL Connector** untuk membuat koneksi ke Aiven.
 2. **DB Table Selector** untuk memilih tabel `timeseries_asemrowo_clean`.
 3. **DB Reader** untuk mengubah data basis data menjadi tabel KNIME.
-4. **Statistics** untuk menghitung statistik deskriptif CO, NOâ‚‚, dan SOâ‚‚.
+4. **Statistics** untuk menghitung statistik deskriptif CO, NO2, dan SO2.
 
 Data yang masuk ke node Statistics terdiri atas:
 
@@ -113,105 +109,92 @@ Data yang masuk ke node Statistics terdiri atas:
 |---|---|
 | `date` | Tanggal pengamatan |
 | `co` | Nilai polutan CO |
-| `no2` | Nilai polutan NOâ‚‚ |
-| `so2` | Nilai polutan SOâ‚‚ |
+| `no2` | Nilai polutan NO2 |
+| `so2` | Nilai polutan SO2 |
 
-Kolom `date` merupakan penanda waktu, sedangkan kolom `co`, `no2`, dan `so2` merupakan kolom numerik yang dianalisis menggunakan node Statistics.
+Kolom `date` merupakan penanda waktu, sedangkan `co`, `no2`, dan `so2` merupakan kolom numerik yang dianalisis menggunakan node Statistics.
 
 ## 5. Statistik Deskriptif pada KNIME
 
 Node Statistics menghitung beberapa ukuran statistik untuk setiap kolom numerik.
 
-## 5.1 Minimum
+### 5.1 Minimum
 
 Minimum merupakan nilai paling kecil dalam data.
 
-\[
+$$
 x_{\min}=\min(x_1,x_2,\ldots,x_n)
-\]
+$$
 
-## 5.2 Maximum
+### 5.2 Maximum
 
 Maximum merupakan nilai paling besar dalam data.
 
-\[
+$$
 x_{\max}=\max(x_1,x_2,\ldots,x_n)
-\]
+$$
 
-## 5.3 Mean
+### 5.3 Mean
 
 Mean merupakan nilai rata-rata seluruh data.
 
-\[
+$$
 \bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i
-\]
+$$
 
-## 5.4 Median
+### 5.4 Median
 
 Median merupakan nilai tengah setelah data diurutkan.
 
 Untuk jumlah data ganjil:
 
-\[
+$$
 \operatorname{Median}=x_{\frac{n+1}{2}}
-\]
+$$
 
 Untuk jumlah data genap:
 
-\[
+$$
 \operatorname{Median}
 =
-\frac{
-x_{\frac{n}{2}}+x_{\frac{n}{2}+1}
-}{2}
-\]
+\frac{x_{\frac{n}{2}}+x_{\frac{n}{2}+1}}{2}
+$$
 
-## 5.5 Sum
+### 5.5 Sum
 
 Sum merupakan hasil penjumlahan seluruh nilai.
 
-\[
+$$
 S=\sum_{i=1}^{n}x_i
-\]
+$$
 
-## 5.6 Variance
+### 5.6 Variance
 
-Variance mengukur tingkat penyebaran data terhadap nilai mean.
+Variance mengukur tingkat penyebaran data terhadap mean. Rumus sample variance adalah:
 
-Rumus sample variance adalah:
+$$
+s^2=\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}
+$$
 
-\[
-s^2=
-\frac{
-\sum_{i=1}^{n}(x_i-\bar{x})^2
-}{
-n-1
-}
-\]
-
-## 5.7 Standard Deviation
+### 5.7 Standard Deviation
 
 Standard deviation atau standar deviasi merupakan akar kuadrat variance.
 
-\[
+$$
 s=\sqrt{s^2}
-\]
+$$
 
-Standar deviasi yang kecil menunjukkan bahwa nilai data berada dekat dengan mean. Standar deviasi yang besar menunjukkan bahwa data lebih menyebar.
+Standar deviasi kecil menunjukkan nilai data berada dekat dengan mean. Standar deviasi besar menunjukkan data lebih menyebar.
 
-## 5.8 Skewness
+### 5.8 Skewness
 
 Skewness mengukur tingkat kemencengan distribusi data.
 
-\[
+$$
 \operatorname{Skewness}
 =
-\frac{
-\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^3
-}{
-\sigma^3
-}
-\]
+\frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^3}{\sigma^3}
+$$
 
 Interpretasi skewness:
 
@@ -219,204 +202,172 @@ Interpretasi skewness:
 - Skewness positif menunjukkan distribusi menceng ke kanan.
 - Skewness negatif menunjukkan distribusi menceng ke kiri.
 
-## 5.9 Kurtosis
+### 5.9 Kurtosis
 
 Kurtosis mengukur keruncingan dan berat ekor distribusi data.
 
-\[
+$$
 \operatorname{Kurtosis}
 =
-\frac{
-\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^4
-}{
-\sigma^4
-}
-\]
+\frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^4}{\sigma^4}
+$$
 
-Kurtosis yang lebih besar menunjukkan distribusi yang lebih runcing atau mempunyai ekor yang lebih berat.
+Kurtosis yang lebih besar menunjukkan distribusi lebih runcing atau mempunyai ekor lebih berat.
 
-## 5.10 Missing Value
+### 5.10 Missing Value
 
 Missing value menunjukkan jumlah data yang kosong.
 
-\[
-\operatorname{Missing}
-=
-\sum_{i=1}^{n}I(x_i\text{ kosong})
-\]
+$$
+\operatorname{Missing}=\sum_{i=1}^{n}I(x_i\text{ kosong})
+$$
 
-Pada data hasil preprocessing, missing value CO, NOâ‚‚, dan SOâ‚‚ adalah 0.
+Pada data hasil preprocessing, missing value CO, NO2, dan SO2 adalah 0.
 
-## 5.11 Row Count
+### 5.11 Row Count
 
 Row count menunjukkan jumlah seluruh baris data.
 
-\[
+$$
 \operatorname{RowCount}=n
-\]
+$$
 
 Data time series Asem Rowo mempunyai 366 baris.
 
 ## 6. Contoh Perhitungan Manual
 
-Contoh perhitungan menggunakan tiga nilai CO berikut:
+Contoh perhitungan menggunakan tiga nilai CO:
 
-\[
+$$
 x=[0.02,\ 0.03,\ 0.04]
-\]
+$$
 
 Jumlah data:
 
-\[
+$$
 n=3
-\]
+$$
 
-## 6.1 Minimum dan Maximum
+### 6.1 Minimum dan Maximum
 
-\[
+$$
 x_{\min}=0.02
-\]
+$$
 
-\[
+$$
 x_{\max}=0.04
-\]
+$$
 
-## 6.2 Mean
+### 6.2 Mean
 
-\[
-\bar{x}
-=
-\frac{0.02+0.03+0.04}{3}
-\]
+$$
+\bar{x}=\frac{0.02+0.03+0.04}{3}=0.03
+$$
 
-\[
-\bar{x}=0.03
-\]
+### 6.3 Median
 
-## 6.3 Median
+Data yang telah diurutkan:
 
-Data yang telah diurutkan adalah:
-
-\[
+$$
 [0.02,\ 0.03,\ 0.04]
-\]
+$$
 
-Nilai tengahnya adalah:
+Nilai tengahnya:
 
-\[
+$$
 \operatorname{Median}=0.03
-\]
+$$
 
-## 6.4 Sum
+### 6.4 Sum
 
-\[
-S=0.02+0.03+0.04
-\]
+$$
+S=0.02+0.03+0.04=0.09
+$$
 
-\[
-S=0.09
-\]
+### 6.5 Variance
 
-## 6.5 Variance
+$$
+s^2=\frac{(0.02-0.03)^2+(0.03-0.03)^2+(0.04-0.03)^2}{3-1}
+$$
 
-\[
-s^2=
-\frac{
-(0.02-0.03)^2+
-(0.03-0.03)^2+
-(0.04-0.03)^2
-}{3-1}
-\]
+$$
+s^2=\frac{0.0001+0+0.0001}{2}=0.0001
+$$
 
-\[
-s^2=
-\frac{
-0.0001+0+0.0001
-}{2}
-\]
+### 6.6 Standard Deviation
 
-\[
-s^2=0.0001
-\]
+$$
+s=\sqrt{0.0001}=0.01
+$$
 
-## 6.6 Standard Deviation
+### 6.7 Skewness
 
-\[
-s=\sqrt{0.0001}
-\]
+Data mempunyai jarak simetris terhadap mean:
 
-\[
-s=0.01
-\]
-
-## 6.7 Skewness
-
-Data mempunyai jarak yang simetris terhadap mean:
-
-\[
+$$
 [-0.01,\ 0,\ 0.01]
-\]
+$$
 
-Jumlah pangkat tiga deviasi adalah:
+Jumlah pangkat tiga deviasi:
 
-\[
+$$
 (-0.01)^3+0^3+(0.01)^3=0
-\]
+$$
 
 Maka:
 
-\[
+$$
 \operatorname{Skewness}=0
-\]
+$$
 
-Artinya, contoh data mempunyai distribusi yang simetris.
+Artinya, contoh data mempunyai distribusi simetris.
 
-## 6.8 Kurtosis
+### 6.8 Kurtosis
 
-Dengan menggunakan momen populasi, nilai kurtosis contoh data adalah:
+Dengan menggunakan momen populasi:
 
-\[
+$$
 \operatorname{Kurtosis}=1.5
-\]
+$$
 
 Jika menggunakan excess kurtosis:
 
-\[
+$$
 \operatorname{ExcessKurtosis}=1.5-3=-1.5
-\]
+$$
 
 Perbedaan hasil kurtosis dapat terjadi karena perangkat lunak dapat menggunakan koreksi bias atau definisi excess kurtosis yang berbeda.
 
-## 6.9 Missing Value dan Row Count
+### 6.9 Missing Value dan Row Count
 
-Tidak terdapat nilai kosong sehingga:
+Tidak terdapat nilai kosong:
 
-\[
+$$
 \operatorname{Missing}=0
-\]
+$$
 
-Jumlah baris adalah:
+Jumlah baris:
 
-\[
+$$
 \operatorname{RowCount}=3
-\]
+$$
 
 ## 7. Hasil Statistik Data Polutan
 
-Node Statistics menghasilkan tiga baris statistik, yaitu untuk CO, NOâ‚‚, dan SOâ‚‚.
+Node Statistics menghasilkan tiga baris statistik, yaitu untuk CO, NO2, dan SO2.
 
 Hasil yang diperoleh menunjukkan bahwa:
 
 - Data mempunyai 366 pengamatan harian.
-- Missing value akhir CO, NOâ‚‚, dan SOâ‚‚ adalah 0.
+- Missing value akhir CO, NO2, dan SO2 adalah 0.
 - Nilai minimum, maximum, mean, variance, standard deviation, skewness, dan statistik lainnya berbeda untuk setiap polutan.
-- Perbedaan tersebut menunjukkan bahwa CO, NOâ‚‚, dan SOâ‚‚ mempunyai distribusi serta pola perubahan yang berbeda.
+- Perbedaan tersebut menunjukkan bahwa CO, NO2, dan SO2 mempunyai distribusi serta pola perubahan yang berbeda.
 
-Nilai NOâ‚‚ dan SOâ‚‚ sangat kecil sehingga pada tampilan KNIME yang dibulatkan dapat terlihat sebagai 0. Nilai aslinya tetap tersimpan sebagai bilangan desimal dan bukan benar-benar bernilai nol.
+Nilai NO2 dan SO2 sangat kecil sehingga pada tampilan KNIME yang dibulatkan dapat terlihat sebagai 0. Nilai aslinya tetap tersimpan sebagai bilangan desimal dan bukan benar-benar bernilai nol.
 
 ## 8. Keamanan Informasi Koneksi
 
-Informasi koneksi basis data tidak ditulis secara langsung di dalam kode atau website. Nilai berikut disimpan di dalam file `.env`:
+Informasi koneksi basis data tidak ditulis secara langsung di dalam kode atau website. Nilai berikut disimpan dalam file `.env`:
 
 ```text
 DB_HOST
@@ -430,8 +381,8 @@ File `.env` dicantumkan dalam `.gitignore` agar password dan informasi koneksi t
 
 ## 9. Kesimpulan
 
-Data time series CO, NOâ‚‚, dan SOâ‚‚ berhasil disimpan dalam PostgreSQL Aiven dan dibaca kembali menggunakan KNIME. Node Statistics digunakan untuk menghitung statistik deskriptif setiap polutan.
+Data time series CO, NO2, dan SO2 berhasil disimpan dalam PostgreSQL Aiven dan dibaca kembali menggunakan KNIME. Node Statistics digunakan untuk menghitung statistik deskriptif setiap polutan.
 
-Hasil verifikasi menunjukkan bahwa data time series mempunyai 366 baris tanpa missing value. Hasil ekstraksi TSFEL, data windowed, data normalisasi, PCA, dan clustering juga telah disimpan ke dalam tabel basis data.
+Hasil verifikasi menunjukkan bahwa data time series mempunyai 366 baris tanpa missing value. Hasil ekstraksi TSFEL, data windowed, data normalisasi, PCA, dan clustering juga telah disimpan dalam tabel basis data.
 
 Dengan demikian, integrasi data lokal, PostgreSQL Aiven, Python, dan KNIME telah berhasil dilakukan.
