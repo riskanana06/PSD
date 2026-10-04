@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f78c9dcc4cd77f5de3aca0578c01f1c2 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: white;
+    padding: 10px 18px;
+    border: 2px solid #444;
+    border-radius: 7px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+">
+Peta Hasil Clustering Linear PCA 37
+<br>
+<span style="font-size:13px;">
+K-Means k = 3
+</span>
+</div>
+    
+<div style="
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 9999;
+    background-color: white;
+    padding: 12px 16px;
+    border: 2px solid #555;
+    border-radius: 7px;
+    font-size: 14px;
+">
+<b>Legenda Cluster</b><br>
+<span style="color:#ff0000;font-size:20px;">●</span>
+Cluster 0<br>
+<span style="color:#0088ff;font-size:20px;">●</span>
+Cluster 1<br>
+<span style="color:#00cc44;font-size:20px;">●</span>
+Cluster 2
+</div>
+    
+            <div class="folium-map" id="map_f78c9dcc4cd77f5de3aca0578c01f1c2" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f78c9dcc4cd77f5de3aca0578c01f1c2 = L.map(
+                "map_f78c9dcc4cd77f5de3aca0578c01f1c2",
+                {
+                    center: [-6.65379381891892, 112.89636136216217],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_f78c9dcc4cd77f5de3aca0578c01f1c2);
+
+            
+
+        
+    
+            var tile_layer_17951b26e350cbf545a3b1367a5ac696 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Google Satellite",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_17951b26e350cbf545a3b1367a5ac696.addTo(map_f78c9dcc4cd77f5de3aca0578c01f1c2);
+        
+    
+            var tile_layer_714921a54087839951196c1cbfad9057 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            var feature_group_9d01524673927a9ae4e4a2e4acc53301 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_75bfd3d5f60a7595af43b0e6f8d360e8 = L.circleMarker(
+                [-7.1702821, 112.7288563],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_9d01524673927a9ae4e4a2e4acc53301);
+        
+    
+        var popup_147c478ce71697b43da2e16e3687b04c = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_e0f0f47b057404c90ffd7456080a086a = $(`<div id="html_e0f0f47b057404c90ffd7456080a086a" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Muhammad Zaidan Nabil Rafi<br>         <b>Daerah:</b> Kamal, Bangkalan<br>         <b>Cluster:</b> cluster_0<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_147c478ce71697b43da2e16e3687b04c.setContent(html_e0f0f47b057404c90ffd7456080a086a);
+            
+        
+
+        circle_marker_75bfd3d5f60a7595af43b0e6f8d360e8.bindPopup(popup_147c478ce71697b43da2e16e3687b04c)
+        ;
+
+        
+    
+    
+            circle_marker_75bfd3d5f60a7595af43b0e6f8d360e8.bindTooltip(
+                `<div>
+                     Muhammad Zaidan Nabil Rafi - cluster_0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b26630caadbcb17a0348696a78e84672 = L.circleMarker(
+                [-7.2242503, 112.5707953],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff0000", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_9d01524673927a9ae4e4a2e4acc53301);
+        
+    
+        var popup_5b621ec9fbc6ad1b45c62dfd4092827b = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_dbe136ce275889b338d43829a2a17e1e = $(`<div id="html_dbe136ce275889b338d43829a2a17e1e" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Robbaniyah Umdatun Ni'mah<br>         <b>Daerah:</b> Cerme, Gresik<br>         <b>Cluster:</b> cluster_0<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_5b621ec9fbc6ad1b45c62dfd4092827b.setContent(html_dbe136ce275889b338d43829a2a17e1e);
+            
+        
+
+        circle_marker_b26630caadbcb17a0348696a78e84672.bindPopup(popup_5b621ec9fbc6ad1b45c62dfd4092827b)
+        ;
+
+        
+    
+    
+            circle_marker_b26630caadbcb17a0348696a78e84672.bindTooltip(
+                `<div>
+                     Robbaniyah Umdatun Ni'mah - cluster_0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_9d01524673927a9ae4e4a2e4acc53301.addTo(map_f78c9dcc4cd77f5de3aca0578c01f1c2);
+        
+    
+            var feature_group_eca1ebe34022c4dcba06df6f1cd4176b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_555efbf85c36a035d8d8e8c410854cd7 = L.circleMarker(
+                [-7.602829, 112.0393837],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_5a1625f1f92db7508d53e5edd4c144c5 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_9b4a62f400e8d4c41e5889fd513107bc = $(`<div id="html_9b4a62f400e8d4c41e5889fd513107bc" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Muhammad Ali Murtadho<br>         <b>Daerah:</b> Baron Nganjuk<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_5a1625f1f92db7508d53e5edd4c144c5.setContent(html_9b4a62f400e8d4c41e5889fd513107bc);
+            
+        
+
+        circle_marker_555efbf85c36a035d8d8e8c410854cd7.bindPopup(popup_5a1625f1f92db7508d53e5edd4c144c5)
+        ;
+
+        
+    
+    
+            circle_marker_555efbf85c36a035d8d8e8c410854cd7.bindTooltip(
+                `<div>
+                     Muhammad Ali Murtadho - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_abf3ba2c18e35d6633d10747c63e279d = L.circleMarker(
+                [-7.2190022, 113.1328604],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_82cfa944772ed28197f600bfc9c38717 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_1813f14b109562f4ac8400e6b7b29ffb = $(`<div id="html_1813f14b109562f4ac8400e6b7b29ffb" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> M. Hendrik Purwanto<br>         <b>Daerah:</b> Sreseh, Sampang<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_82cfa944772ed28197f600bfc9c38717.setContent(html_1813f14b109562f4ac8400e6b7b29ffb);
+            
+        
+
+        circle_marker_abf3ba2c18e35d6633d10747c63e279d.bindPopup(popup_82cfa944772ed28197f600bfc9c38717)
+        ;
+
+        
+    
+    
+            circle_marker_abf3ba2c18e35d6633d10747c63e279d.bindTooltip(
+                `<div>
+                     M. Hendrik Purwanto - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b9bdda2974d683f54f03282aafa0635d = L.circleMarker(
+                [-7.1239828, 112.6062529],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_89520d7ac3fecfb3d81228ac3393848b = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_bfb74414be9279b2fcfd48072c670ecf = $(`<div id="html_bfb74414be9279b2fcfd48072c670ecf" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Okan Syailendra wahyudi<br>         <b>Daerah:</b> Manyar, Gresik<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_89520d7ac3fecfb3d81228ac3393848b.setContent(html_bfb74414be9279b2fcfd48072c670ecf);
+            
+        
+
+        circle_marker_b9bdda2974d683f54f03282aafa0635d.bindPopup(popup_89520d7ac3fecfb3d81228ac3393848b)
+        ;
+
+        
+    
+    
+            circle_marker_b9bdda2974d683f54f03282aafa0635d.bindTooltip(
+                `<div>
+                     Okan Syailendra wahyudi - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cf7d2bdea108d1e88f81b558a23d6622 = L.circleMarker(
+                [-7.1843952, 112.1982965],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_ac9a5d6dd755d4d39fb2f73f8c6a78cc = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_7242ca53395ba34da6786647a7c4b1ee = $(`<div id="html_7242ca53395ba34da6786647a7c4b1ee" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Triswanti Jannatul Ma'wa<br>         <b>Daerah:</b> Kedungpring Lamongan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_ac9a5d6dd755d4d39fb2f73f8c6a78cc.setContent(html_7242ca53395ba34da6786647a7c4b1ee);
+            
+        
+
+        circle_marker_cf7d2bdea108d1e88f81b558a23d6622.bindPopup(popup_ac9a5d6dd755d4d39fb2f73f8c6a78cc)
+        ;
+
+        
+    
+    
+            circle_marker_cf7d2bdea108d1e88f81b558a23d6622.bindTooltip(
+                `<div>
+                     Triswanti Jannatul Ma'wa - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f605356159f0432e4732591a75063c7b = L.circleMarker(
+                [-6.8852879, 112.015359],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_577e1e474ca47383c10229c16682dfaf = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_cb791e61ff1ecff5afbb4fa7bc427824 = $(`<div id="html_cb791e61ff1ecff5afbb4fa7bc427824" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Ahmad Syahrul Farihin<br>         <b>Daerah:</b> Gresik Kota, Gresik<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_577e1e474ca47383c10229c16682dfaf.setContent(html_cb791e61ff1ecff5afbb4fa7bc427824);
+            
+        
+
+        circle_marker_f605356159f0432e4732591a75063c7b.bindPopup(popup_577e1e474ca47383c10229c16682dfaf)
+        ;
+
+        
+    
+    
+            circle_marker_f605356159f0432e4732591a75063c7b.bindTooltip(
+                `<div>
+                     Ahmad Syahrul Farihin - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ce17cbf61edeb0dce54544b10e8e7f8 = L.circleMarker(
+                [-6.9418166, 113.5515118],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_472420ba02840417d6f971ea9564ebf6 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_0d109c8b89c670068c612d36cc058e73 = $(`<div id="html_0d109c8b89c670068c612d36cc058e73" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Rian Renaldy<br>         <b>Daerah:</b> Waru, Pamekasan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_472420ba02840417d6f971ea9564ebf6.setContent(html_0d109c8b89c670068c612d36cc058e73);
+            
+        
+
+        circle_marker_4ce17cbf61edeb0dce54544b10e8e7f8.bindPopup(popup_472420ba02840417d6f971ea9564ebf6)
+        ;
+
+        
+    
+    
+            circle_marker_4ce17cbf61edeb0dce54544b10e8e7f8.bindTooltip(
+                `<div>
+                     Rian Renaldy - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f5bc96ced85bf404e37ae2042de39247 = L.circleMarker(
+                [-6.8703484, 112.339679],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_1d0f4f00f3e686da274de9d77af7a20f = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_29f9291ba181404cfaa2a78c4501e261 = $(`<div id="html_29f9291ba181404cfaa2a78c4501e261" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Ahmad Dafi Zidni Alfarisi<br>         <b>Daerah:</b> Paciran, Lamongan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_1d0f4f00f3e686da274de9d77af7a20f.setContent(html_29f9291ba181404cfaa2a78c4501e261);
+            
+        
+
+        circle_marker_f5bc96ced85bf404e37ae2042de39247.bindPopup(popup_1d0f4f00f3e686da274de9d77af7a20f)
+        ;
+
+        
+    
+    
+            circle_marker_f5bc96ced85bf404e37ae2042de39247.bindTooltip(
+                `<div>
+                     Ahmad Dafi Zidni Alfarisi - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5ccf7f8e963739b754621a54c743d0e5 = L.circleMarker(
+                [-7.5921805, 112.1006422],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_285bbfc18ed3a5b74afe4e4e4a1f8c82 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_82f3bd951ed9c45258c941b366fe0289 = $(`<div id="html_82f3bd951ed9c45258c941b366fe0289" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> AHMAD MAULANA ISHAQ<br>         <b>Daerah:</b> Kertosono, Nganjuk<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_285bbfc18ed3a5b74afe4e4e4a1f8c82.setContent(html_82f3bd951ed9c45258c941b366fe0289);
+            
+        
+
+        circle_marker_5ccf7f8e963739b754621a54c743d0e5.bindPopup(popup_285bbfc18ed3a5b74afe4e4e4a1f8c82)
+        ;
+
+        
+    
+    
+            circle_marker_5ccf7f8e963739b754621a54c743d0e5.bindTooltip(
+                `<div>
+                     AHMAD MAULANA ISHAQ - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_292de6edbd80e1d868ace3ab105b9577 = L.circleMarker(
+                [-7.5351067, 112.810693],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_12262162c8bd2ad302684a6e10e88c70 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_45b35beddb29f0aac720799f5fd21f15 = $(`<div id="html_45b35beddb29f0aac720799f5fd21f15" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Rahardian Ananta<br>         <b>Daerah:</b> Jabon , Sidoarjo<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_12262162c8bd2ad302684a6e10e88c70.setContent(html_45b35beddb29f0aac720799f5fd21f15);
+            
+        
+
+        circle_marker_292de6edbd80e1d868ace3ab105b9577.bindPopup(popup_12262162c8bd2ad302684a6e10e88c70)
+        ;
+
+        
+    
+    
+            circle_marker_292de6edbd80e1d868ace3ab105b9577.bindTooltip(
+                `<div>
+                     Rahardian Ananta - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ae4e1f1769f81c5733f4e4db6c848388 = L.circleMarker(
+                [-7.3028931, 112.5828799],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_b825c7a26d25e4d8f05c9ac411088080 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_23c5ff22e059664caa75a263460ad3e1 = $(`<div id="html_23c5ff22e059664caa75a263460ad3e1" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Verdi Setyawan Ardiansyah Putra<br>         <b>Daerah:</b> Menganti, Gresik<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_b825c7a26d25e4d8f05c9ac411088080.setContent(html_23c5ff22e059664caa75a263460ad3e1);
+            
+        
+
+        circle_marker_ae4e1f1769f81c5733f4e4db6c848388.bindPopup(popup_b825c7a26d25e4d8f05c9ac411088080)
+        ;
+
+        
+    
+    
+            circle_marker_ae4e1f1769f81c5733f4e4db6c848388.bindTooltip(
+                `<div>
+                     Verdi Setyawan Ardiansyah Putra - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_653d261d7855d46a2707f5bceac2d5b0 = L.circleMarker(
+                [-7.1702821, 112.7288563],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_6f93c74f03b8be341309d7fda82e26df = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_2dd6289c08c8cb8200af61657e63fba8 = $(`<div id="html_2dd6289c08c8cb8200af61657e63fba8" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> A.Choiril Anwar El-Asfihani Risydan<br>         <b>Daerah:</b> Banyu Ajuh, Perumnas, Kamal<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_6f93c74f03b8be341309d7fda82e26df.setContent(html_2dd6289c08c8cb8200af61657e63fba8);
+            
+        
+
+        circle_marker_653d261d7855d46a2707f5bceac2d5b0.bindPopup(popup_6f93c74f03b8be341309d7fda82e26df)
+        ;
+
+        
+    
+    
+            circle_marker_653d261d7855d46a2707f5bceac2d5b0.bindTooltip(
+                `<div>
+                     A.Choiril Anwar El-Asfihani Risydan - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cce071f463e4c23ee657d8d5ee76cb91 = L.circleMarker(
+                [-7.5385, 112.352],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_02f562a0155f71de1795991a94979fe2 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_e0e448d4a2237822037dd751e173792d = $(`<div id="html_e0e448d4a2237822037dd751e173792d" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Muhammad Isa<br>         <b>Daerah:</b> Bandung - Jogoroto, Jombang<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_02f562a0155f71de1795991a94979fe2.setContent(html_e0e448d4a2237822037dd751e173792d);
+            
+        
+
+        circle_marker_cce071f463e4c23ee657d8d5ee76cb91.bindPopup(popup_02f562a0155f71de1795991a94979fe2)
+        ;
+
+        
+    
+    
+            circle_marker_cce071f463e4c23ee657d8d5ee76cb91.bindTooltip(
+                `<div>
+                     Muhammad Isa - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f4aff4d8dd62e2fb06e16d49526372fa = L.circleMarker(
+                [-7.0851114, 112.1708461],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_bdc8284a162ffb19caa1712652ac512f = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_5b1739564c32fa59fdeb7a7169cbce1d = $(`<div id="html_5b1739564c32fa59fdeb7a7169cbce1d" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Mochammad Zaenal Abidin<br>         <b>Daerah:</b> Widang, Tuban<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_bdc8284a162ffb19caa1712652ac512f.setContent(html_5b1739564c32fa59fdeb7a7169cbce1d);
+            
+        
+
+        circle_marker_f4aff4d8dd62e2fb06e16d49526372fa.bindPopup(popup_bdc8284a162ffb19caa1712652ac512f)
+        ;
+
+        
+    
+    
+            circle_marker_f4aff4d8dd62e2fb06e16d49526372fa.bindTooltip(
+                `<div>
+                     Mochammad Zaenal Abidin - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_230cdab7f3f1e436b470402f7406a0b2 = L.circleMarker(
+                [-7.4281108, 112.6277552],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_6d2e693ddfb2a43df87e600e2634c0cf = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_ba7b125c48ac8e6f944348792d24ac97 = $(`<div id="html_ba7b125c48ac8e6f944348792d24ac97" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Alghifari Amar Mukhasyafah<br>         <b>Daerah:</b> Sidoarjo, Wonoayu<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_6d2e693ddfb2a43df87e600e2634c0cf.setContent(html_ba7b125c48ac8e6f944348792d24ac97);
+            
+        
+
+        circle_marker_230cdab7f3f1e436b470402f7406a0b2.bindPopup(popup_6d2e693ddfb2a43df87e600e2634c0cf)
+        ;
+
+        
+    
+    
+            circle_marker_230cdab7f3f1e436b470402f7406a0b2.bindTooltip(
+                `<div>
+                     Alghifari Amar Mukhasyafah - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b0a23589daf3c0ed22183efd3f4aeb5 = L.circleMarker(
+                [-7.1638712, 112.8509634],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_936f57055634a66b0bd929873e3d1ca8 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_432dda848c367bca9c93021189b1cdc0 = $(`<div id="html_432dda848c367bca9c93021189b1cdc0" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> M. Fatihul Umam<br>         <b>Daerah:</b> Kwanyar, Bangkalan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_936f57055634a66b0bd929873e3d1ca8.setContent(html_432dda848c367bca9c93021189b1cdc0);
+            
+        
+
+        circle_marker_1b0a23589daf3c0ed22183efd3f4aeb5.bindPopup(popup_936f57055634a66b0bd929873e3d1ca8)
+        ;
+
+        
+    
+    
+            circle_marker_1b0a23589daf3c0ed22183efd3f4aeb5.bindTooltip(
+                `<div>
+                     M. Fatihul Umam - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cad9d807e9f3bbc3eae8e3cf70887a58 = L.circleMarker(
+                [-7.2972665, 112.270859],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_49cbcb54cf82658808dd88076aa9d92f = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_d49cb9a39d12dbc93f7ac8fa3ef81c09 = $(`<div id="html_d49cb9a39d12dbc93f7ac8fa3ef81c09" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> dedy Nurohim<br>         <b>Daerah:</b> sambeng, lamongan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_49cbcb54cf82658808dd88076aa9d92f.setContent(html_d49cb9a39d12dbc93f7ac8fa3ef81c09);
+            
+        
+
+        circle_marker_cad9d807e9f3bbc3eae8e3cf70887a58.bindPopup(popup_49cbcb54cf82658808dd88076aa9d92f)
+        ;
+
+        
+    
+    
+            circle_marker_cad9d807e9f3bbc3eae8e3cf70887a58.bindTooltip(
+                `<div>
+                     dedy Nurohim - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3e7e6eea7509a83168e477defb3cd9fd = L.circleMarker(
+                [-7.0552167, 113.9419448],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_38c5eacdf66c88bbc7ab98f82d76723d = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_105cb3f43485ec0bf36e81f67a94f89d = $(`<div id="html_105cb3f43485ec0bf36e81f67a94f89d" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Marshella Aulia Putri<br>         <b>Daerah:</b> Kec. Kalianget, Sumenep<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_38c5eacdf66c88bbc7ab98f82d76723d.setContent(html_105cb3f43485ec0bf36e81f67a94f89d);
+            
+        
+
+        circle_marker_3e7e6eea7509a83168e477defb3cd9fd.bindPopup(popup_38c5eacdf66c88bbc7ab98f82d76723d)
+        ;
+
+        
+    
+    
+            circle_marker_3e7e6eea7509a83168e477defb3cd9fd.bindTooltip(
+                `<div>
+                     Marshella Aulia Putri - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_618efd676ada8b0499ea519490dcaec8 = L.circleMarker(
+                [1.4679805, 124.8624665],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_162bdce628d16a0bf10dc523333f0d4b = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_127166ea0b1c82bcdfb2d635ca27151d = $(`<div id="html_127166ea0b1c82bcdfb2d635ca27151d" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Rachelia Andini Tendean<br>         <b>Daerah:</b> Tikala, Manado<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_162bdce628d16a0bf10dc523333f0d4b.setContent(html_127166ea0b1c82bcdfb2d635ca27151d);
+            
+        
+
+        circle_marker_618efd676ada8b0499ea519490dcaec8.bindPopup(popup_162bdce628d16a0bf10dc523333f0d4b)
+        ;
+
+        
+    
+    
+            circle_marker_618efd676ada8b0499ea519490dcaec8.bindTooltip(
+                `<div>
+                     Rachelia Andini Tendean - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f5fa104f2ddf278841e882de5977c3d7 = L.circleMarker(
+                [-6.8970592, 111.8854917],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_b27008a4f73ad094f44e1e57b4be0250 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_a112030b839eac4376efb2fccee70410 = $(`<div id="html_a112030b839eac4376efb2fccee70410" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Nurhabibatul Umah<br>         <b>Daerah:</b> Kerek, Tuban<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_b27008a4f73ad094f44e1e57b4be0250.setContent(html_a112030b839eac4376efb2fccee70410);
+            
+        
+
+        circle_marker_f5fa104f2ddf278841e882de5977c3d7.bindPopup(popup_b27008a4f73ad094f44e1e57b4be0250)
+        ;
+
+        
+    
+    
+            circle_marker_f5fa104f2ddf278841e882de5977c3d7.bindTooltip(
+                `<div>
+                     Nurhabibatul Umah - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ad7593b24711b4557c7a6bca1133f44 = L.circleMarker(
+                [-7.1638712, 112.8509634],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_6b4f5bf491f2c2eeec87fc5a56cc1187 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_009fa220ad13ba97a14739e0a6a12f61 = $(`<div id="html_009fa220ad13ba97a14739e0a6a12f61" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Fahdimas akmal<br>         <b>Daerah:</b> Kwanyar, Bangkalan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_6b4f5bf491f2c2eeec87fc5a56cc1187.setContent(html_009fa220ad13ba97a14739e0a6a12f61);
+            
+        
+
+        circle_marker_4ad7593b24711b4557c7a6bca1133f44.bindPopup(popup_6b4f5bf491f2c2eeec87fc5a56cc1187)
+        ;
+
+        
+    
+    
+            circle_marker_4ad7593b24711b4557c7a6bca1133f44.bindTooltip(
+                `<div>
+                     Fahdimas akmal - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c547fd3a7ac40a8c4dd32467a663df42 = L.circleMarker(
+                [-7.3020554, 112.7392222],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_d433c5bb4c984438a86c993d46d58b7e = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_7a32fd8d7a3e642a8a674c42800d5d96 = $(`<div id="html_7a32fd8d7a3e642a8a674c42800d5d96" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Muhammad izzul Millah Aqil<br>         <b>Daerah:</b> Wonokromo, Surabaya<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_d433c5bb4c984438a86c993d46d58b7e.setContent(html_7a32fd8d7a3e642a8a674c42800d5d96);
+            
+        
+
+        circle_marker_c547fd3a7ac40a8c4dd32467a663df42.bindPopup(popup_d433c5bb4c984438a86c993d46d58b7e)
+        ;
+
+        
+    
+    
+            circle_marker_c547fd3a7ac40a8c4dd32467a663df42.bindTooltip(
+                `<div>
+                     Muhammad izzul Millah Aqil - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ec1e25568a851207fdf3e222efa27be2 = L.circleMarker(
+                [-7.2417405, 112.6888023],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_d4bff7042beb00631df7da149d465637 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_b6f9ec384321d3cbc9a0f0f20e29c5bb = $(`<div id="html_b6f9ec384321d3cbc9a0f0f20e29c5bb" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Riska Nana Nuril Fadilah<br>         <b>Daerah:</b> Asemrowo, Surabaya<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_d4bff7042beb00631df7da149d465637.setContent(html_b6f9ec384321d3cbc9a0f0f20e29c5bb);
+            
+        
+
+        circle_marker_ec1e25568a851207fdf3e222efa27be2.bindPopup(popup_d4bff7042beb00631df7da149d465637)
+        ;
+
+        
+    
+    
+            circle_marker_ec1e25568a851207fdf3e222efa27be2.bindTooltip(
+                `<div>
+                     Riska Nana Nuril Fadilah - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f98f79526a1772dc0cae1ef5c7b71087 = L.circleMarker(
+                [-7.0909364, 112.7055302],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_c665fa9e47a65cd8d29e7aee5e012b81 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_26440db0dd083fb2d34d5e9a520236a2 = $(`<div id="html_26440db0dd083fb2d34d5e9a520236a2" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Lailatul Hasanah<br>         <b>Daerah:</b> Socah, Bangkalan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_c665fa9e47a65cd8d29e7aee5e012b81.setContent(html_26440db0dd083fb2d34d5e9a520236a2);
+            
+        
+
+        circle_marker_f98f79526a1772dc0cae1ef5c7b71087.bindPopup(popup_c665fa9e47a65cd8d29e7aee5e012b81)
+        ;
+
+        
+    
+    
+            circle_marker_f98f79526a1772dc0cae1ef5c7b71087.bindTooltip(
+                `<div>
+                     Lailatul Hasanah - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb490d430385eca47036f80ab0612248 = L.circleMarker(
+                [-7.499596, 111.6442548],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_5d1489828d2ea8adab3bfed9e6b1426a = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_e9ffc04bdc7bd9e8d5ad3122b984c66d = $(`<div id="html_e9ffc04bdc7bd9e8d5ad3122b984c66d" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Magdalena Jovita Hatuopar<br>         <b>Daerah:</b> Pilangkenceng, Madiun<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_5d1489828d2ea8adab3bfed9e6b1426a.setContent(html_e9ffc04bdc7bd9e8d5ad3122b984c66d);
+            
+        
+
+        circle_marker_eb490d430385eca47036f80ab0612248.bindPopup(popup_5d1489828d2ea8adab3bfed9e6b1426a)
+        ;
+
+        
+    
+    
+            circle_marker_eb490d430385eca47036f80ab0612248.bindTooltip(
+                `<div>
+                     Magdalena Jovita Hatuopar - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bd0a4aa34e0c38b783c259be539d030b = L.circleMarker(
+                [-7.4028554, 111.2238532],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_715934a7501c3b339eeea9b2f059c8e2 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_402f72df5645ab6b795196bbb35da50e = $(`<div id="html_402f72df5645ab6b795196bbb35da50e" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Deo Candra Saputra<br>         <b>Daerah:</b> Widodaren, Ngawi<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_715934a7501c3b339eeea9b2f059c8e2.setContent(html_402f72df5645ab6b795196bbb35da50e);
+            
+        
+
+        circle_marker_bd0a4aa34e0c38b783c259be539d030b.bindPopup(popup_715934a7501c3b339eeea9b2f059c8e2)
+        ;
+
+        
+    
+    
+            circle_marker_bd0a4aa34e0c38b783c259be539d030b.bindTooltip(
+                `<div>
+                     Deo Candra Saputra - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e0af7e328c44b1c2e6f91ac8404fb70e = L.circleMarker(
+                [-7.0294703, 112.7473329],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_6c46f5ec0105eab869eebb2f7e02df68 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_84fc8f832d318f70d2fb9bad2cf46233 = $(`<div id="html_84fc8f832d318f70d2fb9bad2cf46233" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Rifqi Fairurrafi<br>         <b>Daerah:</b> Bangkalan, Bangkalan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_6c46f5ec0105eab869eebb2f7e02df68.setContent(html_84fc8f832d318f70d2fb9bad2cf46233);
+            
+        
+
+        circle_marker_e0af7e328c44b1c2e6f91ac8404fb70e.bindPopup(popup_6c46f5ec0105eab869eebb2f7e02df68)
+        ;
+
+        
+    
+    
+            circle_marker_e0af7e328c44b1c2e6f91ac8404fb70e.bindTooltip(
+                `<div>
+                     Rifqi Fairurrafi - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2a46931a838f12112600c0d6db7bfaeb = L.circleMarker(
+                [-6.9340762, 106.9209451],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_cdb2643bafae3a24a1ecb384e0930085 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_57a1daeb08312d68213a516bf7d2343c = $(`<div id="html_57a1daeb08312d68213a516bf7d2343c" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Fathan Ruhul Alam<br>         <b>Daerah:</b> Warudoyong, Kota Sukabumi<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_cdb2643bafae3a24a1ecb384e0930085.setContent(html_57a1daeb08312d68213a516bf7d2343c);
+            
+        
+
+        circle_marker_2a46931a838f12112600c0d6db7bfaeb.bindPopup(popup_cdb2643bafae3a24a1ecb384e0930085)
+        ;
+
+        
+    
+    
+            circle_marker_2a46931a838f12112600c0d6db7bfaeb.bindTooltip(
+                `<div>
+                     Fathan Ruhul Alam - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0342c559093aeb4d8f68e0ee0a1dd4b1 = L.circleMarker(
+                [-7.1702821, 112.7288563],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_67db15bba1c8bf34490ebc57cf6b6f8f = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_4376075c4455be2b46aac56faab85efb = $(`<div id="html_4376075c4455be2b46aac56faab85efb" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Laila Maghfiroh<br>         <b>Daerah:</b> Kamal, Bangkalan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_67db15bba1c8bf34490ebc57cf6b6f8f.setContent(html_4376075c4455be2b46aac56faab85efb);
+            
+        
+
+        circle_marker_0342c559093aeb4d8f68e0ee0a1dd4b1.bindPopup(popup_67db15bba1c8bf34490ebc57cf6b6f8f)
+        ;
+
+        
+    
+    
+            circle_marker_0342c559093aeb4d8f68e0ee0a1dd4b1.bindTooltip(
+                `<div>
+                     Laila Maghfiroh - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db1a21b7a0b7632468a66a90678a0de6 = L.circleMarker(
+                [-7.1702821, 112.7288563],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_ee6e6e9cd64a0403327f97af8703dba1 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_6172ac8cca3ab9f3f68b8fd5940a5140 = $(`<div id="html_6172ac8cca3ab9f3f68b8fd5940a5140" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Dewi Geizya<br>         <b>Daerah:</b> Banyuajuh kamal, Bangkalan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_ee6e6e9cd64a0403327f97af8703dba1.setContent(html_6172ac8cca3ab9f3f68b8fd5940a5140);
+            
+        
+
+        circle_marker_db1a21b7a0b7632468a66a90678a0de6.bindPopup(popup_ee6e6e9cd64a0403327f97af8703dba1)
+        ;
+
+        
+    
+    
+            circle_marker_db1a21b7a0b7632468a66a90678a0de6.bindTooltip(
+                `<div>
+                     Dewi Geizya - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3dd1aef5fc9936232e3b530540925b6e = L.circleMarker(
+                [-7.0087499, 112.5103759],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_158521bd7eb5822986c408b70047328d = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_8cb7384d41fd20b12d44d4a3d7cafa54 = $(`<div id="html_8cb7384d41fd20b12d44d4a3d7cafa54" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Fathul Aziz Saifuddin<br>         <b>Daerah:</b> Dukun, Gresik<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_158521bd7eb5822986c408b70047328d.setContent(html_8cb7384d41fd20b12d44d4a3d7cafa54);
+            
+        
+
+        circle_marker_3dd1aef5fc9936232e3b530540925b6e.bindPopup(popup_158521bd7eb5822986c408b70047328d)
+        ;
+
+        
+    
+    
+            circle_marker_3dd1aef5fc9936232e3b530540925b6e.bindTooltip(
+                `<div>
+                     Fathul Aziz Saifuddin - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_508a9f86938614435b95ce19522c5886 = L.circleMarker(
+                [-7.0294703, 112.7473329],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#0088ff", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_eca1ebe34022c4dcba06df6f1cd4176b);
+        
+    
+        var popup_39fbe5c25e32a30aa86ab2791fcd2f91 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_d8ba76e3315984688162a544faa15658 = $(`<div id="html_d8ba76e3315984688162a544faa15658" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Moh Rafie Nazar J<br>         <b>Daerah:</b> Kecamatan Bangkalan,Bangkalan<br>         <b>Cluster:</b> cluster_1<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_39fbe5c25e32a30aa86ab2791fcd2f91.setContent(html_d8ba76e3315984688162a544faa15658);
+            
+        
+
+        circle_marker_508a9f86938614435b95ce19522c5886.bindPopup(popup_39fbe5c25e32a30aa86ab2791fcd2f91)
+        ;
+
+        
+    
+    
+            circle_marker_508a9f86938614435b95ce19522c5886.bindTooltip(
+                `<div>
+                     Moh Rafie Nazar J - cluster_1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_eca1ebe34022c4dcba06df6f1cd4176b.addTo(map_f78c9dcc4cd77f5de3aca0578c01f1c2);
+        
+    
+            var feature_group_98360a6acaabc4272ed2c619be51995b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_46f7ca5bc37e190984b38d2031bbf6ff = L.circleMarker(
+                [3.9074565, 117.0423506],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00cc44", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_98360a6acaabc4272ed2c619be51995b);
+        
+    
+        var popup_3e235c007a6eaa413bd6c32a10d86151 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_026afc8b0a3125bf5b2ef74d7ce872ba = $(`<div id="html_026afc8b0a3125bf5b2ef74d7ce872ba" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Ainur Raftuzzaki<br>         <b>Daerah:</b> Nunukan<br>         <b>Cluster:</b> cluster_2<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_3e235c007a6eaa413bd6c32a10d86151.setContent(html_026afc8b0a3125bf5b2ef74d7ce872ba);
+            
+        
+
+        circle_marker_46f7ca5bc37e190984b38d2031bbf6ff.bindPopup(popup_3e235c007a6eaa413bd6c32a10d86151)
+        ;
+
+        
+    
+    
+            circle_marker_46f7ca5bc37e190984b38d2031bbf6ff.bindTooltip(
+                `<div>
+                     Ainur Raftuzzaki - cluster_2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4ec9cbac726a8d47fd717d058f60f724 = L.circleMarker(
+                [-7.006745, 113.8598666],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00cc44", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_98360a6acaabc4272ed2c619be51995b);
+        
+    
+        var popup_ed96310a7df99338557603bde1d8f1a7 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_2879ec4e05d57600f05179a5aa0e99d8 = $(`<div id="html_2879ec4e05d57600f05179a5aa0e99d8" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Alifah Sayyidaturrhohma<br>         <b>Daerah:</b> Kota Sumenep, Sumenep<br>         <b>Cluster:</b> cluster_2<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_ed96310a7df99338557603bde1d8f1a7.setContent(html_2879ec4e05d57600f05179a5aa0e99d8);
+            
+        
+
+        circle_marker_4ec9cbac726a8d47fd717d058f60f724.bindPopup(popup_ed96310a7df99338557603bde1d8f1a7)
+        ;
+
+        
+    
+    
+            circle_marker_4ec9cbac726a8d47fd717d058f60f724.bindTooltip(
+                `<div>
+                     Alifah Sayyidaturrhohma - cluster_2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f910d5fc979f6f323fae58e4be80f6cb = L.circleMarker(
+                [-7.0882748, 112.8853403],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00cc44", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_98360a6acaabc4272ed2c619be51995b);
+        
+    
+        var popup_e6518d0bb738a7732bb2ab1f0ef92a34 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_840a974169e9bd9f6da1a04c79f0567c = $(`<div id="html_840a974169e9bd9f6da1a04c79f0567c" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Mohammad Aziz Huzaini<br>         <b>Daerah:</b> Tanah Merah, Bangkalan<br>         <b>Cluster:</b> cluster_2<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_e6518d0bb738a7732bb2ab1f0ef92a34.setContent(html_840a974169e9bd9f6da1a04c79f0567c);
+            
+        
+
+        circle_marker_f910d5fc979f6f323fae58e4be80f6cb.bindPopup(popup_e6518d0bb738a7732bb2ab1f0ef92a34)
+        ;
+
+        
+    
+    
+            circle_marker_f910d5fc979f6f323fae58e4be80f6cb.bindTooltip(
+                `<div>
+                     Mohammad Aziz Huzaini - cluster_2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c1726c65cc6b134b5b54f943321ee7ce = L.circleMarker(
+                [-7.13961, 112.7730944],
+                {"bubblingMouseEvents": true, "color": "#ffffff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#00cc44", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 2}
+            ).addTo(feature_group_98360a6acaabc4272ed2c619be51995b);
+        
+    
+        var popup_0996091db46893423527d14fb3498750 = L.popup({
+  "maxWidth": 330,
+});
+
+        
+            
+                var html_9d5414725341e3e50cb376596a13f232 = $(`<div id="html_9d5414725341e3e50cb376596a13f232" style="width: 100.0%; height: 100.0%;">     <div style="width:270px">         <h4>Hasil Clustering</h4>         <b>Nama:</b> Kurnia Maulinda Sari<br>         <b>Daerah:</b> Labang, Bangkalan<br>         <b>Cluster:</b> cluster_2<br>         <b>Interpolasi:</b> Linear<br>         <b>Reduksi:</b> PCA 37<br>         <b>Jumlah cluster:</b> k = 3     </div>     </div>`)[0];
+                popup_0996091db46893423527d14fb3498750.setContent(html_9d5414725341e3e50cb376596a13f232);
+            
+        
+
+        circle_marker_c1726c65cc6b134b5b54f943321ee7ce.bindPopup(popup_0996091db46893423527d14fb3498750)
+        ;
+
+        
+    
+    
+            circle_marker_c1726c65cc6b134b5b54f943321ee7ce.bindTooltip(
+                `<div>
+                     Kurnia Maulinda Sari - cluster_2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_98360a6acaabc4272ed2c619be51995b.addTo(map_f78c9dcc4cd77f5de3aca0578c01f1c2);
+        
+    
+            map_f78c9dcc4cd77f5de3aca0578c01f1c2.fitBounds(
+                [[-7.602829, 106.9209451], [3.9074565, 124.8624665]],
+                {"padding": [30, 30]}
+            );
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topright",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_f78c9dcc4cd77f5de3aca0578c01f1c2);
+        
+    
+            var layer_control_fd4e961af33a45618e70704059298063_layers = {
+                base_layers : {
+                    "Google Satellite" : tile_layer_17951b26e350cbf545a3b1367a5ac696,
+                    "OpenStreetMap" : tile_layer_714921a54087839951196c1cbfad9057,
+                },
+                overlays :  {
+                    "cluster_0" : feature_group_9d01524673927a9ae4e4a2e4acc53301,
+                    "cluster_1" : feature_group_eca1ebe34022c4dcba06df6f1cd4176b,
+                    "cluster_2" : feature_group_98360a6acaabc4272ed2c619be51995b,
+                },
+            };
+            let layer_control_fd4e961af33a45618e70704059298063 = L.control.layers(
+                layer_control_fd4e961af33a45618e70704059298063_layers.base_layers,
+                layer_control_fd4e961af33a45618e70704059298063_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_f78c9dcc4cd77f5de3aca0578c01f1c2);
+
+        
+</script>
+</html>

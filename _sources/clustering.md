@@ -2,235 +2,364 @@
 
 ## 1. Pengambilan Data
 
-Data yang digunakan merupakan hasil ekstraksi fitur dari tiga jenis polutan, yaitu CO, NO₂, dan SO₂. Setiap polutan memiliki 68 fitur hasil ekstraksi menggunakan TSFEL sehingga seluruhnya menghasilkan:
+Data yang digunakan merupakan hasil ekstraksi fitur dari tiga jenis polutan, yaitu CO, NO₂, dan SO₂. Setiap polutan menghasilkan 68 fitur TSFEL sehingga total fitur setiap data adalah:
 
 $$
 68 \times 3 = 204 \text{ fitur}
 $$
 
-Data hasil ekstraksi disimpan dalam database MySQL pada tiga tabel berbeda. Ketiga tabel tersebut kemudian diambil dan digabungkan menggunakan node **MySQL Connector** dan **DB Query Reader** pada KNIME.
+Terdapat dua dataset berdasarkan metode penanganan missing value dan outlier, yaitu:
 
-Data gabungan yang digunakan pada analisis KNIME terdiri atas 36 baris data mahasiswa dengan fitur dari ketiga polutan.
+1. Dataset hasil interpolasi linear.
+2. Dataset hasil interpolasi polynomial.
 
-## 2. Preprocessing Data
+Data seluruh mahasiswa disimpan pada database MySQL dalam dua tabel:
 
-Sebelum dilakukan clustering, data melewati beberapa tahap preprocessing berikut:
+- `ekstraksi_fitur_linier`
+- `ekstraksi_fitur_polynomial`
 
-1. **Low Variance Filter** digunakan untuk menghapus fitur yang memiliki nilai konstan atau variansi sangat rendah.
-2. **Column Filter** digunakan untuk memilih kolom yang diperlukan, menghapus kolom identitas yang tidak digunakan dalam perhitungan, serta menyisakan satu kolom `nama` dan satu kolom `daerah`.
-3. **Normalizer** digunakan untuk menyamakan skala setiap fitur agar fitur dengan nilai besar tidak mendominasi proses clustering.
+Data diambil dari MySQL menggunakan node **MySQL Connector** dan **DB Query Reader** pada KNIME.
 
-Normalisasi diperlukan karena nilai dari setiap fitur TSFEL mempunyai rentang yang berbeda.
+Setelah data diperiksa dan disesuaikan, dataset yang digunakan dalam proses clustering terdiri atas **37 baris data mahasiswa**. Setiap baris mempunyai kolom identitas `nama`, `daerah`, dan 204 fitur hasil ekstraksi CO, NO₂, serta SO₂.
 
-## 3. Reduksi Dimensi Menggunakan PCA
+## 2. Dataset Linear dan Polynomial
 
-Data hasil normalisasi memiliki jumlah fitur yang cukup banyak. Oleh karena itu, digunakan metode **Principal Component Analysis (PCA)** untuk mengurangi jumlah dimensi data.
+Dua metode interpolasi digunakan untuk mengetahui pengaruh metode pengisian data terhadap hasil clustering.
 
-PCA bekerja dengan mengubah sekumpulan fitur yang saling berhubungan menjadi sejumlah komponen utama yang tidak saling berkorelasi.
+### 2.1 Interpolasi Linear
 
-Pada workflow KNIME, proses PCA menghasilkan 37 komponen utama dengan nilai **information preservation sebesar 100%**. Artinya, informasi pada data yang digunakan masih dapat dipertahankan dalam komponen utama yang dihasilkan.
+Interpolasi linear memperkirakan nilai kosong dengan membentuk garis lurus antara nilai sebelum dan sesudah data yang kosong.
 
-## 4. Clustering Menggunakan K-Means
+Secara umum, rumus interpolasi linear adalah:
 
-Hasil PCA digunakan sebagai masukan pada metode **K-Means**. K-Means membagi data ke dalam beberapa kelompok berdasarkan kedekatan karakteristik setiap data.
+$$
+y =
+y_1+
+\frac{x-x_1}{x_2-x_1}
+(y_2-y_1)
+$$
 
-Jumlah cluster terbaik ditentukan dengan membandingkan nilai **Silhouette Coefficient** untuk beberapa nilai `k`.
+Hasil interpolasi linear disimpan dalam:
 
-Hasil pengujian jumlah cluster pada KNIME adalah:
+- `Timeseries_CO_NO2_SO2_AsemRowo_Linear.csv`
+- `All-Pollutants-AsemRowo-TSFEL-Linear.csv`
 
-| Jumlah Cluster | Silhouette Coefficient |
-|---:|---:|
-| 2 | 0.637 |
-| 3 | 0.102 |
-| 4 | 0.036 |
+### 2.2 Interpolasi Polynomial
 
-Nilai Silhouette Coefficient tertinggi diperoleh pada `k = 2`, yaitu sebesar `0.637`. Oleh karena itu, jumlah cluster yang digunakan pada hasil akhir adalah dua cluster.
+Interpolasi polynomial memperkirakan nilai kosong menggunakan kurva polynomial yang mengikuti pola beberapa titik data di sekitarnya.
 
-## 5. Workflow KNIME
+Hasil interpolasi polynomial disimpan dalam:
 
-Berikut merupakan workflow KNIME yang digunakan untuk melakukan pengambilan data, preprocessing, reduksi dimensi menggunakan PCA, K-Means, dan evaluasi hasil clustering.
+- `Timeseries_CO_NO2_SO2_AsemRowo_Polynomial.csv`
+- `All-Pollutants-AsemRowo-TSFEL-Polynomial.csv`
 
-```{figure} _static/workflow_knime_pca.jpeg
----
-width: 100%
-name: workflow-knime-pca
----
-Workflow preprocessing, PCA, K-Means, dan evaluasi clustering pada KNIME.
-```
+Masing-masing file hasil ekstraksi TSFEL mempunyai ukuran:
 
-Workflow tersebut terdiri atas beberapa node berikut:
+$$
+1 \text{ baris} \times 204 \text{ kolom}
+$$
 
-- **MySQL Connector** untuk menghubungkan KNIME dengan database MySQL.
-- **DB Query Reader** untuk mengambil dan menggabungkan data hasil ekstraksi fitur CO, NO₂, dan SO₂.
-- **Low Variance Filter** untuk menghapus fitur dengan variansi rendah.
-- **Column Filter** untuk memilih fitur dan kolom identitas yang diperlukan.
-- **Normalizer** untuk menyamakan skala setiap fitur.
-- **PCA Compute** untuk menghitung model PCA.
-- **PCA Apply** untuk menghasilkan komponen utama.
-- **K-Means** untuk membagi data menjadi beberapa cluster.
-- **Silhouette Coefficient** untuk mengevaluasi kualitas hasil clustering.
-- **Scatter Plot** untuk menampilkan persebaran hasil cluster.
+Hasil pemeriksaan menunjukkan bahwa kedua file tidak mempunyai missing value maupun nilai infinity.
 
-## 6. Hasil Silhouette Coefficient KNIME
+## 3. Preprocessing Data pada KNIME
 
-Silhouette Coefficient digunakan untuk mengukur kesesuaian setiap data terhadap cluster tempat data tersebut berada.
+Sebelum PCA dan clustering dilakukan, data melewati beberapa tahapan preprocessing.
 
-Nilai silhouette berada pada rentang:
+### 3.1 Pemilihan Data
+
+Data linear dan polynomial diambil dari tabel MySQL menggunakan **DB Query Reader**.
+
+Kolom `nama` dan `daerah` tetap dipertahankan sebagai identitas setiap data. Kedua kolom tersebut tidak digunakan dalam perhitungan PCA dan K-Means.
+
+### 3.2 Column Filter
+
+Node **Column Filter** digunakan untuk memisahkan kolom numerik dari kolom identitas.
+
+Kolom yang digunakan dalam proses perhitungan adalah kolom fitur numerik, sedangkan `nama` dan `daerah` dipertahankan agar hasil cluster dapat dikembalikan kepada pemilik data dan ditampilkan pada peta.
+
+### 3.3 Normalizer
+
+Node **Normalizer** digunakan untuk menyamakan skala seluruh fitur.
+
+Normalisasi diperlukan karena masing-masing fitur TSFEL mempunyai rentang nilai yang berbeda. Tanpa normalisasi, fitur yang memiliki nilai sangat besar dapat mendominasi perhitungan jarak pada PCA dan K-Means.
+
+## 4. Reduksi Dimensi Menggunakan PCA
+
+Principal Component Analysis atau PCA digunakan untuk mengurangi jumlah dimensi data dengan membentuk komponen utama baru.
+
+PCA mengubah fitur awal menjadi komponen yang tidak saling berkorelasi dengan tetap mempertahankan informasi penting dalam data.
+
+Eksperimen dilakukan menggunakan tiga konfigurasi dimensi:
+
+| Eksperimen | Jumlah Dimensi |
+|---|---:|
+| PCA 203 | 203 |
+| PCA 74 | 74 |
+| PCA 37 | 37 |
+
+Ketiga konfigurasi PCA diterapkan pada dataset hasil interpolasi linear dan polynomial.
+
+Tujuan eksperimen ini adalah membandingkan kualitas clustering ketika menggunakan jumlah dimensi yang berbeda.
+
+## 5. Clustering Menggunakan K-Means
+
+Data hasil PCA digunakan sebagai masukan pada algoritma **K-Means**.
+
+K-Means mengelompokkan data berdasarkan kemiripan karakteristik. Setiap data dimasukkan ke cluster dengan pusat atau centroid terdekat.
+
+Eksperimen jumlah cluster dilakukan menggunakan:
+
+$$
+k = 2,\ 3,\ 4,\ 5
+$$
+
+Setiap nilai `k` diuji pada:
+
+- Data linear PCA 203.
+- Data linear PCA 74.
+- Data linear PCA 37.
+- Data polynomial PCA 203.
+- Data polynomial PCA 74.
+- Data polynomial PCA 37.
+
+Dengan demikian, jumlah eksperimen yang dilakukan adalah:
+
+$$
+2 \text{ metode}
+\times
+3 \text{ dimensi}
+\times
+4 \text{ nilai } k
+=
+24 \text{ eksperimen}
+$$
+
+## 6. Evaluasi Menggunakan Silhouette Coefficient
+
+Silhouette Coefficient digunakan untuk mengevaluasi kualitas hasil clustering.
+
+Untuk setiap data ke-$i$, nilai silhouette dihitung dengan rumus:
+
+$$
+s(i)=
+\frac{b(i)-a(i)}
+{\max\{a(i),b(i)\}}
+$$
+
+Keterangan:
+
+- $a(i)$ adalah rata-rata jarak data ke-$i$ dengan anggota cluster yang sama.
+- $b(i)$ adalah rata-rata jarak terkecil data ke-$i$ dengan cluster lain.
+- $s(i)$ adalah nilai silhouette data ke-$i$.
+
+Nilai silhouette berada dalam rentang:
 
 $$
 -1 \leq s(i) \leq 1
 $$
 
-Interpretasi nilai silhouette adalah:
+Interpretasinya adalah:
 
-- Nilai mendekati 1 menunjukkan data berada pada cluster yang sesuai.
+- Nilai mendekati 1 menunjukkan data sudah berada pada cluster yang sesuai.
 - Nilai mendekati 0 menunjukkan data berada di antara dua cluster.
 - Nilai negatif menunjukkan data kemungkinan berada pada cluster yang kurang sesuai.
 
-Berikut merupakan hasil evaluasi clustering menggunakan Silhouette Coefficient untuk dua cluster.
+## 7. Hasil Eksperimen Dataset Polynomial
 
-```{figure} _static/silhouette_pca.jpeg
----
-width: 100%
-name: silhouette-pca
----
-Hasil Silhouette Coefficient pada K-Means dengan dua cluster.
-```
+Hasil Silhouette Coefficient pada dataset polynomial adalah sebagai berikut:
 
-Hasil evaluasi menunjukkan nilai silhouette untuk masing-masing cluster sebesar `0.690` dan `-0.266`, sedangkan nilai silhouette keseluruhan adalah `0.637`.
+| Dimensi PCA | k = 2 | k = 3 | k = 4 | k = 5 |
+|---:|---:|---:|---:|---:|
+| PCA 203 | 0.125 | 0.038 | 0.082 | 0.106 |
+| PCA 74 | 0.125 | 0.038 | 0.082 | 0.106 |
+| PCA 37 | 0.125 | 0.038 | 0.082 | 0.106 |
 
-Nilai keseluruhan sebesar `0.637` menunjukkan bahwa hasil clustering memiliki struktur pengelompokan yang cukup baik. Sebagian besar data sudah berada pada kelompok yang sesuai, walaupun masih terdapat beberapa data yang memiliki kemiripan dengan cluster lainnya.
-
-## 7. Visualisasi Hasil Clustering KNIME
-
-Hasil clustering membagi data menjadi dua kelompok, yaitu `cluster_0` dan `cluster_1`. Setiap titik pada grafik mewakili nama mahasiswa berdasarkan gabungan fitur hasil ekstraksi CO, NO₂, dan SO₂.
-
-```{figure} _static/Scatter_Plot.png
----
-width: 100%
-name: scatter-cluster-pca
----
-Visualisasi hasil clustering menggunakan PCA dan K-Means pada KNIME.
-```
-
-Berdasarkan visualisasi tersebut, sebagian besar data termasuk dalam `cluster_1`, sedangkan beberapa data lainnya termasuk dalam `cluster_0`.
-
-Data atas nama **Riska Nana Nuril Fadilah** termasuk dalam `cluster_0`.
-
-## 8. Analisis PCA dan Clustering Menggunakan Code
-
-Selain analisis menggunakan KNIME, pengujian juga dilakukan menggunakan Python terhadap data hasil ekstraksi window.
-
-Data yang digunakan terdiri atas 49 window dan 204 fitur gabungan dari CO, NO₂, dan SO₂.
-
-### 8.1 Low Variance Filter
-
-Sebelum PCA dilakukan, fitur konstan dihapus menggunakan Low Variance Filter.
-
-Hasil proses tersebut adalah:
-
-| Keterangan | Jumlah |
-|---|---:|
-| Jumlah fitur awal | 204 |
-| Fitur konstan | 30 |
-| Fitur setelah filter | 174 |
-
-Perhitungannya adalah:
+Nilai silhouette tertinggi pada dataset polynomial adalah:
 
 $$
-204-30=174 \text{ fitur}
+0.125
 $$
 
-Sebanyak 174 fitur kemudian dinormalisasi agar memiliki skala yang sebanding.
-
-### 8.2 Reduksi Menjadi 37 Komponen
-
-PCA digunakan untuk mereduksi 174 fitur menjadi 37 komponen utama.
-
-Total explained variance yang dipertahankan oleh PCA 37 adalah:
+Nilai tersebut diperoleh ketika menggunakan:
 
 $$
-0.989319 \times 100\%=98.9319\%
+k=2
 $$
 
-Artinya, PCA 37 masih mempertahankan sekitar 98,93% informasi dari data setelah Low Variance Filter.
+Dengan demikian, konfigurasi cluster terbaik pada dataset polynomial adalah **dua cluster**.
 
-### 8.3 Penentuan Jumlah Cluster Terbaik
+## 8. Hasil Eksperimen Dataset Linear
 
-Jumlah cluster terbaik diuji menggunakan nilai silhouette untuk beberapa nilai `k`.
+Hasil Silhouette Coefficient pada dataset linear adalah sebagai berikut:
 
-Pengujian dilakukan pada dua jenis data:
+| Dimensi PCA | k = 2 | k = 3 | k = 4 | k = 5 |
+|---:|---:|---:|---:|---:|
+| PCA 203 | 0.249 | **0.255** | 0.113 | 0.132 |
+| PCA 74 | 0.249 | **0.255** | 0.113 | 0.132 |
+| PCA 37 | 0.249 | **0.255** | 0.113 | 0.132 |
 
-1. Data setelah reduksi menjadi PCA 37.
-2. Data fitur asli setelah Low Variance Filter dan normalisasi.
-
-```{figure} _static/elbow_pca37_dan_204.png
----
-width: 100%
-name: elbow-pca37-dan-fitur-asli
----
-Perbandingan evaluasi jumlah cluster pada PCA 37 dan fitur asli.
-```
-
-```{figure} _static/silhouette_pca37_dan_204.png
----
-width: 100%
-name: silhouette-pca37-dan-fitur-asli
----
-Perbandingan Silhouette Coefficient pada PCA 37 dan fitur asli.
-```
-
-## 9. Perbandingan Hasil PCA 37 dan Fitur Asli
-
-Hasil perbandingan clustering adalah:
-
-| Metode | Jumlah Data | Jumlah Dimensi | Cluster Terbaik | Silhouette |
-|---|---:|---:|---:|---:|
-| PCA 37 | 49 | 37 | 2 | 0.204031 |
-| Fitur asli setelah filter | 49 | 174 | 2 | 0.201475 |
-
-Kedua metode menghasilkan jumlah cluster terbaik yang sama, yaitu dua cluster.
-
-Nilai silhouette PCA 37 sebesar `0.204031`, sedangkan fitur asli menghasilkan nilai `0.201475`.
-
-Selisih nilai silhouette adalah:
+Nilai silhouette tertinggi pada dataset linear adalah:
 
 $$
-0.204031-0.201475=0.002556
+0.255
 $$
 
-PCA 37 menghasilkan nilai silhouette yang sedikit lebih tinggi. Hasil ini menunjukkan bahwa PCA dapat mengurangi jumlah dimensi secara signifikan tanpa menghilangkan sebagian besar informasi dan tanpa menurunkan kualitas clustering.
+Nilai tersebut diperoleh ketika menggunakan:
 
-```{figure} _static/cluster_pca37.png
----
-width: 100%
-name: hasil-cluster-pca37-code
----
-Visualisasi hasil K-Means pada data PCA 37 menggunakan Python.
-```
+$$
+k=3
+$$
 
-## 10. Perbedaan Hasil KNIME dan Code
+Dengan demikian, konfigurasi cluster terbaik pada dataset linear adalah **tiga cluster**.
 
-Nilai silhouette hasil KNIME tidak dibandingkan secara langsung dengan hasil Python karena kedua proses menggunakan susunan data yang berbeda.
+## 9. Perbandingan Linear dan Polynomial
 
-| Proses | Data yang Digunakan | Silhouette Terbaik | Cluster Terbaik |
-|---|---|---:|---:|
-| KNIME | Data gabungan mahasiswa | 0.637 | 2 |
-| Python PCA 37 | 49 window time series | 0.204031 | 2 |
-| Python fitur asli | 49 window time series | 0.201475 | 2 |
+Ringkasan hasil terbaik kedua metode adalah:
 
-Analisis KNIME menggunakan data hasil ekstraksi setiap mahasiswa, sedangkan analisis Python menggunakan hasil ekstraksi window dari data time series Asem Rowo.
+| Metode Interpolasi | Dimensi yang Dipilih | Cluster Terbaik | Silhouette |
+|---|---:|---:|---:|
+| Linear | PCA 37 | 3 | **0.255** |
+| Polynomial | PCA 37 | 2 | 0.125 |
 
-Walaupun nilai silhouette berbeda, seluruh pengujian menghasilkan jumlah cluster terbaik yang sama, yaitu dua cluster.
+Dataset linear menghasilkan nilai silhouette yang lebih tinggi daripada dataset polynomial.
 
-## 11. Kesimpulan
+Selisih nilai silhouette terbaik adalah:
 
-Data hasil ekstraksi fitur CO, NO₂, dan SO₂ berhasil dianalisis menggunakan KNIME dan Python.
+$$
+0.255-0.125=0.130
+$$
 
-Pada analisis KNIME, PCA menghasilkan komponen utama yang digunakan untuk K-Means. Jumlah cluster terbaik adalah dua cluster dengan Silhouette Coefficient sebesar `0.637`.
+Berdasarkan hasil tersebut, metode terbaik yang digunakan pada hasil akhir adalah:
 
-Pada analisis menggunakan Python, PCA 37 mempertahankan sekitar 98,93% informasi. Cluster terbaik pada PCA 37 adalah dua cluster dengan silhouette sebesar `0.204031`.
+- Metode interpolasi: **Linear**
+- Reduksi dimensi: **PCA 37**
+- Jumlah cluster: **3**
+- Silhouette Coefficient: **0.255**
 
-Pengujian pada fitur asli setelah Low Variance Filter juga menghasilkan dua cluster dengan silhouette sebesar `0.201475`.
+PCA 37 dipilih karena menghasilkan kualitas clustering yang sama dengan PCA 203 dan PCA 74, tetapi menggunakan jumlah dimensi yang lebih sedikit.
 
-Hasil tersebut menunjukkan bahwa PCA 37 mampu mengurangi jumlah dimensi data dengan tetap mempertahankan hampir seluruh informasi. PCA 37 juga menghasilkan kualitas clustering yang sedikit lebih baik daripada penggunaan fitur asli setelah Low Variance Filter.
+## 10. Workflow KNIME
+
+Workflow KNIME terdiri atas beberapa node utama berikut:
+
+1. **MySQL Connector** untuk membuat koneksi dengan database MySQL.
+2. **DB Query Reader** untuk membaca tabel linear dan polynomial.
+3. **Column Filter** untuk memilih kolom fitur dan memisahkan kolom identitas.
+4. **Normalizer** untuk menyamakan skala fitur.
+5. **PCA Compute** untuk membentuk model PCA.
+6. **PCA Apply** untuk menghasilkan dimensi PCA 203, 74, dan 37.
+7. **K-Means** untuk membentuk cluster dengan nilai `k` dari 2 sampai 5.
+8. **Silhouette Coefficient** untuk mengevaluasi hasil clustering.
+9. **Column Appender** atau node penggabungan untuk mengembalikan kolom `nama` dan `daerah`.
+10. **CSV Writer** untuk menyimpan hasil clustering terbaik.
+
+Hasil akhir KNIME disimpan dalam file:
+
+`Hasil_Clustering_Linear_PCA37_K3.csv`
+
+File tersebut mempunyai ukuran:
+
+$$
+37 \text{ baris} \times 40 \text{ kolom}
+$$
+
+Kolom pada file terdiri atas:
+
+- `nama`
+- `daerah`
+- `PCA dimension 0` sampai `PCA dimension 36`
+- `Cluster`
+
+## 11. Hasil Clustering Terbaik
+
+Hasil akhir membagi 37 data mahasiswa menjadi tiga kelompok:
+
+- `cluster_0`
+- `cluster_1`
+- `cluster_2`
+
+Data atas nama **Riska Nana Nuril Fadilah** dari **Asemrowo, Surabaya** termasuk dalam:
+
+$$
+\text{cluster\_1}
+$$
+
+Perlu diperhatikan bahwa nomor cluster hanya merupakan label kelompok. Label `cluster_0`, `cluster_1`, dan `cluster_2` tidak menunjukkan urutan kualitas dari yang paling baik sampai paling buruk.
+
+## 12. Peta Interaktif Hasil Clustering
+
+Hasil clustering ditampilkan pada peta berdasarkan kolom `daerah`.
+
+Koordinat setiap daerah diperoleh melalui proses geocoding. Seluruh 37 daerah berhasil mendapatkan koordinat sehingga tidak terdapat data yang gagal ditampilkan.
+
+File koordinat disimpan dalam:
+
+`Hasil_Clustering_Linear_PCA37_K3_Koordinat.csv`
+
+Peta interaktif disimpan dalam:
+
+`Peta_Clustering_Linear_PCA37_K3.html`
+
+Peta berikut menampilkan hasil clustering Linear PCA 37 dengan K-Means `k=3`.
+
+<iframe
+    src="_static/Peta_Clustering_Linear_PCA37_K3.html"
+    width="100%"
+    height="700"
+    style="border: 1px solid #cccccc; border-radius: 8px;"
+    loading="lazy">
+</iframe>
+
+Warna pada peta menunjukkan cluster yang berbeda:
+
+- Merah menunjukkan `cluster_0`.
+- Biru menunjukkan `cluster_1`.
+- Hijau menunjukkan `cluster_2`.
+
+Peta dapat digeser, diperbesar, dan diperkecil. Setiap titik dapat diklik untuk menampilkan nama mahasiswa, daerah, hasil cluster, metode interpolasi, jumlah dimensi PCA, dan nilai `k`.
+
+## 13. Interpretasi Hasil
+
+Hasil eksperimen menunjukkan bahwa metode interpolasi memberikan pengaruh terhadap kualitas clustering.
+
+Dataset linear menghasilkan silhouette tertinggi sebesar `0.255`, sedangkan dataset polynomial hanya menghasilkan silhouette tertinggi sebesar `0.125`.
+
+Nilai `0.255` menunjukkan bahwa struktur cluster sudah terbentuk, tetapi pemisahan antar-cluster masih tergolong lemah. Beberapa data masih mempunyai karakteristik yang hampir sama dengan data pada cluster lain.
+
+Kesamaan nilai silhouette antara PCA 203, PCA 74, dan PCA 37 menunjukkan bahwa pengurangan dimensi sampai 37 tidak menurunkan kualitas clustering pada eksperimen ini.
+
+Oleh karena itu, PCA 37 lebih efisien digunakan karena:
+
+1. Menggunakan dimensi yang lebih sedikit.
+2. Menghasilkan nilai silhouette yang sama dengan PCA 203 dan PCA 74.
+3. Mempermudah penyimpanan dan pengolahan data.
+4. Tetap menghasilkan tiga cluster sebagai hasil terbaik pada dataset linear.
+
+## 14. Kesimpulan
+
+Tiga polutan, yaitu CO, NO₂, dan SO₂, berhasil digabungkan menjadi 204 fitur TSFEL.
+
+Missing value dan outlier ditangani menggunakan dua metode, yaitu interpolasi linear dan polynomial. Kedua hasil tersebut kemudian dianalisis menggunakan PCA dan K-Means pada KNIME.
+
+Eksperimen dilakukan menggunakan PCA 203, PCA 74, dan PCA 37 dengan jumlah cluster dari `k=2` sampai `k=5`.
+
+Hasil terbaik dataset polynomial diperoleh pada `k=2` dengan Silhouette Coefficient sebesar `0.125`.
+
+Hasil terbaik secara keseluruhan diperoleh pada dataset linear dengan `k=3` dan Silhouette Coefficient sebesar `0.255`.
+
+Karena PCA 203, PCA 74, dan PCA 37 menghasilkan nilai silhouette yang sama, PCA 37 dipilih sebagai hasil akhir karena menggunakan jumlah dimensi paling sedikit.
+
+Konfigurasi akhir yang digunakan adalah:
+
+| Komponen | Hasil Akhir |
+|---|---|
+| Metode interpolasi | Linear |
+| Jumlah fitur awal | 204 fitur |
+| Reduksi dimensi | PCA 37 |
+| Jumlah cluster | 3 |
+| Silhouette Coefficient | 0.255 |
+| Jumlah data | 37 mahasiswa |
+| Hasil Riska Nana Nuril Fadilah | `cluster_1` |
+| Visualisasi | Peta interaktif |
+
+Seluruh 37 hasil clustering berhasil ditampilkan pada peta interaktif berdasarkan daerah masing-masing.
