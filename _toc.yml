@@ -10,3 +10,4 @@ chapters:
   - file: tsfel_features
   - file: postgresql_aiven
   - file: clustering
+  - file: klasifikasi_sawah
