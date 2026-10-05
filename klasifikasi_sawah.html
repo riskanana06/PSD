@@ -388,9 +388,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-sampel">1. Pengambilan Sampel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-sampel">2. Peta Interaktif Sampel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sentinel-2">3. Data Sentinel-2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-klasifikasi">4. Proses Klasifikasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-klasifikasi">5. Hasil Klasifikasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">6. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-ndvi">4. Perhitungan NDVI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-ndvi">4.1 Contoh Perhitungan NDVI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-klasifikasi">5. Fitur Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon-training-dan-pixel-training">6. Polygon Training dan Pixel Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-random-forest">7. Algoritma Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-data-training">8. Tampilan Data Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-klasifikasi">9. Hasil Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">10. Peta Hasil Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
             </nav>
         </div>
@@ -406,36 +414,42 @@ document.write(`
 <h1>Klasifikasi Sawah dan Non-Sawah<a class="headerlink" href="#klasifikasi-sawah-dan-non-sawah" title="Link to this heading">#</a></h1>
 <section id="pengambilan-sampel">
 <h2>1. Pengambilan Sampel<a class="headerlink" href="#pengambilan-sampel" title="Link to this heading">#</a></h2>
-<p>Data sampel dibuat menggunakan QGIS dengan membagi wilayah menjadi dua kelas, yaitu sawah dan non-sawah. Setiap kelas mempunyai 50 polygon sampel sehingga total data yang digunakan adalah 100 sampel.</p>
+<p>Data sampel dibuat menggunakan QGIS dengan membagi wilayah menjadi dua kelas, yaitu sawah dan non-sawah. Setiap kelas mempunyai 50 poligon sehingga total data yang digunakan adalah 100 sampel.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Label</p></th>
 <th class="head text-right"><p>Jumlah Sampel</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Sawah</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Sawah</span></code></p></td>
 <td class="text-right"><p>50</p></td>
 </tr>
 <tr class="row-odd"><td><p>Non-sawah</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Non-sawah</span></code></p></td>
 <td class="text-right"><p>50</p></td>
 </tr>
 <tr class="row-even"><td><p>Total</p></td>
+<td><p>-</p></td>
 <td class="text-right"><p>100</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Polygon sampel disimpan menggunakan format GeoJSON dan sistem koordinat EPSG:4326 atau WGS 84.</p>
+<p>Poligon disimpan dalam format GeoJSON menggunakan sistem koordinat EPSG:4326 atau WGS 84.</p>
 <p>File yang digunakan adalah:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Sampel_sawah.geojson</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Sampel_Non_sawah.geojson</span></code></p></li>
 </ul>
+<p>Setiap poligon dianggap sebagai satu sampel. Nilai piksel Sentinel-2 yang berada di dalam poligon digunakan untuk menghitung nilai rata-rata setiap band.</p>
+<p>Oleh karena itu, 50 poligon sawah menghasilkan 50 baris sampel sawah, bukan 50 piksel.</p>
 </section>
 <section id="peta-interaktif-sampel">
 <h2>2. Peta Interaktif Sampel<a class="headerlink" href="#peta-interaktif-sampel" title="Link to this heading">#</a></h2>
-<p>Peta berikut menampilkan persebaran sampel sawah dan non-sawah. Polygon berwarna hijau menunjukkan sampel sawah, sedangkan polygon berwarna merah menunjukkan sampel non-sawah.</p>
+<p>Peta berikut menampilkan persebaran 50 sampel sawah dan 50 sampel non-sawah. Poligon hijau menunjukkan sawah, sedangkan poligon merah menunjukkan non-sawah.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -476,12 +490,20 @@ document.write(`
 <span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 
 
-<span class="n">jumlah_sawah</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_sawah</span><span class="p">)</span>
-<span class="n">jumlah_non_sawah</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_non_sawah</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Jumlah sampel sawah:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">data_sawah</span><span class="p">),</span>
+<span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah sampel sawah:"</span><span class="p">,</span> <span class="n">jumlah_sawah</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah sampel non-sawah:"</span><span class="p">,</span> <span class="n">jumlah_non_sawah</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Total sampel:"</span><span class="p">,</span> <span class="n">jumlah_sawah</span> <span class="o">+</span> <span class="n">jumlah_non_sawah</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Jumlah sampel non-sawah:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">data_non_sawah</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Total sampel:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">data_sawah</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_non_sawah</span><span class="p">),</span>
+<span class="p">)</span>
 
 
 <span class="n">batas_sawah</span> <span class="o">=</span> <span class="n">data_sawah</span><span class="o">.</span><span class="n">total_bounds</span>
@@ -597,33 +619,14 @@ document.write(`
 <span class="s2">    font-size: 14px;</span>
 <span class="s2">"&gt;</span>
 <span class="s2">&lt;b&gt;Legenda Sampel&lt;/b&gt;&lt;br&gt;</span>
-
-<span class="s2">&lt;span style="</span>
-<span class="s2">    display: inline-block;</span>
-<span class="s2">    width: 16px;</span>
-<span class="s2">    height: 16px;</span>
-<span class="s2">    background: #00FF00;</span>
-<span class="s2">    border: 1px solid #006400;</span>
-<span class="s2">    margin-right: 6px;</span>
-<span class="s2">"&gt;&lt;/span&gt;</span>
-<span class="s2">Sawah&lt;br&gt;</span>
-
-<span class="s2">&lt;span style="</span>
-<span class="s2">    display: inline-block;</span>
-<span class="s2">    width: 16px;</span>
-<span class="s2">    height: 16px;</span>
-<span class="s2">    background: #FF0000;</span>
-<span class="s2">    border: 1px solid #8B0000;</span>
-<span class="s2">    margin-right: 6px;</span>
-<span class="s2">"&gt;&lt;/span&gt;</span>
-<span class="s2">Non-sawah</span>
+<span class="s2">&lt;span style="color:#00AA00;"&gt;■&lt;/span&gt; Sawah&lt;br&gt;</span>
+<span class="s2">&lt;span style="color:#FF0000;"&gt;■&lt;/span&gt; Non-sawah</span>
 <span class="s2">&lt;/div&gt;</span>
 <span class="s2">"""</span>
 
 <span class="n">peta</span><span class="o">.</span><span class="n">get_root</span><span class="p">()</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span>
     <span class="n">folium</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="n">legenda</span><span class="p">)</span>
 <span class="p">)</span>
-
 
 <span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">(</span>
     <span class="n">collapsed</span><span class="o">=</span><span class="kc">False</span>
@@ -671,7 +674,7 @@ Total sampel: 100
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_93ec7cc67cd429cef33268371cc75f37 {
+                #map_76a9997f9d5bf892fef843733bb2c3a2 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -754,36 +757,18 @@ Total sampel: 100
     font-size: 14px;
 &quot;&gt;
 &lt;b&gt;Legenda Sampel&lt;/b&gt;&lt;br&gt;
-
-&lt;span style=&quot;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: #00FF00;
-    border: 1px solid #006400;
-    margin-right: 6px;
-&quot;&gt;&lt;/span&gt;
-Sawah&lt;br&gt;
-
-&lt;span style=&quot;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: #FF0000;
-    border: 1px solid #8B0000;
-    margin-right: 6px;
-&quot;&gt;&lt;/span&gt;
-Non-sawah
+&lt;span style=&quot;color:#00AA00;&quot;&gt;■&lt;/span&gt; Sawah&lt;br&gt;
+&lt;span style=&quot;color:#FF0000;&quot;&gt;■&lt;/span&gt; Non-sawah
 &lt;/div&gt;
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_93ec7cc67cd429cef33268371cc75f37&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_76a9997f9d5bf892fef843733bb2c3a2&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_93ec7cc67cd429cef33268371cc75f37 = L.map(
-                &quot;map_93ec7cc67cd429cef33268371cc75f37&quot;,
+            var map_76a9997f9d5bf892fef843733bb2c3a2 = L.map(
+                &quot;map_76a9997f9d5bf892fef843733bb2c3a2&quot;,
                 {
                     center: [-7.2415687, 112.652293],
                     crs: L.CRS.EPSG3857,
@@ -800,7 +785,7 @@ Non-sawah
 
         
     
-            var tile_layer_ed55f21138f7978ed393a25cf6e6b70c = L.tileLayer(
+            var tile_layer_e7154194007ff596314f731decf0f230 = L.tileLayer(
                 &quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -817,55 +802,55 @@ Non-sawah
             );
         
     
-            tile_layer_ed55f21138f7978ed393a25cf6e6b70c.addTo(map_93ec7cc67cd429cef33268371cc75f37);
+            tile_layer_e7154194007ff596314f731decf0f230.addTo(map_76a9997f9d5bf892fef843733bb2c3a2);
         
     
-        function geo_json_a6ae77afb34fabda232f8e76ed235ed9_styler(feature) {
+        function geo_json_f58bc027cd40d21cfcaf71092f7be620_styler(feature) {
             switch(feature.id) {
                 default:
                     return {&quot;color&quot;: &quot;#006400&quot;, &quot;fillColor&quot;: &quot;#00FF00&quot;, &quot;fillOpacity&quot;: 0.6, &quot;weight&quot;: 2};
             }
         }
-        function geo_json_a6ae77afb34fabda232f8e76ed235ed9_highlighter(feature) {
+        function geo_json_f58bc027cd40d21cfcaf71092f7be620_highlighter(feature) {
             switch(feature.id) {
                 default:
                     return {&quot;fillOpacity&quot;: 0.85, &quot;weight&quot;: 4};
             }
         }
 
-        function geo_json_a6ae77afb34fabda232f8e76ed235ed9_onEachFeature(feature, layer) {
+        function geo_json_f58bc027cd40d21cfcaf71092f7be620_onEachFeature(feature, layer) {
 
             layer.on({
                 mouseout: function(e) {
                     if(typeof e.target.setStyle === &quot;function&quot;){
-                            geo_json_a6ae77afb34fabda232f8e76ed235ed9.resetStyle(e.target);
+                            geo_json_f58bc027cd40d21cfcaf71092f7be620.resetStyle(e.target);
                     }
                 },
                 mouseover: function(e) {
                     if(typeof e.target.setStyle === &quot;function&quot;){
-                        const highlightStyle = geo_json_a6ae77afb34fabda232f8e76ed235ed9_highlighter(e.target.feature)
+                        const highlightStyle = geo_json_f58bc027cd40d21cfcaf71092f7be620_highlighter(e.target.feature)
                         e.target.setStyle(highlightStyle);
                     }
                 },
             });
         };
-        var geo_json_a6ae77afb34fabda232f8e76ed235ed9 = L.geoJson(null, {
-                onEachFeature: geo_json_a6ae77afb34fabda232f8e76ed235ed9_onEachFeature,
+        var geo_json_f58bc027cd40d21cfcaf71092f7be620 = L.geoJson(null, {
+                onEachFeature: geo_json_f58bc027cd40d21cfcaf71092f7be620_onEachFeature,
             
-                style: geo_json_a6ae77afb34fabda232f8e76ed235ed9_styler,
+                style: geo_json_f58bc027cd40d21cfcaf71092f7be620_styler,
             ...{
 }
         });
 
-        function geo_json_a6ae77afb34fabda232f8e76ed235ed9_add (data) {
-            geo_json_a6ae77afb34fabda232f8e76ed235ed9
+        function geo_json_f58bc027cd40d21cfcaf71092f7be620_add (data) {
+            geo_json_f58bc027cd40d21cfcaf71092f7be620
                 .addData(data);
         }
-            geo_json_a6ae77afb34fabda232f8e76ed235ed9_add({&quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.604054, -7.2330338], [112.6041533, -7.2330338], [112.6042328, -7.2330535], [112.6042527, -7.2330338], [112.6044117, -7.2330535], [112.6045209, -7.2330929], [112.6044812, -7.2332309], [112.6042726, -7.2332309], [112.604054, -7.2332309], [112.604054, -7.2330338]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;FID&quot;: 0, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6040116, -7.2330282], [112.6040155, -7.2332744], [112.6036161, -7.2333013], [112.6036588, -7.233032], [112.6036704, -7.2330282], [112.603682, -7.2330282], [112.6040116, -7.2330282]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;1&quot;, &quot;properties&quot;: {&quot;FID&quot;: 1, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603399, -7.2329974], [112.6035928, -7.2330513], [112.6035308, -7.2333128], [112.6033331, -7.2333359], [112.6033292, -7.2333282], [112.603399, -7.2329974]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;2&quot;, &quot;properties&quot;: {&quot;FID&quot;: 2, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6033447, -7.2329936], [112.6032982, -7.2333282], [112.6030461, -7.2333359], [112.6031625, -7.232959], [112.6033447, -7.2329936]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;3&quot;, &quot;properties&quot;: {&quot;FID&quot;: 3, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6044963, -7.2329128], [112.6045001, -7.233009], [112.6043838, -7.2330167], [112.6043799, -7.2328936], [112.6044963, -7.2329128]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;4&quot;, &quot;properties&quot;: {&quot;FID&quot;: 4, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6043489, -7.2328743], [112.6043567, -7.2330128], [112.6041861, -7.233009], [112.6042093, -7.2328282], [112.6043489, -7.2328743]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;5&quot;, &quot;properties&quot;: {&quot;FID&quot;: 5, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6041589, -7.2328243], [112.6041434, -7.2329974], [112.6039922, -7.2330051], [112.604031, -7.2327936], [112.6041589, -7.2328243]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;6&quot;, &quot;properties&quot;: {&quot;FID&quot;: 6, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6039925, -7.2327712], [112.6039703, -7.2330047], [112.6038144, -7.2329921], [112.6038621, -7.2327112], [112.6039925, -7.2327712]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;7&quot;, &quot;properties&quot;: {&quot;FID&quot;: 7, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6038469, -7.2326989], [112.6038045, -7.2330074], [112.6035766, -7.2330057], [112.6036897, -7.23262], [112.6036967, -7.2326253], [112.6038469, -7.2326989]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;8&quot;, &quot;properties&quot;: {&quot;FID&quot;: 8, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6031826, -7.2328856], [112.6032179, -7.2327664], [112.6035519, -7.2328576], [112.6035112, -7.232996], [112.6031826, -7.2328856]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;9&quot;, &quot;properties&quot;: {&quot;FID&quot;: 9, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035483, -7.2328383], [112.603225, -7.2327524], [112.6032921, -7.2325859], [112.6036031, -7.232691], [112.6035483, -7.2328383]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;10&quot;, &quot;properties&quot;: {&quot;FID&quot;: 10, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603361, -7.2324439], [112.6035147, -7.2324649], [112.603649, -7.2325403], [112.6036155, -7.2326735], [112.6033098, -7.2325561], [112.603361, -7.2324439]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;11&quot;, &quot;properties&quot;: {&quot;FID&quot;: 11, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6028509, -7.2326554], [112.6031823, -7.2327515], [112.6031436, -7.2329308], [112.6028035, -7.2328539], [112.6028509, -7.2326554]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;12&quot;, &quot;properties&quot;: {&quot;FID&quot;: 12, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6031335, -7.2329351], [112.6030754, -7.233076], [112.6027634, -7.2329991], [112.6027978, -7.2328625], [112.6031335, -7.2329351]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;13&quot;, &quot;properties&quot;: {&quot;FID&quot;: 13, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6027505, -7.2330055], [112.6030776, -7.2330845], [112.6030152, -7.2332596], [112.6027074, -7.2331913], [112.6027246, -7.2330973], [112.6027505, -7.2330055]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;14&quot;, &quot;properties&quot;: {&quot;FID&quot;: 14, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.602998, -7.2332895], [112.6029807, -7.2333664], [112.602617, -7.2333899], [112.6026558, -7.2331913], [112.602998, -7.2332895]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;15&quot;, &quot;properties&quot;: {&quot;FID&quot;: 15, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6027203, -7.2330269], [112.6026967, -7.2331828], [112.6024771, -7.2331465], [112.6025417, -7.23295], [112.6027203, -7.2330269]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;16&quot;, &quot;properties&quot;: {&quot;FID&quot;: 16, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6025245, -7.2329458], [112.6024728, -7.2331315], [112.6022727, -7.2330696], [112.6023179, -7.2328732], [112.6025245, -7.2329458]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;17&quot;, &quot;properties&quot;: {&quot;FID&quot;: 17, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6026256, -7.2331828], [112.6025955, -7.2333877], [112.6022016, -7.2333984], [112.6022619, -7.2330973], [112.6022748, -7.2330803], [112.6026256, -7.2331828]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;18&quot;, &quot;properties&quot;: {&quot;FID&quot;: 18, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6027066, -7.2329411], [112.6024346, -7.2328495], [112.6024782, -7.2327019], [112.6027528, -7.2328037], [112.6027066, -7.2329411]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;19&quot;, &quot;properties&quot;: {&quot;FID&quot;: 19, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6028554, -7.2325339], [112.6027707, -7.232763], [112.6024885, -7.2326662], [112.6026347, -7.2324143], [112.6028554, -7.2325339]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;20&quot;, &quot;properties&quot;: {&quot;FID&quot;: 20, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6029093, -7.2326102], [112.6028913, -7.2324728], [112.6032685, -7.2325008], [112.6031607, -7.2326815], [112.6029093, -7.2326102]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;21&quot;, &quot;properties&quot;: {&quot;FID&quot;: 21, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6034147, -7.2323964], [112.6030889, -7.2324626], [112.6031197, -7.2321623], [112.6034276, -7.232259], [112.6034147, -7.2323964]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;22&quot;, &quot;properties&quot;: {&quot;FID&quot;: 22, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603094, -7.2321572], [112.6030684, -7.2324626], [112.6028374, -7.2324499], [112.6029349, -7.2321088], [112.603094, -7.2321572]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;23&quot;, &quot;properties&quot;: {&quot;FID&quot;: 23, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6029016, -7.2321164], [112.602822, -7.2324423], [112.6026527, -7.2323761], [112.6028195, -7.2321114], [112.6029016, -7.2321164]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;24&quot;, &quot;properties&quot;: {&quot;FID&quot;: 24, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035537, -7.2322143], [112.6038345, -7.2323732], [112.6037436, -7.2325144], [112.6035577, -7.2323006], [112.6035537, -7.2322143]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;25&quot;, &quot;properties&quot;: {&quot;FID&quot;: 25, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6038385, -7.2323771], [112.6040659, -7.2325105], [112.6039551, -7.2326596], [112.6037554, -7.2325144], [112.6038385, -7.2323771]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;26&quot;, &quot;properties&quot;: {&quot;FID&quot;: 26, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.604071, -7.2325161], [112.6042552, -7.2326134], [112.6041831, -7.2327385], [112.603971, -7.2326551], [112.604071, -7.2325161]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;27&quot;, &quot;properties&quot;: {&quot;FID&quot;: 27, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6044994, -7.232818], [112.6041911, -7.2327445], [112.6042672, -7.2326234], [112.6045214, -7.2327465], [112.6044994, -7.232818]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;28&quot;, &quot;properties&quot;: {&quot;FID&quot;: 28, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6038168, -7.2323215], [112.6039229, -7.2321508], [112.6041531, -7.2322659], [112.604041, -7.2324645], [112.6038168, -7.2323215]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;29&quot;, &quot;properties&quot;: {&quot;FID&quot;: 29, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6045795, -7.2325241], [112.6045394, -7.2327286], [112.6043253, -7.2325936], [112.6044133, -7.2324506], [112.6045795, -7.2325241]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;30&quot;, &quot;properties&quot;: {&quot;FID&quot;: 30, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6042992, -7.2325876], [112.604051, -7.2324665], [112.6041591, -7.2322778], [112.6043953, -7.2324447], [112.6042992, -7.2325876]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;31&quot;, &quot;properties&quot;: {&quot;FID&quot;: 31, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6045675, -7.2325062], [112.6043172, -7.2323652], [112.6044514, -7.232123], [112.6046075, -7.2322123], [112.6045675, -7.2325062]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;32&quot;, &quot;properties&quot;: {&quot;FID&quot;: 32, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6042959, -7.232347], [112.6041482, -7.2322403], [112.6042284, -7.2321314], [112.6043846, -7.2322193], [112.6042959, -7.232347]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;33&quot;, &quot;properties&quot;: {&quot;FID&quot;: 33, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6042411, -7.2321188], [112.6043044, -7.2320309], [112.6044247, -7.2321146], [112.6043888, -7.2321963], [112.6042411, -7.2321188]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;34&quot;, &quot;properties&quot;: {&quot;FID&quot;: 34, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6039329, -7.2321251], [112.6040954, -7.2318822], [112.6042833, -7.2320036], [112.6041313, -7.2322256], [112.6039329, -7.2321251]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;35&quot;, &quot;properties&quot;: {&quot;FID&quot;: 35, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6033301, -7.2321232], [112.6031443, -7.2320761], [112.6032764, -7.2318364], [112.6034623, -7.231906], [112.6033301, -7.2321232]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;36&quot;, &quot;properties&quot;: {&quot;FID&quot;: 36, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6032599, -7.2318282], [112.6031339, -7.2320617], [112.6028738, -7.2319962], [112.603039, -7.2317053], [112.6032599, -7.2318282]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;37&quot;, &quot;properties&quot;: {&quot;FID&quot;: 37, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6030513, -7.2316889], [112.6030947, -7.2316028], [112.6035511, -7.2317688], [112.6034705, -7.2318794], [112.6030513, -7.2316889]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;38&quot;, &quot;properties&quot;: {&quot;FID&quot;: 38, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603549, -7.231738], [112.6034107, -7.2316807], [112.6034499, -7.2316028], [112.6035986, -7.2316725], [112.603549, -7.231738]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;39&quot;, &quot;properties&quot;: {&quot;FID&quot;: 39, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035697, -7.2314349], [112.603706, -7.2315127], [112.6036192, -7.231652], [112.6034871, -7.2315864], [112.6035697, -7.2314349]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;40&quot;, &quot;properties&quot;: {&quot;FID&quot;: 40, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035387, -7.2314185], [112.6033879, -7.2316725], [112.6032682, -7.2316356], [112.603454, -7.2313713], [112.6035387, -7.2314185]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;41&quot;, &quot;properties&quot;: {&quot;FID&quot;: 41, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6032104, -7.2314185], [112.6032971, -7.2312751], [112.6034375, -7.231357], [112.603326, -7.2314881], [112.6032104, -7.2314185]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;42&quot;, &quot;properties&quot;: {&quot;FID&quot;: 42, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6031071, -7.2315864], [112.6031959, -7.2314349], [112.6033301, -7.2315086], [112.6032393, -7.2316356], [112.6031071, -7.2315864]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;43&quot;, &quot;properties&quot;: {&quot;FID&quot;: 43, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6024759, -7.2323666], [112.6023546, -7.2323209], [112.6024274, -7.2321211], [112.6025924, -7.232215], [112.6024759, -7.2323666]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;44&quot;, &quot;properties&quot;: {&quot;FID&quot;: 44, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6024225, -7.232097], [112.6024613, -7.2319454], [112.6027015, -7.2320802], [112.6026118, -7.2322077], [112.6024225, -7.232097]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;45&quot;, &quot;properties&quot;: {&quot;FID&quot;: 45, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6026021, -7.2319863], [112.6027307, -7.2318539], [112.6028641, -7.231955], [112.6027137, -7.2320633], [112.6026021, -7.2319863]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;46&quot;, &quot;properties&quot;: {&quot;FID&quot;: 46, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6024759, -7.2319069], [112.6025632, -7.231748], [112.6027088, -7.2318443], [112.602573, -7.2319767], [112.6024759, -7.2319069]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;47&quot;, &quot;properties&quot;: {&quot;FID&quot;: 47, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6028641, -7.2319021], [112.602687, -7.2317913], [112.602869, -7.231594], [112.602983, -7.2317023], [112.6028641, -7.2319021]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;48&quot;, &quot;properties&quot;: {&quot;FID&quot;: 48, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6026943, -7.2314833], [112.602835, -7.2315843], [112.6026676, -7.2317817], [112.6025584, -7.2317071], [112.6026943, -7.2314833]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;49&quot;, &quot;properties&quot;: {&quot;FID&quot;: 49, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
+            geo_json_f58bc027cd40d21cfcaf71092f7be620_add({&quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.604054, -7.2330338], [112.6041533, -7.2330338], [112.6042328, -7.2330535], [112.6042527, -7.2330338], [112.6044117, -7.2330535], [112.6045209, -7.2330929], [112.6044812, -7.2332309], [112.6042726, -7.2332309], [112.604054, -7.2332309], [112.604054, -7.2330338]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;FID&quot;: 0, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6040116, -7.2330282], [112.6040155, -7.2332744], [112.6036161, -7.2333013], [112.6036588, -7.233032], [112.6036704, -7.2330282], [112.603682, -7.2330282], [112.6040116, -7.2330282]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;1&quot;, &quot;properties&quot;: {&quot;FID&quot;: 1, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603399, -7.2329974], [112.6035928, -7.2330513], [112.6035308, -7.2333128], [112.6033331, -7.2333359], [112.6033292, -7.2333282], [112.603399, -7.2329974]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;2&quot;, &quot;properties&quot;: {&quot;FID&quot;: 2, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6033447, -7.2329936], [112.6032982, -7.2333282], [112.6030461, -7.2333359], [112.6031625, -7.232959], [112.6033447, -7.2329936]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;3&quot;, &quot;properties&quot;: {&quot;FID&quot;: 3, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6044963, -7.2329128], [112.6045001, -7.233009], [112.6043838, -7.2330167], [112.6043799, -7.2328936], [112.6044963, -7.2329128]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;4&quot;, &quot;properties&quot;: {&quot;FID&quot;: 4, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6043489, -7.2328743], [112.6043567, -7.2330128], [112.6041861, -7.233009], [112.6042093, -7.2328282], [112.6043489, -7.2328743]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;5&quot;, &quot;properties&quot;: {&quot;FID&quot;: 5, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6041589, -7.2328243], [112.6041434, -7.2329974], [112.6039922, -7.2330051], [112.604031, -7.2327936], [112.6041589, -7.2328243]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;6&quot;, &quot;properties&quot;: {&quot;FID&quot;: 6, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6039925, -7.2327712], [112.6039703, -7.2330047], [112.6038144, -7.2329921], [112.6038621, -7.2327112], [112.6039925, -7.2327712]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;7&quot;, &quot;properties&quot;: {&quot;FID&quot;: 7, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6038469, -7.2326989], [112.6038045, -7.2330074], [112.6035766, -7.2330057], [112.6036897, -7.23262], [112.6036967, -7.2326253], [112.6038469, -7.2326989]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;8&quot;, &quot;properties&quot;: {&quot;FID&quot;: 8, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6031826, -7.2328856], [112.6032179, -7.2327664], [112.6035519, -7.2328576], [112.6035112, -7.232996], [112.6031826, -7.2328856]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;9&quot;, &quot;properties&quot;: {&quot;FID&quot;: 9, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035483, -7.2328383], [112.603225, -7.2327524], [112.6032921, -7.2325859], [112.6036031, -7.232691], [112.6035483, -7.2328383]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;10&quot;, &quot;properties&quot;: {&quot;FID&quot;: 10, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603361, -7.2324439], [112.6035147, -7.2324649], [112.603649, -7.2325403], [112.6036155, -7.2326735], [112.6033098, -7.2325561], [112.603361, -7.2324439]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;11&quot;, &quot;properties&quot;: {&quot;FID&quot;: 11, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6028509, -7.2326554], [112.6031823, -7.2327515], [112.6031436, -7.2329308], [112.6028035, -7.2328539], [112.6028509, -7.2326554]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;12&quot;, &quot;properties&quot;: {&quot;FID&quot;: 12, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6031335, -7.2329351], [112.6030754, -7.233076], [112.6027634, -7.2329991], [112.6027978, -7.2328625], [112.6031335, -7.2329351]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;13&quot;, &quot;properties&quot;: {&quot;FID&quot;: 13, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6027505, -7.2330055], [112.6030776, -7.2330845], [112.6030152, -7.2332596], [112.6027074, -7.2331913], [112.6027246, -7.2330973], [112.6027505, -7.2330055]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;14&quot;, &quot;properties&quot;: {&quot;FID&quot;: 14, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.602998, -7.2332895], [112.6029807, -7.2333664], [112.602617, -7.2333899], [112.6026558, -7.2331913], [112.602998, -7.2332895]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;15&quot;, &quot;properties&quot;: {&quot;FID&quot;: 15, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6027203, -7.2330269], [112.6026967, -7.2331828], [112.6024771, -7.2331465], [112.6025417, -7.23295], [112.6027203, -7.2330269]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;16&quot;, &quot;properties&quot;: {&quot;FID&quot;: 16, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6025245, -7.2329458], [112.6024728, -7.2331315], [112.6022727, -7.2330696], [112.6023179, -7.2328732], [112.6025245, -7.2329458]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;17&quot;, &quot;properties&quot;: {&quot;FID&quot;: 17, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6026256, -7.2331828], [112.6025955, -7.2333877], [112.6022016, -7.2333984], [112.6022619, -7.2330973], [112.6022748, -7.2330803], [112.6026256, -7.2331828]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;18&quot;, &quot;properties&quot;: {&quot;FID&quot;: 18, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6027066, -7.2329411], [112.6024346, -7.2328495], [112.6024782, -7.2327019], [112.6027528, -7.2328037], [112.6027066, -7.2329411]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;19&quot;, &quot;properties&quot;: {&quot;FID&quot;: 19, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6028554, -7.2325339], [112.6027707, -7.232763], [112.6024885, -7.2326662], [112.6026347, -7.2324143], [112.6028554, -7.2325339]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;20&quot;, &quot;properties&quot;: {&quot;FID&quot;: 20, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6029093, -7.2326102], [112.6028913, -7.2324728], [112.6032685, -7.2325008], [112.6031607, -7.2326815], [112.6029093, -7.2326102]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;21&quot;, &quot;properties&quot;: {&quot;FID&quot;: 21, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6034147, -7.2323964], [112.6030889, -7.2324626], [112.6031197, -7.2321623], [112.6034276, -7.232259], [112.6034147, -7.2323964]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;22&quot;, &quot;properties&quot;: {&quot;FID&quot;: 22, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603094, -7.2321572], [112.6030684, -7.2324626], [112.6028374, -7.2324499], [112.6029349, -7.2321088], [112.603094, -7.2321572]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;23&quot;, &quot;properties&quot;: {&quot;FID&quot;: 23, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6029016, -7.2321164], [112.602822, -7.2324423], [112.6026527, -7.2323761], [112.6028195, -7.2321114], [112.6029016, -7.2321164]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;24&quot;, &quot;properties&quot;: {&quot;FID&quot;: 24, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035537, -7.2322143], [112.6038345, -7.2323732], [112.6037436, -7.2325144], [112.6035577, -7.2323006], [112.6035537, -7.2322143]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;25&quot;, &quot;properties&quot;: {&quot;FID&quot;: 25, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6038385, -7.2323771], [112.6040659, -7.2325105], [112.6039551, -7.2326596], [112.6037554, -7.2325144], [112.6038385, -7.2323771]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;26&quot;, &quot;properties&quot;: {&quot;FID&quot;: 26, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.604071, -7.2325161], [112.6042552, -7.2326134], [112.6041831, -7.2327385], [112.603971, -7.2326551], [112.604071, -7.2325161]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;27&quot;, &quot;properties&quot;: {&quot;FID&quot;: 27, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6044994, -7.232818], [112.6041911, -7.2327445], [112.6042672, -7.2326234], [112.6045214, -7.2327465], [112.6044994, -7.232818]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;28&quot;, &quot;properties&quot;: {&quot;FID&quot;: 28, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6038168, -7.2323215], [112.6039229, -7.2321508], [112.6041531, -7.2322659], [112.604041, -7.2324645], [112.6038168, -7.2323215]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;29&quot;, &quot;properties&quot;: {&quot;FID&quot;: 29, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6045795, -7.2325241], [112.6045394, -7.2327286], [112.6043253, -7.2325936], [112.6044133, -7.2324506], [112.6045795, -7.2325241]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;30&quot;, &quot;properties&quot;: {&quot;FID&quot;: 30, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6042992, -7.2325876], [112.604051, -7.2324665], [112.6041591, -7.2322778], [112.6043953, -7.2324447], [112.6042992, -7.2325876]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;31&quot;, &quot;properties&quot;: {&quot;FID&quot;: 31, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6045675, -7.2325062], [112.6043172, -7.2323652], [112.6044514, -7.232123], [112.6046075, -7.2322123], [112.6045675, -7.2325062]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;32&quot;, &quot;properties&quot;: {&quot;FID&quot;: 32, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6042959, -7.232347], [112.6041482, -7.2322403], [112.6042284, -7.2321314], [112.6043846, -7.2322193], [112.6042959, -7.232347]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;33&quot;, &quot;properties&quot;: {&quot;FID&quot;: 33, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6042411, -7.2321188], [112.6043044, -7.2320309], [112.6044247, -7.2321146], [112.6043888, -7.2321963], [112.6042411, -7.2321188]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;34&quot;, &quot;properties&quot;: {&quot;FID&quot;: 34, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6039329, -7.2321251], [112.6040954, -7.2318822], [112.6042833, -7.2320036], [112.6041313, -7.2322256], [112.6039329, -7.2321251]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;35&quot;, &quot;properties&quot;: {&quot;FID&quot;: 35, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6033301, -7.2321232], [112.6031443, -7.2320761], [112.6032764, -7.2318364], [112.6034623, -7.231906], [112.6033301, -7.2321232]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;36&quot;, &quot;properties&quot;: {&quot;FID&quot;: 36, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6032599, -7.2318282], [112.6031339, -7.2320617], [112.6028738, -7.2319962], [112.603039, -7.2317053], [112.6032599, -7.2318282]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;37&quot;, &quot;properties&quot;: {&quot;FID&quot;: 37, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6030513, -7.2316889], [112.6030947, -7.2316028], [112.6035511, -7.2317688], [112.6034705, -7.2318794], [112.6030513, -7.2316889]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;38&quot;, &quot;properties&quot;: {&quot;FID&quot;: 38, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.603549, -7.231738], [112.6034107, -7.2316807], [112.6034499, -7.2316028], [112.6035986, -7.2316725], [112.603549, -7.231738]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;39&quot;, &quot;properties&quot;: {&quot;FID&quot;: 39, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035697, -7.2314349], [112.603706, -7.2315127], [112.6036192, -7.231652], [112.6034871, -7.2315864], [112.6035697, -7.2314349]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;40&quot;, &quot;properties&quot;: {&quot;FID&quot;: 40, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6035387, -7.2314185], [112.6033879, -7.2316725], [112.6032682, -7.2316356], [112.603454, -7.2313713], [112.6035387, -7.2314185]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;41&quot;, &quot;properties&quot;: {&quot;FID&quot;: 41, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6032104, -7.2314185], [112.6032971, -7.2312751], [112.6034375, -7.231357], [112.603326, -7.2314881], [112.6032104, -7.2314185]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;42&quot;, &quot;properties&quot;: {&quot;FID&quot;: 42, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6031071, -7.2315864], [112.6031959, -7.2314349], [112.6033301, -7.2315086], [112.6032393, -7.2316356], [112.6031071, -7.2315864]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;43&quot;, &quot;properties&quot;: {&quot;FID&quot;: 43, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6024759, -7.2323666], [112.6023546, -7.2323209], [112.6024274, -7.2321211], [112.6025924, -7.232215], [112.6024759, -7.2323666]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;44&quot;, &quot;properties&quot;: {&quot;FID&quot;: 44, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6024225, -7.232097], [112.6024613, -7.2319454], [112.6027015, -7.2320802], [112.6026118, -7.2322077], [112.6024225, -7.232097]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;45&quot;, &quot;properties&quot;: {&quot;FID&quot;: 45, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6026021, -7.2319863], [112.6027307, -7.2318539], [112.6028641, -7.231955], [112.6027137, -7.2320633], [112.6026021, -7.2319863]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;46&quot;, &quot;properties&quot;: {&quot;FID&quot;: 46, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6024759, -7.2319069], [112.6025632, -7.231748], [112.6027088, -7.2318443], [112.602573, -7.2319767], [112.6024759, -7.2319069]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;47&quot;, &quot;properties&quot;: {&quot;FID&quot;: 47, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6028641, -7.2319021], [112.602687, -7.2317913], [112.602869, -7.231594], [112.602983, -7.2317023], [112.6028641, -7.2319021]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;48&quot;, &quot;properties&quot;: {&quot;FID&quot;: 48, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.6026943, -7.2314833], [112.602835, -7.2315843], [112.6026676, -7.2317817], [112.6025584, -7.2317071], [112.6026943, -7.2314833]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;49&quot;, &quot;properties&quot;: {&quot;FID&quot;: 49, &quot;label&quot;: &quot;sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
 
         
     
-    geo_json_a6ae77afb34fabda232f8e76ed235ed9.bindTooltip(
+    geo_json_f58bc027cd40d21cfcaf71092f7be620.bindTooltip(
     function(layer){
     let div = L.DomUtil.create(&#x27;div&#x27;);
     
@@ -900,55 +885,55 @@ Non-sawah
 });
                      
     
-            geo_json_a6ae77afb34fabda232f8e76ed235ed9.addTo(map_93ec7cc67cd429cef33268371cc75f37);
+            geo_json_f58bc027cd40d21cfcaf71092f7be620.addTo(map_76a9997f9d5bf892fef843733bb2c3a2);
         
     
-        function geo_json_f1c45680433e3d3c2a3f9573bf026105_styler(feature) {
+        function geo_json_4cef89cc12ce407e7e45ed9132170e27_styler(feature) {
             switch(feature.id) {
                 default:
                     return {&quot;color&quot;: &quot;#8B0000&quot;, &quot;fillColor&quot;: &quot;#FF0000&quot;, &quot;fillOpacity&quot;: 0.6, &quot;weight&quot;: 2};
             }
         }
-        function geo_json_f1c45680433e3d3c2a3f9573bf026105_highlighter(feature) {
+        function geo_json_4cef89cc12ce407e7e45ed9132170e27_highlighter(feature) {
             switch(feature.id) {
                 default:
                     return {&quot;fillOpacity&quot;: 0.85, &quot;weight&quot;: 4};
             }
         }
 
-        function geo_json_f1c45680433e3d3c2a3f9573bf026105_onEachFeature(feature, layer) {
+        function geo_json_4cef89cc12ce407e7e45ed9132170e27_onEachFeature(feature, layer) {
 
             layer.on({
                 mouseout: function(e) {
                     if(typeof e.target.setStyle === &quot;function&quot;){
-                            geo_json_f1c45680433e3d3c2a3f9573bf026105.resetStyle(e.target);
+                            geo_json_4cef89cc12ce407e7e45ed9132170e27.resetStyle(e.target);
                     }
                 },
                 mouseover: function(e) {
                     if(typeof e.target.setStyle === &quot;function&quot;){
-                        const highlightStyle = geo_json_f1c45680433e3d3c2a3f9573bf026105_highlighter(e.target.feature)
+                        const highlightStyle = geo_json_4cef89cc12ce407e7e45ed9132170e27_highlighter(e.target.feature)
                         e.target.setStyle(highlightStyle);
                     }
                 },
             });
         };
-        var geo_json_f1c45680433e3d3c2a3f9573bf026105 = L.geoJson(null, {
-                onEachFeature: geo_json_f1c45680433e3d3c2a3f9573bf026105_onEachFeature,
+        var geo_json_4cef89cc12ce407e7e45ed9132170e27 = L.geoJson(null, {
+                onEachFeature: geo_json_4cef89cc12ce407e7e45ed9132170e27_onEachFeature,
             
-                style: geo_json_f1c45680433e3d3c2a3f9573bf026105_styler,
+                style: geo_json_4cef89cc12ce407e7e45ed9132170e27_styler,
             ...{
 }
         });
 
-        function geo_json_f1c45680433e3d3c2a3f9573bf026105_add (data) {
-            geo_json_f1c45680433e3d3c2a3f9573bf026105
+        function geo_json_4cef89cc12ce407e7e45ed9132170e27_add (data) {
+            geo_json_4cef89cc12ce407e7e45ed9132170e27
                 .addData(data);
         }
-            geo_json_f1c45680433e3d3c2a3f9573bf026105_add({&quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7010059, -7.2512495], [112.7011419, -7.2512035], [112.701145, -7.2512066], [112.7011821, -7.2513445], [112.7010523, -7.2513844], [112.7010059, -7.2512495]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;FID&quot;: 0, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701043, -7.2514028], [112.701111, -7.2513905], [112.7011079, -7.2513905], [112.7011326, -7.2514948], [112.701077, -7.2515285], [112.701043, -7.2514028]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;1&quot;, &quot;properties&quot;: {&quot;FID&quot;: 1, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7011079, -7.2513783], [112.7011883, -7.2513599], [112.7012037, -7.2514457], [112.7011574, -7.2514702], [112.7011079, -7.2513783]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;2&quot;, &quot;properties&quot;: {&quot;FID&quot;: 2, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7011635, -7.2512219], [112.7012192, -7.2512188], [112.7013057, -7.2514212], [112.7012501, -7.2514488], [112.7011635, -7.2512219]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;3&quot;, &quot;properties&quot;: {&quot;FID&quot;: 3, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7012439, -7.251225], [112.7013119, -7.2512188], [112.7013861, -7.2513721], [112.7013243, -7.2513997], [112.7012439, -7.251225]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;4&quot;, &quot;properties&quot;: {&quot;FID&quot;: 4, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7013304, -7.2512158], [112.7013984, -7.2511851], [112.7014479, -7.2513323], [112.7014046, -7.2513568], [112.7013304, -7.2512158]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;5&quot;, &quot;properties&quot;: {&quot;FID&quot;: 5, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7014108, -7.251182], [112.7014757, -7.2511606], [112.7015128, -7.2512863], [112.7014726, -7.2513231], [112.7014108, -7.251182]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;6&quot;, &quot;properties&quot;: {&quot;FID&quot;: 6, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701488, -7.2511453], [112.7015529, -7.2511238], [112.7015839, -7.2512372], [112.7015344, -7.2512771], [112.701488, -7.2511453]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;7&quot;, &quot;properties&quot;: {&quot;FID&quot;: 7, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7011838, -7.2515441], [112.7012681, -7.251489], [112.7013236, -7.2516257], [112.7012434, -7.2516767], [112.7011838, -7.2515441]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;8&quot;, &quot;properties&quot;: {&quot;FID&quot;: 8, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7012866, -7.2514768], [112.7013215, -7.2514564], [112.7013894, -7.2516094], [112.7013544, -7.2516359], [112.7012866, -7.2514768]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;9&quot;, &quot;properties&quot;: {&quot;FID&quot;: 9, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7013976, -7.2516073], [112.7013318, -7.2514544], [112.7013812, -7.2514523], [112.7014428, -7.2515829], [112.7013976, -7.2516073]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;10&quot;, &quot;properties&quot;: {&quot;FID&quot;: 10, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7014264, -7.251381], [112.7014716, -7.2513667], [112.7015477, -7.2515237], [112.7015045, -7.2515543], [112.7014264, -7.251381]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;11&quot;, &quot;properties&quot;: {&quot;FID&quot;: 11, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701484, -7.2513708], [112.7015189, -7.2513504], [112.701558, -7.2514238], [112.7015251, -7.2514401], [112.701484, -7.2513708]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;12&quot;, &quot;properties&quot;: {&quot;FID&quot;: 12, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015189, -7.2513463], [112.7015518, -7.2513381], [112.7016381, -7.2514829], [112.7015909, -7.2515013], [112.7015189, -7.2513463]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;13&quot;, &quot;properties&quot;: {&quot;FID&quot;: 13, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015662, -7.2513259], [112.7016217, -7.2512973], [112.7016937, -7.251436], [112.7016484, -7.2514809], [112.7015662, -7.2513259]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;14&quot;, &quot;properties&quot;: {&quot;FID&quot;: 14, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701634, -7.2512851], [112.701671, -7.2512688], [112.7017307, -7.2514075], [112.701706, -7.2514279], [112.701634, -7.2512851]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;15&quot;, &quot;properties&quot;: {&quot;FID&quot;: 15, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7016834, -7.2512566], [112.7017163, -7.2512484], [112.7017841, -7.2513993], [112.7017471, -7.2514054], [112.7016834, -7.2512566]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;16&quot;, &quot;properties&quot;: {&quot;FID&quot;: 16, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017265, -7.2512321], [112.7017841, -7.2512198], [112.7018561, -7.2513728], [112.7017903, -7.251385], [112.7017265, -7.2512321]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;17&quot;, &quot;properties&quot;: {&quot;FID&quot;: 17, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015847, -7.2510546], [112.7016402, -7.2510383], [112.7016998, -7.2511852], [112.7016649, -7.2511974], [112.7015847, -7.2510546]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;18&quot;, &quot;properties&quot;: {&quot;FID&quot;: 18, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7016587, -7.2510322], [112.7017142, -7.2510179], [112.7017759, -7.2511464], [112.7017183, -7.2511709], [112.7016587, -7.2510322]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;19&quot;, &quot;properties&quot;: {&quot;FID&quot;: 19, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017245, -7.2509975], [112.7017964, -7.2509792], [112.7018458, -7.2510975], [112.7017923, -7.251126], [112.7017245, -7.2509975]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;20&quot;, &quot;properties&quot;: {&quot;FID&quot;: 20, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7012516, -7.2516971], [112.7013257, -7.2516604], [112.7014099, -7.2518154], [112.7012989, -7.2518623], [112.7012516, -7.2516971]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;21&quot;, &quot;properties&quot;: {&quot;FID&quot;: 21, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7013997, -7.2516318], [112.7014634, -7.2515992], [112.7015333, -7.2517379], [112.7014552, -7.2517786], [112.7013997, -7.2516318]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;22&quot;, &quot;properties&quot;: {&quot;FID&quot;: 22, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015497, -7.25154], [112.7016196, -7.2515013], [112.7016998, -7.2516522], [112.701632, -7.2517011], [112.7015497, -7.25154]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;23&quot;, &quot;properties&quot;: {&quot;FID&quot;: 23, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7016402, -7.251485], [112.7017183, -7.2514544], [112.7017882, -7.2516114], [112.7017163, -7.251644], [112.7016402, -7.251485]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;24&quot;, &quot;properties&quot;: {&quot;FID&quot;: 24, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017142, -7.2514381], [112.7017533, -7.2514156], [112.701817, -7.2515767], [112.7017944, -7.2515931], [112.7017142, -7.2514381]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;25&quot;, &quot;properties&quot;: {&quot;FID&quot;: 25, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017615, -7.2514156], [112.7017841, -7.2514095], [112.7018499, -7.2515502], [112.7018232, -7.2515686], [112.7017615, -7.2514156]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;26&quot;, &quot;properties&quot;: {&quot;FID&quot;: 26, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017985, -7.2513891], [112.701852, -7.2513789], [112.7019157, -7.2515217], [112.7018663, -7.2515482], [112.7017985, -7.2513891]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;27&quot;, &quot;properties&quot;: {&quot;FID&quot;: 27, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017964, -7.2511893], [112.7018746, -7.2511587], [112.7019568, -7.2513381], [112.701891, -7.2513871], [112.7017964, -7.2511893]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;28&quot;, &quot;properties&quot;: {&quot;FID&quot;: 28, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7018869, -7.251177], [112.701928, -7.2511627], [112.7019691, -7.2512668], [112.7019486, -7.2512892], [112.7018869, -7.251177]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;29&quot;, &quot;properties&quot;: {&quot;FID&quot;: 29, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7018787, -7.2514054], [112.7019198, -7.2513789], [112.7019691, -7.2514768], [112.7019198, -7.2515013], [112.7018787, -7.2514054]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;30&quot;, &quot;properties&quot;: {&quot;FID&quot;: 30, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015621, -7.2511281], [112.701595, -7.2511138], [112.701634, -7.2511872], [112.7015991, -7.2512096], [112.7015621, -7.2511281]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;31&quot;, &quot;properties&quot;: {&quot;FID&quot;: 31, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7018067, -7.250971], [112.7018951, -7.2509343], [112.7019404, -7.2510485], [112.7018746, -7.2510832], [112.7018067, -7.250971]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;32&quot;, &quot;properties&quot;: {&quot;FID&quot;: 32, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019198, -7.2511525], [112.7019527, -7.2511485], [112.7020246, -7.2512668], [112.7019897, -7.2512851], [112.7019198, -7.2511525]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;33&quot;, &quot;properties&quot;: {&quot;FID&quot;: 33, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019486, -7.2510893], [112.7019979, -7.251073], [112.702076, -7.2512362], [112.7020349, -7.2512566], [112.7019486, -7.2510893]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;34&quot;, &quot;properties&quot;: {&quot;FID&quot;: 34, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701926, -7.2513667], [112.7019609, -7.2513463], [112.7020061, -7.2514483], [112.7019753, -7.2514625], [112.701926, -7.2513667]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;35&quot;, &quot;properties&quot;: {&quot;FID&quot;: 35, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019506, -7.2513157], [112.7019918, -7.2512973], [112.7020658, -7.2514156], [112.7020144, -7.2514401], [112.7019506, -7.2513157]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;36&quot;, &quot;properties&quot;: {&quot;FID&quot;: 36, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701928, -7.2509542], [112.7019794, -7.250942], [112.7020123, -7.2510235], [112.701963, -7.251046], [112.701963, -7.2510439], [112.701928, -7.2509542]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;37&quot;, &quot;properties&quot;: {&quot;FID&quot;: 37, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020103, -7.2510643], [112.7020617, -7.251048], [112.7021233, -7.2511969], [112.7020863, -7.251205], [112.7020103, -7.2510643]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;38&quot;, &quot;properties&quot;: {&quot;FID&quot;: 38, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020658, -7.2510256], [112.7021151, -7.2510133], [112.7021809, -7.2511704], [112.7021357, -7.2511806], [112.7020658, -7.2510256]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;39&quot;, &quot;properties&quot;: {&quot;FID&quot;: 39, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019835, -7.2509399], [112.7020103, -7.2509318], [112.7020452, -7.2509746], [112.7020041, -7.2509868], [112.7019835, -7.2509399]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;40&quot;, &quot;properties&quot;: {&quot;FID&quot;: 40, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.702, -7.2508767], [112.7020452, -7.2508747], [112.7020945, -7.2509868], [112.7020658, -7.2509868], [112.702, -7.2508767]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;41&quot;, &quot;properties&quot;: {&quot;FID&quot;: 41, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7021192, -7.2510133], [112.7021829, -7.250997], [112.7022446, -7.251099], [112.7021871, -7.2511337], [112.7021192, -7.2510133]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;42&quot;, &quot;properties&quot;: {&quot;FID&quot;: 42, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7021069, -7.2508624], [112.702185, -7.2508583], [112.7021973, -7.250942], [112.7021192, -7.250946], [112.7021069, -7.2508624]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;43&quot;, &quot;properties&quot;: {&quot;FID&quot;: 43, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7022138, -7.2510093], [112.7022631, -7.250995], [112.7023063, -7.2510827], [112.7022611, -7.251097], [112.7022138, -7.2510093]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;44&quot;, &quot;properties&quot;: {&quot;FID&quot;: 44, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020493, -7.2513111], [112.7020843, -7.2512887], [112.7021542, -7.2513702], [112.7020945, -7.251409], [112.7020493, -7.2513111]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;45&quot;, &quot;properties&quot;: {&quot;FID&quot;: 45, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.702185, -7.2511622], [112.7022158, -7.25115], [112.7022714, -7.2512764], [112.7022364, -7.2512887], [112.702185, -7.2511622]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;46&quot;, &quot;properties&quot;: {&quot;FID&quot;: 46, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020658, -7.2512418], [112.7021706, -7.2511989], [112.70222, -7.2513111], [112.7021603, -7.2513498], [112.7020658, -7.2512418]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;47&quot;, &quot;properties&quot;: {&quot;FID&quot;: 47, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7022138, -7.2511337], [112.7022528, -7.2511153], [112.7023042, -7.2512193], [112.7022714, -7.2512356], [112.7022138, -7.2511337]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;48&quot;, &quot;properties&quot;: {&quot;FID&quot;: 48, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7022672, -7.2511173], [112.7023084, -7.2510949], [112.7023844, -7.2512356], [112.7023413, -7.2512703], [112.7022672, -7.2511173]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;49&quot;, &quot;properties&quot;: {&quot;FID&quot;: 49, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
+            geo_json_4cef89cc12ce407e7e45ed9132170e27_add({&quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7010059, -7.2512495], [112.7011419, -7.2512035], [112.701145, -7.2512066], [112.7011821, -7.2513445], [112.7010523, -7.2513844], [112.7010059, -7.2512495]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;FID&quot;: 0, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701043, -7.2514028], [112.701111, -7.2513905], [112.7011079, -7.2513905], [112.7011326, -7.2514948], [112.701077, -7.2515285], [112.701043, -7.2514028]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;1&quot;, &quot;properties&quot;: {&quot;FID&quot;: 1, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7011079, -7.2513783], [112.7011883, -7.2513599], [112.7012037, -7.2514457], [112.7011574, -7.2514702], [112.7011079, -7.2513783]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;2&quot;, &quot;properties&quot;: {&quot;FID&quot;: 2, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7011635, -7.2512219], [112.7012192, -7.2512188], [112.7013057, -7.2514212], [112.7012501, -7.2514488], [112.7011635, -7.2512219]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;3&quot;, &quot;properties&quot;: {&quot;FID&quot;: 3, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7012439, -7.251225], [112.7013119, -7.2512188], [112.7013861, -7.2513721], [112.7013243, -7.2513997], [112.7012439, -7.251225]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;4&quot;, &quot;properties&quot;: {&quot;FID&quot;: 4, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7013304, -7.2512158], [112.7013984, -7.2511851], [112.7014479, -7.2513323], [112.7014046, -7.2513568], [112.7013304, -7.2512158]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;5&quot;, &quot;properties&quot;: {&quot;FID&quot;: 5, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7014108, -7.251182], [112.7014757, -7.2511606], [112.7015128, -7.2512863], [112.7014726, -7.2513231], [112.7014108, -7.251182]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;6&quot;, &quot;properties&quot;: {&quot;FID&quot;: 6, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701488, -7.2511453], [112.7015529, -7.2511238], [112.7015839, -7.2512372], [112.7015344, -7.2512771], [112.701488, -7.2511453]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;7&quot;, &quot;properties&quot;: {&quot;FID&quot;: 7, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7011838, -7.2515441], [112.7012681, -7.251489], [112.7013236, -7.2516257], [112.7012434, -7.2516767], [112.7011838, -7.2515441]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;8&quot;, &quot;properties&quot;: {&quot;FID&quot;: 8, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7012866, -7.2514768], [112.7013215, -7.2514564], [112.7013894, -7.2516094], [112.7013544, -7.2516359], [112.7012866, -7.2514768]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;9&quot;, &quot;properties&quot;: {&quot;FID&quot;: 9, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7013976, -7.2516073], [112.7013318, -7.2514544], [112.7013812, -7.2514523], [112.7014428, -7.2515829], [112.7013976, -7.2516073]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;10&quot;, &quot;properties&quot;: {&quot;FID&quot;: 10, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7014264, -7.251381], [112.7014716, -7.2513667], [112.7015477, -7.2515237], [112.7015045, -7.2515543], [112.7014264, -7.251381]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;11&quot;, &quot;properties&quot;: {&quot;FID&quot;: 11, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701484, -7.2513708], [112.7015189, -7.2513504], [112.701558, -7.2514238], [112.7015251, -7.2514401], [112.701484, -7.2513708]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;12&quot;, &quot;properties&quot;: {&quot;FID&quot;: 12, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015189, -7.2513463], [112.7015518, -7.2513381], [112.7016381, -7.2514829], [112.7015909, -7.2515013], [112.7015189, -7.2513463]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;13&quot;, &quot;properties&quot;: {&quot;FID&quot;: 13, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015662, -7.2513259], [112.7016217, -7.2512973], [112.7016937, -7.251436], [112.7016484, -7.2514809], [112.7015662, -7.2513259]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;14&quot;, &quot;properties&quot;: {&quot;FID&quot;: 14, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701634, -7.2512851], [112.701671, -7.2512688], [112.7017307, -7.2514075], [112.701706, -7.2514279], [112.701634, -7.2512851]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;15&quot;, &quot;properties&quot;: {&quot;FID&quot;: 15, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7016834, -7.2512566], [112.7017163, -7.2512484], [112.7017841, -7.2513993], [112.7017471, -7.2514054], [112.7016834, -7.2512566]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;16&quot;, &quot;properties&quot;: {&quot;FID&quot;: 16, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017265, -7.2512321], [112.7017841, -7.2512198], [112.7018561, -7.2513728], [112.7017903, -7.251385], [112.7017265, -7.2512321]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;17&quot;, &quot;properties&quot;: {&quot;FID&quot;: 17, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015847, -7.2510546], [112.7016402, -7.2510383], [112.7016998, -7.2511852], [112.7016649, -7.2511974], [112.7015847, -7.2510546]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;18&quot;, &quot;properties&quot;: {&quot;FID&quot;: 18, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7016587, -7.2510322], [112.7017142, -7.2510179], [112.7017759, -7.2511464], [112.7017183, -7.2511709], [112.7016587, -7.2510322]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;19&quot;, &quot;properties&quot;: {&quot;FID&quot;: 19, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017245, -7.2509975], [112.7017964, -7.2509792], [112.7018458, -7.2510975], [112.7017923, -7.251126], [112.7017245, -7.2509975]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;20&quot;, &quot;properties&quot;: {&quot;FID&quot;: 20, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7012516, -7.2516971], [112.7013257, -7.2516604], [112.7014099, -7.2518154], [112.7012989, -7.2518623], [112.7012516, -7.2516971]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;21&quot;, &quot;properties&quot;: {&quot;FID&quot;: 21, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7013997, -7.2516318], [112.7014634, -7.2515992], [112.7015333, -7.2517379], [112.7014552, -7.2517786], [112.7013997, -7.2516318]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;22&quot;, &quot;properties&quot;: {&quot;FID&quot;: 22, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015497, -7.25154], [112.7016196, -7.2515013], [112.7016998, -7.2516522], [112.701632, -7.2517011], [112.7015497, -7.25154]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;23&quot;, &quot;properties&quot;: {&quot;FID&quot;: 23, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7016402, -7.251485], [112.7017183, -7.2514544], [112.7017882, -7.2516114], [112.7017163, -7.251644], [112.7016402, -7.251485]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;24&quot;, &quot;properties&quot;: {&quot;FID&quot;: 24, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017142, -7.2514381], [112.7017533, -7.2514156], [112.701817, -7.2515767], [112.7017944, -7.2515931], [112.7017142, -7.2514381]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;25&quot;, &quot;properties&quot;: {&quot;FID&quot;: 25, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017615, -7.2514156], [112.7017841, -7.2514095], [112.7018499, -7.2515502], [112.7018232, -7.2515686], [112.7017615, -7.2514156]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;26&quot;, &quot;properties&quot;: {&quot;FID&quot;: 26, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017985, -7.2513891], [112.701852, -7.2513789], [112.7019157, -7.2515217], [112.7018663, -7.2515482], [112.7017985, -7.2513891]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;27&quot;, &quot;properties&quot;: {&quot;FID&quot;: 27, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7017964, -7.2511893], [112.7018746, -7.2511587], [112.7019568, -7.2513381], [112.701891, -7.2513871], [112.7017964, -7.2511893]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;28&quot;, &quot;properties&quot;: {&quot;FID&quot;: 28, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7018869, -7.251177], [112.701928, -7.2511627], [112.7019691, -7.2512668], [112.7019486, -7.2512892], [112.7018869, -7.251177]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;29&quot;, &quot;properties&quot;: {&quot;FID&quot;: 29, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7018787, -7.2514054], [112.7019198, -7.2513789], [112.7019691, -7.2514768], [112.7019198, -7.2515013], [112.7018787, -7.2514054]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;30&quot;, &quot;properties&quot;: {&quot;FID&quot;: 30, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7015621, -7.2511281], [112.701595, -7.2511138], [112.701634, -7.2511872], [112.7015991, -7.2512096], [112.7015621, -7.2511281]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;31&quot;, &quot;properties&quot;: {&quot;FID&quot;: 31, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7018067, -7.250971], [112.7018951, -7.2509343], [112.7019404, -7.2510485], [112.7018746, -7.2510832], [112.7018067, -7.250971]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;32&quot;, &quot;properties&quot;: {&quot;FID&quot;: 32, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019198, -7.2511525], [112.7019527, -7.2511485], [112.7020246, -7.2512668], [112.7019897, -7.2512851], [112.7019198, -7.2511525]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;33&quot;, &quot;properties&quot;: {&quot;FID&quot;: 33, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019486, -7.2510893], [112.7019979, -7.251073], [112.702076, -7.2512362], [112.7020349, -7.2512566], [112.7019486, -7.2510893]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;34&quot;, &quot;properties&quot;: {&quot;FID&quot;: 34, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701926, -7.2513667], [112.7019609, -7.2513463], [112.7020061, -7.2514483], [112.7019753, -7.2514625], [112.701926, -7.2513667]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;35&quot;, &quot;properties&quot;: {&quot;FID&quot;: 35, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019506, -7.2513157], [112.7019918, -7.2512973], [112.7020658, -7.2514156], [112.7020144, -7.2514401], [112.7019506, -7.2513157]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;36&quot;, &quot;properties&quot;: {&quot;FID&quot;: 36, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.701928, -7.2509542], [112.7019794, -7.250942], [112.7020123, -7.2510235], [112.701963, -7.251046], [112.701963, -7.2510439], [112.701928, -7.2509542]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;37&quot;, &quot;properties&quot;: {&quot;FID&quot;: 37, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020103, -7.2510643], [112.7020617, -7.251048], [112.7021233, -7.2511969], [112.7020863, -7.251205], [112.7020103, -7.2510643]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;38&quot;, &quot;properties&quot;: {&quot;FID&quot;: 38, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020658, -7.2510256], [112.7021151, -7.2510133], [112.7021809, -7.2511704], [112.7021357, -7.2511806], [112.7020658, -7.2510256]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;39&quot;, &quot;properties&quot;: {&quot;FID&quot;: 39, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7019835, -7.2509399], [112.7020103, -7.2509318], [112.7020452, -7.2509746], [112.7020041, -7.2509868], [112.7019835, -7.2509399]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;40&quot;, &quot;properties&quot;: {&quot;FID&quot;: 40, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.702, -7.2508767], [112.7020452, -7.2508747], [112.7020945, -7.2509868], [112.7020658, -7.2509868], [112.702, -7.2508767]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;41&quot;, &quot;properties&quot;: {&quot;FID&quot;: 41, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7021192, -7.2510133], [112.7021829, -7.250997], [112.7022446, -7.251099], [112.7021871, -7.2511337], [112.7021192, -7.2510133]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;42&quot;, &quot;properties&quot;: {&quot;FID&quot;: 42, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7021069, -7.2508624], [112.702185, -7.2508583], [112.7021973, -7.250942], [112.7021192, -7.250946], [112.7021069, -7.2508624]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;43&quot;, &quot;properties&quot;: {&quot;FID&quot;: 43, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7022138, -7.2510093], [112.7022631, -7.250995], [112.7023063, -7.2510827], [112.7022611, -7.251097], [112.7022138, -7.2510093]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;44&quot;, &quot;properties&quot;: {&quot;FID&quot;: 44, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020493, -7.2513111], [112.7020843, -7.2512887], [112.7021542, -7.2513702], [112.7020945, -7.251409], [112.7020493, -7.2513111]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;45&quot;, &quot;properties&quot;: {&quot;FID&quot;: 45, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.702185, -7.2511622], [112.7022158, -7.25115], [112.7022714, -7.2512764], [112.7022364, -7.2512887], [112.702185, -7.2511622]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;46&quot;, &quot;properties&quot;: {&quot;FID&quot;: 46, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7020658, -7.2512418], [112.7021706, -7.2511989], [112.70222, -7.2513111], [112.7021603, -7.2513498], [112.7020658, -7.2512418]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;47&quot;, &quot;properties&quot;: {&quot;FID&quot;: 47, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7022138, -7.2511337], [112.7022528, -7.2511153], [112.7023042, -7.2512193], [112.7022714, -7.2512356], [112.7022138, -7.2511337]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;48&quot;, &quot;properties&quot;: {&quot;FID&quot;: 48, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [[[[112.7022672, -7.2511173], [112.7023084, -7.2510949], [112.7023844, -7.2512356], [112.7023413, -7.2512703], [112.7022672, -7.2511173]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}, &quot;id&quot;: &quot;49&quot;, &quot;properties&quot;: {&quot;FID&quot;: 49, &quot;label&quot;: &quot;Non sawah&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
 
         
     
-    geo_json_f1c45680433e3d3c2a3f9573bf026105.bindTooltip(
+    geo_json_4cef89cc12ce407e7e45ed9132170e27.bindTooltip(
     function(layer){
     let div = L.DomUtil.create(&#x27;div&#x27;);
     
@@ -983,31 +968,31 @@ Non-sawah
 });
                      
     
-            geo_json_f1c45680433e3d3c2a3f9573bf026105.addTo(map_93ec7cc67cd429cef33268371cc75f37);
+            geo_json_4cef89cc12ce407e7e45ed9132170e27.addTo(map_76a9997f9d5bf892fef843733bb2c3a2);
         
     
-            var layer_control_de68efbc6b898ed552c37b3dff644be4_layers = {
+            var layer_control_7d09775f1d9807fc2ad51791ee5c3262_layers = {
                 base_layers : {
-                    &quot;Citra Satelit&quot; : tile_layer_ed55f21138f7978ed393a25cf6e6b70c,
+                    &quot;Citra Satelit&quot; : tile_layer_e7154194007ff596314f731decf0f230,
                 },
                 overlays :  {
-                    &quot;50 Sampel Sawah&quot; : geo_json_a6ae77afb34fabda232f8e76ed235ed9,
-                    &quot;50 Sampel Non-sawah&quot; : geo_json_f1c45680433e3d3c2a3f9573bf026105,
+                    &quot;50 Sampel Sawah&quot; : geo_json_f58bc027cd40d21cfcaf71092f7be620,
+                    &quot;50 Sampel Non-sawah&quot; : geo_json_4cef89cc12ce407e7e45ed9132170e27,
                 },
             };
-            let layer_control_de68efbc6b898ed552c37b3dff644be4 = L.control.layers(
-                layer_control_de68efbc6b898ed552c37b3dff644be4_layers.base_layers,
-                layer_control_de68efbc6b898ed552c37b3dff644be4_layers.overlays,
+            let layer_control_7d09775f1d9807fc2ad51791ee5c3262 = L.control.layers(
+                layer_control_7d09775f1d9807fc2ad51791ee5c3262_layers.base_layers,
+                layer_control_7d09775f1d9807fc2ad51791ee5c3262_layers.overlays,
                 {
   &quot;position&quot;: &quot;topright&quot;,
   &quot;collapsed&quot;: false,
   &quot;autoZIndex&quot;: true,
 }
-            ).addTo(map_93ec7cc67cd429cef33268371cc75f37);
+            ).addTo(map_76a9997f9d5bf892fef843733bb2c3a2);
 
         
     
-            var measure_control_f17970beaaa4c932573938d7335cca34 = new L.Control.Measure(
+            var measure_control_5f7e74ac59b1b69231c0ddf50d01ce09 = new L.Control.Measure(
                 {
   &quot;position&quot;: &quot;topright&quot;,
   &quot;primaryLengthUnit&quot;: &quot;meters&quot;,
@@ -1015,7 +1000,7 @@ Non-sawah
   &quot;primaryAreaUnit&quot;: &quot;sqmeters&quot;,
   &quot;secondaryAreaUnit&quot;: &quot;acres&quot;,
 });
-            map_93ec7cc67cd429cef33268371cc75f37.addControl(measure_control_f17970beaaa4c932573938d7335cca34);
+            map_76a9997f9d5bf892fef843733bb2c3a2.addControl(measure_control_5f7e74ac59b1b69231c0ddf50d01ce09);
 
             // Workaround for using this plugin with Leaflet&gt;=1.8.0
             // https://github.com/ljagis/leaflet-measure/issues/171
@@ -1034,7 +1019,7 @@ Non-sawah
 
         
     
-            map_93ec7cc67cd429cef33268371cc75f37.fitBounds(
+            map_76a9997f9d5bf892fef843733bb2c3a2.fitBounds(
                 [[-7.2518623, 112.6022016], [-7.2312751, 112.7023844]],
                 {&quot;padding&quot;: [25, 25]}
             );
@@ -1042,11 +1027,11 @@ Non-sawah
 &lt;/script&gt;
 &lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
 </div>
-<p>Peta dapat digeser serta diperbesar dan diperkecil. Tombol layer di bagian kanan dapat digunakan untuk menampilkan atau menyembunyikan polygon sawah dan non-sawah.</p>
+<p>Peta dapat digeser, diperbesar, dan diperkecil. Kontrol layer dapat digunakan untuk menampilkan atau menyembunyikan sampel sawah dan non-sawah.</p>
 </section>
 <section id="data-sentinel-2">
 <h2>3. Data Sentinel-2<a class="headerlink" href="#data-sentinel-2" title="Link to this heading">#</a></h2>
-<p>Citra yang digunakan berasal dari Sentinel-2 L2A tanggal 4 Oktober 2026. Citra diunduh dalam format TIFF dengan sistem koordinat WGS 84 atau EPSG:4326.</p>
+<p>Citra yang digunakan berasal dari Sentinel-2 L2A tanggal 4 Oktober 2026. Citra disimpan dalam format TIFF dengan sistem koordinat EPSG:4326.</p>
 <p>Band yang digunakan adalah:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1066,7 +1051,7 @@ Non-sawah
 </tr>
 <tr class="row-even"><td><p>B04</p></td>
 <td><p>Red</p></td>
-<td><p>Membedakan vegetasi dan non-vegetasi</p></td>
+<td><p>Membedakan vegetasi dan nonvegetasi</p></td>
 </tr>
 <tr class="row-odd"><td><p>B08</p></td>
 <td><p>Near Infrared</p></td>
@@ -1075,54 +1060,1202 @@ Non-sawah
 </tbody>
 </table>
 </div>
-<p>Setiap polygon sampel dihitung nilai rata-rata B02, B03, B04, B08, dan NDVI.</p>
-<p>Rumus NDVI yang digunakan adalah:</p>
+<p>Nilai piksel B02, B03, B04, dan B08 yang berada di dalam setiap poligon dihitung nilai rata-ratanya.</p>
+</section>
+<section id="perhitungan-ndvi">
+<h2>4. Perhitungan NDVI<a class="headerlink" href="#perhitungan-ndvi" title="Link to this heading">#</a></h2>
+<p>NDVI atau <em>Normalized Difference Vegetation Index</em> digunakan untuk mengukur tingkat kehijauan vegetasi berdasarkan band merah dan inframerah dekat.</p>
+<p>Rumus NDVI adalah:</p>
 <div class="math notranslate nohighlight">
 \[
-NDVI = \frac{B08-B04}{B08+B04}
+NDVI =
+\frac{B08-B04}
+{B08+B04}
 \]</div>
-<p>Nilai NDVI membantu membedakan wilayah yang mempunyai vegetasi dengan wilayah non-vegetasi.</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(B08\)</span> adalah band <em>Near Infrared</em> atau NIR.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B04\)</span> adalah band merah atau <em>Red</em>.</p></li>
+<li><p>Nilai NDVI berada pada rentang <span class="math notranslate nohighlight">\(-1\)</span> sampai <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+</ul>
+<p>Interpretasi nilai NDVI adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Rentang NDVI</p></th>
+<th class="head"><p>Interpretasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Kurang dari 0</p></td>
+<td><p>Air, bayangan, atau nonvegetasi</p></td>
+</tr>
+<tr class="row-odd"><td><p>0 sampai 0,2</p></td>
+<td><p>Bangunan atau tanah terbuka</p></td>
+</tr>
+<tr class="row-even"><td><p>0,2 sampai 0,5</p></td>
+<td><p>Vegetasi sedang</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lebih dari 0,5</p></td>
+<td><p>Vegetasi rapat dan sehat</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="contoh-perhitungan-ndvi">
+<h3>4.1 Contoh Perhitungan NDVI<a class="headerlink" href="#contoh-perhitungan-ndvi" title="Link to this heading">#</a></h3>
+<p>Diketahui:</p>
+<div class="math notranslate nohighlight">
+\[
+B08=0.60
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+B04=0.20
+\]</div>
+<p>Maka:</p>
+<div class="math notranslate nohighlight">
+\[
+NDVI =
+\frac{0.60-0.20}
+{0.60+0.20}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+NDVI =
+\frac{0.40}
+{0.80}
+=0.50
+\]</div>
+<p>Nilai NDVI sebesar 0,50 menunjukkan adanya vegetasi yang cukup rapat.</p>
+<p>Kode perhitungan NDVI adalah:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">penyebut</span> <span class="o">=</span> <span class="n">b08</span> <span class="o">+</span> <span class="n">b04</span>
+
+<span class="k">if</span> <span class="n">penyebut</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">ndvi</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">b08</span> <span class="o">-</span> <span class="n">b04</span><span class="p">)</span> <span class="o">/</span> <span class="n">penyebut</span>
+</pre></div>
+</div>
 </section>
-<section id="proses-klasifikasi">
-<h2>4. Proses Klasifikasi<a class="headerlink" href="#proses-klasifikasi" title="Link to this heading">#</a></h2>
-<p>Klasifikasi dilakukan menggunakan algoritma Random Forest. Data dibagi menjadi 80% data latih dan 20% data uji.</p>
+</section>
+<section id="fitur-klasifikasi">
+<h2>5. Fitur Klasifikasi<a class="headerlink" href="#fitur-klasifikasi" title="Link to this heading">#</a></h2>
 <p>Fitur yang digunakan dalam proses klasifikasi adalah:</p>
 <ol class="arabic simple">
-<li><p>Nilai rata-rata B02.</p></li>
-<li><p>Nilai rata-rata B03.</p></li>
-<li><p>Nilai rata-rata B04.</p></li>
-<li><p>Nilai rata-rata B08.</p></li>
-<li><p>Nilai NDVI.</p></li>
+<li><p>B02</p></li>
+<li><p>B03</p></li>
+<li><p>B04</p></li>
+<li><p>B08</p></li>
+<li><p>NDVI</p></li>
 </ol>
-<p>Model dilatih menggunakan 80 sampel, sedangkan 20 sampel lainnya digunakan untuk menguji kemampuan model dalam membedakan sawah dan non-sawah.</p>
+<p>Jumlah fitur yang digunakan adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+4 \text{ band} + 1 \text{ NDVI}
+=
+5 \text{ fitur}
+\]</div>
+<p>Struktur data klasifikasi adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B02</p></td>
+<td><p>Rata-rata band biru dalam poligon</p></td>
+</tr>
+<tr class="row-odd"><td><p>B03</p></td>
+<td><p>Rata-rata band hijau dalam poligon</p></td>
+</tr>
+<tr class="row-even"><td><p>B04</p></td>
+<td><p>Rata-rata band merah dalam poligon</p></td>
+</tr>
+<tr class="row-odd"><td><p>B08</p></td>
+<td><p>Rata-rata band NIR dalam poligon</p></td>
+</tr>
+<tr class="row-even"><td><p>NDVI</p></td>
+<td><p>Indeks vegetasi dari B08 dan B04</p></td>
+</tr>
+<tr class="row-odd"><td><p>kelas</p></td>
+<td><p>Label Sawah atau Non-sawah</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="polygon-training-dan-pixel-training">
+<h2>6. Polygon Training dan Pixel Training<a class="headerlink" href="#polygon-training-dan-pixel-training" title="Link to this heading">#</a></h2>
+<p>Dataset awal terdiri atas 100 poligon, yaitu 50 poligon sawah dan 50 poligon non-sawah.</p>
+<p>Data dibagi menjadi 80% training dan 20% testing menggunakan stratifikasi.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Poligon Awal</p></th>
+<th class="head text-right"><p>Poligon Training</p></th>
+<th class="head text-right"><p>Poligon Testing</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sawah</p></td>
+<td class="text-right"><p>50</p></td>
+<td class="text-right"><p>40</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Non-sawah</p></td>
+<td class="text-right"><p>50</p></td>
+<td class="text-right"><p>40</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>Total</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>80</p></td>
+<td class="text-right"><p>20</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jumlah poligon training adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+40 \text{ poligon sawah}
++
+40 \text{ poligon non-sawah}
+=
+80 \text{ poligon training}
+\]</div>
+<p>Piksel di dalam poligon tidak dijadikan baris training secara individual. Piksel valid di dalam setiap poligon digunakan untuk menghitung nilai rata-rata band.</p>
+<p>Alurnya adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Piksel dalam poligon}
+\rightarrow
+\text{Rata-rata band}
+\rightarrow
+\text{Satu baris sampel}
+\]</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head"><p>Jumlah atau Penggunaan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Poligon sawah training</p></td>
+<td><p>40 poligon</p></td>
+</tr>
+<tr class="row-odd"><td><p>Poligon non-sawah training</p></td>
+<td><p>40 poligon</p></td>
+</tr>
+<tr class="row-even"><td><p>Total poligon training</p></td>
+<td><p>80 poligon</p></td>
+</tr>
+<tr class="row-odd"><td><p>Piksel training individual</p></td>
+<td><p>Tidak dijadikan baris terpisah</p></td>
+</tr>
+<tr class="row-even"><td><p>Penggunaan piksel</p></td>
+<td><p>Dihitung rata-rata per poligon</p></td>
+</tr>
+<tr class="row-odd"><td><p>Baris data training</p></td>
+<td><p>80 baris</p></td>
+</tr>
+<tr class="row-even"><td><p>Fitur setiap baris</p></td>
+<td><p>B02, B03, B04, B08, dan NDVI</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jumlah piksel pada setiap poligon dapat berbeda karena ukuran dan bentuk poligon tidak selalu sama.</p>
+</section>
+<section id="algoritma-random-forest">
+<h2>7. Algoritma Random Forest<a class="headerlink" href="#algoritma-random-forest" title="Link to this heading">#</a></h2>
+<p>Klasifikasi dilakukan menggunakan <strong>Random Forest Classifier</strong>.</p>
+<p>Random Forest membentuk beberapa pohon keputusan. Hasil klasifikasi akhir ditentukan berdasarkan keputusan terbanyak dari seluruh pohon tersebut.</p>
+<p>Kode yang digunakan adalah:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span>
+    <span class="n">classification_report</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+
+<span class="n">data_sampel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">"Sampel_Sentinel2_Sawah_NonSawah.csv"</span>
+<span class="p">)</span>
+
+<span class="n">daftar_fitur</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"B02"</span><span class="p">,</span>
+    <span class="s2">"B03"</span><span class="p">,</span>
+    <span class="s2">"B04"</span><span class="p">,</span>
+    <span class="s2">"B08"</span><span class="p">,</span>
+    <span class="s2">"NDVI"</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">data_sampel</span><span class="p">[</span><span class="n">daftar_fitur</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_sampel</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">]</span>
+
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">hasil_prediksi</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">X_test</span>
+<span class="p">)</span>
+
+
+<span class="n">akurasi</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span>
+    <span class="n">y_test</span><span class="p">,</span>
+    <span class="n">hasil_prediksi</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">laporan</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span>
+    <span class="n">y_test</span><span class="p">,</span>
+    <span class="n">hasil_prediksi</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">matriks</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span>
+    <span class="n">y_test</span><span class="p">,</span>
+    <span class="n">hasil_prediksi</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah fitur:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">daftar_fitur</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah data training:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Jumlah data testing:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Akurasi:"</span><span class="p">,</span> <span class="n">akurasi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">laporan</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">matriks</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tampilan-data-training">
+<h2>8. Tampilan Data Training<a class="headerlink" href="#tampilan-data-training" title="Link to this heading">#</a></h2>
+<p>Data training merupakan 80 sampel yang dipilih dari keseluruhan 100 sampel.</p>
+<p>Kode berikut digunakan untuk menampilkan seluruh data training pada web:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+
+<span class="n">data_sampel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">"Sampel_Sentinel2_Sawah_NonSawah.csv"</span>
+<span class="p">)</span>
+
+<span class="n">daftar_fitur</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"B02"</span><span class="p">,</span>
+    <span class="s2">"B03"</span><span class="p">,</span>
+    <span class="s2">"B04"</span><span class="p">,</span>
+    <span class="s2">"B08"</span><span class="p">,</span>
+    <span class="s2">"NDVI"</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">data_sampel</span><span class="p">[</span><span class="n">daftar_fitur</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_sampel</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">]</span>
+
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">data_training</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">data_training</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>
+
+<span class="n">data_training</span> <span class="o">=</span> <span class="n">data_training</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span>
+    <span class="n">drop</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">data_training</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">data_training</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">data_training</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Nomor"</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span>
+    <span class="s2">"display.max_rows"</span><span class="p">,</span>
+    <span class="mi">100</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Jumlah data training:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">data_training</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">data_training</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah data training: 80
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B02</th>
+      <th>B03</th>
+      <th>B04</th>
+      <th>B08</th>
+      <th>NDVI</th>
+      <th>kelas</th>
+    </tr>
+    <tr>
+      <th>Nomor</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.226733</td>
+      <td>0.214267</td>
+      <td>0.209067</td>
+      <td>0.221800</td>
+      <td>0.029553</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.056406</td>
+      <td>0.080125</td>
+      <td>0.098444</td>
+      <td>0.222000</td>
+      <td>0.385579</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.056488</td>
+      <td>0.081413</td>
+      <td>0.084456</td>
+      <td>0.178763</td>
+      <td>0.358281</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.091383</td>
+      <td>0.112550</td>
+      <td>0.122650</td>
+      <td>0.173875</td>
+      <td>0.172751</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.080890</td>
+      <td>0.105870</td>
+      <td>0.115255</td>
+      <td>0.238620</td>
+      <td>0.348612</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.212033</td>
+      <td>0.205933</td>
+      <td>0.203033</td>
+      <td>0.217550</td>
+      <td>0.034516</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.208950</td>
+      <td>0.194500</td>
+      <td>0.197800</td>
+      <td>0.212550</td>
+      <td>0.035945</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.056793</td>
+      <td>0.084513</td>
+      <td>0.092907</td>
+      <td>0.228473</td>
+      <td>0.421827</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.160225</td>
+      <td>0.167325</td>
+      <td>0.189750</td>
+      <td>0.191150</td>
+      <td>0.003675</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.092550</td>
+      <td>0.147808</td>
+      <td>0.102125</td>
+      <td>0.202033</td>
+      <td>0.328475</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.170160</td>
+      <td>0.172360</td>
+      <td>0.194060</td>
+      <td>0.189620</td>
+      <td>-0.011572</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.171467</td>
+      <td>0.177000</td>
+      <td>0.194333</td>
+      <td>0.193233</td>
+      <td>-0.002838</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.087308</td>
+      <td>0.109969</td>
+      <td>0.105754</td>
+      <td>0.156169</td>
+      <td>0.192482</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.036300</td>
+      <td>0.061336</td>
+      <td>0.051082</td>
+      <td>0.134900</td>
+      <td>0.450679</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.062800</td>
+      <td>0.091350</td>
+      <td>0.081100</td>
+      <td>0.097483</td>
+      <td>0.091741</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.182900</td>
+      <td>0.191500</td>
+      <td>0.206267</td>
+      <td>0.215167</td>
+      <td>0.021118</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.022708</td>
+      <td>0.041700</td>
+      <td>0.027308</td>
+      <td>0.088325</td>
+      <td>0.527674</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.295240</td>
+      <td>0.263300</td>
+      <td>0.246800</td>
+      <td>0.272240</td>
+      <td>0.049014</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.243550</td>
+      <td>0.224750</td>
+      <td>0.225950</td>
+      <td>0.236900</td>
+      <td>0.023658</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.039031</td>
+      <td>0.077108</td>
+      <td>0.074800</td>
+      <td>0.278415</td>
+      <td>0.576462</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.052982</td>
+      <td>0.081327</td>
+      <td>0.078773</td>
+      <td>0.169782</td>
+      <td>0.366153</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.162000</td>
+      <td>0.169900</td>
+      <td>0.187425</td>
+      <td>0.188150</td>
+      <td>0.001930</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.283420</td>
+      <td>0.264800</td>
+      <td>0.253140</td>
+      <td>0.271120</td>
+      <td>0.034296</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.172100</td>
+      <td>0.172380</td>
+      <td>0.191680</td>
+      <td>0.189720</td>
+      <td>-0.005139</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.175200</td>
+      <td>0.174800</td>
+      <td>0.190100</td>
+      <td>0.188975</td>
+      <td>-0.002968</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>0.165140</td>
+      <td>0.172820</td>
+      <td>0.198500</td>
+      <td>0.199160</td>
+      <td>0.001660</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>0.044939</td>
+      <td>0.084328</td>
+      <td>0.068167</td>
+      <td>0.196783</td>
+      <td>0.485438</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>0.165071</td>
+      <td>0.168329</td>
+      <td>0.183443</td>
+      <td>0.184229</td>
+      <td>0.002137</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>0.047000</td>
+      <td>0.078607</td>
+      <td>0.087329</td>
+      <td>0.287907</td>
+      <td>0.534540</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>0.069533</td>
+      <td>0.102000</td>
+      <td>0.108925</td>
+      <td>0.259367</td>
+      <td>0.408485</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>0.100979</td>
+      <td>0.133132</td>
+      <td>0.117916</td>
+      <td>0.245058</td>
+      <td>0.350279</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>0.056650</td>
+      <td>0.081733</td>
+      <td>0.084400</td>
+      <td>0.266167</td>
+      <td>0.518494</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>0.169320</td>
+      <td>0.170300</td>
+      <td>0.190840</td>
+      <td>0.188920</td>
+      <td>-0.005056</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>0.062223</td>
+      <td>0.089962</td>
+      <td>0.074262</td>
+      <td>0.129346</td>
+      <td>0.270543</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>0.048611</td>
+      <td>0.078267</td>
+      <td>0.068522</td>
+      <td>0.145122</td>
+      <td>0.358540</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>0.210900</td>
+      <td>0.202000</td>
+      <td>0.201660</td>
+      <td>0.214500</td>
+      <td>0.030854</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>0.166375</td>
+      <td>0.167625</td>
+      <td>0.183800</td>
+      <td>0.184125</td>
+      <td>0.000883</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>0.081067</td>
+      <td>0.101608</td>
+      <td>0.117742</td>
+      <td>0.190792</td>
+      <td>0.236765</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>0.101418</td>
+      <td>0.130864</td>
+      <td>0.120409</td>
+      <td>0.165600</td>
+      <td>0.158005</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>0.247040</td>
+      <td>0.228740</td>
+      <td>0.224580</td>
+      <td>0.242280</td>
+      <td>0.037913</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>0.181967</td>
+      <td>0.192100</td>
+      <td>0.213800</td>
+      <td>0.209233</td>
+      <td>-0.010795</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>0.102727</td>
+      <td>0.130500</td>
+      <td>0.120820</td>
+      <td>0.178347</td>
+      <td>0.192290</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>0.073245</td>
+      <td>0.094527</td>
+      <td>0.097932</td>
+      <td>0.221714</td>
+      <td>0.387247</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>0.041709</td>
+      <td>0.095918</td>
+      <td>0.054218</td>
+      <td>0.175018</td>
+      <td>0.526967</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>0.238586</td>
+      <td>0.225057</td>
+      <td>0.225043</td>
+      <td>0.235914</td>
+      <td>0.023584</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>0.175583</td>
+      <td>0.181583</td>
+      <td>0.205800</td>
+      <td>0.199183</td>
+      <td>-0.016338</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0.053486</td>
+      <td>0.075464</td>
+      <td>0.055771</td>
+      <td>0.070321</td>
+      <td>0.115391</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>0.231783</td>
+      <td>0.236450</td>
+      <td>0.239283</td>
+      <td>0.243100</td>
+      <td>0.007912</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.030456</td>
+      <td>0.052078</td>
+      <td>0.031833</td>
+      <td>0.041667</td>
+      <td>0.133787</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>0.254613</td>
+      <td>0.230338</td>
+      <td>0.226575</td>
+      <td>0.242712</td>
+      <td>0.034387</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>0.062478</td>
+      <td>0.086778</td>
+      <td>0.092978</td>
+      <td>0.200444</td>
+      <td>0.366253</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>0.018841</td>
+      <td>0.040400</td>
+      <td>0.020594</td>
+      <td>0.106535</td>
+      <td>0.676013</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>0.175900</td>
+      <td>0.185625</td>
+      <td>0.197650</td>
+      <td>0.195850</td>
+      <td>-0.004574</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>0.299917</td>
+      <td>0.285733</td>
+      <td>0.275083</td>
+      <td>0.283950</td>
+      <td>0.015861</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>0.054622</td>
+      <td>0.088928</td>
+      <td>0.085428</td>
+      <td>0.287867</td>
+      <td>0.542303</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>0.086962</td>
+      <td>0.106556</td>
+      <td>0.121994</td>
+      <td>0.182275</td>
+      <td>0.198118</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>0.069033</td>
+      <td>0.093272</td>
+      <td>0.103367</td>
+      <td>0.196594</td>
+      <td>0.310800</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>0.236025</td>
+      <td>0.225200</td>
+      <td>0.223700</td>
+      <td>0.232075</td>
+      <td>0.018375</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>0.063022</td>
+      <td>0.099278</td>
+      <td>0.077844</td>
+      <td>0.206322</td>
+      <td>0.452121</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>0.164475</td>
+      <td>0.174825</td>
+      <td>0.192300</td>
+      <td>0.193600</td>
+      <td>0.003369</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>0.212060</td>
+      <td>0.201000</td>
+      <td>0.199260</td>
+      <td>0.211520</td>
+      <td>0.029846</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>0.186000</td>
+      <td>0.199400</td>
+      <td>0.218300</td>
+      <td>0.220800</td>
+      <td>0.005693</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>0.072122</td>
+      <td>0.124678</td>
+      <td>0.089344</td>
+      <td>0.216433</td>
+      <td>0.415625</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>0.056189</td>
+      <td>0.082872</td>
+      <td>0.107633</td>
+      <td>0.229461</td>
+      <td>0.361406</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>0.181125</td>
+      <td>0.184775</td>
+      <td>0.202900</td>
+      <td>0.200975</td>
+      <td>-0.004766</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>0.045988</td>
+      <td>0.083271</td>
+      <td>0.079576</td>
+      <td>0.306594</td>
+      <td>0.587869</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>0.222686</td>
+      <td>0.221886</td>
+      <td>0.228000</td>
+      <td>0.226257</td>
+      <td>-0.003837</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>0.031445</td>
+      <td>0.083127</td>
+      <td>0.048991</td>
+      <td>0.200555</td>
+      <td>0.607359</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>0.099720</td>
+      <td>0.155330</td>
+      <td>0.110360</td>
+      <td>0.208290</td>
+      <td>0.307328</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>0.318360</td>
+      <td>0.288940</td>
+      <td>0.268500</td>
+      <td>0.287500</td>
+      <td>0.034173</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>0.220000</td>
+      <td>0.208767</td>
+      <td>0.210383</td>
+      <td>0.222033</td>
+      <td>0.026942</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>0.080636</td>
+      <td>0.133264</td>
+      <td>0.093329</td>
+      <td>0.217457</td>
+      <td>0.399402</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>0.195500</td>
+      <td>0.198300</td>
+      <td>0.206080</td>
+      <td>0.206160</td>
+      <td>0.000194</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>0.192240</td>
+      <td>0.196360</td>
+      <td>0.203840</td>
+      <td>0.205540</td>
+      <td>0.004153</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>0.085240</td>
+      <td>0.107393</td>
+      <td>0.086773</td>
+      <td>0.133793</td>
+      <td>0.213178</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>0.199786</td>
+      <td>0.193271</td>
+      <td>0.196557</td>
+      <td>0.204600</td>
+      <td>0.020049</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>0.168600</td>
+      <td>0.169480</td>
+      <td>0.188960</td>
+      <td>0.187620</td>
+      <td>-0.003558</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>0.058367</td>
+      <td>0.082220</td>
+      <td>0.068827</td>
+      <td>0.107927</td>
+      <td>0.221212</td>
+      <td>Sawah</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>0.283175</td>
+      <td>0.280450</td>
+      <td>0.284450</td>
+      <td>0.276650</td>
+      <td>-0.013901</td>
+      <td>Non-sawah</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>0.217980</td>
+      <td>0.215040</td>
+      <td>0.216100</td>
+      <td>0.221280</td>
+      <td>0.011843</td>
+      <td>Non-sawah</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Ringkasan data training adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head text-right"><p>Jumlah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data training sawah</p></td>
+<td class="text-right"><p>40 sampel</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data training non-sawah</p></td>
+<td class="text-right"><p>40 sampel</p></td>
+</tr>
+<tr class="row-even"><td><p>Total data training</p></td>
+<td class="text-right"><p>80 sampel</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah fitur</p></td>
+<td class="text-right"><p>5 fitur</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Setiap baris data training merupakan hasil rata-rata piksel dalam satu poligon.</p>
 </section>
 <section id="hasil-klasifikasi">
-<h2>5. Hasil Klasifikasi<a class="headerlink" href="#hasil-klasifikasi" title="Link to this heading">#</a></h2>
-<p>Hasil pengujian memperoleh akurasi sebesar <strong>95%</strong>.</p>
+<h2>9. Hasil Klasifikasi<a class="headerlink" href="#hasil-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Hasil pengujian memperoleh akurasi sebesar:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Akurasi}
+=
+\frac{\text{Prediksi benar}}
+{\text{Jumlah data testing}}
+\times 100\%
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{Akurasi}
+=
+\frac{19}{20}
+\times 100\%
+=
+95\%
+\]</div>
+<p>Ringkasan hasil prediksi adalah:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Kelas</p></th>
 <th class="head text-right"><p>Data Uji</p></th>
 <th class="head text-right"><p>Prediksi Benar</p></th>
+<th class="head text-right"><p>Prediksi Salah</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Non-sawah</p></td>
 <td class="text-right"><p>10</p></td>
 <td class="text-right"><p>10</p></td>
+<td class="text-right"><p>0</p></td>
 </tr>
 <tr class="row-odd"><td><p>Sawah</p></td>
 <td class="text-right"><p>10</p></td>
 <td class="text-right"><p>9</p></td>
+<td class="text-right"><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>Total</p></td>
 <td class="text-right"><p>20</p></td>
 <td class="text-right"><p>19</p></td>
+<td class="text-right"><p>1</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Dari 20 data uji, terdapat satu sampel sawah yang diprediksi sebagai non-sawah.</p>
 <p>Nilai evaluasi setiap kelas adalah:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1152,13 +2285,60 @@ NDVI = \frac{B08-B04}{B08+B04}
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text">Confusion matrix hasil klasifikasi sawah dan non-sawah.</span><a class="headerlink" href="#confusion-matrix-sawah" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Confusion matrix menunjukkan bahwa seluruh 10 sampel non-sawah berhasil diprediksi dengan benar. Pada kelas sawah, sembilan sampel berhasil diprediksi dengan benar dan satu sampel salah diprediksi sebagai non-sawah.</p>
+<p>Confusion matrix menunjukkan bahwa 10 sampel non-sawah diprediksi dengan benar. Pada kelas sawah, sembilan sampel diprediksi dengan benar dan satu sampel diprediksi sebagai non-sawah.</p>
+</section>
+<section id="peta-hasil-klasifikasi">
+<h2>10. Peta Hasil Klasifikasi<a class="headerlink" href="#peta-hasil-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Peta berikut menampilkan hasil klasifikasi sawah dan non-sawah menggunakan Random Forest.</p>
+<iframe
+    src="_static/peta_klasifikasi_interaktif.html"
+    width="100%"
+    height="700"
+    style="border: 1px solid #cccccc; border-radius: 8px;"
+    loading="lazy">
+</iframe>
+<p>Peta dapat digeser, diperbesar, dan diperkecil. Kontrol layer dapat digunakan untuk menampilkan atau menyembunyikan hasil klasifikasi.</p>
+<p>Ringkasan hasil akhir adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Keterangan</p></th>
+<th class="head"><p>Hasil</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Algoritma</p></td>
+<td><p>Random Forest Classifier</p></td>
+</tr>
+<tr class="row-odd"><td><p>Poligon awal</p></td>
+<td><p>100 poligon</p></td>
+</tr>
+<tr class="row-even"><td><p>Poligon training</p></td>
+<td><p>80 poligon</p></td>
+</tr>
+<tr class="row-odd"><td><p>Poligon testing</p></td>
+<td><p>20 poligon</p></td>
+</tr>
+<tr class="row-even"><td><p>Jumlah fitur</p></td>
+<td><p>5 fitur</p></td>
+</tr>
+<tr class="row-odd"><td><p>Akurasi</p></td>
+<td><p>95%</p></td>
+</tr>
+<tr class="row-even"><td><p>Kelas</p></td>
+<td><p>Sawah dan Non-sawah</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="kesimpulan">
-<h2>6. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
-<p>Sebanyak 100 polygon sampel berhasil digunakan, yang terdiri atas 50 sampel sawah dan 50 sampel non-sawah. Seluruh polygon berhasil dipadukan dengan citra Sentinel-2 L2A.</p>
-<p>Model Random Forest memperoleh akurasi sebesar 95%. Hasil tersebut menunjukkan bahwa kombinasi band B02, B03, B04, B08, dan NDVI dapat digunakan untuk membedakan wilayah sawah dan non-sawah.</p>
-<p>Peta interaktif membantu menampilkan lokasi seluruh sampel secara lebih jelas. Pengguna dapat menggeser peta, memperbesar tampilan, serta menampilkan atau menyembunyikan setiap layer sampel.</p>
+<h2>11. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Sebanyak 100 poligon digunakan, terdiri atas 50 poligon sawah dan 50 poligon non-sawah.</p>
+<p>Data training terdiri atas 80 poligon, yaitu 40 sawah dan 40 non-sawah. Data testing terdiri atas 20 poligon, yaitu 10 sawah dan 10 non-sawah.</p>
+<p>Setiap poligon dipadukan dengan Sentinel-2 L2A untuk memperoleh rata-rata B02, B03, B04, dan B08. NDVI dihitung menggunakan B08 dan B04.</p>
+<p>Jumlah fitur yang digunakan adalah lima fitur, yaitu B02, B03, B04, B08, dan NDVI.</p>
+<p>Algoritma Random Forest memperoleh akurasi sebesar 95%, dengan 19 prediksi benar dari 20 data testing.</p>
+<p>Peta sampel dan peta hasil klasifikasi ditampilkan secara interaktif agar persebaran sawah dan non-sawah dapat diamati berdasarkan lokasinya.</p>
 </section>
 </section>
 
@@ -1220,9 +2400,17 @@ NDVI = \frac{B08-B04}{B08+B04}
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-sampel">1. Pengambilan Sampel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif-sampel">2. Peta Interaktif Sampel</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sentinel-2">3. Data Sentinel-2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-klasifikasi">4. Proses Klasifikasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-klasifikasi">5. Hasil Klasifikasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">6. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-ndvi">4. Perhitungan NDVI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-ndvi">4.1 Contoh Perhitungan NDVI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-klasifikasi">5. Fitur Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon-training-dan-pixel-training">6. Polygon Training dan Pixel Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-random-forest">7. Algoritma Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilan-data-training">8. Tampilan Data Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-klasifikasi">9. Hasil Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">10. Peta Hasil Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">11. Kesimpulan</a></li>
 </ul>
   </nav></div>
 
