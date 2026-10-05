@@ -15,24 +15,28 @@ kernelspec:
 
 ## 1. Pengambilan Sampel
 
-Data sampel dibuat menggunakan QGIS dengan membagi wilayah menjadi dua kelas, yaitu sawah dan non-sawah. Setiap kelas mempunyai 50 polygon sampel sehingga total data yang digunakan adalah 100 sampel.
+Data sampel dibuat menggunakan QGIS dengan membagi wilayah menjadi dua kelas, yaitu sawah dan non-sawah. Setiap kelas mempunyai 50 poligon sehingga total data yang digunakan adalah 100 sampel.
 
-| Kelas | Jumlah Sampel |
-|---|---:|
-| Sawah | 50 |
-| Non-sawah | 50 |
-| Total | 100 |
+| Kelas | Label | Jumlah Sampel |
+|---|---|---:|
+| Sawah | `Sawah` | 50 |
+| Non-sawah | `Non-sawah` | 50 |
+| Total | - | 100 |
 
-Polygon sampel disimpan menggunakan format GeoJSON dan sistem koordinat EPSG:4326 atau WGS 84.
+Poligon disimpan dalam format GeoJSON menggunakan sistem koordinat EPSG:4326 atau WGS 84.
 
 File yang digunakan adalah:
 
 - `Sampel_sawah.geojson`
 - `Sampel_Non_sawah.geojson`
 
+Setiap poligon dianggap sebagai satu sampel. Nilai piksel Sentinel-2 yang berada di dalam poligon digunakan untuk menghitung nilai rata-rata setiap band.
+
+Oleh karena itu, 50 poligon sawah menghasilkan 50 baris sampel sawah, bukan 50 piksel.
+
 ## 2. Peta Interaktif Sampel
 
-Peta berikut menampilkan persebaran sampel sawah dan non-sawah. Polygon berwarna hijau menunjukkan sampel sawah, sedangkan polygon berwarna merah menunjukkan sampel non-sawah.
+Peta berikut menampilkan persebaran 50 sampel sawah dan 50 sampel non-sawah. Poligon hijau menunjukkan sawah, sedangkan poligon merah menunjukkan non-sawah.
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -70,12 +74,20 @@ data_non_sawah = gpd.read_file(
 ).to_crs(epsg=4326)
 
 
-jumlah_sawah = len(data_sawah)
-jumlah_non_sawah = len(data_non_sawah)
+print(
+    "Jumlah sampel sawah:",
+    len(data_sawah),
+)
 
-print("Jumlah sampel sawah:", jumlah_sawah)
-print("Jumlah sampel non-sawah:", jumlah_non_sawah)
-print("Total sampel:", jumlah_sawah + jumlah_non_sawah)
+print(
+    "Jumlah sampel non-sawah:",
+    len(data_non_sawah),
+)
+
+print(
+    "Total sampel:",
+    len(data_sawah) + len(data_non_sawah),
+)
 
 
 batas_sawah = data_sawah.total_bounds
@@ -191,33 +203,14 @@ legenda = """
     font-size: 14px;
 ">
 <b>Legenda Sampel</b><br>
-
-<span style="
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: #00FF00;
-    border: 1px solid #006400;
-    margin-right: 6px;
-"></span>
-Sawah<br>
-
-<span style="
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: #FF0000;
-    border: 1px solid #8B0000;
-    margin-right: 6px;
-"></span>
-Non-sawah
+<span style="color:#00AA00;">■</span> Sawah<br>
+<span style="color:#FF0000;">■</span> Non-sawah
 </div>
 """
 
 peta.get_root().html.add_child(
     folium.Element(legenda)
 )
-
 
 folium.LayerControl(
     collapsed=False
@@ -238,11 +231,11 @@ peta.fit_bounds(
 peta
 ```
 
-Peta dapat digeser serta diperbesar dan diperkecil. Tombol layer di bagian kanan dapat digunakan untuk menampilkan atau menyembunyikan polygon sawah dan non-sawah.
+Peta dapat digeser, diperbesar, dan diperkecil. Kontrol layer dapat digunakan untuk menampilkan atau menyembunyikan sampel sawah dan non-sawah.
 
 ## 3. Data Sentinel-2
 
-Citra yang digunakan berasal dari Sentinel-2 L2A tanggal 4 Oktober 2026. Citra diunduh dalam format TIFF dengan sistem koordinat WGS 84 atau EPSG:4326.
+Citra yang digunakan berasal dari Sentinel-2 L2A tanggal 4 Oktober 2026. Citra disimpan dalam format TIFF dengan sistem koordinat EPSG:4326.
 
 Band yang digunakan adalah:
 
@@ -250,44 +243,342 @@ Band yang digunakan adalah:
 |---|---|---|
 | B02 | Blue | Mengidentifikasi karakteristik permukaan |
 | B03 | Green | Mengamati pantulan vegetasi hijau |
-| B04 | Red | Membedakan vegetasi dan non-vegetasi |
+| B04 | Red | Membedakan vegetasi dan nonvegetasi |
 | B08 | Near Infrared | Mengidentifikasi tingkat kehijauan vegetasi |
 
-Setiap polygon sampel dihitung nilai rata-rata B02, B03, B04, B08, dan NDVI.
+Nilai piksel B02, B03, B04, dan B08 yang berada di dalam setiap poligon dihitung nilai rata-ratanya.
 
-Rumus NDVI yang digunakan adalah:
+## 4. Perhitungan NDVI
+
+NDVI atau *Normalized Difference Vegetation Index* digunakan untuk mengukur tingkat kehijauan vegetasi berdasarkan band merah dan inframerah dekat.
+
+Rumus NDVI adalah:
 
 $$
-NDVI = \frac{B08-B04}{B08+B04}
+NDVI =
+\frac{B08-B04}
+{B08+B04}
 $$
 
-Nilai NDVI membantu membedakan wilayah yang mempunyai vegetasi dengan wilayah non-vegetasi.
+Keterangan:
 
-## 4. Proses Klasifikasi
+- $B08$ adalah band *Near Infrared* atau NIR.
+- $B04$ adalah band merah atau *Red*.
+- Nilai NDVI berada pada rentang $-1$ sampai $1$.
 
-Klasifikasi dilakukan menggunakan algoritma Random Forest. Data dibagi menjadi 80% data latih dan 20% data uji.
+Interpretasi nilai NDVI adalah:
+
+| Rentang NDVI | Interpretasi |
+|---|---|
+| Kurang dari 0 | Air, bayangan, atau nonvegetasi |
+| 0 sampai 0,2 | Bangunan atau tanah terbuka |
+| 0,2 sampai 0,5 | Vegetasi sedang |
+| Lebih dari 0,5 | Vegetasi rapat dan sehat |
+
+### 4.1 Contoh Perhitungan NDVI
+
+Diketahui:
+
+$$
+B08=0.60
+$$
+
+$$
+B04=0.20
+$$
+
+Maka:
+
+$$
+NDVI =
+\frac{0.60-0.20}
+{0.60+0.20}
+$$
+
+$$
+NDVI =
+\frac{0.40}
+{0.80}
+=0.50
+$$
+
+Nilai NDVI sebesar 0,50 menunjukkan adanya vegetasi yang cukup rapat.
+
+Kode perhitungan NDVI adalah:
+
+```python
+penyebut = b08 + b04
+
+if penyebut == 0:
+    ndvi = 0
+else:
+    ndvi = (b08 - b04) / penyebut
+```
+
+## 5. Fitur Klasifikasi
 
 Fitur yang digunakan dalam proses klasifikasi adalah:
 
-1. Nilai rata-rata B02.
-2. Nilai rata-rata B03.
-3. Nilai rata-rata B04.
-4. Nilai rata-rata B08.
-5. Nilai NDVI.
+1. B02
+2. B03
+3. B04
+4. B08
+5. NDVI
 
-Model dilatih menggunakan 80 sampel, sedangkan 20 sampel lainnya digunakan untuk menguji kemampuan model dalam membedakan sawah dan non-sawah.
+Jumlah fitur yang digunakan adalah:
 
-## 5. Hasil Klasifikasi
+$$
+4 \text{ band} + 1 \text{ NDVI}
+=
+5 \text{ fitur}
+$$
 
-Hasil pengujian memperoleh akurasi sebesar **95%**.
+Struktur data klasifikasi adalah:
 
-| Kelas | Data Uji | Prediksi Benar |
-|---|---:|---:|
-| Non-sawah | 10 | 10 |
-| Sawah | 10 | 9 |
-| Total | 20 | 19 |
+| Kolom | Keterangan |
+|---|---|
+| B02 | Rata-rata band biru dalam poligon |
+| B03 | Rata-rata band hijau dalam poligon |
+| B04 | Rata-rata band merah dalam poligon |
+| B08 | Rata-rata band NIR dalam poligon |
+| NDVI | Indeks vegetasi dari B08 dan B04 |
+| kelas | Label Sawah atau Non-sawah |
 
-Dari 20 data uji, terdapat satu sampel sawah yang diprediksi sebagai non-sawah.
+## 6. Polygon Training dan Pixel Training
+
+Dataset awal terdiri atas 100 poligon, yaitu 50 poligon sawah dan 50 poligon non-sawah.
+
+Data dibagi menjadi 80% training dan 20% testing menggunakan stratifikasi.
+
+| Kelas | Poligon Awal | Poligon Training | Poligon Testing |
+|---|---:|---:|---:|
+| Sawah | 50 | 40 | 10 |
+| Non-sawah | 50 | 40 | 10 |
+| Total | 100 | 80 | 20 |
+
+Jumlah poligon training adalah:
+
+$$
+40 \text{ poligon sawah}
++
+40 \text{ poligon non-sawah}
+=
+80 \text{ poligon training}
+$$
+
+Piksel di dalam poligon tidak dijadikan baris training secara individual. Piksel valid di dalam setiap poligon digunakan untuk menghitung nilai rata-rata band.
+
+Alurnya adalah:
+
+$$
+\text{Piksel dalam poligon}
+\rightarrow
+\text{Rata-rata band}
+\rightarrow
+\text{Satu baris sampel}
+$$
+
+| Komponen | Jumlah atau Penggunaan |
+|---|---|
+| Poligon sawah training | 40 poligon |
+| Poligon non-sawah training | 40 poligon |
+| Total poligon training | 80 poligon |
+| Piksel training individual | Tidak dijadikan baris terpisah |
+| Penggunaan piksel | Dihitung rata-rata per poligon |
+| Baris data training | 80 baris |
+| Fitur setiap baris | B02, B03, B04, B08, dan NDVI |
+
+Jumlah piksel pada setiap poligon dapat berbeda karena ukuran dan bentuk poligon tidak selalu sama.
+
+## 7. Algoritma Random Forest
+
+Klasifikasi dilakukan menggunakan **Random Forest Classifier**.
+
+Random Forest membentuk beberapa pohon keputusan. Hasil klasifikasi akhir ditentukan berdasarkan keputusan terbanyak dari seluruh pohon tersebut.
+
+Kode yang digunakan adalah:
+
+```python
+import pandas as pd
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+)
+from sklearn.model_selection import train_test_split
+
+
+data_sampel = pd.read_csv(
+    "Sampel_Sentinel2_Sawah_NonSawah.csv"
+)
+
+daftar_fitur = [
+    "B02",
+    "B03",
+    "B04",
+    "B08",
+    "NDVI",
+]
+
+X = data_sampel[daftar_fitur]
+y = data_sampel["kelas"]
+
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y,
+)
+
+
+model = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42,
+)
+
+model.fit(
+    X_train,
+    y_train,
+)
+
+hasil_prediksi = model.predict(
+    X_test
+)
+
+
+akurasi = accuracy_score(
+    y_test,
+    hasil_prediksi,
+)
+
+laporan = classification_report(
+    y_test,
+    hasil_prediksi,
+)
+
+matriks = confusion_matrix(
+    y_test,
+    hasil_prediksi,
+)
+
+
+print("Jumlah fitur:", len(daftar_fitur))
+print("Jumlah data training:", len(X_train))
+print("Jumlah data testing:", len(X_test))
+print("Akurasi:", akurasi)
+print(laporan)
+print(matriks)
+```
+
+## 8. Tampilan Data Training
+
+Data training merupakan 80 sampel yang dipilih dari keseluruhan 100 sampel.
+
+Kode berikut digunakan untuk menampilkan seluruh data training pada web:
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+
+
+data_sampel = pd.read_csv(
+    "Sampel_Sentinel2_Sawah_NonSawah.csv"
+)
+
+daftar_fitur = [
+    "B02",
+    "B03",
+    "B04",
+    "B08",
+    "NDVI",
+]
+
+X = data_sampel[daftar_fitur]
+y = data_sampel["kelas"]
+
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y,
+)
+
+
+data_training = X_train.copy()
+data_training["kelas"] = y_train
+
+data_training = data_training.reset_index(
+    drop=True
+)
+
+data_training.index = (
+    data_training.index + 1
+)
+
+data_training.index.name = "Nomor"
+
+pd.set_option(
+    "display.max_rows",
+    100,
+)
+
+
+print(
+    "Jumlah data training:",
+    len(data_training),
+)
+
+display(data_training)
+```
+
+Ringkasan data training adalah:
+
+| Komponen | Jumlah |
+|---|---:|
+| Data training sawah | 40 sampel |
+| Data training non-sawah | 40 sampel |
+| Total data training | 80 sampel |
+| Jumlah fitur | 5 fitur |
+
+Setiap baris data training merupakan hasil rata-rata piksel dalam satu poligon.
+
+## 9. Hasil Klasifikasi
+
+Hasil pengujian memperoleh akurasi sebesar:
+
+$$
+\text{Akurasi}
+=
+\frac{\text{Prediksi benar}}
+{\text{Jumlah data testing}}
+\times 100\%
+$$
+
+$$
+\text{Akurasi}
+=
+\frac{19}{20}
+\times 100\%
+=
+95\%
+$$
+
+Ringkasan hasil prediksi adalah:
+
+| Kelas | Data Uji | Prediksi Benar | Prediksi Salah |
+|---|---:|---:|---:|
+| Non-sawah | 10 | 10 | 0 |
+| Sawah | 10 | 9 | 1 |
+| Total | 20 | 19 | 1 |
 
 Nilai evaluasi setiap kelas adalah:
 
@@ -304,12 +595,44 @@ name: confusion-matrix-sawah
 Confusion matrix hasil klasifikasi sawah dan non-sawah.
 ```
 
-Confusion matrix menunjukkan bahwa seluruh 10 sampel non-sawah berhasil diprediksi dengan benar. Pada kelas sawah, sembilan sampel berhasil diprediksi dengan benar dan satu sampel salah diprediksi sebagai non-sawah.
+Confusion matrix menunjukkan bahwa 10 sampel non-sawah diprediksi dengan benar. Pada kelas sawah, sembilan sampel diprediksi dengan benar dan satu sampel diprediksi sebagai non-sawah.
 
-## 6. Kesimpulan
+## 10. Peta Hasil Klasifikasi
 
-Sebanyak 100 polygon sampel berhasil digunakan, yang terdiri atas 50 sampel sawah dan 50 sampel non-sawah. Seluruh polygon berhasil dipadukan dengan citra Sentinel-2 L2A.
+Peta berikut menampilkan hasil klasifikasi sawah dan non-sawah menggunakan Random Forest.
 
-Model Random Forest memperoleh akurasi sebesar 95%. Hasil tersebut menunjukkan bahwa kombinasi band B02, B03, B04, B08, dan NDVI dapat digunakan untuk membedakan wilayah sawah dan non-sawah.
+<iframe
+    src="_static/peta_klasifikasi_interaktif.html"
+    width="100%"
+    height="700"
+    style="border: 1px solid #cccccc; border-radius: 8px;"
+    loading="lazy">
+</iframe>
 
-Peta interaktif membantu menampilkan lokasi seluruh sampel secara lebih jelas. Pengguna dapat menggeser peta, memperbesar tampilan, serta menampilkan atau menyembunyikan setiap layer sampel.
+Peta dapat digeser, diperbesar, dan diperkecil. Kontrol layer dapat digunakan untuk menampilkan atau menyembunyikan hasil klasifikasi.
+
+Ringkasan hasil akhir adalah:
+
+| Keterangan | Hasil |
+|---|---|
+| Algoritma | Random Forest Classifier |
+| Poligon awal | 100 poligon |
+| Poligon training | 80 poligon |
+| Poligon testing | 20 poligon |
+| Jumlah fitur | 5 fitur |
+| Akurasi | 95% |
+| Kelas | Sawah dan Non-sawah |
+
+## 11. Kesimpulan
+
+Sebanyak 100 poligon digunakan, terdiri atas 50 poligon sawah dan 50 poligon non-sawah.
+
+Data training terdiri atas 80 poligon, yaitu 40 sawah dan 40 non-sawah. Data testing terdiri atas 20 poligon, yaitu 10 sawah dan 10 non-sawah.
+
+Setiap poligon dipadukan dengan Sentinel-2 L2A untuk memperoleh rata-rata B02, B03, B04, dan B08. NDVI dihitung menggunakan B08 dan B04.
+
+Jumlah fitur yang digunakan adalah lima fitur, yaitu B02, B03, B04, B08, dan NDVI.
+
+Algoritma Random Forest memperoleh akurasi sebesar 95%, dengan 19 prediksi benar dari 20 data testing.
+
+Peta sampel dan peta hasil klasifikasi ditampilkan secara interaktif agar persebaran sawah dan non-sawah dapat diamati berdasarkan lokasinya.
