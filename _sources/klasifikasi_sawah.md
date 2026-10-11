@@ -435,7 +435,7 @@ Aplikasi pembungkus web PSD telah di-deploy ke Streamlit Community
 Cloud. Aplikasi ini menampilkan web PSD melalui iframe, sehingga
 konten dan peta tetap dimuat dari GitHub Pages.
 
-[Buka aplikasi di Streamlit](https://3uvumakhgzm3cjbzwjk8jv.streamlit.app/)
+[Buka aplikasi di Streamlit](https://riska-klasifikasi-lahan-jatim.streamlit.app/)
 
 ## 15. Referensi
 
