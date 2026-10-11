@@ -1,638 +1,487 @@
----
-jupytext:
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: "0.13"
-    jupytext_version: "1.16.4"
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
----
+# Klasifikasi Lahan Jawa Timur
 
-# Klasifikasi Sawah dan Non-Sawah
+## 1. Tujuan Analisis
 
-## 1. Pengambilan Sampel
+Analisis ini bertujuan mengklasifikasikan lokasi sampel lahan di Jawa Timur menjadi enam kelas, yaitu sawah, bangunan, mangrove, lahan hijau, laut, dan danau.
 
-Data sampel dibuat menggunakan QGIS dengan membagi wilayah menjadi dua kelas, yaitu sawah dan non-sawah. Setiap kelas mempunyai 50 poligon sehingga total data yang digunakan adalah 100 sampel.
+Analisis penggunaan lahan (*land use*) membantu memahami pemanfaatan suatu wilayah, misalnya untuk pertanian dan kawasan terbangun. Klasifikasi penutup lahan (*land cover classification*) membantu membedakan karakteristik permukaan berdasarkan informasi citra satelit.
 
-| Kelas | Label | Jumlah Sampel |
+Hasil klasifikasi dapat menjadi bahan awal untuk kajian pemanfaatan ruang, perlindungan kawasan pertanian, pelestarian mangrove, serta pengamatan badan air. Penetapan kesesuaian terhadap kebijakan tata ruang memerlukan data kebijakan dan batas kawasan yang relevan.
+
+## 2. Data Understanding
+
+### 2.1 Wilayah dan Kelas
+
+Lokasi sampel berada di wilayah kajian Jawa Timur. Data sampel disimpan dalam file `PSD_6_Kelas_Gabungan.geojson`.
+
+Setiap polygon memiliki `sample_id` sebagai identitas dan `kelas` sebagai label acuan.
+
+| Kelas | Pengertian dalam penelitian | Jumlah Polygon |
 |---|---|---:|
-| Sawah | `Sawah` | 50 |
-| Non-sawah | `Non-sawah` | 50 |
-| Total | - | 100 |
+| Sawah | Lahan pertanian sawah | 30 |
+| Bangunan | Kawasan dengan penutup berupa bangunan atau permukaan terbangun | 30 |
+| Mangrove | Vegetasi mangrove di kawasan pesisir | 30 |
+| Lahan Hijau | Vegetasi selain sampel sawah dan mangrove | 30 |
+| Laut | Perairan laut terbuka | 30 |
+| Danau | Badan air danau atau ranu | 30 |
+| **Total** | **Enam kelas** | **180** |
 
-Poligon disimpan dalam format GeoJSON menggunakan sistem koordinat EPSG:4326 atau WGS 84.
+Lahan hijau merupakan kelompok umum dalam eksperimen ini. Kelas tersebut belum dipecah menjadi hutan, semak, kebun, atau jenis vegetasi lainnya.
 
-File yang digunakan adalah:
+### 2.2 Acuan Klasifikasi Lahan di Indonesia
 
-- `Sampel_sawah.geojson`
-- `Sampel_Non_sawah.geojson`
+Acuan standar yang digunakan untuk pembahasan klasifikasi penutup lahan adalah **SNI 7645-1:2014, Klasifikasi penutup lahan — Bagian 1: Skala kecil dan menengah**, yang diterbitkan Badan Standardisasi Nasional.
 
-Setiap poligon dianggap sebagai satu sampel. Nilai piksel Sentinel-2 yang berada di dalam poligon digunakan untuk menghitung nilai rata-rata setiap band.
+Enam kelas pada penelitian ini merupakan pengelompokan operasional sesuai kebutuhan tugas. Pengelompokan ini bukan salinan lengkap seluruh kelas dan hierarki SNI.
 
-Oleh karena itu, 50 poligon sawah menghasilkan 50 baris sampel sawah, bukan 50 piksel.
+### 2.3 Sumber Citra
 
-## 2. Peta Interaktif Sampel
+Citra yang digunakan adalah **Sentinel-2A Level-2A** dari Copernicus Data Space Ecosystem.
 
-Peta berikut menampilkan persebaran 50 sampel sawah dan 50 sampel non-sawah. Poligon hijau menunjukkan sawah, sedangkan poligon merah menunjukkan non-sawah.
+Periode pencarian citra adalah **1 Juni sampai 30 September 2026**. Untuk setiap lokasi sampel, pencarian dilakukan berdasarkan lokasi polygon dan ketersediaan citra.
 
-```{code-cell} ipython3
-:tags: [hide-input]
+Citra dipilih dengan mempertimbangkan persentase awan pada tile. Setelah diunduh, kualitas piksel di dalam polygon diperiksa kembali. Persentase awan pada tile tidak selalu sama dengan kondisi awan pada lokasi sampel.
 
-from pathlib import Path
+Tanggal citra dapat berbeda antarpolygon. Identitas citra dan tanggal pengambilan disimpan dalam metadata masing-masing sampel.
 
-import folium
-import geopandas as gpd
-from folium.plugins import MeasureControl
+## 3. Pengumpulan Data
 
+Pengumpulan data dilakukan melalui langkah berikut:
 
-folder = Path.cwd()
+1. Membaca GeoJSON yang berisi 180 polygon berlabel.
+2. Mencari citra Sentinel-2A Level-2A pada periode penelitian.
+3. Mengunduh band citra menggunakan Process API.
+4. Menyimpan citra setiap sampel dalam format TIFF.
+5. Menyimpan metadata citra dalam format JSON.
+6. Membuat laporan status pengunduhan.
 
-file_sawah = folder / "Sampel_sawah.geojson"
-file_non_sawah = folder / "Sampel_Non_sawah.geojson"
+Folder penyimpanan citra adalah `citra_sentinel`.
 
+Setiap TIFF memiliki 12 layer, yaitu 10 band reflektansi, satu layer SCL, dan satu layer dataMask.
 
-if not file_sawah.exists():
-    raise FileNotFoundError(
-        f"File tidak ditemukan: {file_sawah}"
-    )
+Seluruh **180 sampel** berhasil tersedia setelah proses pengunduhan selesai.
 
-if not file_non_sawah.exists():
-    raise FileNotFoundError(
-        f"File tidak ditemukan: {file_non_sawah}"
-    )
+## 4. Band Sentinel-2A
 
+Sentinel-2 memiliki 13 band spektral dengan resolusi spasial asli yang berbeda.
 
-data_sawah = gpd.read_file(
-    file_sawah
-).to_crs(epsg=4326)
+| Band | Jenis Spektral | Resolusi Asli | Keterangan |
+|---|---|---:|---|
+| B01 | Coastal aerosol | 60 m | Informasi aerosol dan wilayah pesisir |
+| B02 | Blue | 10 m | Pantulan pada spektrum biru |
+| B03 | Green | 10 m | Pantulan pada spektrum hijau |
+| B04 | Red | 10 m | Pantulan merah untuk analisis vegetasi |
+| B05 | Red edge 1 | 20 m | Karakteristik vegetasi |
+| B06 | Red edge 2 | 20 m | Karakteristik vegetasi |
+| B07 | Red edge 3 | 20 m | Karakteristik vegetasi |
+| B08 | Near infrared | 10 m | Pantulan inframerah dekat |
+| B8A | Narrow near infrared | 20 m | Inframerah dekat dengan rentang lebih sempit |
+| B09 | Water vapour | 60 m | Informasi uap air atmosfer |
+| B10 | Cirrus | 60 m | Deteksi cirrus; tidak tersedia sebagai band reflektansi permukaan pada produk Level-2A |
+| B11 | Shortwave infrared 1 | 20 m | Karakteristik kelembapan dan permukaan |
+| B12 | Shortwave infrared 2 | 20 m | Karakteristik kelembapan dan permukaan |
 
-data_non_sawah = gpd.read_file(
-    file_non_sawah
-).to_crs(epsg=4326)
+Band reflektansi yang digunakan sebagai fitur adalah `B02`, `B03`, `B04`, `B05`, `B06`, `B07`, `B08`, `B8A`, `B11`, dan `B12`.
 
+Citra diunduh pada grid 10 meter dalam koordinat UTM. Band yang memiliki resolusi asli 20 meter diresampling ke grid tersebut. Resampling tidak menambah detail spasial asli band.
 
-print(
-    "Jumlah sampel sawah:",
-    len(data_sawah),
-)
+Dua layer tambahan digunakan untuk pemeriksaan kualitas:
 
-print(
-    "Jumlah sampel non-sawah:",
-    len(data_non_sawah),
-)
+| Layer | Fungsi |
+|---|---|
+| SCL | Scene Classification Layer untuk menyaring kelas kualitas piksel |
+| dataMask | Menunjukkan ketersediaan data pada piksel |
 
-print(
-    "Total sampel:",
-    len(data_sawah) + len(data_non_sawah),
-)
+SCL dan dataMask digunakan untuk penyaringan, bukan sebagai fitur model.
 
+## 5. Penyaringan Piksel
 
-batas_sawah = data_sawah.total_bounds
-batas_non_sawah = data_non_sawah.total_bounds
+Piksel yang digunakan harus memenuhi kondisi berikut:
 
-barat = min(
-    batas_sawah[0],
-    batas_non_sawah[0],
-)
+- Berada di dalam polygon sampel.
+- Memiliki `dataMask = 1`.
+- Memiliki nilai band dan fitur yang valid.
+- Tidak termasuk kelas SCL yang dikeluarkan.
 
-selatan = min(
-    batas_sawah[1],
-    batas_non_sawah[1],
-)
+Kelas SCL yang dikeluarkan adalah `0`, `1`, `3`, `8`, `9`, `10`, dan `11`, yang mencakup no data, piksel rusak atau jenuh, bayangan awan, awan, cirrus, serta salju atau es.
 
-timur = max(
-    batas_sawah[2],
-    batas_non_sawah[2],
-)
+Setiap polygon diambil maksimal **500 piksel bersih**. Jumlah piksel dapat lebih sedikit karena ukuran polygon dan ketersediaan piksel valid.
 
-utara = max(
-    batas_sawah[3],
-    batas_non_sawah[3],
-)
+## 6. Ekstraksi Fitur
 
-pusat_peta = [
-    (selatan + utara) / 2,
-    (barat + timur) / 2,
-]
+Model menggunakan **13 fitur per piksel**, yaitu 10 band reflektansi dan tiga indeks spektral.
 
+| Fitur | Keterangan |
+|---|---|
+| B02 | Reflektansi band biru |
+| B03 | Reflektansi band hijau |
+| B04 | Reflektansi band merah |
+| B05 | Reflektansi red edge 1 |
+| B06 | Reflektansi red edge 2 |
+| B07 | Reflektansi red edge 3 |
+| B08 | Reflektansi inframerah dekat |
+| B8A | Reflektansi inframerah dekat sempit |
+| B11 | Reflektansi SWIR 1 |
+| B12 | Reflektansi SWIR 2 |
+| NDVI | Indeks vegetasi |
+| NDWI | Indeks air |
+| NDBI | Indeks yang membantu mengenali kawasan terbangun |
 
-peta = folium.Map(
-    location=pusat_peta,
-    zoom_start=12,
-    tiles=None,
-)
+### 6.1 NDVI
 
-
-folium.TileLayer(
-    tiles=(
-        "https://server.arcgisonline.com/ArcGIS/rest/services/"
-        "World_Imagery/MapServer/tile/{z}/{y}/{x}"
-    ),
-    attr="Esri World Imagery",
-    name="Citra Satelit",
-    overlay=False,
-    control=True,
-    show=True,
-).add_to(peta)
-
-
-def gaya_sawah(_):
-    return {
-        "fillColor": "#00FF00",
-        "color": "#006400",
-        "weight": 2,
-        "fillOpacity": 0.60,
-    }
-
-
-def gaya_non_sawah(_):
-    return {
-        "fillColor": "#FF0000",
-        "color": "#8B0000",
-        "weight": 2,
-        "fillOpacity": 0.60,
-    }
-
-
-def gaya_sorotan(_):
-    return {
-        "weight": 4,
-        "fillOpacity": 0.85,
-    }
-
-
-folium.GeoJson(
-    data_sawah.to_json(),
-    name="50 Sampel Sawah",
-    style_function=gaya_sawah,
-    highlight_function=gaya_sorotan,
-    tooltip=folium.GeoJsonTooltip(
-        fields=["FID", "label"],
-        aliases=["ID:", "Kelas:"],
-        sticky=False,
-    ),
-).add_to(peta)
-
-
-folium.GeoJson(
-    data_non_sawah.to_json(),
-    name="50 Sampel Non-sawah",
-    style_function=gaya_non_sawah,
-    highlight_function=gaya_sorotan,
-    tooltip=folium.GeoJsonTooltip(
-        fields=["FID", "label"],
-        aliases=["ID:", "Kelas:"],
-        sticky=False,
-    ),
-).add_to(peta)
-
-
-legenda = """
-<div style="
-    position: fixed;
-    bottom: 35px;
-    left: 35px;
-    z-index: 9999;
-    background-color: white;
-    border: 2px solid grey;
-    border-radius: 6px;
-    padding: 12px;
-    font-size: 14px;
-">
-<b>Legenda Sampel</b><br>
-<span style="color:#00AA00;">■</span> Sawah<br>
-<span style="color:#FF0000;">■</span> Non-sawah
-</div>
-"""
-
-peta.get_root().html.add_child(
-    folium.Element(legenda)
-)
-
-folium.LayerControl(
-    collapsed=False
-).add_to(peta)
-
-peta.add_child(
-    MeasureControl()
-)
-
-peta.fit_bounds(
-    [
-        [selatan, barat],
-        [utara, timur],
-    ],
-    padding=(25, 25),
-)
-
-peta
-```
-
-Peta dapat digeser, diperbesar, dan diperkecil. Kontrol layer dapat digunakan untuk menampilkan atau menyembunyikan sampel sawah dan non-sawah.
-
-## 3. Data Sentinel-2
-
-Citra yang digunakan berasal dari Sentinel-2 L2A tanggal 4 Oktober 2026. Citra disimpan dalam format TIFF dengan sistem koordinat EPSG:4326.
-
-Band yang digunakan adalah:
-
-| Band | Nama | Kegunaan |
-|---|---|---|
-| B02 | Blue | Mengidentifikasi karakteristik permukaan |
-| B03 | Green | Mengamati pantulan vegetasi hijau |
-| B04 | Red | Membedakan vegetasi dan nonvegetasi |
-| B08 | Near Infrared | Mengidentifikasi tingkat kehijauan vegetasi |
-
-Nilai piksel B02, B03, B04, dan B08 yang berada di dalam setiap poligon dihitung nilai rata-ratanya.
-
-## 4. Perhitungan NDVI
-
-NDVI atau *Normalized Difference Vegetation Index* digunakan untuk mengukur tingkat kehijauan vegetasi berdasarkan band merah dan inframerah dekat.
-
-Rumus NDVI adalah:
+NDVI (*Normalized Difference Vegetation Index*) menggunakan band inframerah dekat dan merah.
 
 $$
-NDVI =
-\frac{B08-B04}
-{B08+B04}
+NDVI = \frac{B08-B04}{B08+B04}
+$$
+
+NDVI membantu membedakan karakteristik vegetasi.
+
+### 6.2 NDWI
+
+NDWI (*Normalized Difference Water Index*) pada penelitian ini menggunakan band hijau dan inframerah dekat.
+
+$$
+NDWI = \frac{B03-B08}{B03+B08}
+$$
+
+NDWI membantu mengenali badan air.
+
+### 6.3 NDBI
+
+NDBI (*Normalized Difference Built-up Index*) menggunakan band SWIR dan inframerah dekat.
+
+$$
+NDBI = \frac{B11-B08}{B11+B08}
+$$
+
+NDBI membantu membedakan kawasan terbangun. Nilainya juga dapat dipengaruhi tanah terbuka, sehingga tidak digunakan sebagai penentu kelas secara tunggal.
+
+Penyebut yang mendekati nol menghasilkan nilai tidak valid dan dikeluarkan sebelum pemodelan.
+
+### 6.4 Ringkasan Fitur per Polygon
+
+Selain dataset piksel, ekstraksi menghasilkan ringkasan mean, median, dan standar deviasi setiap fitur per polygon.
+
+Ringkasan dihitung dari seluruh piksel valid sebelum pembatasan maksimal 500 piksel.
+
+Mean:
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+$$
+
+Median merupakan nilai tengah setelah data diurutkan. Jika jumlah data genap, median adalah rata-rata dua nilai tengah.
+
+Standar deviasi yang digunakan memakai pembagi $n$:
+
+$$
+\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2}
 $$
 
 Keterangan:
 
-- $B08$ adalah band *Near Infrared* atau NIR.
-- $B04$ adalah band merah atau *Red*.
-- Nilai NDVI berada pada rentang $-1$ sampai $1$.
+- $x_i$ adalah nilai fitur pada piksel ke-$i$.
+- $n$ adalah jumlah piksel valid.
+- $\bar{x}$ adalah rata-rata nilai fitur.
+- $\sigma$ adalah standar deviasi.
 
-Interpretasi nilai NDVI adalah:
+Ringkasan tersebut disimpan dalam `fitur_polygon_sentinel.csv`. Model dalam eksperimen ini dilatih menggunakan 13 fitur per piksel, bukan ringkasan statistik polygon.
 
-| Rentang NDVI | Interpretasi |
-|---|---|
-| Kurang dari 0 | Air, bayangan, atau nonvegetasi |
-| 0 sampai 0,2 | Bangunan atau tanah terbuka |
-| 0,2 sampai 0,5 | Vegetasi sedang |
-| Lebih dari 0,5 | Vegetasi rapat dan sehat |
+## 7. Hasil Ekstraksi
 
-### 4.1 Contoh Perhitungan NDVI
+Seluruh **180 polygon** berhasil diekstraksi.
 
-Diketahui:
+| Kelas | Jumlah Polygon | Jumlah Piksel Diambil |
+|---|---:|---:|
+| Sawah | 30 | 9.927 |
+| Bangunan | 30 | 4.685 |
+| Mangrove | 30 | 9.509 |
+| Lahan Hijau | 30 | 6.160 |
+| Laut | 30 | 2.983 |
+| Danau | 30 | 8.353 |
+| **Total** | **180** | **41.617** |
 
-$$
-B08=0.60
-$$
+Jumlah fitur per piksel adalah **13**. Dataset hasil ekstraksi memiliki **0 missing value pada fitur**.
 
-$$
-B04=0.20
-$$
+Jumlah polygon tiap kelas seimbang, tetapi jumlah piksel berbeda. Perbedaan dipengaruhi ukuran polygon dan jumlah piksel yang lolos penyaringan.
 
-Maka:
+## 8. Pembagian Training dan Testing
 
-$$
-NDVI =
-\frac{0.60-0.20}
-{0.60+0.20}
-$$
+Pembagian dilakukan pada tingkat polygon dengan proporsi **80% training** dan **20% testing**, menggunakan stratifikasi kelas dan `random_state = 42`.
 
-$$
-NDVI =
-\frac{0.40}
-{0.80}
-=0.50
-$$
+Seluruh piksel dari satu polygon masuk ke kelompok yang sama.
 
-Nilai NDVI sebesar 0,50 menunjukkan adanya vegetasi yang cukup rapat.
-
-Kode perhitungan NDVI adalah:
-
-```python
-penyebut = b08 + b04
-
-if penyebut == 0:
-    ndvi = 0
-else:
-    ndvi = (b08 - b04) / penyebut
-```
-
-## 5. Fitur Klasifikasi
-
-Fitur yang digunakan dalam proses klasifikasi adalah:
-
-1. B02
-2. B03
-3. B04
-4. B08
-5. NDVI
-
-Jumlah fitur yang digunakan adalah:
-
-$$
-4 \text{ band} + 1 \text{ NDVI}
-=
-5 \text{ fitur}
-$$
-
-Struktur data klasifikasi adalah:
-
-| Kolom | Keterangan |
-|---|---|
-| B02 | Rata-rata band biru dalam poligon |
-| B03 | Rata-rata band hijau dalam poligon |
-| B04 | Rata-rata band merah dalam poligon |
-| B08 | Rata-rata band NIR dalam poligon |
-| NDVI | Indeks vegetasi dari B08 dan B04 |
-| kelas | Label Sawah atau Non-sawah |
-
-## 6. Polygon Training dan Pixel Training
-
-Dataset awal terdiri atas 100 poligon, yaitu 50 poligon sawah dan 50 poligon non-sawah.
-
-Data dibagi menjadi 80% training dan 20% testing menggunakan stratifikasi.
-
-| Kelas | Poligon Awal | Poligon Training | Poligon Testing |
+| Kelas | Total Polygon | Training | Testing |
 |---|---:|---:|---:|
-| Sawah | 50 | 40 | 10 |
-| Non-sawah | 50 | 40 | 10 |
-| Total | 100 | 80 | 20 |
+| Sawah | 30 | 24 | 6 |
+| Bangunan | 30 | 24 | 6 |
+| Mangrove | 30 | 24 | 6 |
+| Lahan Hijau | 30 | 24 | 6 |
+| Laut | 30 | 24 | 6 |
+| Danau | 30 | 24 | 6 |
+| **Total** | **180** | **144** | **36** |
 
-Jumlah poligon training adalah:
+| Kelompok | Jumlah Polygon | Jumlah Piksel |
+|---|---:|---:|
+| Training | 144 | 33.440 |
+| Testing | 36 | 8.177 |
+| **Total** | **180** | **41.617** |
+
+Polygon digunakan sebagai unit pembagian data, sedangkan piksel digunakan sebagai baris input model.
+
+Pembagian ini mencegah piksel dari polygon yang sama masuk ke training dan testing. Namun, pembagian berdasarkan identitas polygon belum menjamin lokasi training dan testing berjauhan secara spasial.
+
+## 9. Eksperimen Model
+
+Tiga model dibandingkan:
+
+1. Random Forest.
+2. Extra Trees.
+3. Hist Gradient Boosting.
+
+Random Forest dan Extra Trees menggunakan 200 pohon. Jumlah pohon merupakan pengaturan model, bukan jumlah sampel.
+
+Extra Trees adalah gabungan banyak pohon keputusan dengan pemilihan pemisahan yang diacak. Karena itu, Extra Trees berbeda dari satu Decision Tree.
+
+Validasi silang dilakukan dalam tiga fold pada **144 polygon training**. Pembagian fold dilakukan berdasarkan polygon, lalu piksel mengikuti kelompok polygonnya.
+
+Pada pelatihan, bobot piksel diatur agar setiap polygon memiliki total bobot yang sama.
+
+Prediksi polygon ditentukan dari rata-rata probabilitas kelas seluruh piksel sampelnya:
 
 $$
-40 \text{ poligon sawah}
-+
-40 \text{ poligon non-sawah}
-=
-80 \text{ poligon training}
+\bar{p}_{g,c} = \frac{1}{n_g}\sum_{i=1}^{n_g}p_{i,c}
 $$
 
-Piksel di dalam poligon tidak dijadikan baris training secara individual. Piksel valid di dalam setiap poligon digunakan untuk menghitung nilai rata-rata band.
-
-Alurnya adalah:
-
 $$
-\text{Piksel dalam poligon}
-\rightarrow
-\text{Rata-rata band}
-\rightarrow
-\text{Satu baris sampel}
+\hat{y}_g = \operatorname{argmax}_{c}\bar{p}_{g,c}
 $$
 
-| Komponen | Jumlah atau Penggunaan |
-|---|---|
-| Poligon sawah training | 40 poligon |
-| Poligon non-sawah training | 40 poligon |
-| Total poligon training | 80 poligon |
-| Piksel training individual | Tidak dijadikan baris terpisah |
-| Penggunaan piksel | Dihitung rata-rata per poligon |
-| Baris data training | 80 baris |
-| Fitur setiap baris | B02, B03, B04, B08, dan NDVI |
+Keterangan:
 
-Jumlah piksel pada setiap poligon dapat berbeda karena ukuran dan bentuk poligon tidak selalu sama.
+- $g$ adalah polygon.
+- $c$ adalah kelas.
+- $n_g$ adalah jumlah piksel sampel pada polygon.
+- $p_{i,c}$ adalah probabilitas kelas $c$ untuk piksel $i$.
+- $\hat{y}_g$ adalah kelas prediksi polygon.
 
-## 7. Algoritma Random Forest
+## 10. Perbandingan Model
 
-Klasifikasi dilakukan menggunakan **Random Forest Classifier**.
+Hasil berikut merupakan evaluasi validasi silang pada data training.
 
-Random Forest membentuk beberapa pohon keputusan. Hasil klasifikasi akhir ditentukan berdasarkan keputusan terbanyak dari seluruh pohon tersebut.
+| Model | Rata-rata Accuracy Polygon | Standar Deviasi Accuracy | Macro F1 Polygon | Accuracy Piksel |
+|---|---:|---:|---:|---:|
+| Extra Trees | 79,86% | 4,34 poin persentase | 0,796857 | 75,00% |
+| Random Forest | 79,86% | 4,34 poin persentase | 0,796596 | 75,08% |
+| Hist Gradient Boosting | 78,47% | 2,41 poin persentase | 0,782172 | 74,51% |
 
-Kode yang digunakan adalah:
+Extra Trees dan Random Forest memperoleh rata-rata accuracy polygon yang sama. **Extra Trees dipilih karena macro F1 polygon sedikit lebih tinggi.**
 
-```python
-import pandas as pd
+Model terpilih kemudian dilatih ulang menggunakan seluruh data training dan dievaluasi pada data testing.
 
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import (
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
-)
-from sklearn.model_selection import train_test_split
+Pemilihan dilakukan berdasarkan hasil validasi training. Extra Trees merupakan model terbaik di antara konfigurasi yang dicoba dengan kriteria pemilihan tersebut.
 
+## 11. Hasil Testing
 
-data_sampel = pd.read_csv(
-    "Sampel_Sentinel2_Sawah_NonSawah.csv"
-)
+### 11.1 Evaluasi Polygon
 
-daftar_fitur = [
-    "B02",
-    "B03",
-    "B04",
-    "B08",
-    "NDVI",
-]
+Model Extra Trees memperoleh hasil berikut pada 36 polygon testing:
 
-X = data_sampel[daftar_fitur]
-y = data_sampel["kelas"]
-
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.20,
-    random_state=42,
-    stratify=y,
-)
-
-
-model = RandomForestClassifier(
-    n_estimators=100,
-    random_state=42,
-)
-
-model.fit(
-    X_train,
-    y_train,
-)
-
-hasil_prediksi = model.predict(
-    X_test
-)
-
-
-akurasi = accuracy_score(
-    y_test,
-    hasil_prediksi,
-)
-
-laporan = classification_report(
-    y_test,
-    hasil_prediksi,
-)
-
-matriks = confusion_matrix(
-    y_test,
-    hasil_prediksi,
-)
-
-
-print("Jumlah fitur:", len(daftar_fitur))
-print("Jumlah data training:", len(X_train))
-print("Jumlah data testing:", len(X_test))
-print("Akurasi:", akurasi)
-print(laporan)
-print(matriks)
-```
-
-## 8. Tampilan Data Training
-
-Data training merupakan 80 sampel yang dipilih dari keseluruhan 100 sampel.
-
-Kode berikut digunakan untuk menampilkan seluruh data training pada web:
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-import pandas as pd
-
-from sklearn.model_selection import train_test_split
-
-
-data_sampel = pd.read_csv(
-    "Sampel_Sentinel2_Sawah_NonSawah.csv"
-)
-
-daftar_fitur = [
-    "B02",
-    "B03",
-    "B04",
-    "B08",
-    "NDVI",
-]
-
-X = data_sampel[daftar_fitur]
-y = data_sampel["kelas"]
-
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.20,
-    random_state=42,
-    stratify=y,
-)
-
-
-data_training = X_train.copy()
-data_training["kelas"] = y_train
-
-data_training = data_training.reset_index(
-    drop=True
-)
-
-data_training.index = (
-    data_training.index + 1
-)
-
-data_training.index.name = "Nomor"
-
-pd.set_option(
-    "display.max_rows",
-    100,
-)
-
-
-print(
-    "Jumlah data training:",
-    len(data_training),
-)
-
-display(data_training)
-```
-
-Ringkasan data training adalah:
-
-| Komponen | Jumlah |
+| Metrik | Hasil |
 |---|---:|
-| Data training sawah | 40 sampel |
-| Data training non-sawah | 40 sampel |
-| Total data training | 80 sampel |
-| Jumlah fitur | 5 fitur |
+| Accuracy polygon | 83,33% |
+| Macro F1 polygon | 0,8302 |
+| Polygon benar | 30 |
+| Polygon salah | 6 |
 
-Setiap baris data training merupakan hasil rata-rata piksel dalam satu poligon.
-
-## 9. Hasil Klasifikasi
-
-Hasil pengujian memperoleh akurasi sebesar:
+Rumus accuracy:
 
 $$
-\text{Akurasi}
-=
-\frac{\text{Prediksi benar}}
-{\text{Jumlah data testing}}
-\times 100\%
+Accuracy = \frac{\text{Jumlah prediksi benar}}{\text{Jumlah sampel uji}}
+$$
+
+Dalam persen:
+
+$$
+Accuracy = \frac{30}{36}\times100\% = 83{,}33\%
+$$
+
+### 11.2 Evaluasi Piksel
+
+| Metrik | Hasil |
+|---|---:|
+| Jumlah piksel testing | 8.177 |
+| Accuracy piksel | 81,67% |
+| Balanced accuracy piksel | 77,24% |
+| Macro F1 piksel | 0,7921 |
+
+Precision dan recall dihitung sebagai:
+
+$$
+Precision = \frac{TP}{TP+FP}
 $$
 
 $$
-\text{Akurasi}
-=
-\frac{19}{20}
-\times 100\%
-=
-95\%
+Recall = \frac{TP}{TP+FN}
 $$
 
-Ringkasan hasil prediksi adalah:
+$$
+F1 = \frac{2\times Precision\times Recall}{Precision+Recall}
+$$
 
-| Kelas | Data Uji | Prediksi Benar | Prediksi Salah |
-|---|---:|---:|---:|
-| Non-sawah | 10 | 10 | 0 |
-| Sawah | 10 | 9 | 1 |
-| Total | 20 | 19 | 1 |
+Keterangan untuk setiap kelas:
 
-Nilai evaluasi setiap kelas adalah:
+- $TP$: sampel kelas tersebut yang diprediksi dengan benar.
+- $FP$: sampel kelas lain yang diprediksi sebagai kelas tersebut.
+- $FN$: sampel kelas tersebut yang diprediksi sebagai kelas lain.
 
-| Kelas | Precision | Recall | F1-Score |
-|---|---:|---:|---:|
-| Non-sawah | 0.91 | 1.00 | 0.95 |
-| Sawah | 1.00 | 0.90 | 0.95 |
+Macro F1 adalah rata-rata F1 seluruh kelas tanpa pembobotan jumlah sampel:
 
-```{figure} _static/Confusion_Matrix_Sawah_NonSawah.png
+$$
+Macro\ F1 = \frac{1}{K}\sum_{c=1}^{K}F1_c
+$$
+
+Balanced accuracy adalah rata-rata recall seluruh kelas:
+
+$$
+Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
+$$
+
+Pada penelitian ini, $K=6$.
+
+Accuracy piksel dan accuracy polygon dihitung pada unit yang berbeda sehingga nilainya dapat berbeda.
+
+### 11.3 Confusion Matrix Polygon
+
+```{figure} _static/confusion_matrix_polygon.png
 ---
-width: 70%
-name: confusion-matrix-sawah
+width: 90%
+name: confusion-matrix-polygon
 ---
-Confusion matrix hasil klasifikasi sawah dan non-sawah.
+Confusion matrix model Extra Trees pada 36 polygon testing.
 ```
 
-Confusion matrix menunjukkan bahwa 10 sampel non-sawah diprediksi dengan benar. Pada kelas sawah, sembilan sampel diprediksi dengan benar dan satu sampel diprediksi sebagai non-sawah.
+Baris menunjukkan kelas acuan, sedangkan kolom menunjukkan kelas prediksi.
 
-## 10. Peta Hasil Klasifikasi
+Angka pada diagonal menunjukkan prediksi benar. Angka di luar diagonal menunjukkan kesalahan klasifikasi.
 
-Peta berikut menampilkan hasil klasifikasi sawah dan non-sawah menggunakan Random Forest.
+Sebanyak **30 dari 36 polygon testing** diprediksi dengan benar, sedangkan **enam polygon** diprediksi sebagai kelas lain.
+
+### 11.4 Confusion Matrix Piksel
+
+```{figure} _static/confusion_matrix_piksel.png
+---
+width: 90%
+name: confusion-matrix-piksel
+---
+Confusion matrix model Extra Trees pada 8.177 piksel testing.
+```
+
+Evaluasi ini dihitung pada tingkat piksel. Accuracy piksel sebesar **81,67%**, balanced accuracy sebesar **77,24%**, dan macro F1 sebesar **0,7921**.
+
+## 12. Peta Hasil Klasifikasi
+
+Peta berikut menampilkan prediksi kelas pada 180 lokasi sampel menggunakan Folium, yang menghasilkan peta berbasis Leaflet.
+
+Latar utama adalah **Google Hybrid**, yaitu citra satelit Google dengan label lokasi. **Esri Satellite** tersedia sebagai pilihan latar tambahan.
 
 <iframe
-    src="_static/peta_klasifikasi_interaktif.html"
+    src="_static/peta_klasifikasi_sentinel.html"
     width="100%"
-    height="700"
+    height="800"
     style="border: 1px solid #cccccc; border-radius: 8px;"
-    loading="lazy">
+    loading="lazy"
+    title="Peta Klasifikasi Lahan Jawa Timur">
 </iframe>
 
-Peta dapat digeser, diperbesar, dan diperkecil. Kontrol layer dapat digunakan untuk menampilkan atau menyembunyikan hasil klasifikasi.
+Warna pada polygon dan penanda menunjukkan kelas hasil prediksi model Extra Trees.
 
-Ringkasan hasil akhir adalah:
+| Kelas Prediksi | Jumlah Polygon |
+|---|---:|
+| Sawah | 30 |
+| Bangunan | 32 |
+| Mangrove | 32 |
+| Lahan Hijau | 28 |
+| Laut | 28 |
+| Danau | 30 |
+| **Total** | **180** |
 
-| Keterangan | Hasil |
+Jumlah hasil prediksi dapat berbeda dari jumlah label acuan. Label acuan berjumlah 30 polygon setiap kelas, sedangkan kelas prediksi ditentukan oleh model.
+
+Kontrol layer menyediakan:
+
+- Enam layer kelas hasil prediksi.
+- **Sorot Data Uji**, untuk menandai 36 polygon testing.
+- **Salah Klasifikasi Testing**, untuk menandai enam polygon testing yang salah dengan penanda oranye.
+- **Batas sebaran sampel (bbox)**, untuk menampilkan kotak batas sebaran lokasi sampel.
+
+Kotak bbox menunjukkan batas sebaran sampel, bukan batas administrasi Jawa Timur.
+
+Perbesar peta untuk melihat bentuk polygon, lalu klik sampel untuk membaca identitas, kelas acuan, kelas prediksi, pembagian data, probabilitas model, dan kesesuaian prediksi.
+
+Peta menampilkan hasil pada lokasi sampel, bukan klasifikasi seluruh tutupan lahan Jawa Timur. Accuracy 83,33% berasal dari evaluasi 36 polygon testing, bukan seluruh 180 polygon pada peta.
+
+Latar Google Hybrid dimuat menggunakan tile **XYZ**. Implementasi ini menampilkan satelit Google melalui Folium/Leaflet, tetapi secara teknis layanan tile XYZ berbeda dari protokol WMS.
+
+## 13. File dan Kode Pengolahan
+
+| File | Fungsi |
 |---|---|
-| Algoritma | Random Forest Classifier |
-| Poligon awal | 100 poligon |
-| Poligon training | 80 poligon |
-| Poligon testing | 20 poligon |
-| Jumlah fitur | 5 fitur |
-| Akurasi | 95% |
-| Kelas | Sawah dan Non-sawah |
+| PSD_6_Kelas_Gabungan.geojson | Polygon dan label acuan |
+| unduh_sentinel_semua.py | Pengunduhan citra setiap sampel |
+| ekstraksi_fitur_sentinel.py | Penyaringan piksel dan ekstraksi fitur |
+| klasifikasi_sentinel.py | Pembagian data, eksperimen model, dan evaluasi |
+| buat_peta_hasil.py | Pembuatan peta hasil prediksi |
+| app.py | Aplikasi sistem informasi klasifikasi lahan di Streamlit |
+| requirements.txt | Daftar paket Python yang diperlukan aplikasi |
+| hasil_ekstraksi/dataset_piksel_sentinel.csv | Dataset 13 fitur per piksel |
+| hasil_ekstraksi/fitur_polygon_sentinel.csv | Ringkasan statistik fitur per polygon |
+| hasil_klasifikasi/perbandingan_model.csv | Hasil perbandingan model |
+| hasil_klasifikasi/prediksi_peta_polygon.csv | Prediksi dan pembagian data pada 180 polygon |
+| hasil_klasifikasi/hasil_prediksi_polygon.geojson | Geometri polygon beserta hasil prediksi untuk peta |
+| hasil_klasifikasi/hasil_evaluasi.json | Ringkasan evaluasi |
+| hasil_klasifikasi/model_terbaik.joblib | Model terpilih dan informasi fitur |
+| _static/confusion_matrix_polygon.png | Gambar evaluasi polygon |
+| _static/confusion_matrix_piksel.png | Gambar evaluasi piksel |
+| _static/peta_klasifikasi_sentinel.html | Peta interaktif pada web statis |
 
-## 11. Kesimpulan
+Kode pengolahan dijalankan di VS Code. Halaman web statis menyajikan proses dan hasil yang sudah diperoleh.
 
-Sebanyak 100 poligon digunakan, terdiri atas 50 poligon sawah dan 50 poligon non-sawah.
+## 14. Deployment Sistem Informasi
 
-Data training terdiri atas 80 poligon, yaitu 40 sawah dan 40 non-sawah. Data testing terdiri atas 20 poligon, yaitu 10 sawah dan 10 non-sawah.
+Sistem informasi klasifikasi lahan dibuat menggunakan **Streamlit** dan dideploy melalui **Streamlit Community Cloud**.
 
-Setiap poligon dipadukan dengan Sentinel-2 L2A untuk memperoleh rata-rata B02, B03, B04, dan B08. NDVI dihitung menggunakan B08 dan B04.
+[Buka aplikasi klasifikasi lahan di Streamlit](https://riska-klasifikasi-lahan-jatim.streamlit.app/)
 
-Jumlah fitur yang digunakan adalah lima fitur, yaitu B02, B03, B04, B08, dan NDVI.
+Aplikasi menyediakan empat tab:
 
-Algoritma Random Forest memperoleh akurasi sebesar 95%, dengan 19 prediksi benar dari 20 data testing.
+| Tab | Isi |
+|---|---|
+| Eksplorasi Data | Jumlah polygon per kelas, distribusi kelas, jumlah piksel, contoh dataset, missing value, serta statistik fitur |
+| Peta Spasial | Peta hasil klasifikasi menggunakan Folium/Leaflet dengan latar Google Hybrid dan pilihan Esri Satellite |
+| Model Extra Trees | Pembagian training/testing, perbandingan model, metrik evaluasi, dan confusion matrix |
+| Prediksi Data Baru | Form input reflektansi 10 band Sentinel-2A untuk menghasilkan prediksi kelas lahan |
 
-Peta sampel dan peta hasil klasifikasi ditampilkan secara interaktif agar persebaran sawah dan non-sawah dapat diamati berdasarkan lokasinya.
+Filter kelas pada sidebar berlaku untuk hasil prediksi di tab **Peta Spasial**.
+
+Aplikasi memuat model Extra Trees yang telah dilatih dari `model_terbaik.joblib`. Model dipilih berdasarkan validasi silang pada data training, kemudian dievaluasi pada data testing.
+
+Pada tab **Prediksi Data Baru**, pengguna memasukkan nilai reflektansi 10 band. Aplikasi menghitung NDVI, NDWI, dan NDBI secara otomatis sehingga input model tetap terdiri dari 13 fitur.
+
+Nilai awal form merupakan median fitur dataset sebagai contoh pengisian. Untuk memprediksi citra baru, nilai tersebut diganti dengan reflektansi piksel citra yang ingin dianalisis.
+
+Hasil form berupa prediksi satu piksel dan probabilitas untuk setiap kelas. Probabilitas tersebut berbeda dari accuracy testing. Prediksi polygon pada peta menggunakan rata-rata probabilitas piksel sampel di dalam polygon.
+
+**Web statis Jupyter Book** memuat dokumentasi pengumpulan data, data understanding, band Sentinel-2A, preprocessing, ekstraksi fitur, pembagian data, eksperimen model, evaluasi, dan peta.
+
+[Buka web statis PSD](https://riskanana06.github.io/PSD/)
+
+Web statis memuat proses penelitian dan link aplikasi Streamlit. Aplikasi Streamlit menjalankan sistem informasi interaktif secara terpisah.
+
+## 15. Referensi
+
+- Badan Standardisasi Nasional. SNI 7645-1:2014, Klasifikasi penutup lahan — Bagian 1: Skala kecil dan menengah. [Katalog BSN](https://pesta.bsn.go.id/produk/by_ics/5?ics_no=07&key=).
+- Copernicus Data Space Ecosystem. [Sentinel-2 Level-2A](https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/S2L2A.html).
+- Copernicus Data Space Ecosystem. [Sentinel-2 Level-1C](https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/S2L1C.html).
+- Scikit-learn. [Ensemble methods](https://scikit-learn.org/1.6/modules/ensemble.html).
