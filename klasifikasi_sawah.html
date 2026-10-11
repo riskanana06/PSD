@@ -415,7 +415,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">12. Peta Hasil Klasifikasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dan-kode-pengolahan">13. File dan Kode Pengolahan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-sistem-informasi">14. Status Sistem Informasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">14. Deployment Sistem Informasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">15. Referensi</a></li>
 </ul>
             </nav>
@@ -544,17 +544,17 @@ document.write(`
 <td><p>Pantulan merah untuk analisis vegetasi</p></td>
 </tr>
 <tr class="row-even"><td><p>B05</p></td>
-<td><p>Red edge</p></td>
+<td><p>Red edge 1</p></td>
 <td class="text-right"><p>20 m</p></td>
 <td><p>Karakteristik vegetasi</p></td>
 </tr>
 <tr class="row-odd"><td><p>B06</p></td>
-<td><p>Red edge</p></td>
+<td><p>Red edge 2</p></td>
 <td class="text-right"><p>20 m</p></td>
 <td><p>Karakteristik vegetasi</p></td>
 </tr>
 <tr class="row-even"><td><p>B07</p></td>
-<td><p>Red edge</p></td>
+<td><p>Red edge 3</p></td>
 <td class="text-right"><p>20 m</p></td>
 <td><p>Karakteristik vegetasi</p></td>
 </tr>
@@ -591,8 +591,7 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Band reflektansi yang digunakan sebagai fitur adalah:</p>
-<p><code class="docutils literal notranslate"><span class="pre">B02</span></code>, <code class="docutils literal notranslate"><span class="pre">B03</span></code>, <code class="docutils literal notranslate"><span class="pre">B04</span></code>, <code class="docutils literal notranslate"><span class="pre">B05</span></code>, <code class="docutils literal notranslate"><span class="pre">B06</span></code>, <code class="docutils literal notranslate"><span class="pre">B07</span></code>, <code class="docutils literal notranslate"><span class="pre">B08</span></code>, <code class="docutils literal notranslate"><span class="pre">B8A</span></code>, <code class="docutils literal notranslate"><span class="pre">B11</span></code>, dan <code class="docutils literal notranslate"><span class="pre">B12</span></code>.</p>
+<p>Band reflektansi yang digunakan sebagai fitur adalah <code class="docutils literal notranslate"><span class="pre">B02</span></code>, <code class="docutils literal notranslate"><span class="pre">B03</span></code>, <code class="docutils literal notranslate"><span class="pre">B04</span></code>, <code class="docutils literal notranslate"><span class="pre">B05</span></code>, <code class="docutils literal notranslate"><span class="pre">B06</span></code>, <code class="docutils literal notranslate"><span class="pre">B07</span></code>, <code class="docutils literal notranslate"><span class="pre">B08</span></code>, <code class="docutils literal notranslate"><span class="pre">B8A</span></code>, <code class="docutils literal notranslate"><span class="pre">B11</span></code>, dan <code class="docutils literal notranslate"><span class="pre">B12</span></code>.</p>
 <p>Citra diunduh pada grid 10 meter dalam koordinat UTM. Band yang memiliki resolusi asli 20 meter diresampling ke grid tersebut. Resampling tidak menambah detail spasial asli band.</p>
 <p>Dua layer tambahan digunakan untuk pemeriksaan kualitas:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -619,7 +618,7 @@ document.write(`
 <ul class="simple">
 <li><p>Berada di dalam polygon sampel.</p></li>
 <li><p>Memiliki <code class="docutils literal notranslate"><span class="pre">dataMask</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p></li>
-<li><p>Memiliki nilai band yang valid.</p></li>
+<li><p>Memiliki nilai band dan fitur yang valid.</p></li>
 <li><p>Tidak termasuk kelas SCL yang dikeluarkan.</p></li>
 </ul>
 <p>Kelas SCL yang dikeluarkan adalah <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">10</span></code>, dan <code class="docutils literal notranslate"><span class="pre">11</span></code>, yang mencakup no data, piksel rusak atau jenuh, bayangan awan, awan, cirrus, serta salju atau es.</p>
@@ -645,13 +644,13 @@ document.write(`
 <td><p>Reflektansi band merah</p></td>
 </tr>
 <tr class="row-odd"><td><p>B05</p></td>
-<td><p>Reflektansi red edge</p></td>
+<td><p>Reflektansi red edge 1</p></td>
 </tr>
 <tr class="row-even"><td><p>B06</p></td>
-<td><p>Reflektansi red edge</p></td>
+<td><p>Reflektansi red edge 2</p></td>
 </tr>
 <tr class="row-odd"><td><p>B07</p></td>
-<td><p>Reflektansi red edge</p></td>
+<td><p>Reflektansi red edge 3</p></td>
 </tr>
 <tr class="row-even"><td><p>B08</p></td>
 <td><p>Reflektansi inframerah dekat</p></td>
@@ -918,7 +917,7 @@ NDBI = \frac{B11-B08}{B11+B08}
 </div>
 <p>Extra Trees dan Random Forest memperoleh rata-rata accuracy polygon yang sama. <strong>Extra Trees dipilih karena macro F1 polygon sedikit lebih tinggi.</strong></p>
 <p>Model terpilih kemudian dilatih ulang menggunakan seluruh data training dan dievaluasi pada data testing.</p>
-<p>Pemilihan dilakukan berdasarkan hasil validasi training. Extra Trees merupakan model terbaik di antara konfigurasi yang dicoba pada eksperimen ini.</p>
+<p>Pemilihan dilakukan berdasarkan hasil validasi training. Extra Trees merupakan model terbaik di antara konfigurasi yang dicoba dengan kriteria pemilihan tersebut.</p>
 </section>
 <section id="hasil-testing">
 <h2>11. Hasil Testing<a class="headerlink" href="#hasil-testing" title="Link to this heading">#</a></h2>
@@ -952,6 +951,7 @@ NDBI = \frac{B11-B08}{B11+B08}
 \[
 Accuracy = \frac{\text{Jumlah prediksi benar}}{\text{Jumlah sampel uji}}
 \]</div>
+<p>Dalam persen:</p>
 <div class="math notranslate nohighlight">
 \[
 Accuracy = \frac{30}{36}\times100\% = 83{,}33\%
@@ -1039,6 +1039,7 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 <section id="peta-hasil-klasifikasi">
 <h2>12. Peta Hasil Klasifikasi<a class="headerlink" href="#peta-hasil-klasifikasi" title="Link to this heading">#</a></h2>
 <p>Peta berikut menampilkan prediksi kelas pada 180 lokasi sampel menggunakan Folium, yang menghasilkan peta berbasis Leaflet.</p>
+<p>Latar utama adalah <strong>Google Hybrid</strong>, yaitu citra satelit Google dengan label lokasi. <strong>Esri Satellite</strong> tersedia sebagai pilihan latar tambahan.</p>
 <iframe
     src="_static/peta_klasifikasi_sentinel.html"
     width="100%"
@@ -1047,12 +1048,50 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
     loading="lazy"
     title="Peta Klasifikasi Lahan Jawa Timur">
 </iframe>
-<p>Pilih <strong>Satelit Esri</strong> pada kontrol layer untuk melihat latar citra satelit.</p>
-<p>Warna menunjukkan kelas prediksi. Layer training dan testing dapat ditampilkan atau disembunyikan. Layer label acuan dapat diaktifkan untuk perbandingan.</p>
-<p>Lingkaran testing dengan bingkai merah muda menunjukkan prediksi yang berbeda dari label acuan.</p>
-<p>Perbesar peta untuk melihat bentuk polygon, lalu klik sampel untuk membaca informasi kelas.</p>
-<p>Peta ini menampilkan lokasi sampel, bukan klasifikasi seluruh tutupan lahan Jawa Timur.</p>
-<p>Latar yang digunakan saat ini adalah Esri World Imagery. Penggunaan latar ini belum memenuhi secara khusus permintaan WMS atau satelit Google Maps.</p>
+<p>Warna pada polygon dan penanda menunjukkan kelas hasil prediksi model Extra Trees.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas Prediksi</p></th>
+<th class="head text-right"><p>Jumlah Polygon</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sawah</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bangunan</p></td>
+<td class="text-right"><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lahan Hijau</p></td>
+<td class="text-right"><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>Laut</p></td>
+<td class="text-right"><p>28</p></td>
+</tr>
+<tr class="row-odd"><td><p>Danau</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>180</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jumlah hasil prediksi dapat berbeda dari jumlah label acuan. Label acuan berjumlah 30 polygon setiap kelas, sedangkan kelas prediksi ditentukan oleh model.</p>
+<p>Kontrol layer menyediakan:</p>
+<ul class="simple">
+<li><p>Enam layer kelas hasil prediksi.</p></li>
+<li><p><strong>Sorot Data Uji</strong>, untuk menandai 36 polygon testing.</p></li>
+<li><p><strong>Salah Klasifikasi Testing</strong>, untuk menandai enam polygon testing yang salah dengan penanda oranye.</p></li>
+<li><p><strong>Batas sebaran sampel (bbox)</strong>, untuk menampilkan kotak batas sebaran lokasi sampel.</p></li>
+</ul>
+<p>Kotak bbox menunjukkan batas sebaran sampel, bukan batas administrasi Jawa Timur.</p>
+<p>Perbesar peta untuk melihat bentuk polygon, lalu klik sampel untuk membaca identitas, kelas acuan, kelas prediksi, pembagian data, probabilitas model, dan kesesuaian prediksi.</p>
+<p>Peta menampilkan hasil pada lokasi sampel, bukan klasifikasi seluruh tutupan lahan Jawa Timur. Accuracy 83,33% berasal dari evaluasi 36 polygon testing, bukan seluruh 180 polygon pada peta.</p>
+<p>Latar Google Hybrid dimuat menggunakan tile <strong>XYZ</strong>. Implementasi ini menampilkan satelit Google melalui Folium/Leaflet, tetapi secara teknis layanan tile XYZ berbeda dari protokol WMS.</p>
 </section>
 <section id="file-dan-kode-pengolahan">
 <h2>13. File dan Kode Pengolahan<a class="headerlink" href="#file-dan-kode-pengolahan" title="Link to this heading">#</a></h2>
@@ -1078,6 +1117,12 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 <tr class="row-even"><td><p>buat_peta_hasil.py</p></td>
 <td><p>Pembuatan peta hasil prediksi</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference external" href="http://app.py">app.py</a></p></td>
+<td><p>Aplikasi sistem informasi klasifikasi lahan di Streamlit</p></td>
+</tr>
+<tr class="row-even"><td><p>requirements.txt</p></td>
+<td><p>Daftar paket Python yang diperlukan aplikasi</p></td>
+</tr>
 <tr class="row-odd"><td><p>hasil_ekstraksi/dataset_piksel_sentinel.csv</p></td>
 <td><p>Dataset 13 fitur per piksel</p></td>
 </tr>
@@ -1087,37 +1132,67 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 <tr class="row-odd"><td><p>hasil_klasifikasi/perbandingan_model.csv</p></td>
 <td><p>Hasil perbandingan model</p></td>
 </tr>
-<tr class="row-even"><td><p>hasil_klasifikasi/prediksi_testing_polygon.csv</p></td>
-<td><p>Prediksi polygon testing</p></td>
+<tr class="row-even"><td><p>hasil_klasifikasi/prediksi_peta_polygon.csv</p></td>
+<td><p>Prediksi dan pembagian data pada 180 polygon</p></td>
 </tr>
-<tr class="row-odd"><td><p>hasil_klasifikasi/hasil_evaluasi.json</p></td>
+<tr class="row-odd"><td><p>hasil_klasifikasi/hasil_prediksi_polygon.geojson</p></td>
+<td><p>Geometri polygon beserta hasil prediksi untuk peta</p></td>
+</tr>
+<tr class="row-even"><td><p>hasil_klasifikasi/hasil_evaluasi.json</p></td>
 <td><p>Ringkasan evaluasi</p></td>
 </tr>
-<tr class="row-even"><td><p>hasil_klasifikasi/model_terbaik.joblib</p></td>
+<tr class="row-odd"><td><p>hasil_klasifikasi/model_terbaik.joblib</p></td>
 <td><p>Model terpilih dan informasi fitur</p></td>
 </tr>
-<tr class="row-odd"><td><p>_static/confusion_matrix_polygon.png</p></td>
+<tr class="row-even"><td><p>_static/confusion_matrix_polygon.png</p></td>
 <td><p>Gambar evaluasi polygon</p></td>
 </tr>
-<tr class="row-even"><td><p>_static/confusion_matrix_piksel.png</p></td>
+<tr class="row-odd"><td><p>_static/confusion_matrix_piksel.png</p></td>
 <td><p>Gambar evaluasi piksel</p></td>
 </tr>
-<tr class="row-odd"><td><p>_static/peta_klasifikasi_sentinel.html</p></td>
-<td><p>Peta interaktif</p></td>
+<tr class="row-even"><td><p>_static/peta_klasifikasi_sentinel.html</p></td>
+<td><p>Peta interaktif pada web statis</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>Kode pengolahan dijalankan di VS Code. Halaman web statis menyajikan proses dan hasil yang sudah diperoleh.</p>
 </section>
-<section id="status-sistem-informasi">
-<h2>14. Status Sistem Informasi<a class="headerlink" href="#status-sistem-informasi" title="Link to this heading">#</a></h2>
-<p>Peta hasil klasifikasi dan dokumentasi proses pengolahan telah
-ditampilkan pada web statis PSD.</p>
-<p>Aplikasi pembungkus web PSD telah di-deploy ke Streamlit Community
-Cloud. Aplikasi ini menampilkan web PSD melalui iframe, sehingga
-konten dan peta tetap dimuat dari GitHub Pages.</p>
-<p><a class="reference external" href="https://riska-klasifikasi-lahan-jatim.streamlit.app/">Buka aplikasi di Streamlit</a></p>
+<section id="deployment-sistem-informasi">
+<h2>14. Deployment Sistem Informasi<a class="headerlink" href="#deployment-sistem-informasi" title="Link to this heading">#</a></h2>
+<p>Sistem informasi klasifikasi lahan dibuat menggunakan <strong>Streamlit</strong> dan dideploy melalui <strong>Streamlit Community Cloud</strong>.</p>
+<p><a class="reference external" href="https://riska-klasifikasi-lahan-jatim.streamlit.app/">Buka aplikasi klasifikasi lahan di Streamlit</a></p>
+<p>Aplikasi menyediakan empat tab:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tab</p></th>
+<th class="head"><p>Isi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Eksplorasi Data</p></td>
+<td><p>Jumlah polygon per kelas, distribusi kelas, jumlah piksel, contoh dataset, missing value, serta statistik fitur</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peta Spasial</p></td>
+<td><p>Peta hasil klasifikasi menggunakan Folium/Leaflet dengan latar Google Hybrid dan pilihan Esri Satellite</p></td>
+</tr>
+<tr class="row-even"><td><p>Model Extra Trees</p></td>
+<td><p>Pembagian training/testing, perbandingan model, metrik evaluasi, dan confusion matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prediksi Data Baru</p></td>
+<td><p>Form input reflektansi 10 band Sentinel-2A untuk menghasilkan prediksi kelas lahan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Filter kelas pada sidebar berlaku untuk hasil prediksi di tab <strong>Peta Spasial</strong>.</p>
+<p>Aplikasi memuat model Extra Trees yang telah dilatih dari <code class="docutils literal notranslate"><span class="pre">model_terbaik.joblib</span></code>. Model dipilih berdasarkan validasi silang pada data training, kemudian dievaluasi pada data testing.</p>
+<p>Pada tab <strong>Prediksi Data Baru</strong>, pengguna memasukkan nilai reflektansi 10 band. Aplikasi menghitung NDVI, NDWI, dan NDBI secara otomatis sehingga input model tetap terdiri dari 13 fitur.</p>
+<p>Nilai awal form merupakan median fitur dataset sebagai contoh pengisian. Untuk memprediksi citra baru, nilai tersebut diganti dengan reflektansi piksel citra yang ingin dianalisis.</p>
+<p>Hasil form berupa prediksi satu piksel dan probabilitas untuk setiap kelas. Probabilitas tersebut berbeda dari accuracy testing. Prediksi polygon pada peta menggunakan rata-rata probabilitas piksel sampel di dalam polygon.</p>
+<p><strong>Web statis Jupyter Book</strong> memuat dokumentasi pengumpulan data, data understanding, band Sentinel-2A, preprocessing, ekstraksi fitur, pembagian data, eksperimen model, evaluasi, dan peta.</p>
+<p><a class="reference external" href="https://riskanana06.github.io/PSD/">Buka web statis PSD</a></p>
+<p>Web statis memuat proses penelitian dan link aplikasi Streamlit. Aplikasi Streamlit menjalankan sistem informasi interaktif secara terpisah.</p>
 </section>
 <section id="referensi">
 <h2>15. Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
@@ -1215,7 +1290,7 @@ konten dan peta tetap dimuat dari GitHub Pages.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">12. Peta Hasil Klasifikasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dan-kode-pengolahan">13. File dan Kode Pengolahan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#status-sistem-informasi">14. Status Sistem Informasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">14. Deployment Sistem Informasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">15. Referensi</a></li>
 </ul>
   </nav></div>

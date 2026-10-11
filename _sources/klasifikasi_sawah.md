@@ -71,9 +71,9 @@ Sentinel-2 memiliki 13 band spektral dengan resolusi spasial asli yang berbeda.
 | B02 | Blue | 10 m | Pantulan pada spektrum biru |
 | B03 | Green | 10 m | Pantulan pada spektrum hijau |
 | B04 | Red | 10 m | Pantulan merah untuk analisis vegetasi |
-| B05 | Red edge | 20 m | Karakteristik vegetasi |
-| B06 | Red edge | 20 m | Karakteristik vegetasi |
-| B07 | Red edge | 20 m | Karakteristik vegetasi |
+| B05 | Red edge 1 | 20 m | Karakteristik vegetasi |
+| B06 | Red edge 2 | 20 m | Karakteristik vegetasi |
+| B07 | Red edge 3 | 20 m | Karakteristik vegetasi |
 | B08 | Near infrared | 10 m | Pantulan inframerah dekat |
 | B8A | Narrow near infrared | 20 m | Inframerah dekat dengan rentang lebih sempit |
 | B09 | Water vapour | 60 m | Informasi uap air atmosfer |
@@ -81,9 +81,7 @@ Sentinel-2 memiliki 13 band spektral dengan resolusi spasial asli yang berbeda.
 | B11 | Shortwave infrared 1 | 20 m | Karakteristik kelembapan dan permukaan |
 | B12 | Shortwave infrared 2 | 20 m | Karakteristik kelembapan dan permukaan |
 
-Band reflektansi yang digunakan sebagai fitur adalah:
-
-`B02`, `B03`, `B04`, `B05`, `B06`, `B07`, `B08`, `B8A`, `B11`, dan `B12`.
+Band reflektansi yang digunakan sebagai fitur adalah `B02`, `B03`, `B04`, `B05`, `B06`, `B07`, `B08`, `B8A`, `B11`, dan `B12`.
 
 Citra diunduh pada grid 10 meter dalam koordinat UTM. Band yang memiliki resolusi asli 20 meter diresampling ke grid tersebut. Resampling tidak menambah detail spasial asli band.
 
@@ -102,7 +100,7 @@ Piksel yang digunakan harus memenuhi kondisi berikut:
 
 - Berada di dalam polygon sampel.
 - Memiliki `dataMask = 1`.
-- Memiliki nilai band yang valid.
+- Memiliki nilai band dan fitur yang valid.
 - Tidak termasuk kelas SCL yang dikeluarkan.
 
 Kelas SCL yang dikeluarkan adalah `0`, `1`, `3`, `8`, `9`, `10`, dan `11`, yang mencakup no data, piksel rusak atau jenuh, bayangan awan, awan, cirrus, serta salju atau es.
@@ -118,9 +116,9 @@ Model menggunakan **13 fitur per piksel**, yaitu 10 band reflektansi dan tiga in
 | B02 | Reflektansi band biru |
 | B03 | Reflektansi band hijau |
 | B04 | Reflektansi band merah |
-| B05 | Reflektansi red edge |
-| B06 | Reflektansi red edge |
-| B07 | Reflektansi red edge |
+| B05 | Reflektansi red edge 1 |
+| B06 | Reflektansi red edge 2 |
+| B07 | Reflektansi red edge 3 |
 | B08 | Reflektansi inframerah dekat |
 | B8A | Reflektansi inframerah dekat sempit |
 | B11 | Reflektansi SWIR 1 |
@@ -282,7 +280,7 @@ Extra Trees dan Random Forest memperoleh rata-rata accuracy polygon yang sama. *
 
 Model terpilih kemudian dilatih ulang menggunakan seluruh data training dan dievaluasi pada data testing.
 
-Pemilihan dilakukan berdasarkan hasil validasi training. Extra Trees merupakan model terbaik di antara konfigurasi yang dicoba pada eksperimen ini.
+Pemilihan dilakukan berdasarkan hasil validasi training. Extra Trees merupakan model terbaik di antara konfigurasi yang dicoba dengan kriteria pemilihan tersebut.
 
 ## 11. Hasil Testing
 
@@ -302,6 +300,8 @@ Rumus accuracy:
 $$
 Accuracy = \frac{\text{Jumlah prediksi benar}}{\text{Jumlah sampel uji}}
 $$
+
+Dalam persen:
 
 $$
 Accuracy = \frac{30}{36}\times100\% = 83{,}33\%
@@ -384,6 +384,8 @@ Evaluasi ini dihitung pada tingkat piksel. Accuracy piksel sebesar **81,67%**, b
 
 Peta berikut menampilkan prediksi kelas pada 180 lokasi sampel menggunakan Folium, yang menghasilkan peta berbasis Leaflet.
 
+Latar utama adalah **Google Hybrid**, yaitu citra satelit Google dengan label lokasi. **Esri Satellite** tersedia sebagai pilihan latar tambahan.
+
 <iframe
     src="_static/peta_klasifikasi_sentinel.html"
     width="100%"
@@ -393,17 +395,34 @@ Peta berikut menampilkan prediksi kelas pada 180 lokasi sampel menggunakan Foliu
     title="Peta Klasifikasi Lahan Jawa Timur">
 </iframe>
 
-Pilih **Satelit Esri** pada kontrol layer untuk melihat latar citra satelit.
+Warna pada polygon dan penanda menunjukkan kelas hasil prediksi model Extra Trees.
 
-Warna menunjukkan kelas prediksi. Layer training dan testing dapat ditampilkan atau disembunyikan. Layer label acuan dapat diaktifkan untuk perbandingan.
+| Kelas Prediksi | Jumlah Polygon |
+|---|---:|
+| Sawah | 30 |
+| Bangunan | 32 |
+| Mangrove | 32 |
+| Lahan Hijau | 28 |
+| Laut | 28 |
+| Danau | 30 |
+| **Total** | **180** |
 
-Lingkaran testing dengan bingkai merah muda menunjukkan prediksi yang berbeda dari label acuan.
+Jumlah hasil prediksi dapat berbeda dari jumlah label acuan. Label acuan berjumlah 30 polygon setiap kelas, sedangkan kelas prediksi ditentukan oleh model.
 
-Perbesar peta untuk melihat bentuk polygon, lalu klik sampel untuk membaca informasi kelas.
+Kontrol layer menyediakan:
 
-Peta ini menampilkan lokasi sampel, bukan klasifikasi seluruh tutupan lahan Jawa Timur.
+- Enam layer kelas hasil prediksi.
+- **Sorot Data Uji**, untuk menandai 36 polygon testing.
+- **Salah Klasifikasi Testing**, untuk menandai enam polygon testing yang salah dengan penanda oranye.
+- **Batas sebaran sampel (bbox)**, untuk menampilkan kotak batas sebaran lokasi sampel.
 
-Latar yang digunakan saat ini adalah Esri World Imagery. Penggunaan latar ini belum memenuhi secara khusus permintaan WMS atau satelit Google Maps.
+Kotak bbox menunjukkan batas sebaran sampel, bukan batas administrasi Jawa Timur.
+
+Perbesar peta untuk melihat bentuk polygon, lalu klik sampel untuk membaca identitas, kelas acuan, kelas prediksi, pembagian data, probabilitas model, dan kesesuaian prediksi.
+
+Peta menampilkan hasil pada lokasi sampel, bukan klasifikasi seluruh tutupan lahan Jawa Timur. Accuracy 83,33% berasal dari evaluasi 36 polygon testing, bukan seluruh 180 polygon pada peta.
+
+Latar Google Hybrid dimuat menggunakan tile **XYZ**. Implementasi ini menampilkan satelit Google melalui Folium/Leaflet, tetapi secara teknis layanan tile XYZ berbeda dari protokol WMS.
 
 ## 13. File dan Kode Pengolahan
 
@@ -414,28 +433,51 @@ Latar yang digunakan saat ini adalah Esri World Imagery. Penggunaan latar ini be
 | ekstraksi_fitur_sentinel.py | Penyaringan piksel dan ekstraksi fitur |
 | klasifikasi_sentinel.py | Pembagian data, eksperimen model, dan evaluasi |
 | buat_peta_hasil.py | Pembuatan peta hasil prediksi |
+| app.py | Aplikasi sistem informasi klasifikasi lahan di Streamlit |
+| requirements.txt | Daftar paket Python yang diperlukan aplikasi |
 | hasil_ekstraksi/dataset_piksel_sentinel.csv | Dataset 13 fitur per piksel |
 | hasil_ekstraksi/fitur_polygon_sentinel.csv | Ringkasan statistik fitur per polygon |
 | hasil_klasifikasi/perbandingan_model.csv | Hasil perbandingan model |
-| hasil_klasifikasi/prediksi_testing_polygon.csv | Prediksi polygon testing |
+| hasil_klasifikasi/prediksi_peta_polygon.csv | Prediksi dan pembagian data pada 180 polygon |
+| hasil_klasifikasi/hasil_prediksi_polygon.geojson | Geometri polygon beserta hasil prediksi untuk peta |
 | hasil_klasifikasi/hasil_evaluasi.json | Ringkasan evaluasi |
 | hasil_klasifikasi/model_terbaik.joblib | Model terpilih dan informasi fitur |
 | _static/confusion_matrix_polygon.png | Gambar evaluasi polygon |
 | _static/confusion_matrix_piksel.png | Gambar evaluasi piksel |
-| _static/peta_klasifikasi_sentinel.html | Peta interaktif |
+| _static/peta_klasifikasi_sentinel.html | Peta interaktif pada web statis |
 
 Kode pengolahan dijalankan di VS Code. Halaman web statis menyajikan proses dan hasil yang sudah diperoleh.
 
-## 14. Status Sistem Informasi
+## 14. Deployment Sistem Informasi
 
-Peta hasil klasifikasi dan dokumentasi proses pengolahan telah
-ditampilkan pada web statis PSD.
+Sistem informasi klasifikasi lahan dibuat menggunakan **Streamlit** dan dideploy melalui **Streamlit Community Cloud**.
 
-Aplikasi pembungkus web PSD telah di-deploy ke Streamlit Community
-Cloud. Aplikasi ini menampilkan web PSD melalui iframe, sehingga
-konten dan peta tetap dimuat dari GitHub Pages.
+[Buka aplikasi klasifikasi lahan di Streamlit](https://riska-klasifikasi-lahan-jatim.streamlit.app/)
 
-[Buka aplikasi di Streamlit](https://riska-klasifikasi-lahan-jatim.streamlit.app/)
+Aplikasi menyediakan empat tab:
+
+| Tab | Isi |
+|---|---|
+| Eksplorasi Data | Jumlah polygon per kelas, distribusi kelas, jumlah piksel, contoh dataset, missing value, serta statistik fitur |
+| Peta Spasial | Peta hasil klasifikasi menggunakan Folium/Leaflet dengan latar Google Hybrid dan pilihan Esri Satellite |
+| Model Extra Trees | Pembagian training/testing, perbandingan model, metrik evaluasi, dan confusion matrix |
+| Prediksi Data Baru | Form input reflektansi 10 band Sentinel-2A untuk menghasilkan prediksi kelas lahan |
+
+Filter kelas pada sidebar berlaku untuk hasil prediksi di tab **Peta Spasial**.
+
+Aplikasi memuat model Extra Trees yang telah dilatih dari `model_terbaik.joblib`. Model dipilih berdasarkan validasi silang pada data training, kemudian dievaluasi pada data testing.
+
+Pada tab **Prediksi Data Baru**, pengguna memasukkan nilai reflektansi 10 band. Aplikasi menghitung NDVI, NDWI, dan NDBI secara otomatis sehingga input model tetap terdiri dari 13 fitur.
+
+Nilai awal form merupakan median fitur dataset sebagai contoh pengisian. Untuk memprediksi citra baru, nilai tersebut diganti dengan reflektansi piksel citra yang ingin dianalisis.
+
+Hasil form berupa prediksi satu piksel dan probabilitas untuk setiap kelas. Probabilitas tersebut berbeda dari accuracy testing. Prediksi polygon pada peta menggunakan rata-rata probabilitas piksel sampel di dalam polygon.
+
+**Web statis Jupyter Book** memuat dokumentasi pengumpulan data, data understanding, band Sentinel-2A, preprocessing, ekstraksi fitur, pembagian data, eksperimen model, evaluasi, dan peta.
+
+[Buka web statis PSD](https://riskanana06.github.io/PSD/)
+
+Web statis memuat proses penelitian dan link aplikasi Streamlit. Aplikasi Streamlit menjalankan sistem informasi interaktif secara terpisah.
 
 ## 15. Referensi
 
