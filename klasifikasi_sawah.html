@@ -411,9 +411,18 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-piksel">11.2 Evaluasi Piksel</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-polygon">11.3 Confusion Matrix Polygon</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-piksel">11.4 Confusion Matrix Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan">12.1 Analisis Hasil Klasifikasi terhadap Kebijakan Penggunaan Lahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sawah-dan-perlindungan-lahan-pertanian">A. Sawah dan Perlindungan Lahan Pertanian</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-bangunan-dan-pemanfaatan-ruang">B. Bangunan dan Pemanfaatan Ruang</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-mangrove-dan-perlindungan-ekosistem-pesisir">C. Mangrove dan Perlindungan Ekosistem Pesisir</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-lahan-hijau-dan-kawasan-vegetasi">D. Lahan Hijau dan Kawasan Vegetasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-laut-danau-dan-perlindungan-badan-air">E. Laut, Danau, dan Perlindungan Badan Air</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ketelitian-hasil-dan-batas-analisis-kebijakan">F. Ketelitian Hasil dan Batas Analisis Kebijakan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">12. Peta Hasil Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-kebijakan">12.2 Sumber Kebijakan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dan-kode-pengolahan">13. File dan Kode Pengolahan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">14. Deployment Sistem Informasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">15. Referensi</a></li>
@@ -1035,63 +1044,62 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 </figure>
 <p>Evaluasi ini dihitung pada tingkat piksel. Accuracy piksel sebesar <strong>81,67%</strong>, balanced accuracy sebesar <strong>77,24%</strong>, dan macro F1 sebesar <strong>0,7921</strong>.</p>
 </section>
+<section id="analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan">
+<h3>12.1 Analisis Hasil Klasifikasi terhadap Kebijakan Penggunaan Lahan<a class="headerlink" href="#analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan" title="Link to this heading">#</a></h3>
+<p>Hasil klasifikasi menunjukkan 30 polygon diprediksi sebagai sawah, 32 bangunan, 32 mangrove, 28 lahan hijau, 28 laut, dan 30 danau. Hasil ini digunakan untuk membahas kaitan karakteristik penutup lahan dengan kebijakan penggunaan ruang di Jawa Timur.</p>
+<p>Acuan tata ruang wilayah kajian adalah <strong>Peraturan Daerah Provinsi Jawa Timur Nomor 10 Tahun 2023 tentang Rencana Tata Ruang Wilayah Provinsi Jawa Timur Tahun 2023–2043</strong>.</p>
+<p>Kelas hasil klasifikasi menggambarkan karakteristik permukaan pada lokasi sampel. Sementara itu, kebijakan tata ruang mengatur peruntukan ruang. Oleh karena itu, kelas hasil prediksi perlu dibandingkan dengan peta kebijakan sebelum digunakan untuk menilai kesesuaian pemanfaatan suatu lokasi.</p>
+<section id="a-sawah-dan-perlindungan-lahan-pertanian">
+<h4>A. Sawah dan Perlindungan Lahan Pertanian<a class="headerlink" href="#a-sawah-dan-perlindungan-lahan-pertanian" title="Link to this heading">#</a></h4>
+<p>Model memprediksi 30 polygon sebagai sawah. Kelas sawah berkaitan dengan <strong>Undang-Undang Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan beserta perubahannya</strong>.</p>
+<p>Identifikasi sawah dapat membantu menyediakan informasi awal tentang lokasi lahan pertanian yang perlu diperiksa dalam pembahasan perlindungan lahan pangan.</p>
+<p>Namun, polygon yang diprediksi sebagai sawah belum otomatis merupakan Lahan Pertanian Pangan Berkelanjutan atau LP2B. Status tersebut memerlukan data penetapan resmi.</p>
+<p>Jumlah prediksi sawah yang sama dengan jumlah label acuan juga tidak berarti semua polygon sawah diprediksi dengan benar. Kesalahan antar kelas dapat saling mengimbangi jumlahnya. Penilaian ketepatan tetap mengacu pada hasil testing dan confusion matrix.</p>
 </section>
-<section id="peta-hasil-klasifikasi">
-<h2>12. Peta Hasil Klasifikasi<a class="headerlink" href="#peta-hasil-klasifikasi" title="Link to this heading">#</a></h2>
-<p>Peta berikut menampilkan prediksi kelas pada 180 lokasi sampel menggunakan Folium, yang menghasilkan peta berbasis Leaflet.</p>
-<p>Latar utama adalah <strong>Google Hybrid</strong>, yaitu citra satelit Google dengan label lokasi. <strong>Esri Satellite</strong> tersedia sebagai pilihan latar tambahan.</p>
-<iframe
-    src="_static/peta_klasifikasi_sentinel.html"
-    width="100%"
-    height="800"
-    style="border: 1px solid #cccccc; border-radius: 8px;"
-    loading="lazy"
-    title="Peta Klasifikasi Lahan Jawa Timur">
-</iframe>
-<p>Warna pada polygon dan penanda menunjukkan kelas hasil prediksi model Extra Trees.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Kelas Prediksi</p></th>
-<th class="head text-right"><p>Jumlah Polygon</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Sawah</p></td>
-<td class="text-right"><p>30</p></td>
-</tr>
-<tr class="row-odd"><td><p>Bangunan</p></td>
-<td class="text-right"><p>32</p></td>
-</tr>
-<tr class="row-even"><td><p>Mangrove</p></td>
-<td class="text-right"><p>32</p></td>
-</tr>
-<tr class="row-odd"><td><p>Lahan Hijau</p></td>
-<td class="text-right"><p>28</p></td>
-</tr>
-<tr class="row-even"><td><p>Laut</p></td>
-<td class="text-right"><p>28</p></td>
-</tr>
-<tr class="row-odd"><td><p>Danau</p></td>
-<td class="text-right"><p>30</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Total</strong></p></td>
-<td class="text-right"><p><strong>180</strong></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Jumlah hasil prediksi dapat berbeda dari jumlah label acuan. Label acuan berjumlah 30 polygon setiap kelas, sedangkan kelas prediksi ditentukan oleh model.</p>
-<p>Kontrol layer menyediakan:</p>
+<section id="b-bangunan-dan-pemanfaatan-ruang">
+<h4>B. Bangunan dan Pemanfaatan Ruang<a class="headerlink" href="#b-bangunan-dan-pemanfaatan-ruang" title="Link to this heading">#</a></h4>
+<p>Model memprediksi 32 polygon sebagai bangunan, sedangkan label acuan bangunan berjumlah 30 polygon. Selisih tersebut menunjukkan perbedaan hasil model terhadap label acuan pada kumpulan sampel.</p>
+<p>Selisih dua polygon ini tidak membuktikan adanya pembangunan baru atau alih fungsi lahan. Analisis perubahan membutuhkan pengamatan lokasi yang sama pada waktu berbeda.</p>
+<p>Dalam kaitannya dengan RTRW, identifikasi kawasan terbangun dapat menjadi bahan awal untuk membandingkan kondisi permukaan dengan peruntukan ruang. Penilaian kesesuaian membutuhkan peta pola ruang dan ketentuan yang berlaku pada lokasi tersebut.</p>
+<p>Hasil klasifikasi bangunan saja belum dapat menentukan apakah suatu pembangunan sesuai atau melanggar kebijakan tata ruang.</p>
+</section>
+<section id="c-mangrove-dan-perlindungan-ekosistem-pesisir">
+<h4>C. Mangrove dan Perlindungan Ekosistem Pesisir<a class="headerlink" href="#c-mangrove-dan-perlindungan-ekosistem-pesisir" title="Link to this heading">#</a></h4>
+<p>Model memprediksi 32 polygon sebagai mangrove. Kelas ini berkaitan dengan <strong>Peraturan Pemerintah Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove</strong>.</p>
+<p>Pemetaan mangrove dapat membantu mengidentifikasi lokasi vegetasi pesisir sebagai bahan awal inventarisasi dan pemeriksaan kondisi ekosistem.</p>
+<p>Jumlah prediksi mangrove yang lebih tinggi dari label acuan belum menunjukkan peningkatan luas mangrove. Data yang dihitung merupakan jumlah polygon sampel, bukan luas seluruh ekosistem.</p>
+<p>Untuk pembahasan perlindungan mangrove pada lokasi tertentu, hasil prediksi perlu diverifikasi dan dibandingkan dengan data resmi ekosistem serta fungsi kawasan.</p>
+</section>
+<section id="d-lahan-hijau-dan-kawasan-vegetasi">
+<h4>D. Lahan Hijau dan Kawasan Vegetasi<a class="headerlink" href="#d-lahan-hijau-dan-kawasan-vegetasi" title="Link to this heading">#</a></h4>
+<p>Model memprediksi 28 polygon sebagai lahan hijau. Kelas ini menggabungkan vegetasi selain sawah dan mangrove sehingga belum membedakan hutan, kebun, semak, atau ruang terbuka hijau.</p>
+<p>Pengelompokan tersebut berguna untuk mengenali permukaan bervegetasi, tetapi belum cukup untuk menetapkan fungsi kawasan berdasarkan kebijakan.</p>
+<p>Polygon lahan hijau tidak otomatis merupakan kawasan lindung atau ruang terbuka hijau resmi. Penilaian tersebut membutuhkan klasifikasi vegetasi yang lebih rinci dan peta peruntukan ruang.</p>
+</section>
+<section id="e-laut-danau-dan-perlindungan-badan-air">
+<h4>E. Laut, Danau, dan Perlindungan Badan Air<a class="headerlink" href="#e-laut-danau-dan-perlindungan-badan-air" title="Link to this heading">#</a></h4>
+<p>Model memprediksi 28 polygon sebagai laut dan 30 polygon sebagai danau. Pemisahan dua kelas ini membantu membedakan sampel perairan pesisir dan perairan daratan.</p>
+<p>Untuk danau, acuan yang relevan adalah <strong>Peraturan Menteri PUPR Nomor 28/PRT/M/2015 tentang Penetapan Garis Sempadan Sungai dan Garis Sempadan Danau</strong>.</p>
+<p>Identifikasi badan air dapat menjadi informasi awal dalam pembahasan perlindungan danau. Namun, polygon sampel danau belum menunjukkan keseluruhan batas danau maupun garis sempadan resminya.</p>
+<p>Untuk laut, hasil klasifikasi menunjukkan karakteristik penutup berupa perairan. Hasil tersebut belum menentukan zonasi atau kegiatan yang diizinkan pada ruang laut.</p>
+</section>
+<section id="f-ketelitian-hasil-dan-batas-analisis-kebijakan">
+<h4>F. Ketelitian Hasil dan Batas Analisis Kebijakan<a class="headerlink" href="#f-ketelitian-hasil-dan-batas-analisis-kebijakan" title="Link to this heading">#</a></h4>
+<p>Pada 36 polygon testing, sebanyak 30 polygon diprediksi dengan benar dan enam polygon salah. Accuracy polygon sebesar 83,33% menunjukkan bahwa hasil model masih memiliki kesalahan.</p>
+<p>Enam kesalahan testing ditandai pada peta agar lokasi yang memerlukan pemeriksaan dapat dikenali. Lokasi dengan prediksi yang berbeda dari label acuan perlu diverifikasi sebelum hasilnya digunakan untuk pembahasan kebijakan.</p>
+<p>Jumlah polygon setiap kelas tidak menunjukkan persentase luas penutup lahan Jawa Timur. Sampel berjumlah 180 polygon dengan jumlah label acuan yang sengaja diseimbangkan, yaitu 30 polygon setiap kelas.</p>
+<p>Penelitian ini belum melakukan overlay hasil klasifikasi dengan peta RTRW, RDTR, LP2B, fungsi ekosistem mangrove, atau sempadan danau. Karena itu, analisis yang disajikan merupakan interpretasi hubungan hasil klasifikasi dengan kebijakan, bukan penetapan kepatuhan hukum pada masing-masing lokasi.</p>
+</section>
+</section>
+<section id="sumber-kebijakan">
+<h3>12.2 Sumber Kebijakan<a class="headerlink" href="#sumber-kebijakan" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Enam layer kelas hasil prediksi.</p></li>
-<li><p><strong>Sorot Data Uji</strong>, untuk menandai 36 polygon testing.</p></li>
-<li><p><strong>Salah Klasifikasi Testing</strong>, untuk menandai enam polygon testing yang salah dengan penanda oranye.</p></li>
-<li><p><strong>Batas sebaran sampel (bbox)</strong>, untuk menampilkan kotak batas sebaran lokasi sampel.</p></li>
+<li><p>Pemerintah Provinsi Jawa Timur. <a class="reference external" href="https://jdih.jatimprov.go.id/site-pages/dokumen-populer/peraturan-daerah-provinsi-jawa-timur-nomor-10-tahun-2023-tentang-rencana-tata-ruang-wilayah-provinsi-jawa-timur-tahun-2023-2043">Perda Nomor 10 Tahun 2023 tentang RTRW Provinsi Jawa Timur Tahun 2023–2043</a>.</p></li>
+<li><p>Pemerintah Republik Indonesia. <a class="reference external" href="https://jdih.pertanian.go.id/peraturan/uu-nomor-41-tahun-2009">UU Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan</a>, beserta perubahannya.</p></li>
+<li><p>Pemerintah Republik Indonesia. <a class="reference external" href="https://jdih.kemenkopangan.go.id/peraturan-pemerintah-nomor-27-tahun-2025-tentang-perlindungan-dan-pengelolaan-ekosistem-mangrove">PP Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove</a>.</p></li>
+<li><p>Kementerian PUPR. <a class="reference external" href="https://peraturan.go.id/id/permen-pupr-no-28-prt-m-2015-tahun-2015">Permen PUPR Nomor 28/PRT/M/2015 tentang Penetapan Garis Sempadan Sungai dan Garis Sempadan Danau</a>.</p></li>
 </ul>
-<p>Kotak bbox menunjukkan batas sebaran sampel, bukan batas administrasi Jawa Timur.</p>
-<p>Perbesar peta untuk melihat bentuk polygon, lalu klik sampel untuk membaca identitas, kelas acuan, kelas prediksi, pembagian data, probabilitas model, dan kesesuaian prediksi.</p>
-<p>Peta menampilkan hasil pada lokasi sampel, bukan klasifikasi seluruh tutupan lahan Jawa Timur. Accuracy 83,33% berasal dari evaluasi 36 polygon testing, bukan seluruh 180 polygon pada peta.</p>
-<p>Latar Google Hybrid dimuat menggunakan tile <strong>XYZ</strong>. Implementasi ini menampilkan satelit Google melalui Folium/Leaflet, tetapi secara teknis layanan tile XYZ berbeda dari protokol WMS.</p>
+</section>
 </section>
 <section id="file-dan-kode-pengolahan">
 <h2>13. File dan Kode Pengolahan<a class="headerlink" href="#file-dan-kode-pengolahan" title="Link to this heading">#</a></h2>
@@ -1286,9 +1294,18 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-piksel">11.2 Evaluasi Piksel</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-polygon">11.3 Confusion Matrix Polygon</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-piksel">11.4 Confusion Matrix Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan">12.1 Analisis Hasil Klasifikasi terhadap Kebijakan Penggunaan Lahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sawah-dan-perlindungan-lahan-pertanian">A. Sawah dan Perlindungan Lahan Pertanian</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-bangunan-dan-pemanfaatan-ruang">B. Bangunan dan Pemanfaatan Ruang</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-mangrove-dan-perlindungan-ekosistem-pesisir">C. Mangrove dan Perlindungan Ekosistem Pesisir</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-lahan-hijau-dan-kawasan-vegetasi">D. Lahan Hijau dan Kawasan Vegetasi</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-laut-danau-dan-perlindungan-badan-air">E. Laut, Danau, dan Perlindungan Badan Air</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ketelitian-hasil-dan-batas-analisis-kebijakan">F. Ketelitian Hasil dan Batas Analisis Kebijakan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">12. Peta Hasil Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-kebijakan">12.2 Sumber Kebijakan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dan-kode-pengolahan">13. File dan Kode Pengolahan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">14. Deployment Sistem Informasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">15. Referensi</a></li>
