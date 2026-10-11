@@ -428,9 +428,14 @@ Kode pengolahan dijalankan di VS Code. Halaman web statis menyajikan proses dan 
 
 ## 14. Status Sistem Informasi
 
-Peta HTML telah berhasil dibuat dan ditampilkan pada halaman web statis PSD.
+Peta hasil klasifikasi dan dokumentasi proses pengolahan telah
+ditampilkan pada web statis PSD.
 
-Deploy sistem informasi ke Streamlit masih merupakan tahap berikutnya. Halaman ini merupakan dokumentasi pada web statis PSD.
+Aplikasi pembungkus web PSD telah di-deploy ke Streamlit Community
+Cloud. Aplikasi ini menampilkan web PSD melalui iframe, sehingga
+konten dan peta tetap dimuat dari GitHub Pages.
+
+[Buka aplikasi di Streamlit](https://3uvumakhgzm3cjbzwjk8jv.streamlit.app/)
 
 ## 15. Referensi
 
