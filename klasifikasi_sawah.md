@@ -380,49 +380,78 @@ Confusion matrix model Extra Trees pada 8.177 piksel testing.
 
 Evaluasi ini dihitung pada tingkat piksel. Accuracy piksel sebesar **81,67%**, balanced accuracy sebesar **77,24%**, dan macro F1 sebesar **0,7921**.
 
-## 12. Peta Hasil Klasifikasi
+### 12.1 Analisis Hasil Klasifikasi terhadap Kebijakan Penggunaan Lahan
 
-Peta berikut menampilkan prediksi kelas pada 180 lokasi sampel menggunakan Folium, yang menghasilkan peta berbasis Leaflet.
+Hasil klasifikasi menunjukkan 30 polygon diprediksi sebagai sawah, 32 bangunan, 32 mangrove, 28 lahan hijau, 28 laut, dan 30 danau. Hasil ini digunakan untuk membahas kaitan karakteristik penutup lahan dengan kebijakan penggunaan ruang di Jawa Timur.
 
-Latar utama adalah **Google Hybrid**, yaitu citra satelit Google dengan label lokasi. **Esri Satellite** tersedia sebagai pilihan latar tambahan.
+Acuan tata ruang wilayah kajian adalah **Peraturan Daerah Provinsi Jawa Timur Nomor 10 Tahun 2023 tentang Rencana Tata Ruang Wilayah Provinsi Jawa Timur Tahun 2023–2043**.
 
-<iframe
-    src="_static/peta_klasifikasi_sentinel.html"
-    width="100%"
-    height="800"
-    style="border: 1px solid #cccccc; border-radius: 8px;"
-    loading="lazy"
-    title="Peta Klasifikasi Lahan Jawa Timur">
-</iframe>
+Kelas hasil klasifikasi menggambarkan karakteristik permukaan pada lokasi sampel. Sementara itu, kebijakan tata ruang mengatur peruntukan ruang. Oleh karena itu, kelas hasil prediksi perlu dibandingkan dengan peta kebijakan sebelum digunakan untuk menilai kesesuaian pemanfaatan suatu lokasi.
 
-Warna pada polygon dan penanda menunjukkan kelas hasil prediksi model Extra Trees.
+#### A. Sawah dan Perlindungan Lahan Pertanian
 
-| Kelas Prediksi | Jumlah Polygon |
-|---|---:|
-| Sawah | 30 |
-| Bangunan | 32 |
-| Mangrove | 32 |
-| Lahan Hijau | 28 |
-| Laut | 28 |
-| Danau | 30 |
-| **Total** | **180** |
+Model memprediksi 30 polygon sebagai sawah. Kelas sawah berkaitan dengan **Undang-Undang Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan beserta perubahannya**.
 
-Jumlah hasil prediksi dapat berbeda dari jumlah label acuan. Label acuan berjumlah 30 polygon setiap kelas, sedangkan kelas prediksi ditentukan oleh model.
+Identifikasi sawah dapat membantu menyediakan informasi awal tentang lokasi lahan pertanian yang perlu diperiksa dalam pembahasan perlindungan lahan pangan.
 
-Kontrol layer menyediakan:
+Namun, polygon yang diprediksi sebagai sawah belum otomatis merupakan Lahan Pertanian Pangan Berkelanjutan atau LP2B. Status tersebut memerlukan data penetapan resmi.
 
-- Enam layer kelas hasil prediksi.
-- **Sorot Data Uji**, untuk menandai 36 polygon testing.
-- **Salah Klasifikasi Testing**, untuk menandai enam polygon testing yang salah dengan penanda oranye.
-- **Batas sebaran sampel (bbox)**, untuk menampilkan kotak batas sebaran lokasi sampel.
+Jumlah prediksi sawah yang sama dengan jumlah label acuan juga tidak berarti semua polygon sawah diprediksi dengan benar. Kesalahan antar kelas dapat saling mengimbangi jumlahnya. Penilaian ketepatan tetap mengacu pada hasil testing dan confusion matrix.
 
-Kotak bbox menunjukkan batas sebaran sampel, bukan batas administrasi Jawa Timur.
+#### B. Bangunan dan Pemanfaatan Ruang
 
-Perbesar peta untuk melihat bentuk polygon, lalu klik sampel untuk membaca identitas, kelas acuan, kelas prediksi, pembagian data, probabilitas model, dan kesesuaian prediksi.
+Model memprediksi 32 polygon sebagai bangunan, sedangkan label acuan bangunan berjumlah 30 polygon. Selisih tersebut menunjukkan perbedaan hasil model terhadap label acuan pada kumpulan sampel.
 
-Peta menampilkan hasil pada lokasi sampel, bukan klasifikasi seluruh tutupan lahan Jawa Timur. Accuracy 83,33% berasal dari evaluasi 36 polygon testing, bukan seluruh 180 polygon pada peta.
+Selisih dua polygon ini tidak membuktikan adanya pembangunan baru atau alih fungsi lahan. Analisis perubahan membutuhkan pengamatan lokasi yang sama pada waktu berbeda.
 
-Latar Google Hybrid dimuat menggunakan tile **XYZ**. Implementasi ini menampilkan satelit Google melalui Folium/Leaflet, tetapi secara teknis layanan tile XYZ berbeda dari protokol WMS.
+Dalam kaitannya dengan RTRW, identifikasi kawasan terbangun dapat menjadi bahan awal untuk membandingkan kondisi permukaan dengan peruntukan ruang. Penilaian kesesuaian membutuhkan peta pola ruang dan ketentuan yang berlaku pada lokasi tersebut.
+
+Hasil klasifikasi bangunan saja belum dapat menentukan apakah suatu pembangunan sesuai atau melanggar kebijakan tata ruang.
+
+#### C. Mangrove dan Perlindungan Ekosistem Pesisir
+
+Model memprediksi 32 polygon sebagai mangrove. Kelas ini berkaitan dengan **Peraturan Pemerintah Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove**.
+
+Pemetaan mangrove dapat membantu mengidentifikasi lokasi vegetasi pesisir sebagai bahan awal inventarisasi dan pemeriksaan kondisi ekosistem.
+
+Jumlah prediksi mangrove yang lebih tinggi dari label acuan belum menunjukkan peningkatan luas mangrove. Data yang dihitung merupakan jumlah polygon sampel, bukan luas seluruh ekosistem.
+
+Untuk pembahasan perlindungan mangrove pada lokasi tertentu, hasil prediksi perlu diverifikasi dan dibandingkan dengan data resmi ekosistem serta fungsi kawasan.
+
+#### D. Lahan Hijau dan Kawasan Vegetasi
+
+Model memprediksi 28 polygon sebagai lahan hijau. Kelas ini menggabungkan vegetasi selain sawah dan mangrove sehingga belum membedakan hutan, kebun, semak, atau ruang terbuka hijau.
+
+Pengelompokan tersebut berguna untuk mengenali permukaan bervegetasi, tetapi belum cukup untuk menetapkan fungsi kawasan berdasarkan kebijakan.
+
+Polygon lahan hijau tidak otomatis merupakan kawasan lindung atau ruang terbuka hijau resmi. Penilaian tersebut membutuhkan klasifikasi vegetasi yang lebih rinci dan peta peruntukan ruang.
+
+#### E. Laut, Danau, dan Perlindungan Badan Air
+
+Model memprediksi 28 polygon sebagai laut dan 30 polygon sebagai danau. Pemisahan dua kelas ini membantu membedakan sampel perairan pesisir dan perairan daratan.
+
+Untuk danau, acuan yang relevan adalah **Peraturan Menteri PUPR Nomor 28/PRT/M/2015 tentang Penetapan Garis Sempadan Sungai dan Garis Sempadan Danau**.
+
+Identifikasi badan air dapat menjadi informasi awal dalam pembahasan perlindungan danau. Namun, polygon sampel danau belum menunjukkan keseluruhan batas danau maupun garis sempadan resminya.
+
+Untuk laut, hasil klasifikasi menunjukkan karakteristik penutup berupa perairan. Hasil tersebut belum menentukan zonasi atau kegiatan yang diizinkan pada ruang laut.
+
+#### F. Ketelitian Hasil dan Batas Analisis Kebijakan
+
+Pada 36 polygon testing, sebanyak 30 polygon diprediksi dengan benar dan enam polygon salah. Accuracy polygon sebesar 83,33% menunjukkan bahwa hasil model masih memiliki kesalahan.
+
+Enam kesalahan testing ditandai pada peta agar lokasi yang memerlukan pemeriksaan dapat dikenali. Lokasi dengan prediksi yang berbeda dari label acuan perlu diverifikasi sebelum hasilnya digunakan untuk pembahasan kebijakan.
+
+Jumlah polygon setiap kelas tidak menunjukkan persentase luas penutup lahan Jawa Timur. Sampel berjumlah 180 polygon dengan jumlah label acuan yang sengaja diseimbangkan, yaitu 30 polygon setiap kelas.
+
+Penelitian ini belum melakukan overlay hasil klasifikasi dengan peta RTRW, RDTR, LP2B, fungsi ekosistem mangrove, atau sempadan danau. Karena itu, analisis yang disajikan merupakan interpretasi hubungan hasil klasifikasi dengan kebijakan, bukan penetapan kepatuhan hukum pada masing-masing lokasi.
+
+### 12.2 Sumber Kebijakan
+
+- Pemerintah Provinsi Jawa Timur. [Perda Nomor 10 Tahun 2023 tentang RTRW Provinsi Jawa Timur Tahun 2023–2043](https://jdih.jatimprov.go.id/site-pages/dokumen-populer/peraturan-daerah-provinsi-jawa-timur-nomor-10-tahun-2023-tentang-rencana-tata-ruang-wilayah-provinsi-jawa-timur-tahun-2023-2043).
+- Pemerintah Republik Indonesia. [UU Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan](https://jdih.pertanian.go.id/peraturan/uu-nomor-41-tahun-2009), beserta perubahannya.
+- Pemerintah Republik Indonesia. [PP Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove](https://jdih.kemenkopangan.go.id/peraturan-pemerintah-nomor-27-tahun-2025-tentang-perlindungan-dan-pengelolaan-ekosistem-mangrove).
+- Kementerian PUPR. [Permen PUPR Nomor 28/PRT/M/2015 tentang Penetapan Garis Sempadan Sungai dan Garis Sempadan Danau](https://peraturan.go.id/id/permen-pupr-no-28-prt-m-2015-tahun-2015).
 
 ## 13. File dan Kode Pengolahan
 
