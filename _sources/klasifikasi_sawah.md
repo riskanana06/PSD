@@ -2,61 +2,7 @@
 
 ## Alur Penelitian
 
-Alur berikut menunjukkan proses klasifikasi lahan dari pengumpulan data sampai penyajian hasil.
-
-<div style="max-width:650px;margin:20px auto;text-align:center;font-size:14px;line-height:1.6;">
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;background:#eff6ff;">
-    <b>Menentukan tujuan dan kelas lahan</b><br>
-    Sawah, bangunan, mangrove, lahan hijau, laut, dan danau
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Pengumpulan data</b><br>
-    Membuat 180 polygon sampel di Jawa Timur dan mengambil citra Sentinel-2A
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Penyaringan piksel</b><br>
-    Menyaring awan, bayangan awan, dan piksel tidak valid
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Ekstraksi 13 fitur</b><br>
-    10 band spektral serta NDVI, NDWI, dan NDBI
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Pembagian data berdasarkan polygon</b><br>
-    144 polygon training dan 36 polygon testing
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Eksperimen dan pemilihan model melalui validasi data training</b><br>
-    Membandingkan Random Forest, Extra Trees, dan Hist Gradient Boosting<br>
-    Model terpilih: Extra Trees
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Evaluasi pada data testing</b><br>
-    Menghitung metrik evaluasi dan menampilkan confusion matrix<br>
-    Accuracy testing polygon: 83,33%
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Penyajian peta hasil klasifikasi</b><br>
-    Menampilkan prediksi polygon sampel melalui Folium dengan peta dasar Google
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;">
-    <b>Analisis kebijakan penggunaan lahan</b><br>
-    Menginterpretasikan hasil klasifikasi terhadap kebijakan yang relevan
-  </div>
-  <div>↓</div>
-  <div style="border:1px solid #2563eb;border-radius:8px;padding:12px;background:#eff6ff;">
-    <b>Deployment dan dokumentasi</b><br>
-    Aplikasi di Streamlit serta dokumentasi proses di web statis
-  </div>
-</div>
+Mulai → Menentukan tujuan dan 6 kelas lahan → Membuat polygon sampel → Mengambil citra Sentinel-2A → Menyaring piksel berawan/tidak valid → Menghitung 13 fitur → Membagi data training dan testing berdasarkan polygon → Membandingkan 3 model menggunakan validasi → Memilih model terbaik → Menguji model pada data testing → Menampilkan peta hasil klasifikasi → Analisis kebijakan penggunaan lahan → Selesai.
 
 ## 1. Tujuan Analisis
 
