@@ -1,5 +1,9 @@
 jupyter-book
 matplotlib
-numpy
+numpy==2.0.2
+pandas==2.3.3
 python-dotenv
 streamlit==1.50.0
+folium==0.20.0
+scikit-learn==1.6.1
+joblib==1.5.3

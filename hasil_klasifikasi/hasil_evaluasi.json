@@ -1,0 +1,33 @@
+{
+  "model_terpilih": "Extra Trees",
+  "dasar_pemilihan": "Mean accuracy polygon pada validasi 3-fold data training; jika sama, gunakan macro F1.",
+  "jumlah_training_polygon": 144,
+  "jumlah_testing_polygon": 36,
+  "jumlah_training_piksel": 33440,
+  "jumlah_testing_piksel": 8177,
+  "fitur": [
+    "B02",
+    "B03",
+    "B04",
+    "B05",
+    "B06",
+    "B07",
+    "B08",
+    "B8A",
+    "B11",
+    "B12",
+    "NDVI",
+    "NDWI",
+    "NDBI"
+  ],
+  "testing_polygon": {
+    "accuracy": 0.8333333333333334,
+    "balanced_accuracy": 0.8333333333333331,
+    "macro_f1": 0.83015873015873
+  },
+  "testing_piksel": {
+    "accuracy": 0.8166809343279932,
+    "balanced_accuracy": 0.7724102579963671,
+    "macro_f1": 0.7921026422478149
+  }
+}

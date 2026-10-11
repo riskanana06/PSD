@@ -1,0 +1,181 @@
+﻿sample_id,kelas,kelas_prediksi,probabilitas_model,pembagian,probabilitas,kesesuaian
+bangunan_01,Bangunan,Bangunan,0.7626365813516093,Training,76.26%,Sesuai label
+bangunan_02,Bangunan,Bangunan,0.9672714333084693,Training,96.73%,Sesuai label
+bangunan_03,Bangunan,Bangunan,0.954857315160622,Training,95.49%,Sesuai label
+bangunan_04,Bangunan,Bangunan,0.938641689446247,Training,93.86%,Sesuai label
+bangunan_05,Bangunan,Bangunan,0.9661413488211424,Training,96.61%,Sesuai label
+bangunan_06,Bangunan,Bangunan,0.9624802716187006,Training,96.25%,Sesuai label
+bangunan_07,Bangunan,Bangunan,0.545464995741312,Testing,54.55%,Sesuai label
+bangunan_08,Bangunan,Bangunan,0.5630744911679388,Testing,56.31%,Sesuai label
+bangunan_09,Bangunan,Bangunan,0.936634892201201,Training,93.66%,Sesuai label
+bangunan_10,Bangunan,Bangunan,0.9666959187404455,Training,96.67%,Sesuai label
+bangunan_11,Bangunan,Bangunan,0.9090346177220358,Testing,90.90%,Sesuai label
+bangunan_12,Bangunan,Bangunan,0.9691597041347095,Training,96.92%,Sesuai label
+bangunan_13,Bangunan,Bangunan,0.828729042243242,Training,82.87%,Sesuai label
+bangunan_14,Bangunan,Bangunan,0.9769219573955517,Training,97.69%,Sesuai label
+bangunan_15,Bangunan,Bangunan,0.3840261757396129,Testing,38.40%,Sesuai label
+bangunan_16,Bangunan,Bangunan,0.6323202471745764,Training,63.23%,Sesuai label
+bangunan_17,Bangunan,Bangunan,0.7561352456299854,Training,75.61%,Sesuai label
+bangunan_18,Bangunan,Bangunan,0.8755172776495915,Training,87.55%,Sesuai label
+bangunan_19,Bangunan,Bangunan,0.9459664656999172,Training,94.60%,Sesuai label
+bangunan_20,Bangunan,Bangunan,0.5713507298823987,Testing,57.14%,Sesuai label
+bangunan_21,Bangunan,Bangunan,0.9109330863327161,Testing,91.09%,Sesuai label
+bangunan_22,Bangunan,Bangunan,0.8370008553670311,Training,83.70%,Sesuai label
+bangunan_23,Bangunan,Bangunan,0.8758133927478139,Training,87.58%,Sesuai label
+bangunan_24,Bangunan,Bangunan,0.8478399456250068,Training,84.78%,Sesuai label
+bangunan_25,Bangunan,Bangunan,0.9505372747803358,Training,95.05%,Sesuai label
+bangunan_26,Bangunan,Bangunan,0.9882073876000592,Training,98.82%,Sesuai label
+bangunan_27,Bangunan,Bangunan,0.9948138394632001,Training,99.48%,Sesuai label
+bangunan_28,Bangunan,Bangunan,0.9945396896753759,Training,99.45%,Sesuai label
+bangunan_29,Bangunan,Bangunan,0.9849282064333497,Training,98.49%,Sesuai label
+bangunan_30,Bangunan,Bangunan,0.9844720552163326,Training,98.45%,Sesuai label
+danau_01,Danau,Danau,0.9578043805857228,Training,95.78%,Sesuai label
+danau_02,Danau,Danau,0.9811594077620404,Training,98.12%,Sesuai label
+danau_03,Danau,Danau,0.8354576682513869,Training,83.55%,Sesuai label
+danau_04,Danau,Danau,0.9625615124923589,Training,96.26%,Sesuai label
+danau_05,Danau,Danau,0.9555360020431807,Training,95.55%,Sesuai label
+danau_06,Danau,Danau,0.9953247785595531,Training,99.53%,Sesuai label
+danau_07,Danau,Danau,0.9421792480008573,Training,94.22%,Sesuai label
+danau_08,Danau,Danau,0.9530451957399235,Training,95.30%,Sesuai label
+danau_09,Danau,Danau,0.9348428820579594,Training,93.48%,Sesuai label
+danau_10,Danau,Danau,0.6992408485580855,Testing,69.92%,Sesuai label
+danau_11,Danau,Danau,0.9536967901292327,Training,95.37%,Sesuai label
+danau_12,Danau,Danau,0.9353084288618303,Training,93.53%,Sesuai label
+danau_13,Danau,Danau,0.9649207672106367,Training,96.49%,Sesuai label
+danau_14,Danau,Danau,0.8515488844107598,Training,85.15%,Sesuai label
+danau_15,Danau,Danau,0.46349593212474277,Testing,46.35%,Sesuai label
+danau_16,Danau,Sawah,0.4400485560051755,Testing,44.00%,Berbeda label
+danau_17,Danau,Danau,0.9267379966289001,Training,92.67%,Sesuai label
+danau_18,Danau,Danau,0.9603281650742078,Training,96.03%,Sesuai label
+danau_19,Danau,Danau,0.9025428655053738,Training,90.25%,Sesuai label
+danau_20,Danau,Danau,0.9198181294882576,Training,91.98%,Sesuai label
+danau_21,Danau,Danau,0.9380867370781165,Training,93.81%,Sesuai label
+danau_22,Danau,Danau,0.946898293044083,Training,94.69%,Sesuai label
+danau_23,Danau,Danau,0.8872854227762123,Training,88.73%,Sesuai label
+danau_24,Danau,Danau,0.9261621140807547,Training,92.62%,Sesuai label
+danau_25,Danau,Danau,0.9421436547453905,Training,94.21%,Sesuai label
+danau_26,Danau,Danau,0.8614341604892578,Testing,86.14%,Sesuai label
+danau_27,Danau,Danau,0.9297220838806552,Training,92.97%,Sesuai label
+danau_28,Danau,Danau,0.9870174688645,Testing,98.70%,Sesuai label
+danau_29,Danau,Danau,0.9450406524419471,Testing,94.50%,Sesuai label
+danau_30,Danau,Danau,0.9993086938532171,Training,99.93%,Sesuai label
+lahan_hijau_01,Lahan Hijau,Lahan Hijau,0.8694632460853889,Training,86.95%,Sesuai label
+lahan_hijau_02,Lahan Hijau,Lahan Hijau,0.9226050991452703,Training,92.26%,Sesuai label
+lahan_hijau_03,Lahan Hijau,Mangrove,0.49075744867571097,Testing,49.08%,Berbeda label
+lahan_hijau_04,Lahan Hijau,Lahan Hijau,0.963434233124405,Training,96.34%,Sesuai label
+lahan_hijau_05,Lahan Hijau,Lahan Hijau,0.9288140482629066,Training,92.88%,Sesuai label
+lahan_hijau_06,Lahan Hijau,Lahan Hijau,0.9070075523386327,Training,90.70%,Sesuai label
+lahan_hijau_07,Lahan Hijau,Mangrove,0.46155179377979155,Testing,46.16%,Berbeda label
+lahan_hijau_08,Lahan Hijau,Lahan Hijau,0.45794470377641744,Testing,45.79%,Sesuai label
+lahan_hijau_09,Lahan Hijau,Lahan Hijau,0.9830182768905296,Training,98.30%,Sesuai label
+lahan_hijau_10,Lahan Hijau,Lahan Hijau,0.7892211183054441,Training,78.92%,Sesuai label
+lahan_hijau_11,Lahan Hijau,Lahan Hijau,0.9447846713644417,Training,94.48%,Sesuai label
+lahan_hijau_12,Lahan Hijau,Lahan Hijau,0.757180662183363,Testing,75.72%,Sesuai label
+lahan_hijau_13,Lahan Hijau,Lahan Hijau,0.9652444912451259,Training,96.52%,Sesuai label
+lahan_hijau_14,Lahan Hijau,Lahan Hijau,0.7252718198886562,Testing,72.53%,Sesuai label
+lahan_hijau_15,Lahan Hijau,Lahan Hijau,0.47318763014653614,Testing,47.32%,Sesuai label
+lahan_hijau_16,Lahan Hijau,Lahan Hijau,0.9260359272892881,Training,92.60%,Sesuai label
+lahan_hijau_17,Lahan Hijau,Lahan Hijau,0.845084560407643,Training,84.51%,Sesuai label
+lahan_hijau_18,Lahan Hijau,Lahan Hijau,0.9327274001120701,Training,93.27%,Sesuai label
+lahan_hijau_19,Lahan Hijau,Lahan Hijau,0.9099050967327786,Training,90.99%,Sesuai label
+lahan_hijau_20,Lahan Hijau,Lahan Hijau,0.8721031818842503,Training,87.21%,Sesuai label
+lahan_hijau_21,Lahan Hijau,Lahan Hijau,0.9833685708743619,Training,98.34%,Sesuai label
+lahan_hijau_22,Lahan Hijau,Lahan Hijau,0.8999562862851234,Training,90.00%,Sesuai label
+lahan_hijau_23,Lahan Hijau,Lahan Hijau,0.8766693160305893,Training,87.67%,Sesuai label
+lahan_hijau_24,Lahan Hijau,Lahan Hijau,0.8823981966484835,Training,88.24%,Sesuai label
+lahan_hijau_25,Lahan Hijau,Lahan Hijau,0.7578792244169673,Training,75.79%,Sesuai label
+lahan_hijau_26,Lahan Hijau,Lahan Hijau,0.785612192643433,Training,78.56%,Sesuai label
+lahan_hijau_27,Lahan Hijau,Lahan Hijau,0.8912470672421542,Training,89.12%,Sesuai label
+lahan_hijau_28,Lahan Hijau,Lahan Hijau,0.8918283850604634,Training,89.18%,Sesuai label
+lahan_hijau_29,Lahan Hijau,Lahan Hijau,0.8971131989051625,Training,89.71%,Sesuai label
+lahan_hijau_30,Lahan Hijau,Lahan Hijau,0.8835552045240839,Training,88.36%,Sesuai label
+laut_01,Laut,Laut,0.982728679973316,Training,98.27%,Sesuai label
+laut_02,Laut,Laut,0.9895249606844608,Training,98.95%,Sesuai label
+laut_03,Laut,Laut,0.9826153620106942,Training,98.26%,Sesuai label
+laut_04,Laut,Laut,0.9700325211289812,Training,97.00%,Sesuai label
+laut_05,Laut,Laut,0.989926847490418,Training,98.99%,Sesuai label
+laut_06,Laut,Laut,0.9967643422138491,Training,99.68%,Sesuai label
+laut_07,Laut,Laut,0.9927609953071108,Training,99.28%,Sesuai label
+laut_08,Laut,Laut,0.9948402377338641,Training,99.48%,Sesuai label
+laut_09,Laut,Laut,0.9874656236031865,Training,98.75%,Sesuai label
+laut_10,Laut,Laut,0.9808035616075391,Training,98.08%,Sesuai label
+laut_11,Laut,Laut,0.9980781079511061,Training,99.81%,Sesuai label
+laut_12,Laut,Laut,0.9971034448352885,Training,99.71%,Sesuai label
+laut_13,Laut,Bangunan,0.6558269435440236,Testing,65.58%,Berbeda label
+laut_14,Laut,Laut,0.9975116711616611,Training,99.75%,Sesuai label
+laut_15,Laut,Danau,0.7589949185254422,Testing,75.90%,Berbeda label
+laut_16,Laut,Laut,0.8039584716011183,Testing,80.40%,Sesuai label
+laut_17,Laut,Laut,0.982080155134828,Training,98.21%,Sesuai label
+laut_18,Laut,Laut,0.6482695883477014,Testing,64.83%,Sesuai label
+laut_19,Laut,Laut,0.9992664726044809,Training,99.93%,Sesuai label
+laut_20,Laut,Laut,0.9992214165015207,Training,99.92%,Sesuai label
+laut_21,Laut,Laut,0.9847867932479953,Testing,98.48%,Sesuai label
+laut_22,Laut,Laut,0.9990572195707506,Training,99.91%,Sesuai label
+laut_23,Laut,Laut,0.9947556138265686,Training,99.48%,Sesuai label
+laut_24,Laut,Laut,0.9914333310578785,Training,99.14%,Sesuai label
+laut_25,Laut,Laut,0.9992899496691287,Training,99.93%,Sesuai label
+laut_26,Laut,Laut,0.9992353293217684,Training,99.92%,Sesuai label
+laut_27,Laut,Laut,0.9995136797823537,Training,99.95%,Sesuai label
+laut_28,Laut,Laut,0.9915276765698126,Training,99.15%,Sesuai label
+laut_29,Laut,Laut,0.9978198730504063,Training,99.78%,Sesuai label
+laut_30,Laut,Laut,0.8637640830027874,Testing,86.38%,Sesuai label
+mangrove_01,Mangrove,Mangrove,0.9554670668699135,Training,95.55%,Sesuai label
+mangrove_02,Mangrove,Mangrove,0.9978016822070862,Training,99.78%,Sesuai label
+mangrove_03,Mangrove,Mangrove,0.9759851859246234,Training,97.60%,Sesuai label
+mangrove_04,Mangrove,Mangrove,0.8355498230578635,Training,83.55%,Sesuai label
+mangrove_05,Mangrove,Mangrove,0.9342472587743255,Training,93.42%,Sesuai label
+mangrove_06,Mangrove,Mangrove,0.9896912392452373,Training,98.97%,Sesuai label
+mangrove_07,Mangrove,Mangrove,0.9432812489204044,Testing,94.33%,Sesuai label
+mangrove_08,Mangrove,Mangrove,0.7227459331803638,Testing,72.27%,Sesuai label
+mangrove_09,Mangrove,Mangrove,0.875322748805789,Testing,87.53%,Sesuai label
+mangrove_10,Mangrove,Mangrove,0.9642065873680414,Training,96.42%,Sesuai label
+mangrove_11,Mangrove,Mangrove,0.9459106844509092,Training,94.59%,Sesuai label
+mangrove_12,Mangrove,Mangrove,0.7474612006116673,Training,74.75%,Sesuai label
+mangrove_13,Mangrove,Mangrove,0.9427425703615331,Training,94.27%,Sesuai label
+mangrove_14,Mangrove,Mangrove,0.9909444939575032,Training,99.09%,Sesuai label
+mangrove_15,Mangrove,Mangrove,0.961427816209736,Training,96.14%,Sesuai label
+mangrove_16,Mangrove,Mangrove,0.9530240964548856,Training,95.30%,Sesuai label
+mangrove_17,Mangrove,Mangrove,0.98690507646974,Training,98.69%,Sesuai label
+mangrove_18,Mangrove,Mangrove,0.9341402525701348,Training,93.41%,Sesuai label
+mangrove_19,Mangrove,Mangrove,0.9271053017833119,Training,92.71%,Sesuai label
+mangrove_20,Mangrove,Mangrove,0.8960518335151069,Training,89.61%,Sesuai label
+mangrove_21,Mangrove,Mangrove,0.9797778204178527,Training,97.98%,Sesuai label
+mangrove_22,Mangrove,Mangrove,0.9549200704224855,Training,95.49%,Sesuai label
+mangrove_23,Mangrove,Mangrove,0.954105628353586,Training,95.41%,Sesuai label
+mangrove_24,Mangrove,Mangrove,0.8498586440412924,Training,84.99%,Sesuai label
+mangrove_25,Mangrove,Mangrove,0.7519756686362292,Training,75.20%,Sesuai label
+mangrove_26,Mangrove,Mangrove,0.6923902934901731,Testing,69.24%,Sesuai label
+mangrove_27,Mangrove,Mangrove,0.926762049868133,Training,92.68%,Sesuai label
+mangrove_28,Mangrove,Mangrove,0.7888961286076047,Testing,78.89%,Sesuai label
+mangrove_29,Mangrove,Mangrove,0.9690379946282094,Training,96.90%,Sesuai label
+mangrove_30,Mangrove,Mangrove,0.8837461692436154,Testing,88.37%,Sesuai label
+sawah_01,Sawah,Sawah,0.707615954392536,Training,70.76%,Sesuai label
+sawah_02,Sawah,Sawah,0.8811990216407717,Training,88.12%,Sesuai label
+sawah_03,Sawah,Sawah,0.8023583877036655,Training,80.24%,Sesuai label
+sawah_04,Sawah,Sawah,0.7633279317210244,Training,76.33%,Sesuai label
+sawah_05,Sawah,Sawah,0.8442602826575051,Training,84.43%,Sesuai label
+sawah_06,Sawah,Sawah,0.7585901656153555,Training,75.86%,Sesuai label
+sawah_07,Sawah,Sawah,0.3673847488881174,Testing,36.74%,Sesuai label
+sawah_08,Sawah,Sawah,0.8968450869562338,Training,89.68%,Sesuai label
+sawah_09,Sawah,Sawah,0.9317794550241848,Training,93.18%,Sesuai label
+sawah_10,Sawah,Sawah,0.7577087682688127,Testing,75.77%,Sesuai label
+sawah_11,Sawah,Sawah,0.769355288881431,Training,76.94%,Sesuai label
+sawah_12,Sawah,Sawah,0.8382662307957587,Training,83.83%,Sesuai label
+sawah_13,Sawah,Sawah,0.645554999250807,Testing,64.56%,Sesuai label
+sawah_14,Sawah,Sawah,0.7566205832834272,Training,75.66%,Sesuai label
+sawah_15,Sawah,Sawah,0.7556594715469983,Training,75.57%,Sesuai label
+sawah_16,Sawah,Sawah,0.9648662865034094,Training,96.49%,Sesuai label
+sawah_17,Sawah,Sawah,0.8564060567547306,Training,85.64%,Sesuai label
+sawah_18,Sawah,Sawah,0.7890083783538782,Training,78.90%,Sesuai label
+sawah_19,Sawah,Sawah,0.6779533742795458,Testing,67.80%,Sesuai label
+sawah_20,Sawah,Sawah,0.9124195157479891,Training,91.24%,Sesuai label
+sawah_21,Sawah,Sawah,0.839659083723072,Training,83.97%,Sesuai label
+sawah_22,Sawah,Sawah,0.9483474653598297,Training,94.83%,Sesuai label
+sawah_23,Sawah,Sawah,0.8452372774749943,Training,84.52%,Sesuai label
+sawah_24,Sawah,Sawah,0.9286300679546368,Training,92.86%,Sesuai label
+sawah_25,Sawah,Sawah,0.8889095115593637,Training,88.89%,Sesuai label
+sawah_26,Sawah,Sawah,0.7129574186888077,Testing,71.30%,Sesuai label
+sawah_27,Sawah,Sawah,0.8864483127401164,Training,88.64%,Sesuai label
+sawah_28,Sawah,Bangunan,0.5582174809353463,Testing,55.82%,Berbeda label
+sawah_29,Sawah,Sawah,0.9512180501272669,Training,95.12%,Sesuai label
+sawah_30,Sawah,Sawah,0.9894548942302424,Training,98.95%,Sesuai label
