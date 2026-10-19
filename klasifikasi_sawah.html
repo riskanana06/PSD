@@ -389,44 +389,92 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">1. Tujuan Analisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-dan-kelas">2.1 Wilayah dan Kelas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-di-indonesia">2.2 Acuan Klasifikasi Lahan di Indonesia</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-citra">2.3 Sumber Citra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-indonesia">2.2 Acuan Klasifikasi Lahan Indonesia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dan-periode-citra">2.3 Sumber dan Periode Citra</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3. Pengumpulan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-pengunduhan">3.1 Konfigurasi Pengunduhan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengaturan-layer-keluaran">3.2 Pengaturan Layer Keluaran</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-citra-sentinel-2a">3.3 Pencarian Citra Sentinel-2A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-progres">3.4 Penyimpanan Progres</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-sentinel-2a">4. Band Sentinel-2A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyaringan-piksel">5. Penyaringan Piksel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyaringan-piksel">5. Penyaringan Piksel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-penyaringan">5.1 Kode Penyaringan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur">6. Ekstraksi Fitur</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi">6.1 NDVI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndwi">6.2 NDWI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndbi">6.3 NDBI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-fitur-per-polygon">6.4 Ringkasan Fitur per Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-perhitungan-indeks">6.4 Kode Perhitungan Indeks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-statistik-per-polygon">6.5 Ringkasan Statistik per Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembatasan-piksel">6.6 Pembatasan Piksel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi">7. Hasil Ekstraksi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-training-dan-testing">8. Pembagian Training dan Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-model">9. Eksperimen Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model">10. Perbandingan Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi">7. Hasil Ekstraksi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-dataset">7.1 Penyimpanan Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-yang-diperoleh">7.2 Jumlah Data yang Diperoleh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-missing-value">7.3 Pemeriksaan Missing Value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-training-dan-testing">8. Pembagian Training dan Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembagian-data">8.1 Kode Pembagian Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pembagian-polygon">8.2 Hasil Pembagian Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pembagian-piksel">8.3 Hasil Pembagian Piksel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-model">9. Eksperimen Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-model-kandidat">9.1 Kode Model Kandidat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-polygon">9.2 Pembobotan Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-pada-tingkat-polygon">9.3 Prediksi pada Tingkat Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-silang-tiga-fold">9.4 Validasi Silang Tiga Fold</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-dan-pemilihan-model">10. Perbandingan dan Pemilihan Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-perbandingan-model">10.1 Kode Perbandingan Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-validasi-silang">10.2 Hasil Validasi Silang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pelatihan-ulang-model-terpilih">10.3 Pelatihan Ulang Model Terpilih</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-testing">11. Hasil Testing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-polygon">11.1 Evaluasi Polygon</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-piksel">11.2 Evaluasi Piksel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-polygon">11.3 Confusion Matrix Polygon</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-piksel">11.4 Confusion Matrix Piksel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan">12.1 Analisis Hasil Klasifikasi terhadap Kebijakan Penggunaan Lahan</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sawah-dan-perlindungan-lahan-pertanian">A. Sawah dan Perlindungan Lahan Pertanian</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-bangunan-dan-pemanfaatan-ruang">B. Bangunan dan Pemanfaatan Ruang</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-mangrove-dan-perlindungan-ekosistem-pesisir">C. Mangrove dan Perlindungan Ekosistem Pesisir</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-lahan-hijau-dan-kawasan-vegetasi">D. Lahan Hijau dan Kawasan Vegetasi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-laut-danau-dan-perlindungan-badan-air">E. Laut, Danau, dan Perlindungan Badan Air</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ketelitian-hasil-dan-batas-analisis-kebijakan">F. Ketelitian Hasil dan Batas Analisis Kebijakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-perhitungan-metrik">11.1 Kode Perhitungan Metrik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-polygon">11.2 Evaluasi Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-piksel">11.3 Evaluasi Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembuatan-confusion-matrix">11.4 Kode Pembuatan Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-polygon">11.5 Confusion Matrix Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-piksel">11.6 Confusion Matrix Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-model">11.7 Penyimpanan Model</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-kebijakan">12.2 Sumber Kebijakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">12. Peta Hasil Klasifikasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembuatan-peta">12.1 Kode Pembuatan Peta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif">12.2 Peta Interaktif</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-prediksi-pada-peta">12.3 Ringkasan Prediksi pada Peta</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dan-kode-pengolahan">13. File dan Kode Pengolahan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">14. Deployment Sistem Informasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">15. Referensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-terhadap-kebijakan-penggunaan-lahan">13. Analisis terhadap Kebijakan Penggunaan Lahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sawah-dan-perlindungan-lahan-pertanian">13.1 Sawah dan Perlindungan Lahan Pertanian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bangunan-dan-pemanfaatan-ruang">13.2 Bangunan dan Pemanfaatan Ruang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mangrove-dan-ekosistem-pesisir">13.3 Mangrove dan Ekosistem Pesisir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lahan-hijau">13.4 Lahan Hijau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laut-dan-danau">13.5 Laut dan Danau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-analisis-kebijakan">13.6 Batas Analisis Kebijakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-pengolahan">14. File Pengolahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">15. Deployment Sistem Informasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagian-aplikasi">15.1 Bagian Aplikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembagian-tab">15.2 Kode Pembagian Tab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-penayangan-peta">15.3 Kode Penayangan Peta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-data-baru">15.4 Prediksi Data Baru</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hubungan-web-statis-dan-streamlit">15.5 Hubungan Web Statis dan Streamlit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">16. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">17. Referensi</a></li>
 </ul>
             </nav>
         </div>
@@ -440,21 +488,23 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-lahan-jawa-timur">
 <h1>Klasifikasi Lahan Jawa Timur<a class="headerlink" href="#klasifikasi-lahan-jawa-timur" title="Link to this heading">#</a></h1>
+<p>Penelitian ini menggunakan citra Sentinel-2A untuk mengklasifikasikan lokasi sampel di Jawa Timur menjadi enam kelas lahan. Prosesnya meliputi pengumpulan data, penyaringan piksel, ekstraksi fitur, pembagian data, perbandingan model, evaluasi, dan visualisasi peta.</p>
+<p>Kode pada halaman ini merupakan potongan dari script pengolahan yang digunakan. Setiap potongan saling berhubungan dengan konfigurasi dan fungsi pada script aslinya. Hasil yang ditampilkan merupakan hasil pengolahan yang sudah diperoleh.</p>
 <section id="alur-penelitian">
 <h2>Alur Penelitian<a class="headerlink" href="#alur-penelitian" title="Link to this heading">#</a></h2>
-<p>Mulai → Menentukan tujuan dan 6 kelas lahan → Membuat polygon sampel → Mengambil citra Sentinel-2A → Menyaring piksel berawan/tidak valid → Menghitung 13 fitur → Membagi data training dan testing berdasarkan polygon → Membandingkan 3 model menggunakan validasi → Memilih model terbaik → Menguji model pada data testing → Menampilkan peta hasil klasifikasi → Analisis kebijakan penggunaan lahan → Selesai.</p>
+<p>Menentukan tujuan dan kelas lahan → Membuat polygon sampel → Mengunduh citra Sentinel-2A → Menyaring piksel → Menghitung fitur → Membagi training dan testing berdasarkan polygon → Membandingkan model → Memilih model terbaik → Melakukan testing → Menampilkan peta → Membahas kaitan hasil dengan kebijakan.</p>
 </section>
 <section id="tujuan-analisis">
 <h2>1. Tujuan Analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h2>
 <p>Analisis ini bertujuan mengklasifikasikan lokasi sampel lahan di Jawa Timur menjadi enam kelas, yaitu sawah, bangunan, mangrove, lahan hijau, laut, dan danau.</p>
-<p>Analisis penggunaan lahan (<em>land use</em>) membantu memahami pemanfaatan suatu wilayah, misalnya untuk pertanian dan kawasan terbangun. Klasifikasi penutup lahan (<em>land cover classification</em>) membantu membedakan karakteristik permukaan berdasarkan informasi citra satelit.</p>
-<p>Hasil klasifikasi dapat menjadi bahan awal untuk kajian pemanfaatan ruang, perlindungan kawasan pertanian, pelestarian mangrove, serta pengamatan badan air. Penetapan kesesuaian terhadap kebijakan tata ruang memerlukan data kebijakan dan batas kawasan yang relevan.</p>
+<p>Analisis penggunaan lahan (<em>land use</em>) membantu memahami pemanfaatan suatu wilayah, misalnya untuk pertanian dan kawasan terbangun. Klasifikasi penutup lahan (<em>land cover classification</em>) membedakan karakteristik permukaan berdasarkan informasi citra satelit.</p>
+<p>Hasil penelitian dapat menjadi informasi awal untuk pembahasan perlindungan lahan pertanian, pelestarian mangrove, pemanfaatan ruang, dan perlindungan badan air.</p>
 </section>
 <section id="data-understanding">
 <h2>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
 <section id="wilayah-dan-kelas">
 <h3>2.1 Wilayah dan Kelas<a class="headerlink" href="#wilayah-dan-kelas" title="Link to this heading">#</a></h3>
-<p>Lokasi sampel berada di wilayah kajian Jawa Timur. Data sampel disimpan dalam file <code class="docutils literal notranslate"><span class="pre">PSD_6_Kelas_Gabungan.geojson</span></code>.</p>
+<p>Wilayah kajian adalah Provinsi Jawa Timur. Sampel disimpan dalam file <code class="docutils literal notranslate"><span class="pre">PSD_6_Kelas_Gabungan.geojson</span></code>.</p>
 <p>Setiap polygon memiliki <code class="docutils literal notranslate"><span class="pre">sample_id</span></code> sebagai identitas dan <code class="docutils literal notranslate"><span class="pre">kelas</span></code> sebagai label acuan.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -469,7 +519,7 @@ document.write(`
 <td class="text-right"><p>30</p></td>
 </tr>
 <tr class="row-odd"><td><p>Bangunan</p></td>
-<td><p>Kawasan dengan penutup berupa bangunan atau permukaan terbangun</p></td>
+<td><p>Kawasan dengan bangunan atau permukaan terbangun</p></td>
 <td class="text-right"><p>30</p></td>
 </tr>
 <tr class="row-even"><td><p>Mangrove</p></td>
@@ -495,35 +545,152 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Lahan hijau merupakan kelompok umum dalam eksperimen ini. Kelas tersebut belum dipecah menjadi hutan, semak, kebun, atau jenis vegetasi lainnya.</p>
+<p>Kelas lahan hijau merupakan kelompok umum. Pada penelitian ini, lahan hijau belum dipisahkan menjadi hutan, semak, kebun, atau kelompok vegetasi lainnya.</p>
 </section>
-<section id="acuan-klasifikasi-lahan-di-indonesia">
-<h3>2.2 Acuan Klasifikasi Lahan di Indonesia<a class="headerlink" href="#acuan-klasifikasi-lahan-di-indonesia" title="Link to this heading">#</a></h3>
-<p>Acuan standar yang digunakan untuk pembahasan klasifikasi penutup lahan adalah <strong>SNI 7645-1:2014, Klasifikasi penutup lahan — Bagian 1: Skala kecil dan menengah</strong>, yang diterbitkan Badan Standardisasi Nasional.</p>
-<p>Enam kelas pada penelitian ini merupakan pengelompokan operasional sesuai kebutuhan tugas. Pengelompokan ini bukan salinan lengkap seluruh kelas dan hierarki SNI.</p>
+<section id="acuan-klasifikasi-lahan-indonesia">
+<h3>2.2 Acuan Klasifikasi Lahan Indonesia<a class="headerlink" href="#acuan-klasifikasi-lahan-indonesia" title="Link to this heading">#</a></h3>
+<p>Acuan pembahasan klasifikasi penutup lahan adalah <strong>SNI 7645-1:2014 tentang Klasifikasi Penutup Lahan — Bagian 1: Skala Kecil dan Menengah</strong>, yang diterbitkan oleh Badan Standardisasi Nasional.</p>
+<p>Enam kelas dalam penelitian ini merupakan pengelompokan operasional sesuai kebutuhan tugas. Pengelompokan tersebut bukan salinan lengkap seluruh kelas dan hierarki SNI.</p>
 </section>
-<section id="sumber-citra">
-<h3>2.3 Sumber Citra<a class="headerlink" href="#sumber-citra" title="Link to this heading">#</a></h3>
-<p>Citra yang digunakan adalah <strong>Sentinel-2A Level-2A</strong> dari Copernicus Data Space Ecosystem.</p>
-<p>Periode pencarian citra adalah <strong>1 Juni sampai 30 September 2026</strong>. Untuk setiap lokasi sampel, pencarian dilakukan berdasarkan lokasi polygon dan ketersediaan citra.</p>
-<p>Citra dipilih dengan mempertimbangkan persentase awan pada tile. Setelah diunduh, kualitas piksel di dalam polygon diperiksa kembali. Persentase awan pada tile tidak selalu sama dengan kondisi awan pada lokasi sampel.</p>
-<p>Tanggal citra dapat berbeda antarpolygon. Identitas citra dan tanggal pengambilan disimpan dalam metadata masing-masing sampel.</p>
+<section id="sumber-dan-periode-citra">
+<h3>2.3 Sumber dan Periode Citra<a class="headerlink" href="#sumber-dan-periode-citra" title="Link to this heading">#</a></h3>
+<p>Data citra menggunakan <strong>Sentinel-2A Level-2A</strong> dari <strong>Copernicus Data Space Ecosystem</strong>.</p>
+<p>Periode pencarian citra adalah <strong>1 Juni sampai 30 September 2026</strong>. Tanggal citra dapat berbeda antarpolygon karena pemilihan dilakukan berdasarkan lokasi dan ketersediaan citra.</p>
+<p>Persentase awan pada tile dipertimbangkan ketika memilih citra. Setelah pengunduhan, kondisi piksel di dalam polygon diperiksa kembali karena persentase awan tile belum tentu sama dengan kondisi pada lokasi sampel.</p>
 </section>
 </section>
 <section id="pengumpulan-data">
 <h2>3. Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h2>
-<p>Pengumpulan data dilakukan melalui langkah berikut:</p>
+<p>Pengumpulan data dilakukan dengan langkah berikut:</p>
 <ol class="arabic simple">
-<li><p>Membaca GeoJSON yang berisi 180 polygon berlabel.</p></li>
-<li><p>Mencari citra Sentinel-2A Level-2A pada periode penelitian.</p></li>
-<li><p>Mengunduh band citra menggunakan Process API.</p></li>
-<li><p>Menyimpan citra setiap sampel dalam format TIFF.</p></li>
-<li><p>Menyimpan metadata citra dalam format JSON.</p></li>
-<li><p>Membuat laporan status pengunduhan.</p></li>
+<li><p>Membaca GeoJSON berisi 180 polygon berlabel.</p></li>
+<li><p>Mencari citra Sentinel-2A Level-2A.</p></li>
+<li><p>Mengurutkan kandidat citra berdasarkan persentase awan.</p></li>
+<li><p>Mengunduh 12 layer melalui Process API.</p></li>
+<li><p>Memeriksa piksel valid di dalam polygon.</p></li>
+<li><p>Menyimpan citra dalam TIFF dan metadata dalam JSON.</p></li>
+<li><p>Menyimpan laporan status pengunduhan.</p></li>
 </ol>
-<p>Folder penyimpanan citra adalah <code class="docutils literal notranslate"><span class="pre">citra_sentinel</span></code>.</p>
-<p>Setiap TIFF memiliki 12 layer, yaitu 10 band reflektansi, satu layer SCL, dan satu layer dataMask.</p>
-<p>Seluruh <strong>180 sampel</strong> berhasil tersedia setelah proses pengunduhan selesai.</p>
+<section id="konfigurasi-pengunduhan">
+<h3>3.1 Konfigurasi Pengunduhan<a class="headerlink" href="#konfigurasi-pengunduhan" title="Link to this heading">#</a></h3>
+<p>Potongan kode berikut berasal dari <code class="docutils literal notranslate"><span class="pre">unduh_sentinel_semua.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">GEOJSON</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"PSD_6_Kelas_Gabungan.geojson"</span>
+<span class="n">OUTPUT</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s2">"citra_sentinel"</span>
+
+<span class="n">BASE</span> <span class="o">=</span> <span class="s2">"https://sh.dataspace.copernicus.eu"</span>
+<span class="n">TOKEN_URL</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">"https://identity.dataspace.copernicus.eu"</span>
+    <span class="s2">"/auth/realms/CDSE/protocol/openid-connect/token"</span>
+<span class="p">)</span>
+
+<span class="n">PERIODE</span> <span class="o">=</span> <span class="s2">"2026-06-01T00:00:00Z/2026-09-30T23:59:59Z"</span>
+
+<span class="n">BANDS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"B02"</span><span class="p">,</span> <span class="s2">"B03"</span><span class="p">,</span> <span class="s2">"B04"</span><span class="p">,</span> <span class="s2">"B05"</span><span class="p">,</span> <span class="s2">"B06"</span><span class="p">,</span>
+    <span class="s2">"B07"</span><span class="p">,</span> <span class="s2">"B08"</span><span class="p">,</span> <span class="s2">"B8A"</span><span class="p">,</span> <span class="s2">"B11"</span><span class="p">,</span> <span class="s2">"B12"</span><span class="p">,</span>
+    <span class="s2">"SCL"</span><span class="p">,</span> <span class="s2">"dataMask"</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">GEOJSON</span></code> menunjukkan lokasi polygon sampel, sedangkan <code class="docutils literal notranslate"><span class="pre">OUTPUT</span></code> menentukan folder penyimpanan citra. <code class="docutils literal notranslate"><span class="pre">PERIODE</span></code> menentukan rentang pencarian dan <code class="docutils literal notranslate"><span class="pre">BANDS</span></code> menentukan layer yang diunduh.</p>
+</section>
+<section id="pengaturan-layer-keluaran">
+<h3>3.2 Pengaturan Layer Keluaran<a class="headerlink" href="#pengaturan-layer-keluaran" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EVALSCRIPT</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">//VERSION=3</span>
+<span class="s2">function setup() {</span>
+<span class="s2">  return {</span>
+<span class="s2">    input: [{bands: </span><span class="si">%s</span><span class="s2">}],</span>
+<span class="s2">    output: {</span>
+<span class="s2">      bands: 12,</span>
+<span class="s2">      sampleType: "FLOAT32"</span>
+<span class="s2">    }</span>
+<span class="s2">  };</span>
+<span class="s2">}</span>
+<span class="s2">function evaluatePixel(s) {</span>
+<span class="s2">  return [</span>
+<span class="s2">    s.B02, s.B03, s.B04, s.B05, s.B06,</span>
+<span class="s2">    s.B07, s.B08, s.B8A, s.B11, s.B12,</span>
+<span class="s2">    s.SCL, s.dataMask</span>
+<span class="s2">  ];</span>
+<span class="s2">}</span>
+<span class="s2">"""</span> <span class="o">%</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">BANDS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">EVALSCRIPT</span></code> mengatur citra keluaran agar memiliki 12 layer, yaitu 10 band reflektansi, SCL, dan dataMask.</p>
+</section>
+<section id="pencarian-citra-sentinel-2a">
+<h3>3.3 Pencarian Citra Sentinel-2A<a class="headerlink" href="#pencarian-citra-sentinel-2a" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cari_citra</span><span class="p">(</span><span class="n">api</span><span class="p">,</span> <span class="n">sampel</span><span class="p">):</span>
+    <span class="n">pencarian</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"collections"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"sentinel-2-l2a"</span><span class="p">],</span>
+        <span class="s2">"bbox"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">sampel</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span><span class="p">),</span>
+        <span class="s2">"datetime"</span><span class="p">:</span> <span class="n">PERIODE</span><span class="p">,</span>
+        <span class="s2">"limit"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">kandidat</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">halaman_dibaca</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">hasil</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="s2">"/catalog/v1/search"</span><span class="p">,</span> <span class="n">pencarian</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">hasil</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"features"</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">platform</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"properties"</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"platform"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">platform</span> <span class="o">==</span> <span class="s2">"sentinel-2a"</span>
+                <span class="ow">or</span> <span class="n">item</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"S2A"</span><span class="p">)</span>
+            <span class="p">):</span>
+                <span class="n">kandidat</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">item</span>
+
+        <span class="n">berikutnya</span> <span class="o">=</span> <span class="n">hasil</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"context"</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"next"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">berikutnya</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">penanda</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">berikutnya</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">penanda</span> <span class="ow">in</span> <span class="n">halaman_dibaca</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"Halaman katalog berulang; pencarian dihentikan."</span>
+            <span class="p">)</span>
+
+        <span class="n">halaman_dibaca</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">penanda</span><span class="p">)</span>
+        <span class="n">pencarian</span><span class="p">[</span><span class="s2">"next"</span><span class="p">]</span> <span class="o">=</span> <span class="n">berikutnya</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="n">kandidat</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">item</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"eo:cloud_cover"</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"eo:cloud_cover"</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="mi">100</span><span class="p">,</span>
+            <span class="n">item</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">][</span><span class="s2">"datetime"</span><span class="p">],</span>
+            <span class="n">item</span><span class="p">[</span><span class="s2">"id"</span><span class="p">],</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">cari_citra()</span></code> mencari citra sesuai lokasi polygon dan periode penelitian. Kandidat dibatasi pada Sentinel-2A, kemudian diurutkan berdasarkan persentase awan, tanggal, dan identitas citra.</p>
+<p>Objek <code class="docutils literal notranslate"><span class="pre">api</span></code> berasal dari kelas pengelola akses API pada script pengunduhan. Client ID dan Client Secret dimasukkan ketika script dijalankan.</p>
+</section>
+<section id="penyimpanan-progres">
+<h3>3.4 Penyimpanan Progres<a class="headerlink" href="#penyimpanan-progres" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">catatan</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="n">OUTPUT</span> <span class="o">/</span> <span class="s2">"status_unduhan.csv"</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Progres disimpan setelah setiap sampel diproses. File yang sudah tersedia dan lolos pemeriksaan dapat digunakan kembali ketika script dijalankan ulang.</p>
+<p><strong>Hasil pengumpulan data:</strong> seluruh <strong>180 sampel citra</strong> berhasil tersedia dalam folder <code class="docutils literal notranslate"><span class="pre">citra_sentinel</span></code>.</p>
+</section>
 </section>
 <section id="band-sentinel-2a">
 <h2>4. Band Sentinel-2A<a class="headerlink" href="#band-sentinel-2a" title="Link to this heading">#</a></h2>
@@ -540,17 +707,17 @@ document.write(`
 <tr class="row-even"><td><p>B01</p></td>
 <td><p>Coastal aerosol</p></td>
 <td class="text-right"><p>60 m</p></td>
-<td><p>Informasi aerosol dan wilayah pesisir</p></td>
+<td><p>Informasi aerosol dan pesisir</p></td>
 </tr>
 <tr class="row-odd"><td><p>B02</p></td>
 <td><p>Blue</p></td>
 <td class="text-right"><p>10 m</p></td>
-<td><p>Pantulan pada spektrum biru</p></td>
+<td><p>Pantulan spektrum biru</p></td>
 </tr>
 <tr class="row-even"><td><p>B03</p></td>
 <td><p>Green</p></td>
 <td class="text-right"><p>10 m</p></td>
-<td><p>Pantulan pada spektrum hijau</p></td>
+<td><p>Pantulan spektrum hijau</p></td>
 </tr>
 <tr class="row-odd"><td><p>B04</p></td>
 <td><p>Red</p></td>
@@ -585,12 +752,12 @@ document.write(`
 <tr class="row-odd"><td><p>B09</p></td>
 <td><p>Water vapour</p></td>
 <td class="text-right"><p>60 m</p></td>
-<td><p>Informasi uap air atmosfer</p></td>
+<td><p>Informasi uap air</p></td>
 </tr>
 <tr class="row-even"><td><p>B10</p></td>
 <td><p>Cirrus</p></td>
 <td class="text-right"><p>60 m</p></td>
-<td><p>Deteksi cirrus; tidak tersedia sebagai band reflektansi permukaan pada produk Level-2A</p></td>
+<td><p>Deteksi cirrus; tidak tersedia sebagai band reflektansi permukaan Level-2A</p></td>
 </tr>
 <tr class="row-odd"><td><p>B11</p></td>
 <td><p>Shortwave infrared 1</p></td>
@@ -605,8 +772,8 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p>Band reflektansi yang digunakan sebagai fitur adalah <code class="docutils literal notranslate"><span class="pre">B02</span></code>, <code class="docutils literal notranslate"><span class="pre">B03</span></code>, <code class="docutils literal notranslate"><span class="pre">B04</span></code>, <code class="docutils literal notranslate"><span class="pre">B05</span></code>, <code class="docutils literal notranslate"><span class="pre">B06</span></code>, <code class="docutils literal notranslate"><span class="pre">B07</span></code>, <code class="docutils literal notranslate"><span class="pre">B08</span></code>, <code class="docutils literal notranslate"><span class="pre">B8A</span></code>, <code class="docutils literal notranslate"><span class="pre">B11</span></code>, dan <code class="docutils literal notranslate"><span class="pre">B12</span></code>.</p>
-<p>Citra diunduh pada grid 10 meter dalam koordinat UTM. Band yang memiliki resolusi asli 20 meter diresampling ke grid tersebut. Resampling tidak menambah detail spasial asli band.</p>
+<p>Band reflektansi yang digunakan adalah <strong>B02, B03, B04, B05, B06, B07, B08, B8A, B11, dan B12</strong>.</p>
+<p>Citra diunduh pada grid 10 meter dalam koordinat UTM. Band beresolusi asli 20 meter diresampling ke grid tersebut. Resampling tidak menambah detail spasial asli band.</p>
 <p>Dua layer tambahan digunakan untuk pemeriksaan kualitas:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -616,7 +783,7 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>SCL</p></td>
-<td><p>Scene Classification Layer untuk menyaring kelas kualitas piksel</p></td>
+<td><p>Menyaring piksel berdasarkan kelas kualitas</p></td>
 </tr>
 <tr class="row-odd"><td><p>dataMask</p></td>
 <td><p>Menunjukkan ketersediaan data pada piksel</p></td>
@@ -628,64 +795,82 @@ document.write(`
 </section>
 <section id="penyaringan-piksel">
 <h2>5. Penyaringan Piksel<a class="headerlink" href="#penyaringan-piksel" title="Link to this heading">#</a></h2>
-<p>Piksel yang digunakan harus memenuhi kondisi berikut:</p>
+<p>Piksel yang digunakan harus:</p>
 <ul class="simple">
 <li><p>Berada di dalam polygon sampel.</p></li>
 <li><p>Memiliki <code class="docutils literal notranslate"><span class="pre">dataMask</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p></li>
-<li><p>Memiliki nilai band dan fitur yang valid.</p></li>
+<li><p>Memiliki nilai band yang valid.</p></li>
 <li><p>Tidak termasuk kelas SCL yang dikeluarkan.</p></li>
 </ul>
-<p>Kelas SCL yang dikeluarkan adalah <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">10</span></code>, dan <code class="docutils literal notranslate"><span class="pre">11</span></code>, yang mencakup no data, piksel rusak atau jenuh, bayangan awan, awan, cirrus, serta salju atau es.</p>
-<p>Setiap polygon diambil maksimal <strong>500 piksel bersih</strong>. Jumlah piksel dapat lebih sedikit karena ukuran polygon dan ketersediaan piksel valid.</p>
+<p>Kelas SCL yang dikeluarkan adalah <strong>0, 1, 3, 8, 9, 10, dan 11</strong>, yang mencakup no data, piksel rusak atau jenuh, bayangan awan, awan, cirrus, serta salju atau es.</p>
+<section id="kode-penyaringan">
+<h3>5.1 Kode Penyaringan<a class="headerlink" href="#kode-penyaringan" title="Link to this heading">#</a></h3>
+<p>Potongan kode berikut berasal dari fungsi <code class="docutils literal notranslate"><span class="pre">ekstraksi()</span></code> dalam <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_sentinel.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">lokasi</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">src</span><span class="o">.</span><span class="n">count</span> <span class="o">!=</span> <span class="mi">12</span> <span class="ow">or</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">"Jumlah layer atau CRS TIFF tidak sesuai."</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">descriptions</span><span class="p">)</span> <span class="o">!=</span> <span class="n">LAYERS</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">"Nama atau urutan layer TIFF tidak sesuai."</span>
+        <span class="p">)</span>
+
+    <span class="n">polygon</span> <span class="o">=</span> <span class="n">sampel</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">di_dalam</span> <span class="o">=</span> <span class="n">geometry_mask</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">polygon</span><span class="o">.</span><span class="n">__geo_interface__</span><span class="p">],</span>
+        <span class="n">out_shape</span><span class="o">=</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span><span class="p">),</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span>
+        <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">nilai</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="n">tersedia</span> <span class="o">=</span> <span class="n">nilai</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="n">bersih</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+        <span class="n">nilai</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">angka_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">nilai</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">valid</span> <span class="o">=</span> <span class="n">di_dalam</span> <span class="o">&amp;</span> <span class="n">tersedia</span> <span class="o">&amp;</span> <span class="n">bersih</span> <span class="o">&amp;</span> <span class="n">angka_valid</span>
+
+    <span class="n">jumlah_bersih</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">valid</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="n">jumlah_polygon</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">di_dalam</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">jumlah_bersih</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">"Tidak ada piksel bersih dalam polygon."</span>
+        <span class="p">)</span>
+
+    <span class="n">tabel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">nilai</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="n">valid</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="n">BANDS</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Polygon terlebih dahulu disesuaikan dengan CRS citra. Setelah itu, mask polygon digabungkan dengan pemeriksaan dataMask, SCL, dan nilai band.</p>
+<p>Hasilnya berupa tabel yang setiap barisnya mewakili satu piksel bersih dengan 10 nilai band reflektansi.</p>
+</section>
 </section>
 <section id="ekstraksi-fitur">
 <h2>6. Ekstraksi Fitur<a class="headerlink" href="#ekstraksi-fitur" title="Link to this heading">#</a></h2>
 <p>Model menggunakan <strong>13 fitur per piksel</strong>, yaitu 10 band reflektansi dan tiga indeks spektral.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Fitur</p></th>
-<th class="head"><p>Keterangan</p></th>
+<tr class="row-odd"><th class="head"><p>Kelompok</p></th>
+<th class="head"><p>Fitur</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>B02</p></td>
-<td><p>Reflektansi band biru</p></td>
+<tr class="row-even"><td><p>Band reflektansi</p></td>
+<td><p>B02, B03, B04, B05, B06, B07, B08, B8A, B11, B12</p></td>
 </tr>
-<tr class="row-odd"><td><p>B03</p></td>
-<td><p>Reflektansi band hijau</p></td>
-</tr>
-<tr class="row-even"><td><p>B04</p></td>
-<td><p>Reflektansi band merah</p></td>
-</tr>
-<tr class="row-odd"><td><p>B05</p></td>
-<td><p>Reflektansi red edge 1</p></td>
-</tr>
-<tr class="row-even"><td><p>B06</p></td>
-<td><p>Reflektansi red edge 2</p></td>
-</tr>
-<tr class="row-odd"><td><p>B07</p></td>
-<td><p>Reflektansi red edge 3</p></td>
-</tr>
-<tr class="row-even"><td><p>B08</p></td>
-<td><p>Reflektansi inframerah dekat</p></td>
-</tr>
-<tr class="row-odd"><td><p>B8A</p></td>
-<td><p>Reflektansi inframerah dekat sempit</p></td>
-</tr>
-<tr class="row-even"><td><p>B11</p></td>
-<td><p>Reflektansi SWIR 1</p></td>
-</tr>
-<tr class="row-odd"><td><p>B12</p></td>
-<td><p>Reflektansi SWIR 2</p></td>
-</tr>
-<tr class="row-even"><td><p>NDVI</p></td>
-<td><p>Indeks vegetasi</p></td>
-</tr>
-<tr class="row-odd"><td><p>NDWI</p></td>
-<td><p>Indeks air</p></td>
-</tr>
-<tr class="row-even"><td><p>NDBI</p></td>
-<td><p>Indeks yang membantu mengenali kawasan terbangun</p></td>
+<tr class="row-odd"><td><p>Indeks spektral</p></td>
+<td><p>NDVI, NDWI, NDBI</p></td>
 </tr>
 </tbody>
 </table>
@@ -715,36 +900,133 @@ NDWI = \frac{B03-B08}{B03+B08}
 \[
 NDBI = \frac{B11-B08}{B11+B08}
 \]</div>
-<p>NDBI membantu membedakan kawasan terbangun. Nilainya juga dapat dipengaruhi tanah terbuka, sehingga tidak digunakan sebagai penentu kelas secara tunggal.</p>
-<p>Penyebut yang mendekati nol menghasilkan nilai tidak valid dan dikeluarkan sebelum pemodelan.</p>
+<p>NDBI membantu membedakan kawasan terbangun. Nilainya juga dapat dipengaruhi tanah terbuka sehingga tidak digunakan sebagai penentu kelas secara tunggal.</p>
 </section>
-<section id="ringkasan-fitur-per-polygon">
-<h3>6.4 Ringkasan Fitur per Polygon<a class="headerlink" href="#ringkasan-fitur-per-polygon" title="Link to this heading">#</a></h3>
-<p>Selain dataset piksel, ekstraksi menghasilkan ringkasan mean, median, dan standar deviasi setiap fitur per polygon.</p>
-<p>Ringkasan dihitung dari seluruh piksel valid sebelum pembatasan maksimal 500 piksel.</p>
+<section id="kode-perhitungan-indeks">
+<h3>6.4 Kode Perhitungan Indeks<a class="headerlink" href="#kode-perhitungan-indeks" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">indeks</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">penyebut</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span>
+        <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span>
+        <span class="n">penyebut</span><span class="p">,</span>
+        <span class="n">out</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span>
+        <span class="n">where</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">penyebut</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-8</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">indeks()</span></code> digunakan untuk menghitung selisih dua band yang dibagi dengan jumlah kedua band. Penyebut yang mendekati nol menghasilkan nilai tidak valid.</p>
+<p>Pemanggilan fungsi pada proses ekstraksi:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tabel</span><span class="p">[</span><span class="s2">"NDVI"</span><span class="p">]</span> <span class="o">=</span> <span class="n">indeks</span><span class="p">(</span>
+    <span class="n">tabel</span><span class="p">[</span><span class="s2">"B08"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">tabel</span><span class="p">[</span><span class="s2">"B04"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="n">tabel</span><span class="p">[</span><span class="s2">"NDWI"</span><span class="p">]</span> <span class="o">=</span> <span class="n">indeks</span><span class="p">(</span>
+    <span class="n">tabel</span><span class="p">[</span><span class="s2">"B03"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">tabel</span><span class="p">[</span><span class="s2">"B08"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="n">tabel</span><span class="p">[</span><span class="s2">"NDBI"</span><span class="p">]</span> <span class="o">=</span> <span class="n">indeks</span><span class="p">(</span>
+    <span class="n">tabel</span><span class="p">[</span><span class="s2">"B11"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">tabel</span><span class="p">[</span><span class="s2">"B08"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="n">lengkap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span>
+    <span class="n">tabel</span><span class="p">[</span><span class="n">FITUR</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">tabel</span> <span class="o">=</span> <span class="n">tabel</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">lengkap</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Setelah ketiga indeks dihitung, baris dengan fitur yang tidak valid dikeluarkan.</p>
+</section>
+<section id="ringkasan-statistik-per-polygon">
+<h3>6.5 Ringkasan Statistik per Polygon<a class="headerlink" href="#ringkasan-statistik-per-polygon" title="Link to this heading">#</a></h3>
+<p>Selain dataset piksel, proses ekstraksi menghasilkan mean, median, dan standar deviasi setiap fitur per polygon.</p>
 <p>Mean:</p>
 <div class="math notranslate nohighlight">
 \[
 \bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
 \]</div>
-<p>Median merupakan nilai tengah setelah data diurutkan. Jika jumlah data genap, median adalah rata-rata dua nilai tengah.</p>
-<p>Standar deviasi yang digunakan memakai pembagi <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<p>Median merupakan nilai tengah setelah data diurutkan. Jika jumlah data genap, median merupakan rata-rata dua nilai tengah.</p>
+<p>Standar deviasi menggunakan pembagi <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2}
 \]</div>
 <p>Keterangan:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x_i\)</span> adalah nilai fitur pada piksel ke-<span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(n\)</span> adalah jumlah piksel valid.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\bar{x}\)</span> adalah rata-rata nilai fitur.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> adalah standar deviasi.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span>: nilai fitur pada piksel ke-<span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: jumlah piksel valid.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{x}\)</span>: rata-rata nilai fitur.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span>: standar deviasi.</p></li>
 </ul>
-<p>Ringkasan tersebut disimpan dalam <code class="docutils literal notranslate"><span class="pre">fitur_polygon_sentinel.csv</span></code>. Model dalam eksperimen ini dilatih menggunakan 13 fitur per piksel, bukan ringkasan statistik polygon.</p>
+<p>Kode perhitungan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">nama</span> <span class="ow">in</span> <span class="n">FITUR</span><span class="p">:</span>
+    <span class="n">ringkasan</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">_mean"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">tabel</span><span class="p">[</span><span class="n">nama</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="n">ringkasan</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">_median"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">tabel</span><span class="p">[</span><span class="n">nama</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="n">ringkasan</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">_std"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">tabel</span><span class="p">[</span><span class="n">nama</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Statistik dihitung dari seluruh piksel dengan fitur valid sebelum pembatasan jumlah piksel.</p>
+<p>Model dalam penelitian ini dilatih menggunakan <strong>13 fitur per piksel</strong>, bukan ringkasan statistik polygon.</p>
+</section>
+<section id="pembatasan-piksel">
+<h3>6.6 Pembatasan Piksel<a class="headerlink" href="#pembatasan-piksel" title="Link to this heading">#</a></h3>
+<p>Setiap polygon diambil maksimal 500 piksel agar polygon berukuran besar tidak mendominasi jumlah data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabel</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAKS_PIKSEL</span><span class="p">:</span>
+    <span class="n">tabel</span> <span class="o">=</span> <span class="n">tabel</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">MAKS_PIKSEL</span><span class="p">,</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">tabel</span> <span class="o">=</span> <span class="n">tabel</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tabel</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"kelas"</span><span class="p">,</span> <span class="n">kelas</span><span class="p">)</span>
+<span class="n">tabel</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"sample_id"</span><span class="p">,</span> <span class="n">sid</span><span class="p">)</span>
+
+<span class="n">ringkasan</span><span class="p">[</span><span class="s2">"piksel_diambil"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabel</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">MAKS_PIKSEL</span></code> bernilai 500 dan <code class="docutils literal notranslate"><span class="pre">SEED</span></code> bernilai 42. Jumlah yang diambil dapat lebih sedikit jika piksel valid dalam polygon kurang dari 500.</p>
 </section>
 </section>
 <section id="hasil-ekstraksi">
 <h2>7. Hasil Ekstraksi<a class="headerlink" href="#hasil-ekstraksi" title="Link to this heading">#</a></h2>
+<section id="penyimpanan-dataset">
+<h3>7.1 Penyimpanan Dataset<a class="headerlink" href="#penyimpanan-dataset" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="n">tabel_piksel</span><span class="p">,</span>
+    <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ringkasan</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tabel_polygon</span><span class="p">)</span>
+
+<span class="n">dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="n">OUTPUT</span> <span class="o">/</span> <span class="s2">"dataset_piksel_sentinel.csv"</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ringkasan</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="n">OUTPUT</span> <span class="o">/</span> <span class="s2">"fitur_polygon_sentinel.csv"</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Dataset piksel disimpan dalam <code class="docutils literal notranslate"><span class="pre">dataset_piksel_sentinel.csv</span></code>. Ringkasan statistik polygon disimpan dalam <code class="docutils literal notranslate"><span class="pre">fitur_polygon_sentinel.csv</span></code>.</p>
+</section>
+<section id="jumlah-data-yang-diperoleh">
+<h3>7.2 Jumlah Data yang Diperoleh<a class="headerlink" href="#jumlah-data-yang-diperoleh" title="Link to this heading">#</a></h3>
 <p>Seluruh <strong>180 polygon</strong> berhasil diekstraksi.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -785,13 +1067,95 @@ NDBI = \frac{B11-B08}{B11+B08}
 </tbody>
 </table>
 </div>
-<p>Jumlah fitur per piksel adalah <strong>13</strong>. Dataset hasil ekstraksi memiliki <strong>0 missing value pada fitur</strong>.</p>
-<p>Jumlah polygon tiap kelas seimbang, tetapi jumlah piksel berbeda. Perbedaan dipengaruhi ukuran polygon dan jumlah piksel yang lolos penyaringan.</p>
+<p>Jumlah fitur per piksel adalah <strong>13</strong> dan jumlah missing value pada fitur adalah <strong>0</strong>.</p>
+<p>Jumlah polygon tiap kelas seimbang, tetapi jumlah piksel berbeda karena ukuran polygon dan ketersediaan piksel valid berbeda.</p>
+</section>
+<section id="pemeriksaan-missing-value">
+<h3>7.3 Pemeriksaan Missing Value<a class="headerlink" href="#pemeriksaan-missing-value" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Jumlah baris dataset piksel:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Jumlah fitur per piksel:"</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">FITUR</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Missing pada fitur:"</span><span class="p">,</span>
+    <span class="nb">int</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="n">FITUR</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Ringkasan hasil:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pemeriksaan</p></th>
+<th class="head text-right"><p>Hasil</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah baris dataset piksel</p></td>
+<td class="text-right"><p>41.617</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah fitur per piksel</p></td>
+<td class="text-right"><p>13</p></td>
+</tr>
+<tr class="row-even"><td><p>Missing value pada fitur</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 <section id="pembagian-training-dan-testing">
 <h2>8. Pembagian Training dan Testing<a class="headerlink" href="#pembagian-training-dan-testing" title="Link to this heading">#</a></h2>
-<p>Pembagian dilakukan pada tingkat polygon dengan proporsi <strong>80% training</strong> dan <strong>20% testing</strong>, menggunakan stratifikasi kelas dan <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">42</span></code>.</p>
+<p>Pembagian menggunakan <strong>80% training</strong> dan <strong>20% testing</strong> berdasarkan polygon, dengan stratifikasi kelas dan <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">42</span></code>.</p>
 <p>Seluruh piksel dari satu polygon masuk ke kelompok yang sama.</p>
+<section id="kode-pembagian-data">
+<h3>8.1 Kode Pembagian Data<a class="headerlink" href="#kode-pembagian-data" title="Link to this heading">#</a></h3>
+<p>Potongan kode berikut berasal dari <code class="docutils literal notranslate"><span class="pre">klasifikasi_sentinel.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">polygon</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s2">"sample_id"</span><span class="p">,</span> <span class="s2">"kelas"</span><span class="p">]]</span>
+    <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"sample_id"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">poly_train</span><span class="p">,</span> <span class="n">poly_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">polygon</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">stratify</span><span class="o">=</span><span class="n">polygon</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">],</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">poly_train</span> <span class="o">=</span> <span class="n">poly_train</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">poly_test</span> <span class="o">=</span> <span class="n">poly_test</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+        <span class="n">poly_train</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span>
+        <span class="n">poly_test</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">])</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span>
+    <span class="n">test</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Program membagi daftar polygon terlebih dahulu, kemudian memilih piksel sesuai ID polygon training dan testing.</p>
+<p><code class="docutils literal notranslate"><span class="pre">isdisjoint()</span></code> memastikan tidak ada ID polygon yang masuk ke kedua kelompok.</p>
+</section>
+<section id="hasil-pembagian-polygon">
+<h3>8.2 Hasil Pembagian Polygon<a class="headerlink" href="#hasil-pembagian-polygon" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Kelas</p></th>
@@ -839,6 +1203,9 @@ NDBI = \frac{B11-B08}{B11+B08}
 </tbody>
 </table>
 </div>
+</section>
+<section id="hasil-pembagian-piksel">
+<h3>8.3 Hasil Pembagian Piksel<a class="headerlink" href="#hasil-pembagian-piksel" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Kelompok</p></th>
@@ -862,42 +1229,258 @@ NDBI = \frac{B11-B08}{B11+B08}
 </tbody>
 </table>
 </div>
-<p>Polygon digunakan sebagai unit pembagian data, sedangkan piksel digunakan sebagai baris input model.</p>
-<p>Pembagian ini mencegah piksel dari polygon yang sama masuk ke training dan testing. Namun, pembagian berdasarkan identitas polygon belum menjamin lokasi training dan testing berjauhan secara spasial.</p>
+<p>Pembagian berdasarkan polygon mencegah piksel dari polygon yang sama masuk ke training dan testing. Namun, pembagian berdasarkan identitas polygon belum menjamin lokasi training dan testing berjauhan secara spasial.</p>
+</section>
 </section>
 <section id="eksperimen-model">
 <h2>9. Eksperimen Model<a class="headerlink" href="#eksperimen-model" title="Link to this heading">#</a></h2>
-<p>Tiga model dibandingkan:</p>
+<p>Tiga model yang dibandingkan adalah:</p>
 <ol class="arabic simple">
 <li><p>Random Forest.</p></li>
 <li><p>Extra Trees.</p></li>
 <li><p>Hist Gradient Boosting.</p></li>
 </ol>
+<section id="kode-model-kandidat">
+<h3>9.1 Kode Model Kandidat<a class="headerlink" href="#kode-model-kandidat" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">model_kandidat</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"Random Forest"</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+            <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+        <span class="p">),</span>
+
+        <span class="s2">"Extra Trees"</span><span class="p">:</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span>
+            <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+            <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+        <span class="p">),</span>
+
+        <span class="s2">"Hist Gradient Boosting"</span><span class="p">:</span> <span class="n">HistGradientBoostingClassifier</span><span class="p">(</span>
+            <span class="n">max_iter</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+            <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+            <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+            <span class="n">l2_regularization</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">early_stopping</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
 <p>Random Forest dan Extra Trees menggunakan 200 pohon. Jumlah pohon merupakan pengaturan model, bukan jumlah sampel.</p>
-<p>Extra Trees adalah gabungan banyak pohon keputusan dengan pemilihan pemisahan yang diacak. Karena itu, Extra Trees berbeda dari satu Decision Tree.</p>
-<p>Validasi silang dilakukan dalam tiga fold pada <strong>144 polygon training</strong>. Pembagian fold dilakukan berdasarkan polygon, lalu piksel mengikuti kelompok polygonnya.</p>
-<p>Pada pelatihan, bobot piksel diatur agar setiap polygon memiliki total bobot yang sama.</p>
-<p>Prediksi polygon ditentukan dari rata-rata probabilitas kelas seluruh piksel sampelnya:</p>
+<p>Extra Trees merupakan gabungan banyak pohon keputusan dengan pemilihan pemisahan yang diacak. Model ini berbeda dari satu Decision Tree.</p>
+</section>
+<section id="pembobotan-polygon">
+<h3>9.2 Pembobotan Polygon<a class="headerlink" href="#pembobotan-polygon" title="Link to this heading">#</a></h3>
+<p>Setiap polygon dibuat memiliki total bobot yang sama ketika pelatihan.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bobot_polygon</span><span class="p">(</span><span class="n">tabel</span><span class="p">):</span>
+    <span class="n">jumlah</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">tabel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"sample_id"</span><span class="p">)[</span><span class="s2">"sample_id"</span><span class="p">]</span>
+        <span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">"size"</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="n">bobot</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">jumlah</span>
+
+    <span class="k">return</span> <span class="n">bobot</span> <span class="o">/</span> <span class="n">bobot</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Piksel pada polygon yang memiliki banyak piksel memperoleh bobot per piksel lebih kecil. Dengan cara ini, polygon besar tidak mendominasi pelatihan.</p>
+</section>
+<section id="prediksi-pada-tingkat-polygon">
+<h3>9.3 Prediksi pada Tingkat Polygon<a class="headerlink" href="#prediksi-pada-tingkat-polygon" title="Link to this heading">#</a></h3>
+<p>Prediksi polygon ditentukan dari rata-rata probabilitas kelas seluruh piksel sampelnya.</p>
 <div class="math notranslate nohighlight">
 \[
-\bar{p}_{g,c} = \frac{1}{n_g}\sum_{i=1}^{n_g}p_{i,c}
+\bar{p}_{g,c} =
+\frac{1}{n_g}
+\sum_{i=1}^{n_g}p_{i,c}
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-\hat{y}_g = \operatorname{argmax}_{c}\bar{p}_{g,c}
+\hat{y}_g =
+\operatorname{argmax}_{c}
+\bar{p}_{g,c}
 \]</div>
 <p>Keterangan:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(g\)</span> adalah polygon.</p></li>
-<li><p><span class="math notranslate nohighlight">\(c\)</span> adalah kelas.</p></li>
-<li><p><span class="math notranslate nohighlight">\(n_g\)</span> adalah jumlah piksel sampel pada polygon.</p></li>
-<li><p><span class="math notranslate nohighlight">\(p_{i,c}\)</span> adalah probabilitas kelas <span class="math notranslate nohighlight">\(c\)</span> untuk piksel <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\hat{y}_g\)</span> adalah kelas prediksi polygon.</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span>: polygon.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span>: kelas.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_g\)</span>: jumlah piksel sampel pada polygon.</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{i,c}\)</span>: probabilitas kelas <span class="math notranslate nohighlight">\(c\)</span> untuk piksel <span class="math notranslate nohighlight">\(i\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{y}_g\)</span>: kelas prediksi polygon.</p></li>
 </ul>
+<p>Kode:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prediksi_polygon</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tabel</span><span class="p">):</span>
+    <span class="n">probabilitas</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span>
+        <span class="n">tabel</span><span class="p">[</span><span class="n">FITUR</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">hasil</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">probabilitas</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">hasil</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+        <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"sample_id"</span><span class="p">,</span>
+        <span class="n">tabel</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+    <span class="n">rata</span> <span class="o">=</span> <span class="n">hasil</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+        <span class="s2">"sample_id"</span><span class="p">,</span>
+        <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="n">label</span> <span class="o">=</span> <span class="n">tabel</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+        <span class="s2">"sample_id"</span>
+    <span class="p">)[</span><span class="s2">"kelas"</span><span class="p">]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s2">"sample_id"</span><span class="p">:</span> <span class="n">rata</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s2">"kelas_asli"</span><span class="p">:</span> <span class="n">label</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span>
+            <span class="n">rata</span><span class="o">.</span><span class="n">index</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+        <span class="s2">"kelas_prediksi"</span><span class="p">:</span> <span class="n">rata</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+        <span class="s2">"probabilitas_tertinggi"</span><span class="p">:</span> <span class="n">rata</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+<p>Kelas dengan rata-rata probabilitas paling tinggi dipilih sebagai hasil prediksi polygon.</p>
 </section>
-<section id="perbandingan-model">
-<h2>10. Perbandingan Model<a class="headerlink" href="#perbandingan-model" title="Link to this heading">#</a></h2>
-<p>Hasil berikut merupakan evaluasi validasi silang pada data training.</p>
+<section id="validasi-silang-tiga-fold">
+<h3>9.4 Validasi Silang Tiga Fold<a class="headerlink" href="#validasi-silang-tiga-fold" title="Link to this heading">#</a></h3>
+<p>Validasi dilakukan pada <strong>144 polygon training</strong>. Data testing belum digunakan pada tahap pemilihan model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">splitter</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span>
+    <span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">folds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+        <span class="n">poly_train</span><span class="p">,</span>
+        <span class="n">poly_train</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">hasil_fold</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kandidat</span> <span class="o">=</span> <span class="n">model_kandidat</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">nama</span><span class="p">,</span> <span class="n">template</span> <span class="ow">in</span> <span class="n">kandidat</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">nomor</span><span class="p">,</span> <span class="p">(</span><span class="n">idx_train</span><span class="p">,</span> <span class="n">idx_valid</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+        <span class="n">folds</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="p">):</span>
+        <span class="n">id_train</span> <span class="o">=</span> <span class="n">poly_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span>
+            <span class="n">idx_train</span>
+        <span class="p">][</span><span class="s2">"sample_id"</span><span class="p">]</span>
+
+        <span class="n">id_valid</span> <span class="o">=</span> <span class="n">poly_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span>
+            <span class="n">idx_valid</span>
+        <span class="p">][</span><span class="s2">"sample_id"</span><span class="p">]</span>
+
+        <span class="n">bagian_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span>
+            <span class="n">train</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">id_train</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="n">bagian_valid</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span>
+            <span class="n">train</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">id_valid</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">id_train</span><span class="p">)</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">id_valid</span><span class="p">)</span>
+
+        <span class="n">model</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+            <span class="n">bagian_train</span><span class="p">[</span><span class="n">FITUR</span><span class="p">],</span>
+            <span class="n">bagian_train</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">],</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="n">bobot_polygon</span><span class="p">(</span>
+                <span class="n">bagian_train</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="n">pred_piksel</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">bagian_valid</span><span class="p">[</span><span class="n">FITUR</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">pred_poly</span> <span class="o">=</span> <span class="n">prediksi_polygon</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="n">bagian_valid</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">metrik_poly</span> <span class="o">=</span> <span class="n">ukuran</span><span class="p">(</span>
+            <span class="n">pred_poly</span><span class="p">[</span><span class="s2">"kelas_asli"</span><span class="p">],</span>
+            <span class="n">pred_poly</span><span class="p">[</span><span class="s2">"kelas_prediksi"</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">hasil_fold</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">"model"</span><span class="p">:</span> <span class="n">nama</span><span class="p">,</span>
+            <span class="s2">"fold"</span><span class="p">:</span> <span class="n">nomor</span><span class="p">,</span>
+            <span class="s2">"accuracy_polygon"</span><span class="p">:</span> <span class="n">metrik_poly</span><span class="p">[</span><span class="s2">"accuracy"</span><span class="p">],</span>
+            <span class="s2">"macro_f1_polygon"</span><span class="p">:</span> <span class="n">metrik_poly</span><span class="p">[</span><span class="s2">"macro_f1"</span><span class="p">],</span>
+            <span class="s2">"accuracy_piksel"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span>
+                <span class="n">accuracy_score</span><span class="p">(</span>
+                    <span class="n">bagian_valid</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">],</span>
+                    <span class="n">pred_piksel</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">),</span>
+        <span class="p">})</span>
+</pre></div>
+</div>
+<p>Setiap model diuji menggunakan pembagian fold yang sama. Untuk setiap fold, model dilatih ulang pada bagian training fold dan dievaluasi pada bagian validasi fold.</p>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">ukuran()</span></code> yang digunakan untuk menghitung metrik ditampilkan pada bagian evaluasi.</p>
+</section>
+</section>
+<section id="perbandingan-dan-pemilihan-model">
+<h2>10. Perbandingan dan Pemilihan Model<a class="headerlink" href="#perbandingan-dan-pemilihan-model" title="Link to this heading">#</a></h2>
+<section id="kode-perbandingan-model">
+<h3>10.1 Kode Perbandingan Model<a class="headerlink" href="#kode-perbandingan-model" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fold_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">hasil_fold</span><span class="p">)</span>
+
+<span class="n">perbandingan</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">fold_table</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"model"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">cv_accuracy_polygon</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">"accuracy_polygon"</span><span class="p">,</span> <span class="s2">"mean"</span>
+        <span class="p">),</span>
+        <span class="n">cv_accuracy_polygon_std</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">"accuracy_polygon"</span><span class="p">,</span> <span class="s2">"std"</span>
+        <span class="p">),</span>
+        <span class="n">cv_macro_f1_polygon</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">"macro_f1_polygon"</span><span class="p">,</span> <span class="s2">"mean"</span>
+        <span class="p">),</span>
+        <span class="n">cv_accuracy_piksel</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">"accuracy_piksel"</span><span class="p">,</span> <span class="s2">"mean"</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s2">"cv_accuracy_polygon"</span><span class="p">,</span>
+            <span class="s2">"cv_macro_f1_polygon"</span><span class="p">,</span>
+            <span class="s2">"model"</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">perbandingan</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+    <span class="n">OUTPUT</span> <span class="o">/</span> <span class="s2">"perbandingan_model.csv"</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Model diurutkan berdasarkan rata-rata accuracy polygon. Jika nilainya sama, macro F1 polygon digunakan sebagai pembanding berikutnya.</p>
+</section>
+<section id="hasil-validasi-silang">
+<h3>10.2 Hasil Validasi Silang<a class="headerlink" href="#hasil-validasi-silang" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
@@ -929,15 +1512,75 @@ NDBI = \frac{B11-B08}{B11+B08}
 </tbody>
 </table>
 </div>
-<p>Extra Trees dan Random Forest memperoleh rata-rata accuracy polygon yang sama. <strong>Extra Trees dipilih karena macro F1 polygon sedikit lebih tinggi.</strong></p>
-<p>Model terpilih kemudian dilatih ulang menggunakan seluruh data training dan dievaluasi pada data testing.</p>
-<p>Pemilihan dilakukan berdasarkan hasil validasi training. Extra Trees merupakan model terbaik di antara konfigurasi yang dicoba dengan kriteria pemilihan tersebut.</p>
+<p>Extra Trees dan Random Forest memperoleh rata-rata accuracy polygon yang sama.</p>
+<p><strong>Extra Trees dipilih karena macro F1 polygon sedikit lebih tinggi.</strong></p>
+<p>Hasil tersebut menunjukkan model terbaik di antara konfigurasi yang dicoba berdasarkan kriteria pemilihan penelitian ini.</p>
+</section>
+<section id="pelatihan-ulang-model-terpilih">
+<h3>10.3 Pelatihan Ulang Model Terpilih<a class="headerlink" href="#pelatihan-ulang-model-terpilih" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">terbaik</span> <span class="o">=</span> <span class="n">perbandingan</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"model"</span><span class="p">]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">kandidat</span><span class="p">[</span><span class="n">terbaik</span><span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">train</span><span class="p">[</span><span class="n">FITUR</span><span class="p">],</span>
+    <span class="n">train</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">],</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="n">bobot_polygon</span><span class="p">(</span><span class="n">train</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Model terpilih dilatih ulang menggunakan seluruh data training. Setelah itu, model dievaluasi pada data testing.</p>
+</section>
 </section>
 <section id="hasil-testing">
 <h2>11. Hasil Testing<a class="headerlink" href="#hasil-testing" title="Link to this heading">#</a></h2>
+<section id="kode-perhitungan-metrik">
+<h3>11.1 Kode Perhitungan Metrik<a class="headerlink" href="#kode-perhitungan-metrik" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ukuran</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prediksi</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"accuracy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span>
+            <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prediksi</span><span class="p">)</span>
+        <span class="p">),</span>
+        <span class="s2">"balanced_accuracy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span>
+            <span class="n">balanced_accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prediksi</span><span class="p">)</span>
+        <span class="p">),</span>
+        <span class="s2">"macro_f1"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span>
+            <span class="n">f1_score</span><span class="p">(</span>
+                <span class="n">y</span><span class="p">,</span>
+                <span class="n">prediksi</span><span class="p">,</span>
+                <span class="n">average</span><span class="o">=</span><span class="s2">"macro"</span><span class="p">,</span>
+                <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Pemanggilan pada data testing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pred_piksel</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">test</span><span class="p">[</span><span class="n">FITUR</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">pred_poly</span> <span class="o">=</span> <span class="n">prediksi_polygon</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">test</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">metrik_piksel</span> <span class="o">=</span> <span class="n">ukuran</span><span class="p">(</span>
+    <span class="n">test</span><span class="p">[</span><span class="s2">"kelas"</span><span class="p">],</span>
+    <span class="n">pred_piksel</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">metrik_poly</span> <span class="o">=</span> <span class="n">ukuran</span><span class="p">(</span>
+    <span class="n">pred_poly</span><span class="p">[</span><span class="s2">"kelas_asli"</span><span class="p">],</span>
+    <span class="n">pred_poly</span><span class="p">[</span><span class="s2">"kelas_prediksi"</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Evaluasi dihitung pada dua unit yang berbeda, yaitu piksel dan polygon.</p>
+</section>
 <section id="evaluasi-polygon">
-<h3>11.1 Evaluasi Polygon<a class="headerlink" href="#evaluasi-polygon" title="Link to this heading">#</a></h3>
-<p>Model Extra Trees memperoleh hasil berikut pada 36 polygon testing:</p>
+<h3>11.2 Evaluasi Polygon<a class="headerlink" href="#evaluasi-polygon" title="Link to this heading">#</a></h3>
+<p>Hasil model Extra Trees pada 36 polygon testing:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Metrik</p></th>
@@ -963,16 +1606,20 @@ NDBI = \frac{B11-B08}{B11+B08}
 <p>Rumus accuracy:</p>
 <div class="math notranslate nohighlight">
 \[
-Accuracy = \frac{\text{Jumlah prediksi benar}}{\text{Jumlah sampel uji}}
+Accuracy =
+\frac{\text{Jumlah prediksi benar}}
+{\text{Jumlah sampel uji}}
 \]</div>
 <p>Dalam persen:</p>
 <div class="math notranslate nohighlight">
 \[
-Accuracy = \frac{30}{36}\times100\% = 83{,}33\%
+Accuracy =
+\frac{30}{36}\times100\%
+=83{,}33\%
 \]</div>
 </section>
 <section id="evaluasi-piksel">
-<h3>11.2 Evaluasi Piksel<a class="headerlink" href="#evaluasi-piksel" title="Link to this heading">#</a></h3>
+<h3>11.3 Evaluasi Piksel<a class="headerlink" href="#evaluasi-piksel" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Metrik</p></th>
@@ -995,18 +1642,22 @@ Accuracy = \frac{30}{36}\times100\% = 83{,}33\%
 </tbody>
 </table>
 </div>
-<p>Precision dan recall dihitung sebagai:</p>
+<p>Rumus precision:</p>
 <div class="math notranslate nohighlight">
 \[
 Precision = \frac{TP}{TP+FP}
 \]</div>
+<p>Rumus recall:</p>
 <div class="math notranslate nohighlight">
 \[
 Recall = \frac{TP}{TP+FN}
 \]</div>
+<p>Rumus F1:</p>
 <div class="math notranslate nohighlight">
 \[
-F1 = \frac{2\times Precision\times Recall}{Precision+Recall}
+F1 =
+\frac{2\times Precision\times Recall}
+{Precision+Recall}
 \]</div>
 <p>Keterangan untuk setiap kelas:</p>
 <ul class="simple">
@@ -1014,100 +1665,285 @@ F1 = \frac{2\times Precision\times Recall}{Precision+Recall}
 <li><p><span class="math notranslate nohighlight">\(FP\)</span>: sampel kelas lain yang diprediksi sebagai kelas tersebut.</p></li>
 <li><p><span class="math notranslate nohighlight">\(FN\)</span>: sampel kelas tersebut yang diprediksi sebagai kelas lain.</p></li>
 </ul>
-<p>Macro F1 adalah rata-rata F1 seluruh kelas tanpa pembobotan jumlah sampel:</p>
+<p>Macro F1 merupakan rata-rata F1 seluruh kelas tanpa pembobotan jumlah sampel:</p>
 <div class="math notranslate nohighlight">
 \[
-Macro\ F1 = \frac{1}{K}\sum_{c=1}^{K}F1_c
+Macro\ F1 =
+\frac{1}{K}\sum_{c=1}^{K}F1_c
 \]</div>
-<p>Balanced accuracy adalah rata-rata recall seluruh kelas:</p>
+<p>Balanced accuracy merupakan rata-rata recall seluruh kelas:</p>
 <div class="math notranslate nohighlight">
 \[
-Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
+Balanced\ Accuracy =
+\frac{1}{K}\sum_{c=1}^{K}Recall_c
 \]</div>
 <p>Pada penelitian ini, <span class="math notranslate nohighlight">\(K=6\)</span>.</p>
-<p>Accuracy piksel dan accuracy polygon dihitung pada unit yang berbeda sehingga nilainya dapat berbeda.</p>
+</section>
+<section id="kode-pembuatan-confusion-matrix">
+<h3>11.4 Kode Pembuatan Confusion Matrix<a class="headerlink" href="#kode-pembuatan-confusion-matrix" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simpan_laporan</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">prediksi</span><span class="p">,</span> <span class="n">kelas</span><span class="p">,</span> <span class="n">nama</span><span class="p">):</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">prediksi</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">kelas</span><span class="p">,</span>
+        <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">report</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+        <span class="n">OUTPUT</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"classification_report_</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">,</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+    <span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="n">prediksi</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">kelas</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">"Blues"</span><span class="p">,</span>
+        <span class="n">xticks_rotation</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span>
+        <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"Confusion Matrix Testing (</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">)"</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Kelas prediksi"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Kelas asli"</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span>
+        <span class="n">OUTPUT</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"confusion_matrix_</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">.png"</span><span class="p">,</span>
+        <span class="n">dpi</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Fungsi ini menyimpan classification report dalam CSV dan confusion matrix dalam PNG.</p>
 </section>
 <section id="confusion-matrix-polygon">
-<h3>11.3 Confusion Matrix Polygon<a class="headerlink" href="#confusion-matrix-polygon" title="Link to this heading">#</a></h3>
-<figure class="align-default" id="id1">
+<h3>11.5 Confusion Matrix Polygon<a class="headerlink" href="#confusion-matrix-polygon" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="_images/confusion_matrix_polygon.png"><img alt="_images/confusion_matrix_polygon.png" src="_images/confusion_matrix_polygon.png" style="width: 90%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text">Confusion matrix model Extra Trees pada 36 polygon testing.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Baris menunjukkan kelas acuan, sedangkan kolom menunjukkan kelas prediksi.</p>
-<p>Angka pada diagonal menunjukkan prediksi benar. Angka di luar diagonal menunjukkan kesalahan klasifikasi.</p>
-<p>Sebanyak <strong>30 dari 36 polygon testing</strong> diprediksi dengan benar, sedangkan <strong>enam polygon</strong> diprediksi sebagai kelas lain.</p>
+<p>Baris menunjukkan kelas acuan dan kolom menunjukkan kelas prediksi.</p>
+<p>Angka diagonal menunjukkan prediksi benar. Angka di luar diagonal menunjukkan kesalahan klasifikasi.</p>
+<p>Sebanyak <strong>30 polygon</strong> diprediksi dengan benar dan <strong>enam polygon</strong> diprediksi sebagai kelas lain.</p>
 </section>
 <section id="confusion-matrix-piksel">
-<h3>11.4 Confusion Matrix Piksel<a class="headerlink" href="#confusion-matrix-piksel" title="Link to this heading">#</a></h3>
-<figure class="align-default" id="id2">
+<h3>11.6 Confusion Matrix Piksel<a class="headerlink" href="#confusion-matrix-piksel" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="id2">
 <a class="reference internal image-reference" href="_images/confusion_matrix_piksel.png"><img alt="_images/confusion_matrix_piksel.png" src="_images/confusion_matrix_piksel.png" style="width: 90%;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Confusion matrix model Extra Trees pada 8.177 piksel testing.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Evaluasi ini dihitung pada tingkat piksel. Accuracy piksel sebesar <strong>81,67%</strong>, balanced accuracy sebesar <strong>77,24%</strong>, dan macro F1 sebesar <strong>0,7921</strong>.</p>
+<p>Accuracy piksel sebesar <strong>81,67%</strong>, balanced accuracy sebesar <strong>77,24%</strong>, dan macro F1 sebesar <strong>0,7921</strong>.</p>
+<p>Accuracy piksel berbeda dari accuracy polygon karena unit evaluasinya berbeda.</p>
 </section>
-<section id="analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan">
-<h3>12.1 Analisis Hasil Klasifikasi terhadap Kebijakan Penggunaan Lahan<a class="headerlink" href="#analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan" title="Link to this heading">#</a></h3>
-<p>Hasil klasifikasi menunjukkan 30 polygon diprediksi sebagai sawah, 32 bangunan, 32 mangrove, 28 lahan hijau, 28 laut, dan 30 danau. Hasil ini digunakan untuk membahas kaitan karakteristik penutup lahan dengan kebijakan penggunaan ruang di Jawa Timur.</p>
+<section id="penyimpanan-model">
+<h3>11.7 Penyimpanan Model<a class="headerlink" href="#penyimpanan-model" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"model"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="s2">"fitur"</span><span class="p">:</span> <span class="n">FITUR</span><span class="p">,</span>
+        <span class="s2">"kelas"</span><span class="p">:</span> <span class="n">kelas</span><span class="p">,</span>
+        <span class="s2">"nama_model"</span><span class="p">:</span> <span class="n">terbaik</span><span class="p">,</span>
+        <span class="s2">"seed"</span><span class="p">:</span> <span class="n">SEED</span><span class="p">,</span>
+        <span class="s2">"versi_sklearn"</span><span class="p">:</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span>
+        <span class="s2">"training_sample_ids"</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">poly_train</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="p">),</span>
+        <span class="s2">"testing_sample_ids"</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">poly_test</span><span class="p">[</span><span class="s2">"sample_id"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="p">),</span>
+    <span class="p">},</span>
+    <span class="n">OUTPUT</span> <span class="o">/</span> <span class="s2">"model_terbaik.joblib"</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Model beserta informasi fitur, kelas, dan pembagian polygon disimpan agar dapat digunakan untuk membuat peta dan menjalankan aplikasi Streamlit.</p>
+</section>
+</section>
+<section id="peta-hasil-klasifikasi">
+<h2>12. Peta Hasil Klasifikasi<a class="headerlink" href="#peta-hasil-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Peta menampilkan hasil prediksi pada <strong>180 polygon sampel</strong> di Jawa Timur.</p>
+<p>Warna menunjukkan kelas prediksi. Penanda oranye menunjukkan enam polygon testing yang salah diklasifikasikan.</p>
+<section id="kode-pembuatan-peta">
+<h3>12.1 Kode Pembuatan Peta<a class="headerlink" href="#kode-pembuatan-peta" title="Link to this heading">#</a></h3>
+<p>Potongan berikut berasal dari <code class="docutils literal notranslate"><span class="pre">buat_peta_hasil.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">peta</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">7.7</span><span class="p">,</span> <span class="mf">112.8</span><span class="p">],</span>
+    <span class="n">zoom_start</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">control_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">prefer_canvas</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="s2">"https://mt1.google.com/vt/lyrs=y&amp;x=</span><span class="si">{x}</span><span class="s2">&amp;y=</span><span class="si">{y}</span><span class="s2">&amp;z=</span><span class="si">{z}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">attr</span><span class="o">=</span><span class="s2">"Google Hybrid"</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Google Hybrid (dengan label)"</span><span class="p">,</span>
+    <span class="n">overlay</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_zoom</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta</span><span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="s2">"Esri.WorldImagery"</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Esri Satellite (online)"</span><span class="p">,</span>
+    <span class="n">overlay</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">kelas</span> <span class="ow">in</span> <span class="n">WARNA</span><span class="p">:</span>
+    <span class="n">tambah_layer_kelas</span><span class="p">(</span>
+        <span class="n">peta</span><span class="p">,</span>
+        <span class="n">features</span><span class="p">,</span>
+        <span class="n">kelas</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Peta menggunakan Google Hybrid sebagai latar utama dan Esri Satellite sebagai pilihan alternatif.</p>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">tambah_layer_kelas()</span></code> dalam script peta menambahkan polygon sesuai kelas prediksinya.</p>
+<p>Cakupan peta disesuaikan dengan seluruh koordinat sampel:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">seluruh_titik</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">titik</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span>
+    <span class="k">for</span> <span class="n">titik</span> <span class="ow">in</span> <span class="n">koordinat</span><span class="p">(</span>
+        <span class="n">feature</span><span class="p">[</span><span class="s2">"geometry"</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="nb">min</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seluruh_titik</span><span class="p">),</span>
+        <span class="nb">min</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seluruh_titik</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="nb">max</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seluruh_titik</span><span class="p">),</span>
+        <span class="nb">max</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">seluruh_titik</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">peta</span><span class="o">.</span><span class="n">fit_bounds</span><span class="p">(</span>
+    <span class="n">bounds</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fit_bounds()</span></code> mengatur cakupan peta agar seluruh sebaran sampel dapat terlihat.</p>
+</section>
+<section id="peta-interaktif">
+<h3>12.2 Peta Interaktif<a class="headerlink" href="#peta-interaktif" title="Link to this heading">#</a></h3>
+<iframe
+  src="_static/peta_klasifikasi_sentinel.html"
+  title="Peta hasil klasifikasi lahan Jawa Timur"
+  width="100%"
+  height="750"
+  style="border: 1px solid #ddd; border-radius: 8px;"
+  loading="lazy"
+  allowfullscreen>
+</iframe><p><a class="reference external" href="https://riskanana06.github.io/PSD/_static/peta_klasifikasi_sentinel.html">Buka peta dalam halaman penuh</a>.</p>
+<p>Cara membaca peta:</p>
+<ol class="arabic simple">
+<li><p>Pilih layer kelas melalui kontrol di kanan atas.</p></li>
+<li><p>Klik polygon untuk melihat informasi sampel dan hasil prediksi.</p></li>
+<li><p>Aktifkan <strong>Sorot Data Uji</strong> untuk melihat polygon testing.</p></li>
+<li><p>Aktifkan <strong>Salah Klasifikasi Testing</strong> untuk melihat kesalahan prediksi.</p></li>
+<li><p>Perbesar atau perkecil peta untuk memeriksa lokasi sampel.</p></li>
+</ol>
+<p>Peta menunjukkan lokasi sampel penelitian. Peta ini belum merupakan klasifikasi seluruh permukaan Provinsi Jawa Timur.</p>
+</section>
+<section id="ringkasan-prediksi-pada-peta">
+<h3>12.3 Ringkasan Prediksi pada Peta<a class="headerlink" href="#ringkasan-prediksi-pada-peta" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas Prediksi</p></th>
+<th class="head text-right"><p>Jumlah Polygon</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sawah</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bangunan</p></td>
+<td class="text-right"><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lahan Hijau</p></td>
+<td class="text-right"><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>Laut</p></td>
+<td class="text-right"><p>28</p></td>
+</tr>
+<tr class="row-odd"><td><p>Danau</p></td>
+<td class="text-right"><p>30</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>180</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Jumlah pada tabel merupakan hasil prediksi seluruh polygon sampel, termasuk training dan testing. Penilaian kemampuan model tetap mengacu pada data testing yang terpisah.</p>
+<p>Jumlah polygon tidak menunjukkan persentase luas penutup lahan Jawa Timur.</p>
+</section>
+</section>
+<section id="analisis-terhadap-kebijakan-penggunaan-lahan">
+<h2>13. Analisis terhadap Kebijakan Penggunaan Lahan<a class="headerlink" href="#analisis-terhadap-kebijakan-penggunaan-lahan" title="Link to this heading">#</a></h2>
 <p>Acuan tata ruang wilayah kajian adalah <strong>Peraturan Daerah Provinsi Jawa Timur Nomor 10 Tahun 2023 tentang Rencana Tata Ruang Wilayah Provinsi Jawa Timur Tahun 2023–2043</strong>.</p>
-<p>Kelas hasil klasifikasi menggambarkan karakteristik permukaan pada lokasi sampel. Sementara itu, kebijakan tata ruang mengatur peruntukan ruang. Oleh karena itu, kelas hasil prediksi perlu dibandingkan dengan peta kebijakan sebelum digunakan untuk menilai kesesuaian pemanfaatan suatu lokasi.</p>
-<section id="a-sawah-dan-perlindungan-lahan-pertanian">
-<h4>A. Sawah dan Perlindungan Lahan Pertanian<a class="headerlink" href="#a-sawah-dan-perlindungan-lahan-pertanian" title="Link to this heading">#</a></h4>
-<p>Model memprediksi 30 polygon sebagai sawah. Kelas sawah berkaitan dengan <strong>Undang-Undang Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan beserta perubahannya</strong>.</p>
-<p>Identifikasi sawah dapat membantu menyediakan informasi awal tentang lokasi lahan pertanian yang perlu diperiksa dalam pembahasan perlindungan lahan pangan.</p>
-<p>Namun, polygon yang diprediksi sebagai sawah belum otomatis merupakan Lahan Pertanian Pangan Berkelanjutan atau LP2B. Status tersebut memerlukan data penetapan resmi.</p>
-<p>Jumlah prediksi sawah yang sama dengan jumlah label acuan juga tidak berarti semua polygon sawah diprediksi dengan benar. Kesalahan antar kelas dapat saling mengimbangi jumlahnya. Penilaian ketepatan tetap mengacu pada hasil testing dan confusion matrix.</p>
+<p>Klasifikasi citra menunjukkan karakteristik permukaan, sedangkan kebijakan tata ruang mengatur peruntukan ruang. Karena itu, hasil klasifikasi perlu dibandingkan dengan peta kebijakan sebelum digunakan untuk menilai kesesuaian pemanfaatan lokasi.</p>
+<section id="sawah-dan-perlindungan-lahan-pertanian">
+<h3>13.1 Sawah dan Perlindungan Lahan Pertanian<a class="headerlink" href="#sawah-dan-perlindungan-lahan-pertanian" title="Link to this heading">#</a></h3>
+<p>Model memprediksi 30 polygon sebagai sawah.</p>
+<p>Kelas sawah berkaitan dengan <strong>Undang-Undang Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan beserta perubahannya</strong>.</p>
+<p>Identifikasi sawah dapat membantu menyediakan informasi awal tentang lokasi lahan pertanian. Namun, prediksi sawah belum otomatis menunjukkan status Lahan Pertanian Pangan Berkelanjutan atau LP2B. Status tersebut membutuhkan data penetapan resmi.</p>
+<p>Jumlah prediksi sawah yang sama dengan jumlah label acuan juga tidak berarti seluruh polygon sawah diprediksi dengan benar. Kesalahan antarkelas dapat saling mengimbangi jumlahnya.</p>
 </section>
-<section id="b-bangunan-dan-pemanfaatan-ruang">
-<h4>B. Bangunan dan Pemanfaatan Ruang<a class="headerlink" href="#b-bangunan-dan-pemanfaatan-ruang" title="Link to this heading">#</a></h4>
-<p>Model memprediksi 32 polygon sebagai bangunan, sedangkan label acuan bangunan berjumlah 30 polygon. Selisih tersebut menunjukkan perbedaan hasil model terhadap label acuan pada kumpulan sampel.</p>
-<p>Selisih dua polygon ini tidak membuktikan adanya pembangunan baru atau alih fungsi lahan. Analisis perubahan membutuhkan pengamatan lokasi yang sama pada waktu berbeda.</p>
-<p>Dalam kaitannya dengan RTRW, identifikasi kawasan terbangun dapat menjadi bahan awal untuk membandingkan kondisi permukaan dengan peruntukan ruang. Penilaian kesesuaian membutuhkan peta pola ruang dan ketentuan yang berlaku pada lokasi tersebut.</p>
-<p>Hasil klasifikasi bangunan saja belum dapat menentukan apakah suatu pembangunan sesuai atau melanggar kebijakan tata ruang.</p>
+<section id="bangunan-dan-pemanfaatan-ruang">
+<h3>13.2 Bangunan dan Pemanfaatan Ruang<a class="headerlink" href="#bangunan-dan-pemanfaatan-ruang" title="Link to this heading">#</a></h3>
+<p>Model memprediksi 32 polygon sebagai bangunan, sedangkan label acuan bangunan berjumlah 30 polygon.</p>
+<p>Selisih tersebut menunjukkan perbedaan prediksi terhadap label pada kumpulan sampel. Selisih ini belum membuktikan pembangunan baru atau alih fungsi lahan karena analisis perubahan memerlukan pengamatan lokasi yang sama pada waktu berbeda.</p>
+<p>Penilaian kesesuaian kawasan terbangun memerlukan peta pola ruang dan ketentuan pada lokasi tersebut.</p>
 </section>
-<section id="c-mangrove-dan-perlindungan-ekosistem-pesisir">
-<h4>C. Mangrove dan Perlindungan Ekosistem Pesisir<a class="headerlink" href="#c-mangrove-dan-perlindungan-ekosistem-pesisir" title="Link to this heading">#</a></h4>
-<p>Model memprediksi 32 polygon sebagai mangrove. Kelas ini berkaitan dengan <strong>Peraturan Pemerintah Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove</strong>.</p>
-<p>Pemetaan mangrove dapat membantu mengidentifikasi lokasi vegetasi pesisir sebagai bahan awal inventarisasi dan pemeriksaan kondisi ekosistem.</p>
-<p>Jumlah prediksi mangrove yang lebih tinggi dari label acuan belum menunjukkan peningkatan luas mangrove. Data yang dihitung merupakan jumlah polygon sampel, bukan luas seluruh ekosistem.</p>
-<p>Untuk pembahasan perlindungan mangrove pada lokasi tertentu, hasil prediksi perlu diverifikasi dan dibandingkan dengan data resmi ekosistem serta fungsi kawasan.</p>
+<section id="mangrove-dan-ekosistem-pesisir">
+<h3>13.3 Mangrove dan Ekosistem Pesisir<a class="headerlink" href="#mangrove-dan-ekosistem-pesisir" title="Link to this heading">#</a></h3>
+<p>Model memprediksi 32 polygon sebagai mangrove.</p>
+<p>Kelas ini berkaitan dengan <strong>Peraturan Pemerintah Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove</strong>.</p>
+<p>Pemetaan mangrove dapat menjadi informasi awal untuk inventarisasi dan pemeriksaan vegetasi pesisir. Jumlah prediksi yang lebih tinggi belum menunjukkan peningkatan luas mangrove karena yang dihitung adalah polygon sampel.</p>
 </section>
-<section id="d-lahan-hijau-dan-kawasan-vegetasi">
-<h4>D. Lahan Hijau dan Kawasan Vegetasi<a class="headerlink" href="#d-lahan-hijau-dan-kawasan-vegetasi" title="Link to this heading">#</a></h4>
-<p>Model memprediksi 28 polygon sebagai lahan hijau. Kelas ini menggabungkan vegetasi selain sawah dan mangrove sehingga belum membedakan hutan, kebun, semak, atau ruang terbuka hijau.</p>
-<p>Pengelompokan tersebut berguna untuk mengenali permukaan bervegetasi, tetapi belum cukup untuk menetapkan fungsi kawasan berdasarkan kebijakan.</p>
-<p>Polygon lahan hijau tidak otomatis merupakan kawasan lindung atau ruang terbuka hijau resmi. Penilaian tersebut membutuhkan klasifikasi vegetasi yang lebih rinci dan peta peruntukan ruang.</p>
+<section id="lahan-hijau">
+<h3>13.4 Lahan Hijau<a class="headerlink" href="#lahan-hijau" title="Link to this heading">#</a></h3>
+<p>Model memprediksi 28 polygon sebagai lahan hijau.</p>
+<p>Kelas ini menggabungkan vegetasi selain sawah dan mangrove. Pengelompokan belum membedakan hutan, kebun, semak, atau ruang terbuka hijau.</p>
+<p>Polygon lahan hijau belum otomatis merupakan kawasan lindung atau ruang terbuka hijau resmi. Penilaian tersebut memerlukan klasifikasi yang lebih rinci dan peta peruntukan ruang.</p>
 </section>
-<section id="e-laut-danau-dan-perlindungan-badan-air">
-<h4>E. Laut, Danau, dan Perlindungan Badan Air<a class="headerlink" href="#e-laut-danau-dan-perlindungan-badan-air" title="Link to this heading">#</a></h4>
-<p>Model memprediksi 28 polygon sebagai laut dan 30 polygon sebagai danau. Pemisahan dua kelas ini membantu membedakan sampel perairan pesisir dan perairan daratan.</p>
+<section id="laut-dan-danau">
+<h3>13.5 Laut dan Danau<a class="headerlink" href="#laut-dan-danau" title="Link to this heading">#</a></h3>
+<p>Model memprediksi 28 polygon sebagai laut dan 30 polygon sebagai danau.</p>
 <p>Untuk danau, acuan yang relevan adalah <strong>Peraturan Menteri PUPR Nomor 28/PRT/M/2015 tentang Penetapan Garis Sempadan Sungai dan Garis Sempadan Danau</strong>.</p>
-<p>Identifikasi badan air dapat menjadi informasi awal dalam pembahasan perlindungan danau. Namun, polygon sampel danau belum menunjukkan keseluruhan batas danau maupun garis sempadan resminya.</p>
-<p>Untuk laut, hasil klasifikasi menunjukkan karakteristik penutup berupa perairan. Hasil tersebut belum menentukan zonasi atau kegiatan yang diizinkan pada ruang laut.</p>
+<p>Polygon sampel danau belum menunjukkan keseluruhan batas danau atau garis sempadan resmi.</p>
+<p>Untuk laut, hasil klasifikasi menunjukkan karakteristik permukaan berupa perairan. Hasil tersebut belum menentukan zonasi maupun kegiatan yang diizinkan pada ruang laut.</p>
 </section>
-<section id="f-ketelitian-hasil-dan-batas-analisis-kebijakan">
-<h4>F. Ketelitian Hasil dan Batas Analisis Kebijakan<a class="headerlink" href="#f-ketelitian-hasil-dan-batas-analisis-kebijakan" title="Link to this heading">#</a></h4>
-<p>Pada 36 polygon testing, sebanyak 30 polygon diprediksi dengan benar dan enam polygon salah. Accuracy polygon sebesar 83,33% menunjukkan bahwa hasil model masih memiliki kesalahan.</p>
-<p>Enam kesalahan testing ditandai pada peta agar lokasi yang memerlukan pemeriksaan dapat dikenali. Lokasi dengan prediksi yang berbeda dari label acuan perlu diverifikasi sebelum hasilnya digunakan untuk pembahasan kebijakan.</p>
-<p>Jumlah polygon setiap kelas tidak menunjukkan persentase luas penutup lahan Jawa Timur. Sampel berjumlah 180 polygon dengan jumlah label acuan yang sengaja diseimbangkan, yaitu 30 polygon setiap kelas.</p>
-<p>Penelitian ini belum melakukan overlay hasil klasifikasi dengan peta RTRW, RDTR, LP2B, fungsi ekosistem mangrove, atau sempadan danau. Karena itu, analisis yang disajikan merupakan interpretasi hubungan hasil klasifikasi dengan kebijakan, bukan penetapan kepatuhan hukum pada masing-masing lokasi.</p>
-</section>
-</section>
-<section id="sumber-kebijakan">
-<h3>12.2 Sumber Kebijakan<a class="headerlink" href="#sumber-kebijakan" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Pemerintah Provinsi Jawa Timur. <a class="reference external" href="https://jdih.jatimprov.go.id/site-pages/dokumen-populer/peraturan-daerah-provinsi-jawa-timur-nomor-10-tahun-2023-tentang-rencana-tata-ruang-wilayah-provinsi-jawa-timur-tahun-2023-2043">Perda Nomor 10 Tahun 2023 tentang RTRW Provinsi Jawa Timur Tahun 2023–2043</a>.</p></li>
-<li><p>Pemerintah Republik Indonesia. <a class="reference external" href="https://jdih.pertanian.go.id/peraturan/uu-nomor-41-tahun-2009">UU Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan</a>, beserta perubahannya.</p></li>
-<li><p>Pemerintah Republik Indonesia. <a class="reference external" href="https://jdih.kemenkopangan.go.id/peraturan-pemerintah-nomor-27-tahun-2025-tentang-perlindungan-dan-pengelolaan-ekosistem-mangrove">PP Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove</a>.</p></li>
-<li><p>Kementerian PUPR. <a class="reference external" href="https://peraturan.go.id/id/permen-pupr-no-28-prt-m-2015-tahun-2015">Permen PUPR Nomor 28/PRT/M/2015 tentang Penetapan Garis Sempadan Sungai dan Garis Sempadan Danau</a>.</p></li>
-</ul>
+<section id="batas-analisis-kebijakan">
+<h3>13.6 Batas Analisis Kebijakan<a class="headerlink" href="#batas-analisis-kebijakan" title="Link to this heading">#</a></h3>
+<p>Accuracy polygon testing sebesar <strong>83,33%</strong> menunjukkan bahwa model masih memiliki kesalahan.</p>
+<p>Penelitian ini belum melakukan overlay dengan peta RTRW, RDTR, LP2B, fungsi ekosistem mangrove, atau sempadan danau.</p>
+<p>Karena itu, analisis yang disajikan merupakan pembahasan hubungan hasil klasifikasi dengan kebijakan. Penelitian ini belum menetapkan kepatuhan hukum pada masing-masing lokasi sampel.</p>
 </section>
 </section>
-<section id="file-dan-kode-pengolahan">
-<h2>13. File dan Kode Pengolahan<a class="headerlink" href="#file-dan-kode-pengolahan" title="Link to this heading">#</a></h2>
+<section id="file-pengolahan">
+<h2>14. File Pengolahan<a class="headerlink" href="#file-pengolahan" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>File</p></th>
@@ -1115,67 +1951,67 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>PSD_6_Kelas_Gabungan.geojson</p></td>
-<td><p>Polygon dan label acuan</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PSD_6_Kelas_Gabungan.geojson</span></code></p></td>
+<td><p>Polygon sampel dan label acuan</p></td>
 </tr>
-<tr class="row-odd"><td><p>unduh_sentinel_semua.py</p></td>
-<td><p>Pengunduhan citra setiap sampel</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">unduh_sentinel_semua.py</span></code></p></td>
+<td><p>Pengunduhan citra Sentinel-2A</p></td>
 </tr>
-<tr class="row-even"><td><p>ekstraksi_fitur_sentinel.py</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_sentinel.py</span></code></p></td>
 <td><p>Penyaringan piksel dan ekstraksi fitur</p></td>
 </tr>
-<tr class="row-odd"><td><p>klasifikasi_sentinel.py</p></td>
-<td><p>Pembagian data, eksperimen model, dan evaluasi</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">klasifikasi_sentinel.py</span></code></p></td>
+<td><p>Pembagian data, perbandingan model, dan evaluasi</p></td>
 </tr>
-<tr class="row-even"><td><p>buat_peta_hasil.py</p></td>
-<td><p>Pembuatan peta hasil prediksi</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">buat_peta_hasil.py</span></code></p></td>
+<td><p>Pembuatan peta hasil klasifikasi</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference external" href="http://app.py">app.py</a></p></td>
-<td><p>Aplikasi sistem informasi klasifikasi lahan di Streamlit</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">app.py</span></code></p></td>
+<td><p>Aplikasi Streamlit</p></td>
 </tr>
-<tr class="row-even"><td><p>requirements.txt</p></td>
-<td><p>Daftar paket Python yang diperlukan aplikasi</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></td>
+<td><p>Daftar paket Python untuk aplikasi</p></td>
 </tr>
-<tr class="row-odd"><td><p>hasil_ekstraksi/dataset_piksel_sentinel.csv</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_ekstraksi/dataset_piksel_sentinel.csv</span></code></p></td>
 <td><p>Dataset 13 fitur per piksel</p></td>
 </tr>
-<tr class="row-even"><td><p>hasil_ekstraksi/fitur_polygon_sentinel.csv</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_ekstraksi/fitur_polygon_sentinel.csv</span></code></p></td>
 <td><p>Ringkasan statistik fitur per polygon</p></td>
 </tr>
-<tr class="row-odd"><td><p>hasil_klasifikasi/perbandingan_model.csv</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi/perbandingan_model.csv</span></code></p></td>
 <td><p>Hasil perbandingan model</p></td>
 </tr>
-<tr class="row-even"><td><p>hasil_klasifikasi/prediksi_peta_polygon.csv</p></td>
-<td><p>Prediksi dan pembagian data pada 180 polygon</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi/prediksi_peta_polygon.csv</span></code></p></td>
+<td><p>Prediksi seluruh polygon sampel</p></td>
 </tr>
-<tr class="row-odd"><td><p>hasil_klasifikasi/hasil_prediksi_polygon.geojson</p></td>
-<td><p>Geometri polygon beserta hasil prediksi untuk peta</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi/hasil_prediksi_polygon.geojson</span></code></p></td>
+<td><p>Geometri beserta hasil prediksi</p></td>
 </tr>
-<tr class="row-even"><td><p>hasil_klasifikasi/hasil_evaluasi.json</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi/hasil_evaluasi.json</span></code></p></td>
 <td><p>Ringkasan evaluasi</p></td>
 </tr>
-<tr class="row-odd"><td><p>hasil_klasifikasi/model_terbaik.joblib</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi/model_terbaik.joblib</span></code></p></td>
 <td><p>Model terpilih dan informasi fitur</p></td>
 </tr>
-<tr class="row-even"><td><p>_static/confusion_matrix_polygon.png</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_static/confusion_matrix_polygon.png</span></code></p></td>
 <td><p>Gambar evaluasi polygon</p></td>
 </tr>
-<tr class="row-odd"><td><p>_static/confusion_matrix_piksel.png</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_static/confusion_matrix_piksel.png</span></code></p></td>
 <td><p>Gambar evaluasi piksel</p></td>
 </tr>
-<tr class="row-even"><td><p>_static/peta_klasifikasi_sentinel.html</p></td>
-<td><p>Peta interaktif pada web statis</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_static/peta_klasifikasi_sentinel.html</span></code></p></td>
+<td><p>Peta interaktif untuk web statis</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Kode pengolahan dijalankan di VS Code. Halaman web statis menyajikan proses dan hasil yang sudah diperoleh.</p>
 </section>
 <section id="deployment-sistem-informasi">
-<h2>14. Deployment Sistem Informasi<a class="headerlink" href="#deployment-sistem-informasi" title="Link to this heading">#</a></h2>
-<p>Sistem informasi klasifikasi lahan dibuat menggunakan <strong>Streamlit</strong> dan dideploy melalui <strong>Streamlit Community Cloud</strong>.</p>
-<p><a class="reference external" href="https://riska-klasifikasi-lahan-jatim.streamlit.app/">Buka aplikasi klasifikasi lahan di Streamlit</a></p>
-<p>Aplikasi menyediakan empat tab:</p>
+<h2>15. Deployment Sistem Informasi<a class="headerlink" href="#deployment-sistem-informasi" title="Link to this heading">#</a></h2>
+<p>Sistem informasi dibuat menggunakan <strong>Streamlit</strong> dan dideploy melalui <strong>Streamlit Community Cloud</strong>.</p>
+<p><a class="reference external" href="https://riska-klasifikasi-lahan-jatim.streamlit.app/">Buka aplikasi klasifikasi lahan di Streamlit</a>.</p>
+<section id="bagian-aplikasi">
+<h3>15.1 Bagian Aplikasi<a class="headerlink" href="#bagian-aplikasi" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Tab</p></th>
@@ -1184,37 +2020,86 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Eksplorasi Data</p></td>
-<td><p>Jumlah polygon per kelas, distribusi kelas, jumlah piksel, contoh dataset, missing value, serta statistik fitur</p></td>
+<td><p>Distribusi kelas, ringkasan dataset, missing value, dan statistik fitur</p></td>
 </tr>
 <tr class="row-odd"><td><p>Peta Spasial</p></td>
-<td><p>Peta hasil klasifikasi menggunakan Folium/Leaflet dengan latar Google Hybrid dan pilihan Esri Satellite</p></td>
+<td><p>Peta hasil klasifikasi, filter kelas, dan penanda kesalahan testing</p></td>
 </tr>
 <tr class="row-even"><td><p>Model Extra Trees</p></td>
-<td><p>Pembagian training/testing, perbandingan model, metrik evaluasi, dan confusion matrix</p></td>
+<td><p>Pembagian data, perbandingan model, metrik evaluasi, dan confusion matrix</p></td>
 </tr>
 <tr class="row-odd"><td><p>Prediksi Data Baru</p></td>
-<td><p>Form input reflektansi 10 band Sentinel-2A untuk menghasilkan prediksi kelas lahan</p></td>
+<td><p>Form input reflektansi 10 band Sentinel-2A</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Filter kelas pada sidebar berlaku untuk hasil prediksi di tab <strong>Peta Spasial</strong>.</p>
-<p>Aplikasi memuat model Extra Trees yang telah dilatih dari <code class="docutils literal notranslate"><span class="pre">model_terbaik.joblib</span></code>. Model dipilih berdasarkan validasi silang pada data training, kemudian dievaluasi pada data testing.</p>
-<p>Pada tab <strong>Prediksi Data Baru</strong>, pengguna memasukkan nilai reflektansi 10 band. Aplikasi menghitung NDVI, NDWI, dan NDBI secara otomatis sehingga input model tetap terdiri dari 13 fitur.</p>
-<p>Nilai awal form merupakan median fitur dataset sebagai contoh pengisian. Untuk memprediksi citra baru, nilai tersebut diganti dengan reflektansi piksel citra yang ingin dianalisis.</p>
-<p>Hasil form berupa prediksi satu piksel dan probabilitas untuk setiap kelas. Probabilitas tersebut berbeda dari accuracy testing. Prediksi polygon pada peta menggunakan rata-rata probabilitas piksel sampel di dalam polygon.</p>
-<p><strong>Web statis Jupyter Book</strong> memuat dokumentasi pengumpulan data, data understanding, band Sentinel-2A, preprocessing, ekstraksi fitur, pembagian data, eksperimen model, evaluasi, dan peta.</p>
-<p><a class="reference external" href="https://riskanana06.github.io/PSD/">Buka web statis PSD</a></p>
-<p>Web statis memuat proses penelitian dan link aplikasi Streamlit. Aplikasi Streamlit menjalankan sistem informasi interaktif secara terpisah.</p>
+</section>
+<section id="kode-pembagian-tab">
+<h3>15.2 Kode Pembagian Tab<a class="headerlink" href="#kode-pembagian-tab" title="Link to this heading">#</a></h3>
+<p>Potongan kode berikut berasal dari <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tab1</span><span class="p">,</span> <span class="n">tab2</span><span class="p">,</span> <span class="n">tab3</span><span class="p">,</span> <span class="n">tab4</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">tabs</span><span class="p">([</span>
+    <span class="s2">"Eksplorasi Data"</span><span class="p">,</span>
+    <span class="s2">"Peta Spasial"</span><span class="p">,</span>
+    <span class="s2">"Model Extra Trees"</span><span class="p">,</span>
+    <span class="s2">"Prediksi Data Baru"</span><span class="p">,</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Empat tab digunakan agar pengguna dapat melihat data, peta, evaluasi, dan prediksi secara terpisah.</p>
+</section>
+<section id="kode-penayangan-peta">
+<h3>15.3 Kode Penayangan Peta<a class="headerlink" href="#kode-penayangan-peta" title="Link to this heading">#</a></h3>
+<p>Pada tab peta, objek peta dibuat menggunakan fungsi <code class="docutils literal notranslate"><span class="pre">buat_peta()</span></code> lalu ditampilkan sebagai HTML.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">peta</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">buat_peta</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">nama_model</span><span class="p">,</span>
+    <span class="n">benar</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">testing</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">components</span><span class="o">.</span><span class="n">html</span><span class="p">(</span>
+    <span class="n">peta</span><span class="o">.</span><span class="n">get_root</span><span class="p">()</span><span class="o">.</span><span class="n">render</span><span class="p">(),</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+    <span class="n">scrolling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Variabel <code class="docutils literal notranslate"><span class="pre">features</span></code> berisi polygon yang sesuai dengan filter kelas pilihan pengguna.</p>
+</section>
+<section id="prediksi-data-baru">
+<h3>15.4 Prediksi Data Baru<a class="headerlink" href="#prediksi-data-baru" title="Link to this heading">#</a></h3>
+<p>Pengguna memasukkan nilai reflektansi 10 band Sentinel-2A. Aplikasi menghitung NDVI, NDWI, dan NDBI secara otomatis sehingga model tetap menerima 13 fitur.</p>
+<p>Nilai awal form merupakan median fitur dataset sebagai contoh pengisian. Nilai tersebut dapat diganti dengan reflektansi piksel citra yang ingin diprediksi.</p>
+<p>Hasil form berlaku untuk <strong>satu piksel</strong>. Prediksi polygon pada peta menggunakan rata-rata probabilitas piksel sampelnya.</p>
+<p>Probabilitas prediksi pada form berbeda dari accuracy testing.</p>
+</section>
+<section id="hubungan-web-statis-dan-streamlit">
+<h3>15.5 Hubungan Web Statis dan Streamlit<a class="headerlink" href="#hubungan-web-statis-dan-streamlit" title="Link to this heading">#</a></h3>
+<p>Web statis Jupyter Book memuat proses pengumpulan data, penjelasan band, kode pengolahan, ekstraksi fitur, pembagian data, perbandingan model, hasil evaluasi, dan peta.</p>
+<p>Aplikasi Streamlit menyediakan tampilan interaktif serta form prediksi data baru menggunakan model yang telah dilatih.</p>
+</section>
+</section>
+<section id="kesimpulan">
+<h2>16. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Penelitian menggunakan 180 polygon sampel yang terdiri dari enam kelas lahan di Jawa Timur.</p>
+<p>Ekstraksi menghasilkan <strong>41.617 piksel</strong>, dengan <strong>13 fitur per piksel</strong> dan <strong>0 missing value pada fitur</strong>.</p>
+<p>Pembagian data dilakukan berdasarkan polygon, yaitu <strong>144 polygon training</strong> dan <strong>36 polygon testing</strong>.</p>
+<p>Dari tiga model yang dibandingkan, <strong>Extra Trees</strong> dipilih berdasarkan hasil validasi silang pada data training. Accuracy polygon testing mencapai <strong>83,33%</strong>, yaitu <strong>30 dari 36 polygon</strong> diprediksi dengan benar.</p>
+<p>Hasil penelitian ditampilkan melalui peta interaktif dan aplikasi Streamlit. Hasil ini dapat menjadi informasi awal untuk pembahasan penggunaan lahan, tetapi penilaian kesesuaian kebijakan membutuhkan data kebijakan spasial dan verifikasi lebih lanjut.</p>
 </section>
 <section id="referensi">
-<h2>15. Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Badan Standardisasi Nasional. SNI 7645-1:2014, Klasifikasi penutup lahan — Bagian 1: Skala kecil dan menengah. <a class="reference external" href="https://pesta.bsn.go.id/produk/by_ics/5?ics_no=07&amp;amp;key=">Katalog BSN</a>.</p></li>
+<h2>17. Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Badan Standardisasi Nasional. <strong>SNI 7645-1:2014, Klasifikasi Penutup Lahan — Bagian 1: Skala Kecil dan Menengah</strong>. <a class="reference external" href="https://pesta.bsn.go.id/produk/by_ics/5?ics_no=07&amp;amp;key=">Katalog BSN</a>.</p></li>
 <li><p>Copernicus Data Space Ecosystem. <a class="reference external" href="https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/S2L2A.html">Sentinel-2 Level-2A</a>.</p></li>
 <li><p>Copernicus Data Space Ecosystem. <a class="reference external" href="https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/S2L1C.html">Sentinel-2 Level-1C</a>.</p></li>
-<li><p>Scikit-learn. <a class="reference external" href="https://scikit-learn.org/1.6/modules/ensemble.html">Ensemble methods</a>.</p></li>
-</ul>
+<li><p>Scikit-learn. <a class="reference external" href="https://scikit-learn.org/1.6/modules/ensemble.html">Ensemble Methods</a>.</p></li>
+<li><p>Pemerintah Provinsi Jawa Timur. <a class="reference external" href="https://jdih.jatimprov.go.id/site-pages/dokumen-populer/peraturan-daerah-provinsi-jawa-timur-nomor-10-tahun-2023-tentang-rencana-tata-ruang-wilayah-provinsi-jawa-timur-tahun-2023-2043">Perda Nomor 10 Tahun 2023 tentang RTRW Provinsi Jawa Timur Tahun 2023–2043</a>.</p></li>
+<li><p>Pemerintah Republik Indonesia. <a class="reference external" href="https://jdih.pertanian.go.id/peraturan/uu-nomor-41-tahun-2009">UU Nomor 41 Tahun 2009 tentang Perlindungan Lahan Pertanian Pangan Berkelanjutan</a>, beserta perubahannya.</p></li>
+<li><p>Pemerintah Republik Indonesia. <a class="reference external" href="https://jdih.kemenkopangan.go.id/peraturan-pemerintah-nomor-27-tahun-2025-tentang-perlindungan-dan-pengelolaan-ekosistem-mangrove">PP Nomor 27 Tahun 2025 tentang Perlindungan dan Pengelolaan Ekosistem Mangrove</a>.</p></li>
+<li><p>Kementerian PUPR. <a class="reference external" href="https://peraturan.go.id/id/permen-pupr-no-28-prt-m-2015-tahun-2015">Permen PUPR Nomor 28/PRT/M/2015 tentang Penetapan Garis Sempadan Sungai dan Garis Sempadan Danau</a>.</p></li>
+</ol>
 </section>
 </section>
 
@@ -1277,44 +2162,92 @@ Balanced\ Accuracy = \frac{1}{K}\sum_{c=1}^{K}Recall_c
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">1. Tujuan Analisis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-dan-kelas">2.1 Wilayah dan Kelas</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-di-indonesia">2.2 Acuan Klasifikasi Lahan di Indonesia</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-citra">2.3 Sumber Citra</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acuan-klasifikasi-lahan-indonesia">2.2 Acuan Klasifikasi Lahan Indonesia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-dan-periode-citra">2.3 Sumber dan Periode Citra</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3. Pengumpulan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-pengunduhan">3.1 Konfigurasi Pengunduhan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengaturan-layer-keluaran">3.2 Pengaturan Layer Keluaran</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-citra-sentinel-2a">3.3 Pencarian Citra Sentinel-2A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-progres">3.4 Penyimpanan Progres</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-sentinel-2a">4. Band Sentinel-2A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyaringan-piksel">5. Penyaringan Piksel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyaringan-piksel">5. Penyaringan Piksel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-penyaringan">5.1 Kode Penyaringan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur">6. Ekstraksi Fitur</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndvi">6.1 NDVI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndwi">6.2 NDWI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ndbi">6.3 NDBI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-fitur-per-polygon">6.4 Ringkasan Fitur per Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-perhitungan-indeks">6.4 Kode Perhitungan Indeks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-statistik-per-polygon">6.5 Ringkasan Statistik per Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembatasan-piksel">6.6 Pembatasan Piksel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi">7. Hasil Ekstraksi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-training-dan-testing">8. Pembagian Training dan Testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-model">9. Eksperimen Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model">10. Perbandingan Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi">7. Hasil Ekstraksi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-dataset">7.1 Penyimpanan Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-yang-diperoleh">7.2 Jumlah Data yang Diperoleh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-missing-value">7.3 Pemeriksaan Missing Value</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-training-dan-testing">8. Pembagian Training dan Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembagian-data">8.1 Kode Pembagian Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pembagian-polygon">8.2 Hasil Pembagian Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pembagian-piksel">8.3 Hasil Pembagian Piksel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-model">9. Eksperimen Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-model-kandidat">9.1 Kode Model Kandidat</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembobotan-polygon">9.2 Pembobotan Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-pada-tingkat-polygon">9.3 Prediksi pada Tingkat Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validasi-silang-tiga-fold">9.4 Validasi Silang Tiga Fold</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-dan-pemilihan-model">10. Perbandingan dan Pemilihan Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-perbandingan-model">10.1 Kode Perbandingan Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-validasi-silang">10.2 Hasil Validasi Silang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pelatihan-ulang-model-terpilih">10.3 Pelatihan Ulang Model Terpilih</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-testing">11. Hasil Testing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-polygon">11.1 Evaluasi Polygon</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-piksel">11.2 Evaluasi Piksel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-polygon">11.3 Confusion Matrix Polygon</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-piksel">11.4 Confusion Matrix Piksel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-klasifikasi-terhadap-kebijakan-penggunaan-lahan">12.1 Analisis Hasil Klasifikasi terhadap Kebijakan Penggunaan Lahan</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sawah-dan-perlindungan-lahan-pertanian">A. Sawah dan Perlindungan Lahan Pertanian</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-bangunan-dan-pemanfaatan-ruang">B. Bangunan dan Pemanfaatan Ruang</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-mangrove-dan-perlindungan-ekosistem-pesisir">C. Mangrove dan Perlindungan Ekosistem Pesisir</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-lahan-hijau-dan-kawasan-vegetasi">D. Lahan Hijau dan Kawasan Vegetasi</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-laut-danau-dan-perlindungan-badan-air">E. Laut, Danau, dan Perlindungan Badan Air</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-ketelitian-hasil-dan-batas-analisis-kebijakan">F. Ketelitian Hasil dan Batas Analisis Kebijakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-perhitungan-metrik">11.1 Kode Perhitungan Metrik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-polygon">11.2 Evaluasi Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-piksel">11.3 Evaluasi Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembuatan-confusion-matrix">11.4 Kode Pembuatan Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-polygon">11.5 Confusion Matrix Polygon</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-piksel">11.6 Confusion Matrix Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penyimpanan-model">11.7 Penyimpanan Model</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sumber-kebijakan">12.2 Sumber Kebijakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-hasil-klasifikasi">12. Peta Hasil Klasifikasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembuatan-peta">12.1 Kode Pembuatan Peta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-interaktif">12.2 Peta Interaktif</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-prediksi-pada-peta">12.3 Ringkasan Prediksi pada Peta</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-dan-kode-pengolahan">13. File dan Kode Pengolahan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">14. Deployment Sistem Informasi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">15. Referensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-terhadap-kebijakan-penggunaan-lahan">13. Analisis terhadap Kebijakan Penggunaan Lahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sawah-dan-perlindungan-lahan-pertanian">13.1 Sawah dan Perlindungan Lahan Pertanian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bangunan-dan-pemanfaatan-ruang">13.2 Bangunan dan Pemanfaatan Ruang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mangrove-dan-ekosistem-pesisir">13.3 Mangrove dan Ekosistem Pesisir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lahan-hijau">13.4 Lahan Hijau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laut-dan-danau">13.5 Laut dan Danau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batas-analisis-kebijakan">13.6 Batas Analisis Kebijakan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-pengolahan">14. File Pengolahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-sistem-informasi">15. Deployment Sistem Informasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagian-aplikasi">15.1 Bagian Aplikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-pembagian-tab">15.2 Kode Pembagian Tab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-penayangan-peta">15.3 Kode Penayangan Peta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediksi-data-baru">15.4 Prediksi Data Baru</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hubungan-web-statis-dan-streamlit">15.5 Hubungan Web Statis dan Streamlit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">16. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">17. Referensi</a></li>
 </ul>
   </nav></div>
 
