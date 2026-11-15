@@ -32,10 +32,12 @@ html:
   use_issues_button: true
   use_repository_button: true
 
-# Abaikan folder dataset citra mentah berukuran besar dari build Sphinx
+# Abaikan folder dataset citra mentah berukuran besar dan folder build dari Sphinx
 sphinx:
   config:
     exclude_patterns:
+      - "_build/**"
+      - ".jupyter_cache/**"
       - "rapi-*/**"
       - "berantakan-*/**"
       - "klasifikasi_citra_sepatu/grayscale/**"
