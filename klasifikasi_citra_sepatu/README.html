@@ -1,0 +1,974 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Proyek PCD: Klasifikasi Citra Susunan Sepatu Rapi dan Berantakan &#8212; Riska Nana Nuril Fadilah</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'klasifikasi_citra_sepatu/README';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/profile.jpeg" class="logo__image only-light" alt="Riska Nana Nuril Fadilah - Home"/>
+    <script>document.write(`<img src="../_static/profile.jpeg" class="logo__image only-dark" alt="Riska Nana Nuril Fadilah - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Proyek 1: Polutan Udara Asem Rowo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wilayah.html">Wilayah Pengamatan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../time_series.html">Analisis Time Series Polutan Udara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tsfel_features.html">Ekstraksi 68 Fitur TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postgresql_aiven.html">PostgreSQL Aiven dan Analisis Statistik KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../clustering.html">Ekstraksi Fitur dan Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../klasifikasi_sawah.html">Klasifikasi Lahan Jawa Timur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Proyek 2: Klasifikasi Citra Sepatu</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../klasifikasi_sepatu.html">Klasifikasi Citra Susunan Sepatu</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/riskanana06/PSD.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/riskanana06/PSD.git/issues/new?title=Issue%20on%20page%20%2Fklasifikasi_citra_sepatu/README.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/klasifikasi_citra_sepatu/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Proyek PCD: Klasifikasi Citra Susunan Sepatu Rapi dan Berantakan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masalah-bisnis-dan-komputasi">1.2 Masalah Bisnis dan Komputasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">1.3 Tujuan Proyek</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-citra-rgb">4. Ekstraksi Fitur Citra RGB</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-citra-ke-grayscale">5. Konversi Citra ke Grayscale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tekstur-menggunakan-glcm">6. Ekstraksi Fitur Tekstur Menggunakan GLCM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-lengkap-14-fitur-dan-formula">7. Penjelasan Lengkap 14 Fitur dan Formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis-eda">8. Exploratory Data Analysis (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-n-200">8.1 Statistik Deskriptif (<span class="math notranslate nohighlight">\(N = 200\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-korelasi-antarfitur">8.2 Temuan Korelasi Antarfitur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dan-alur-klasifikasi-random-forest">9. Implementasi dan Alur Klasifikasi Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengujian-dan-evaluasi-model">10. Hasil Pengujian dan Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-pada-data-testing-n-38">Kinerja pada Data Testing (<span class="math notranslate nohighlight">\(N = 38\)</span>):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detail-kinerja-per-kelas">Detail Kinerja per Kelas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-dan-pembahasannya">11. Confusion Matrix dan Pembahasannya</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-dan-interpretasinya">12. Feature Importance dan Interpretasinya</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-keterbatasan-dan-kesimpulan">13. Analisis Hasil, Keterbatasan, dan Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-direktori-dan-panduan-eksekusi">14. Struktur Direktori dan Panduan Eksekusi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksekusi-seluruh-pipeline">Eksekusi Seluruh Pipeline:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksekusi-jupyter-notebook">Eksekusi Jupyter Notebook:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="proyek-pcd-klasifikasi-citra-susunan-sepatu-rapi-dan-berantakan">
+<h1>Proyek PCD: Klasifikasi Citra Susunan Sepatu Rapi dan Berantakan<a class="headerlink" href="#proyek-pcd-klasifikasi-citra-susunan-sepatu-rapi-dan-berantakan" title="Link to this heading">#</a></h1>
+<p>Dokumentasi komprehensif proyek <strong>Pengolahan Citra Digital (PCD)</strong> untuk melakukan klasifikasi otomatis terhadap susunan sepatu ke dalam dua kategori: <strong>Rapi</strong> (<em>tidy</em>) dan <strong>Berantakan</strong> (<em>messy</em>), menggunakan kombinasi fitur statistik warna RGB, fitur tekstur matriks kookurensi spasial GLCM (<em>Gray-Level Co-occurrence Matrix</em>), dan pengklasifikasi <em>ensemble</em> Random Forest.</p>
+<hr class="docutils" />
+<section id="business-understanding">
+<h2>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h2>
+<section id="latar-belakang">
+<h3>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h3>
+<p>Penataan alas kaki yang tertib dan teratur merupakan aspek penting dalam pengelolaan ruang hunian pribadi, perkantoran, tempat ibadah, asrama, dan fasilitas publik. Penataan manual mengandalkan persepsi manusia yang bersifat subjektif, memerlukan kehadiran fisik terus-menerus, dan tidak terotomatisasi.</p>
+<p>Dengan memanfaatkan teknik pengolahan citra digital dan pembelajaran mesin, penilaian keteraturan susunan sepatu dapat dilakukan secara otomatis, objektif, dan terstandarisasi berdasarkan analisis kuantitatif pola warna dan tekstur visual.</p>
+</section>
+<section id="masalah-bisnis-dan-komputasi">
+<h3>1.2 Masalah Bisnis dan Komputasi<a class="headerlink" href="#masalah-bisnis-dan-komputasi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Heterogenitas Bentuk dan Warna:</strong> Sepatu memiliki variasi model, warna, ukuran, dan bahan yang sangat beragam.</p></li>
+<li><p><strong>Kondisi Pengambilan Citra Alami:</strong> Variasi pencahayaan ruangan dan sudut pandang kamera (<em>viewing angles</em>) yang tidak seragam.</p></li>
+<li><p><strong>Pencegahan Data Leakage:</strong> Adanya foto <em>burst</em> dan duplikasi berkas mengharuskan pemisahan data yang ketat berbasis kelompok independen.</p></li>
+</ul>
+</section>
+<section id="tujuan-proyek">
+<h3>1.3 Tujuan Proyek<a class="headerlink" href="#tujuan-proyek" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mengekstraksi 9 fitur statistik warna RGB dan 5 fitur tekstur spasial GLCM.</p></li>
+<li><p>Membangun dataset terpadu berdimensi 200 baris dengan 14 fitur prediktor numerik dan 1 label target.</p></li>
+<li><p>Mencegah kebocoran data (<em>zero data leakage</em>) menggunakan <em>Disjoint-Set Union</em> dan <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code>.</p></li>
+<li><p>Melatih model Random Forest (<span class="math notranslate nohighlight">\(100\text{ trees}\)</span>, <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">14</span></code>) dan mengevaluasi kinerjanya.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-understanding">
+<h2>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Objek Citra:</strong> Fokus murni pada susunan sepatu di lantai/rak.</p></li>
+<li><p><strong>Jumlah Data:</strong> 200 citra (100 <code class="docutils literal notranslate"><span class="pre">rapi</span></code> dan 100 <code class="docutils literal notranslate"><span class="pre">berantakan</span></code>, seimbang 50:50).</p></li>
+<li><p><strong>Format File:</strong> JPG, JPEG, dan HEIC.</p>
+<ul>
+<li><p>Kategori Rapi: 71 JPG, 26 JPEG, 3 HEIC.</p></li>
+<li><p>Kategori Berantakan: 63 JPG, 34 JPEG, 3 HEIC.</p></li>
+</ul>
+</li>
+<li><p><strong>Audit Duplikasi dan Kemiripan Citra:</strong></p>
+<ul>
+<li><p><strong>MD5 Checksum (Identik Biner):</strong> 9 kelompok salinan file identik (5 kelompok rapi, 4 kelompok berantakan).</p></li>
+<li><p><strong>dHash 64-bit (Kemiripan Perseptual):</strong> 19 pasangan identik visual (jarak Hamming = 0) dan 6 pasangan <em>burst/near-duplicate</em> (jarak Hamming 1–5).</p></li>
+<li><p><strong>Kelompok Independen:</strong> 177 kelompok unik via <em>Disjoint-Set Union</em>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="data-preparation">
+<h2>3. Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Standardisasi Citra ke RGB:</strong> Membaca citra berbagai format (termasuk dekode HEIF via <code class="docutils literal notranslate"><span class="pre">pillow-heif</span></code>) dan mengonversi ke mode RGB 3-channel bertipe <code class="docutils literal notranslate"><span class="pre">uint8</span></code> dengan rentang piksel <span class="math notranslate nohighlight">\([0, 255]\)</span>.</p></li>
+<li><p><strong>Isolasi Kelompok Duplikasi (Zero Data Leakage):</strong>
+Menggunakan <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold(n_splits=5,</span> <span class="pre">shuffle=True,</span> <span class="pre">random_state=14)</span></code>:</p>
+<ul class="simple">
+<li><p><strong>Data Training:</strong> 162 citra (81,0%) — 83 rapi, 79 berantakan.</p></li>
+<li><p><strong>Data Testing:</strong> 38 citra (19,0%) — 17 rapi, 21 berantakan.</p></li>
+<li><p><strong>Overlapping Group:</strong> 0 grup (100% bebas kebocoran data).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="ekstraksi-fitur-citra-rgb">
+<h2>4. Ekstraksi Fitur Citra RGB<a class="headerlink" href="#ekstraksi-fitur-citra-rgb" title="Link to this heading">#</a></h2>
+<p>Pada setiap kanal warna <span class="math notranslate nohighlight">\(c \in \{R, G, B\}\)</span>, dihitung tiga besaran statistik:</p>
+<ul class="simple">
+<li><p><strong>Mean (Rata-rata Intensitas):</strong><br />
+$<span class="math notranslate nohighlight">\(\mu_c = \frac{1}{M \cdot N} \sum_{i=1}^M \sum_{j=1}^N I_c(i, j)\)</span>$</p></li>
+<li><p><strong>Standard Deviation (Standar Deviasi):</strong><br />
+$<span class="math notranslate nohighlight">\(\sigma_c = \sqrt{\frac{1}{M \cdot N} \sum_{i=1}^M \sum_{j=1}^N (I_c(i, j) - \mu_c)^2}\)</span>$</p></li>
+<li><p><strong>Skewness (Kemencengan Distribusi):</strong><br />
+$<span class="math notranslate nohighlight">\(\gamma_c = \frac{\frac{1}{M \cdot N} \sum_{i=1}^M \sum_{j=1}^N (I_c(i, j) - \mu_c)^3}{\sigma_c^3}\)</span>$</p></li>
+</ul>
+<p>Fitur yang dihasilkan: <code class="docutils literal notranslate"><span class="pre">mean_R</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_G</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_B</span></code>, <code class="docutils literal notranslate"><span class="pre">std_R</span></code>, <code class="docutils literal notranslate"><span class="pre">std_G</span></code>, <code class="docutils literal notranslate"><span class="pre">std_B</span></code>, <code class="docutils literal notranslate"><span class="pre">skew_R</span></code>, <code class="docutils literal notranslate"><span class="pre">skew_G</span></code>, <code class="docutils literal notranslate"><span class="pre">skew_B</span></code>. Disimpan pada <code class="docutils literal notranslate"><span class="pre">output/fitur_rgb_sementara.csv</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="konversi-citra-ke-grayscale">
+<h2>5. Konversi Citra ke Grayscale<a class="headerlink" href="#konversi-citra-ke-grayscale" title="Link to this heading">#</a></h2>
+<p>Citra dikonversi ke skala abu-abu 8-bit untuk mereduksi kompleksitas komputasi matriks GLCM. Menggunakan formula pembobotan luminansi perseptual ITU-R BT.601-2:</p>
+<div class="math notranslate nohighlight">
+\[Y = 0.299 \cdot R + 0.587 \cdot G + 0.114 \cdot B\]</div>
+<ul class="simple">
+<li><p>Format: Array 2D single-channel, tipe data <code class="docutils literal notranslate"><span class="pre">uint8</span></code>, rentang <span class="math notranslate nohighlight">\([0, 255]\)</span>.</p></li>
+<li><p>Sebanyak 200 citra disimpan di <code class="docutils literal notranslate"><span class="pre">output/grayscale/rapi/</span></code> dan <code class="docutils literal notranslate"><span class="pre">output/grayscale/berantakan/</span></code>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ekstraksi-fitur-tekstur-menggunakan-glcm">
+<h2>6. Ekstraksi Fitur Tekstur Menggunakan GLCM<a class="headerlink" href="#ekstraksi-fitur-tekstur-menggunakan-glcm" title="Link to this heading">#</a></h2>
+<p><em>Gray-Level Co-occurrence Matrix</em> (GLCM) menganalisis distribusi spasial pasangan piksel dengan parameter:</p>
+<ul class="simple">
+<li><p>Jarak piksel: <span class="math notranslate nohighlight">\(d = 1\)</span></p></li>
+<li><p>Orientasi sudut: 4 arah (<span class="math notranslate nohighlight">\(\theta \in \{0^\circ, 45^\circ, 90^\circ, 135^\circ\}\)</span>)</p></li>
+<li><p>Level: <span class="math notranslate nohighlight">\(256\)</span> aras keabuan</p></li>
+<li><p>Simetris: <code class="docutils literal notranslate"><span class="pre">True</span></code>, Normalisasi: <code class="docutils literal notranslate"><span class="pre">True</span></code> (<span class="math notranslate nohighlight">\(p(i, j)\)</span>)</p></li>
+<li><p><strong>Agregasi Invarian Rotasi:</strong> Nilai akhir diperoleh dari rata-rata keempat sudut.</p></li>
+</ul>
+<p>Lima fitur GLCM:</p>
+<ol class="arabic simple">
+<li><p><strong>Energy:</strong> <span class="math notranslate nohighlight">\(\text{Energy} = \sqrt{\sum_{i}\sum_{j} p(i, j)^2}\)</span></p></li>
+<li><p><strong>Entropy:</strong> <span class="math notranslate nohighlight">\(\text{Entropy} = -\sum_{i}\sum_{j} p(i, j) \log_2 p(i, j) \quad (\text{untuk } p(i, j) &gt; 0)\)</span></p></li>
+<li><p><strong>Contrast:</strong> <span class="math notranslate nohighlight">\(\text{Contrast} = \sum_{i}\sum_{j} |i - j|^2 p(i, j)\)</span></p></li>
+<li><p><strong>Correlation:</strong> <span class="math notranslate nohighlight">\(\text{Correlation} = \sum_{i}\sum_{j} \frac{(i - \mu_i)(j - \mu_j) p(i, j)}{\sigma_i \sigma_j}\)</span></p></li>
+<li><p><strong>Homogeneity:</strong> <span class="math notranslate nohighlight">\(\text{Homogeneity} = \sum_{i}\sum_{j} \frac{p(i, j)}{1 + |i - j|}\)</span></p></li>
+</ol>
+<p>Disimpan pada <code class="docutils literal notranslate"><span class="pre">output/fitur_glcm_sementara.csv</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-lengkap-14-fitur-dan-formula">
+<h2>7. Penjelasan Lengkap 14 Fitur dan Formula<a class="headerlink" href="#penjelasan-lengkap-14-fitur-dan-formula" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>No</p></th>
+<th class="head"><p>Fitur</p></th>
+<th class="head"><p>Kategori</p></th>
+<th class="head text-center"><p>Rentang Nilai</p></th>
+<th class="head"><p>Formula KaTeX</p></th>
+<th class="head"><p>Makna Fisis / Visual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 255]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_R = \frac{1}{MN} \sum I_R\)</span></p></td>
+<td><p>Kecerahan rata-rata kanal merah</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 255]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_G = \frac{1}{MN} \sum I_G\)</span></p></td>
+<td><p>Kecerahan rata-rata kanal hijau</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 255]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_B = \frac{1}{MN} \sum I_B\)</span></p></td>
+<td><p>Kecerahan rata-rata kanal biru</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 127.5]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_R = \sqrt{\frac{1}{MN} \sum (I_R - \mu_R)^2}\)</span></p></td>
+<td><p>Kontras/variasi spektrum merah</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 127.5]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_G = \sqrt{\frac{1}{MN} \sum (I_G - \mu_G)^2}\)</span></p></td>
+<td><p>Kontras/variasi spektrum hijau</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 127.5]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_B = \sqrt{\frac{1}{MN} \sum (I_B - \mu_B)^2}\)</span></p></td>
+<td><p>Kontras/variasi spektrum biru</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-\infty, +\infty]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\gamma_R = \frac{\frac{1}{MN}\sum(I_R-\mu_R)^3}{\sigma_R^3}\)</span></p></td>
+<td><p>Asimetri distribusi warna merah</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-\infty, +\infty]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\gamma_G = \frac{\frac{1}{MN}\sum(I_G-\mu_G)^3}{\sigma_G^3}\)</span></p></td>
+<td><p>Asimetri distribusi warna hijau</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-\infty, +\infty]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\gamma_B = \frac{\frac{1}{MN}\sum(I_B-\mu_B)^3}{\sigma_B^3}\)</span></p></td>
+<td><p>Asimetri distribusi warna biru</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">energy</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 1]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sqrt{\sum p(i,j)^2}\)</span></p></td>
+<td><p>Keseragaman pola tekstur</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 8]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-\sum p(i,j)\log_2 p(i,j)\)</span></p></td>
+<td><p>Kompleksitas/keacakan tekstur</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">contrast</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 65025]\)</span></p></td>
+<td><p>$\sum</p></td>
+<td><p>i-j</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-1, 1]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sum \frac{(i-\mu_i)(j-\mu_j)p(i,j)}{\sigma_i \sigma_j}\)</span></p></td>
+<td><p>Ketergantungan linier spasial</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">homogeneity</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 1]\)</span></p></td>
+<td><p>$\sum \frac{p(i,j)}{1 +</p></td>
+<td><p>i-j</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dataset final digabungkan menjadi satu berkas: <code class="docutils literal notranslate"><span class="pre">output/dataset_fitur_citra.csv</span></code> (<span class="math notranslate nohighlight">\(200 \times 15\)</span>).</p>
+</section>
+<hr class="docutils" />
+<section id="exploratory-data-analysis-eda">
+<h2>8. Exploratory Data Analysis (EDA)<a class="headerlink" href="#exploratory-data-analysis-eda" title="Link to this heading">#</a></h2>
+<section id="statistik-deskriptif-n-200">
+<h3>8.1 Statistik Deskriptif (<span class="math notranslate nohighlight">\(N = 200\)</span>)<a class="headerlink" href="#statistik-deskriptif-n-200" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_R</span></code>: mean 137,12, std 18,84, rentang [73,97 - 176,57]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_G</span></code>: mean 127,14, std 17,42, rentang [65,10 - 168,23]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_B</span></code>: mean 119,13, std 18,00, rentang [64,38 - 164,54]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std_R</span></code>: mean 59,76, std 10,39, rentang [36,28 - 89,31]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std_G</span></code>: mean 61,37, std 7,66, rentang [34,47 - 85,16]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std_B</span></code>: mean 62,20, std 7,40, rentang [32,04 - 80,29]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skew_R</span></code>: mean -0,30, std 0,46, rentang [-1,50 - 0,88]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skew_G</span></code>: mean -0,11, std 0,40, rentang [-1,26 - 0,86]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skew_B</span></code>: mean -0,05, std 0,40, rentang [-1,12 - 0,88]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">energy</span></code>: mean 0,0327, std 0,0221, rentang [0,0138 - 0,2049]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code>: mean 11,6373, std 0,7721, rentang [8,6353 - 13,3113]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contrast</span></code>: mean 103,73, std 65,52, rentang [11,75 - 358,43]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code>: mean 0,9852, std 0,0090, rentang [0,9608 - 0,9988]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">homogeneity</span></code>: mean 0,3915, std 0,1181, rentang [0,1676 - 0,7537]</p></li>
+</ul>
+</section>
+<section id="temuan-korelasi-antarfitur">
+<h3>8.2 Temuan Korelasi Antarfitur<a class="headerlink" href="#temuan-korelasi-antarfitur" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Korelasi linier individual terhadap label bersifat moderat/rendah (<span class="math notranslate nohighlight">\(|r| \le 0,16\)</span>). Hal ini menunjukkan perlunya model non-linear yang dapat mengeksploitasi interaksi fitur multidimensi.</p></li>
+<li><p>Terlihat hubungan invers yang kuat antara <code class="docutils literal notranslate"><span class="pre">contrast</span></code> dan <code class="docutils literal notranslate"><span class="pre">homogeneity</span></code> (<span class="math notranslate nohighlight">\(r \approx -0,80\)</span>), serta multikolinieritas alami antar-mean kanal warna (<span class="math notranslate nohighlight">\(r &gt; 0,90\)</span>).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="implementasi-dan-alur-klasifikasi-random-forest">
+<h2>9. Implementasi dan Alur Klasifikasi Random Forest<a class="headerlink" href="#implementasi-dan-alur-klasifikasi-random-forest" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Algoritma:</strong> <code class="docutils literal notranslate"><span class="pre">RandomForestClassifier(n_estimators=100,</span> <span class="pre">random_state=14,</span> <span class="pre">criterion='gini')</span></code></p></li>
+<li><p><strong>Penskalaan Fitur:</strong> Tidak menggunakan scaler (Random Forest invarian terhadap skala fitur).</p></li>
+<li><p><strong>Integritas:</strong> Model dilatih pada 162 sampel data latih dan diuji pada 38 sampel data uji independen.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hasil-pengujian-dan-evaluasi-model">
+<h2>10. Hasil Pengujian dan Evaluasi Model<a class="headerlink" href="#hasil-pengujian-dan-evaluasi-model" title="Link to this heading">#</a></h2>
+<section id="kinerja-pada-data-testing-n-38">
+<h3>Kinerja pada Data Testing (<span class="math notranslate nohighlight">\(N = 38\)</span>):<a class="headerlink" href="#kinerja-pada-data-testing-n-38" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Akurasi:</strong> <strong>71,05%</strong> (27 dari 38 sampel diprediksi benar)</p></li>
+<li><p><strong>Macro Precision:</strong> <strong>72,12%</strong></p></li>
+<li><p><strong>Macro Recall:</strong> <strong>69,33%</strong></p></li>
+<li><p><strong>Macro F1-Score:</strong> <strong>69,33%</strong></p></li>
+<li><p><strong>Weighted Average F1-Score:</strong> <strong>70,10%</strong></p></li>
+</ul>
+</section>
+<section id="detail-kinerja-per-kelas">
+<h3>Detail Kinerja per Kelas:<a class="headerlink" href="#detail-kinerja-per-kelas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Kategori Rapi:</strong> Precision = 75,00%, Recall = 52,94%, F1-Score = 62,07% (Support = 17)</p></li>
+<li><p><strong>Kategori Berantakan:</strong> Precision = 69,23%, Recall = 85,71%, F1-Score = 76,60% (Support = 21)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="confusion-matrix-dan-pembahasannya">
+<h2>11. Confusion Matrix dan Pembahasannya<a class="headerlink" href="#confusion-matrix-dan-pembahasannya" title="Link to this heading">#</a></h2>
+<p>Matriks kontingensi (<span class="math notranslate nohighlight">\(2 \times 2\)</span>):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas Aktual \ Prediksi</p></th>
+<th class="head text-center"><p>Prediksi: Rapi</p></th>
+<th class="head text-center"><p>Prediksi: Berantakan</p></th>
+<th class="head text-center"><p>Total Aktual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Aktual: Rapi</strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(TP = 9\)</span></strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(FN = 8\)</span></strong></p></td>
+<td class="text-center"><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Aktual: Berantakan</strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(FP = 3\)</span></strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(TN = 18\)</span></strong></p></td>
+<td class="text-center"><p>21</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total Prediksi</strong></p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>26</p></td>
+<td class="text-center"><p>38</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Recall Berantakan sangat tinggi (<span class="math notranslate nohighlight">\(85,71\%\)</span>):</strong> 18 dari 21 citra berantakan terdeteksi secara akurat berkat fitur kontras spasial dan dispersi warna.</p></li>
+<li><p><strong>Presisi Rapi mencapai <span class="math notranslate nohighlight">\(75,00\%\)</span>:</strong> 9 dari 12 citra yang diprediksi rapi terbukti benar.</p></li>
+<li><p><strong>False Negative (<span class="math notranslate nohighlight">\(FN = 8\)</span>):</strong> Dipicu oleh variasi warna alas sepatu yang mencolok serta sudut pengambilan foto yang miring (<em>perspective distortion</em>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="feature-importance-dan-interpretasinya">
+<h2>12. Feature Importance dan Interpretasinya<a class="headerlink" href="#feature-importance-dan-interpretasinya" title="Link to this heading">#</a></h2>
+<p>Kontribusi 14 fitur berdasarkan penurunan ketidakmurnian Gini:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">skew_G</span></code> : <strong>9,12%</strong> (0,0912) — Asimetri kanal hijau terhadap bayangan</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std_R</span></code> : <strong>9,08%</strong> (0,0908) — Variasi warna merah bodi sepatu</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code> : <strong>8,69%</strong> (0,0869) — Keteraturan linier pasangan piksel GLCM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skew_B</span></code> : <strong>8,60%</strong> (0,0860) — Asimetri kanal biru</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contrast</span></code> : <strong>7,82%</strong> (0,0782) — Variasi kontras transisi lokal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_B</span></code> : 7,22% (0,0722)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_R</span></code> : 7,06% (0,0706)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code> : 6,74% (0,0674)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">homogeneity</span></code> : 6,49% (0,0649)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std_B</span></code> : 6,30% (0,0630)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mean_G</span></code> : 6,22% (0,0622)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skew_R</span></code> : 6,02% (0,0602)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">energy</span></code> : 5,53% (0,0553)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std_G</span></code> : 5,11% (0,0511)</p></li>
+</ol>
+<p><strong>Sinergi:</strong> Kontribusi merata antara fitur warna (terutama skewness dan standar deviasi) serta fitur tekstur (korelasi dan kontras) membuktikan kedua modalitas saling melengkapi dalam klasifikasi susunan sepatu.</p>
+</section>
+<hr class="docutils" />
+<section id="analisis-hasil-keterbatasan-dan-kesimpulan">
+<h2>13. Analisis Hasil, Keterbatasan, dan Kesimpulan<a class="headerlink" href="#analisis-hasil-keterbatasan-dan-kesimpulan" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Akurasi:</strong> Akurasi pengujian mencapai <strong>71,05%</strong> dengan validitas metodologis tinggi (<em>zero data leakage</em>).</p></li>
+<li><p><strong>Keterbatasan:</strong> Ukuran dataset 200 sampel (177 kelompok independen) dan ketiadaan pra-pemrosesan segmentasi latar belakang lantai.</p></li>
+<li><p><strong>Pengembangan Lanjut:</strong> Penerapan deteksi objek (YOLO) untuk memotong latar belakang serta transformasi garis Hough untuk mendeteksi sumbu kelurusan sepatu.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="struktur-direktori-dan-panduan-eksekusi">
+<h2>14. Struktur Direktori dan Panduan Eksekusi<a class="headerlink" href="#struktur-direktori-dan-panduan-eksekusi" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klasifikasi_citra_sepatu/
+├── README.md                           # Dokumentasi teknis proyek (berkas ini)
+├── .mplconfig/                         # Cache matplotlib
+├── notebooks/
+│   └── klasifikasi_citra_sepatu.ipynb  # Jupyter Notebook klasifikasi interaktif
+├── output/
+│   ├── dataset_fitur_citra.csv         # Dataset final (200 baris × 15 kolom)
+│   ├── fitur_rgb_sementara.csv         # Hasil 9 fitur warna RGB
+│   ├── fitur_glcm_sementara.csv        # Hasil 5 fitur tekstur GLCM
+│   ├── model_random_forest.pkl         # Model Random Forest serialisasi pickle
+│   ├── confusion_matrix.png            # Visualisasi confusion matrix
+│   ├── feature_importance.png          # Visualisasi feature importance
+│   ├── eda_korelasi_fitur.png          # Visualisasi korelasi fitur
+│   ├── eda_distribusi_fitur.png        # Visualisasi distribusi fitur
+│   ├── hasil_evaluasi.json             # Metrik evaluasi lengkap format JSON
+│   ├── laporan_duplikasi_dataset.json  # Metadata duplikasi dan burst
+│   ├── laporan_klasifikasi.txt         # Laporan ringkas klasifikasi
+│   └── grayscale/                      # 200 citra grayscale 8-bit
+└── src/
+    ├── ekstraksi_rgb.py                # Script ekstraksi 9 fitur RGB
+    ├── konversi_grayscale.py           # Script konversi grayscale 8-bit
+    ├── ekstraksi_glcm.py               # Script ekstraksi 5 fitur GLCM
+    ├── pembuatan_csv.py                # Script penggabungan fitur ke CSV utama
+    ├── klasifikasi.py                  # Script pelatihan Random Forest &amp; evaluasi
+    └── buat_notebook.py               # Script generator notebook
+</pre></div>
+</div>
+<section id="eksekusi-seluruh-pipeline">
+<h3>Eksekusi Seluruh Pipeline:<a class="headerlink" href="#eksekusi-seluruh-pipeline" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>src
+python<span class="w"> </span>ekstraksi_rgb.py
+python<span class="w"> </span>konversi_grayscale.py
+python<span class="w"> </span>ekstraksi_glcm.py
+python<span class="w"> </span>pembuatan_csv.py
+python<span class="w"> </span>klasifikasi.py
+</pre></div>
+</div>
+</section>
+<section id="eksekusi-jupyter-notebook">
+<h3>Eksekusi Jupyter Notebook:<a class="headerlink" href="#eksekusi-jupyter-notebook" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>notebooks
+jupyter<span class="w"> </span>notebook<span class="w"> </span>klasifikasi_citra_sepatu.ipynb
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./klasifikasi_citra_sepatu"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#masalah-bisnis-dan-komputasi">1.2 Masalah Bisnis dan Komputasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">1.3 Tujuan Proyek</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-citra-rgb">4. Ekstraksi Fitur Citra RGB</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-citra-ke-grayscale">5. Konversi Citra ke Grayscale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tekstur-menggunakan-glcm">6. Ekstraksi Fitur Tekstur Menggunakan GLCM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-lengkap-14-fitur-dan-formula">7. Penjelasan Lengkap 14 Fitur dan Formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis-eda">8. Exploratory Data Analysis (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-n-200">8.1 Statistik Deskriptif (<span class="math notranslate nohighlight">\(N = 200\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temuan-korelasi-antarfitur">8.2 Temuan Korelasi Antarfitur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dan-alur-klasifikasi-random-forest">9. Implementasi dan Alur Klasifikasi Random Forest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengujian-dan-evaluasi-model">10. Hasil Pengujian dan Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinerja-pada-data-testing-n-38">Kinerja pada Data Testing (<span class="math notranslate nohighlight">\(N = 38\)</span>):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detail-kinerja-per-kelas">Detail Kinerja per Kelas:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-dan-pembahasannya">11. Confusion Matrix dan Pembahasannya</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-dan-interpretasinya">12. Feature Importance dan Interpretasinya</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-keterbatasan-dan-kesimpulan">13. Analisis Hasil, Keterbatasan, dan Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-direktori-dan-panduan-eksekusi">14. Struktur Direktori dan Panduan Eksekusi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksekusi-seluruh-pipeline">Eksekusi Seluruh Pipeline:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksekusi-jupyter-notebook">Eksekusi Jupyter Notebook:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Riska Nana Nuril Fadilah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

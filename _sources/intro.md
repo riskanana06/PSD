@@ -89,6 +89,8 @@ Dokumentasi ini terdiri atas beberapa bagian:
 - **PostgreSQL Aiven** menjelaskan penyimpanan data dan analisis Statistics menggunakan KNIME.
 - **Ekstraksi Fitur TSFEL** menjelaskan ekstraksi fitur dan perhitungan manual fitur spectral.
 - **Clustering** menjelaskan Low Variance Filter, normalisasi, PCA, K-Means, dan evaluasi cluster.
+- **Klasifikasi Lahan** menjelaskan klasifikasi enam kelas tutupan lahan di Jawa Timur menggunakan citra Sentinel-2A.
+- **Klasifikasi Citra Sepatu** menjelaskan ekstraksi fitur statistik warna RGB, fitur tekstur GLCM, penggabungan 14 fitur, pencegahan data leakage, dan klasifikasi Random Forest untuk citra susunan sepatu rapi dan berantakan.
 
 ## Tujuan Dokumentasi
 

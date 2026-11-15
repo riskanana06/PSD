@@ -1,0 +1,2152 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Klasifikasi Citra Susunan Sepatu &#8212; Riska Nana Nuril Fadilah</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'klasifikasi_sepatu';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Klasifikasi Lahan Jawa Timur" href="klasifikasi_sawah.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/profile.jpeg" class="logo__image only-light" alt="Riska Nana Nuril Fadilah - Home"/>
+    <script>document.write(`<img src="_static/profile.jpeg" class="logo__image only-dark" alt="Riska Nana Nuril Fadilah - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Proyek 1: Polutan Udara Asem Rowo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="business_understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">Data Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wilayah.html">Wilayah Pengamatan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">Preprocessing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Time Series Polutan Udara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tsfel_features.html">Ekstraksi 68 Fitur TSFEL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgresql_aiven.html">PostgreSQL Aiven dan Analisis Statistik KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">Ekstraksi Fitur dan Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="klasifikasi_sawah.html">Klasifikasi Lahan Jawa Timur</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Proyek 2: Klasifikasi Citra Sepatu</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Citra Susunan Sepatu</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/riskanana06/PSD.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/riskanana06/PSD.git/issues/new?title=Issue%20on%20page%20%2Fklasifikasi_sepatu.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/klasifikasi_sepatu.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Klasifikasi Citra Susunan Sepatu</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.2 Rumusan Masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">1.3 Tujuan Proyek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat-penelitian">1.4 Manfaat Penelitian</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-dan-sumber-dataset">2.1 Spesifikasi dan Sumber Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-ekstensi-berkas-per-kategori">2.2 Distribusi Ekstensi Berkas per Kategori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-duplikasi-citra-dan-kemiripan-visual">2.3 Analisis Duplikasi Citra dan Kemiripan Visual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembacaan-dan-standardisasi-ruang-warna">3.1 Pembacaan dan Standardisasi Ruang Warna</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partisi-data-bebas-kebocoran-zero-data-leakage-splitting">3.2 Partisi Data Bebas Kebocoran (<em>Zero Data Leakage Splitting</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-citra-rgb">4. Ekstraksi Fitur Citra RGB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevansi-warna-pada-keteraturan-sepatu">4.1 Relevansi Warna pada Keteraturan Sepatu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiga-besaran-statistik-warna-per-kanal">4.2 Tiga Besaran Statistik Warna per Kanal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-ekstraksi-fitur-rgb">4.3 Implementasi Kode Ekstraksi Fitur RGB</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-citra-ke-grayscale">5. Konversi Citra ke Grayscale</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#urgensi-reduksi-derajat-keabuan">5.1 Urgensi Reduksi Derajat Keabuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulasi-konversi">5.2 Formulasi Konversi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-konversi-grayscale">5.3 Implementasi Kode Konversi Grayscale</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tekstur-menggunakan-glcm">6. Ekstraksi Fitur Tekstur Menggunakan GLCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landasan-teori-glcm">6.1 Landasan Teori GLCM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-glcm-proyek">6.2 Parameter GLCM Proyek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-invarian-rotasi-rotation-invariant-averaging">6.3 Agregasi Invarian Rotasi (<em>Rotation Invariant Averaging</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-ekstraksi-glcm">6.4 Implementasi Kode Ekstraksi GLCM</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-lengkap-14-fitur-beserta-rumusnya">7. Penjelasan Lengkap 14 Fitur Beserta Rumusnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-penggabungan-fitur-ke-csv-utama">7.1 Implementasi Penggabungan Fitur ke CSV Utama</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis-eda">8. Exploratory Data Analysis (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-keseluruhan-dataset-n-200">8.1 Statistik Deskriptif Keseluruhan Dataset (<span class="math notranslate nohighlight">\(N = 200\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-komparatif-per-kelas-target">8.2 Statistik Komparatif per Kelas Target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-korelasi-antarfitur">8.3 Matriks Korelasi Antarfitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-fitur-teratas-antarkelas">8.4 Distribusi Fitur Teratas Antarkelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dan-alur-klasifikasi-random-forest">9. Implementasi dan Alur Klasifikasi Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-memilih-random-forest">9.1 Mengapa Memilih Random Forest?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pemrosesan-klasifikasi-pipeline-architecture">9.2 Alur Pemrosesan Klasifikasi (<em>Pipeline Architecture</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-pelatihan-random-forest">9.3 Implementasi Kode Pelatihan Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengujian-dan-evaluasi-model">10. Hasil Pengujian dan Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-evaluasi">10.1 Implementasi Kode Evaluasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-metrik-kinerja-global">10.2 Ringkasan Metrik Kinerja Global</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laporan-klasifikasi-rinci-classification-report">10.3 Laporan Klasifikasi Rinci (<em>Classification Report</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-dan-pembahasannya">11. Confusion Matrix dan Pembahasannya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pembuatan-confusion-matrix">11.1 Implementasi Pembuatan Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-matriks-kontingensi">11.2 Visualisasi Matriks Kontingensi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kuadran-prediksi">11.3 Distribusi Kuadran Prediksi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembahasan-mendalam-hasil-prediksi">11.4 Pembahasan Mendalam Hasil Prediksi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-dan-interpretasinya">12. Feature Importance dan Interpretasinya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-feature-importance">12.1 Implementasi Kode Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-dan-tabel-kontribusi-fitur">12.2 Visualisasi dan Tabel Kontribusi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-sinergi-fitur-warna-dan-tekstur">12.3 Interpretasi Sinergi Fitur Warna dan Tekstur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-keterbatasan-dan-kesimpulan">13. Analisis Hasil, Keterbatasan, dan Kesimpulan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-keseluruhan">13.1 Analisis Hasil Keseluruhan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan-penelitian">13.2 Keterbatasan Penelitian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-pengembangan-mendatang">13.3 Rekomendasi Pengembangan Mendatang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">13.4 Kesimpulan Akhir</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kemungkinan-pertanyaan-dosen-dan-jawaban-singkat">14. Kemungkinan Pertanyaan Dosen dan Jawaban Singkat</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-mengapa-menggunakan-kombinasi-fitur-rgb-dan-glcm-bukan-hanya-salah-satunya">Q1: Mengapa menggunakan kombinasi fitur RGB dan GLCM, bukan hanya salah satunya?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-mengapa-citra-harus-dikonversi-ke-grayscale-sebelum-menghitung-glcm">Q2: Mengapa citra harus dikonversi ke grayscale sebelum menghitung GLCM?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-bagaimana-cara-menangani-berkas-heic-dalam-python">Q3: Bagaimana cara menangani berkas HEIC dalam Python?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-mengapa-parameter-ddof-0-digunakan-pada-standar-deviasi-dan-bias-true-pada-skewness">Q4: Mengapa parameter <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code> digunakan pada standar deviasi dan <code class="docutils literal notranslate"><span class="pre">bias=True</span></code> pada skewness?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-mengapa-fitur-entropy-glcm-dihitung-secara-manual-dan-tidak-menggunakan-graycoprops">Q5: Mengapa fitur Entropy GLCM dihitung secara manual dan tidak menggunakan <code class="docutils literal notranslate"><span class="pre">graycoprops</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-apa-yang-dimaksud-dengan-data-leakage-dalam-proyek-ini-dan-bagaimana-cara-mendeteksinya">Q6: Apa yang dimaksud dengan <em>Data Leakage</em> dalam proyek ini dan bagaimana cara mendeteksinya?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-mengapa-memilih-stratifiedgroupkfold-dibandingkan-train-test-split-biasa">Q7: Mengapa memilih <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> dibandingkan <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> biasa?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q8-mengapa-model-random-forest-tidak-memerlukan-normalisasi-data-feature-scaling-seperti-min-max-atau-standard-scaler">Q8: Mengapa model Random Forest tidak memerlukan normalisasi data (<em>feature scaling</em>) seperti Min-Max atau Standard Scaler?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q9-mengapa-metrik-evaluasi-menggunakan-macro-average-di-samping-akurasi">Q9: Mengapa metrik evaluasi menggunakan <em>Macro Average</em> di samping Akurasi?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q10-bagaimana-interpretasi-nilai-korelasi-linier-fitur-yang-rendah-terhadap-label-pada-tahap-eda">Q10: Bagaimana interpretasi nilai korelasi linier fitur yang rendah terhadap label pada tahap EDA?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-berkas-dan-panduan-eksekusi">15. Struktur Berkas dan Panduan Eksekusi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-menjalankan-program-dari-terminal">Panduan Menjalankan Program dari Terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-menjalankan-notebook-interaktif">Panduan Menjalankan Notebook Interaktif</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-citra-susunan-sepatu">
+<h1>Klasifikasi Citra Susunan Sepatu<a class="headerlink" href="#klasifikasi-citra-susunan-sepatu" title="Link to this heading">#</a></h1>
+<p>Selamat datang di dokumentasi proyek <strong>Klasifikasi Citra Susunan Sepatu Rapi dan Berantakan</strong>. Dokumentasi ini menyajikan alur komprehensif penelitian berbasis <em>Digital Image Processing</em> (Pengolahan Citra Digital) dan <em>Machine Learning</em> untuk mendeteksi serta mengklasifikasikan keteraturan susunan sepatu ke dalam dua kategori, yaitu <strong>Rapi</strong> (<em>tidy</em>) dan <strong>Berantakan</strong> (<em>messy</em>).</p>
+<p>Dokumentasi ini disusun secara terpadu, menyajikan landasan teoretis, implementasi kode Python asli yang digunakan dalam proyek, analisis statistik eksploratif (EDA), hasil evaluasi model, serta rangkuman kemungkinan pertanyaan ujian/presentasi beserta jawabannya.</p>
+<hr class="docutils" />
+<section id="business-understanding">
+<h2>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h2>
+<section id="latar-belakang">
+<h3>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h3>
+<p>Penataan alas kaki, khususnya sepatu, merupakan salah satu cerminan budaya kerapian, kedisiplinan, kebersihan, dan efisiensi pemanfaatan ruang. Kondisi susunan sepatu dapat dijumpai pada berbagai lingkungan, mulai dari hunian pribadi, asrama, tempat ibadah (seperti masjid), ruang kelas, laboratorium, hingga perkantoran. Pada tempat-tempat dengan lalu lintas orang yang padat, sepatu sering kali dilepas dan diletakkan secara tergesa-gesa sehingga menimbulkan ketidakteraturan visual, memakan ruang lantai, serta menyulitkan pemiliknya saat hendak mengambil kembali sepatu mereka.</p>
+<p>Secara tradisional, penilaian kerapian susunan sepatu dilakukan secara visual oleh persepsi manusia (<em>human visual inspection</em>). Namun, penilaian manual memiliki sejumlah keterbatasan:</p>
+<ul class="simple">
+<li><p><strong>Subjektivitas Tinggi:</strong> Ambang batas kerapian bervariasi antarindividu; susunan yang dianggap cukup rapi oleh satu orang bisa dinilai berantakan oleh orang lain.</p></li>
+<li><p><strong>Tidak Bersifat Real-Time:</strong> Diperlukan kehadiran fisik manusia untuk melakukan pemantauan berulang secara periodik.</p></li>
+<li><p><strong>Keterbatasan Skalabilitas:</strong> Pemantauan manual tidak praktis jika diterapkan pada fasilitas publik berskala besar dengan puluhan hingga ratusan pasang sepatu.</p></li>
+</ul>
+<p>Perkembangan teknologi visi komputer (<em>computer vision</em>) dan pembelajaran mesin (<em>machine learning</em>) membuka peluang untuk mengotomatisasi penilaian visual ini melalui analisis citra digital. Dengan mengekstraksi parameter kuantitatif berupa karakteristik warna dan pola tekstur dari foto susunan sepatu, sistem dapat dilatih untuk mengenali pola keteraturan secara objektif, konsisten, dan terotomatisasi.</p>
+</section>
+<section id="rumusan-masalah">
+<h3>1.2 Rumusan Masalah<a class="headerlink" href="#rumusan-masalah" title="Link to this heading">#</a></h3>
+<p>Pengembangan sistem klasifikasi otomatis untuk susunan sepatu menghadapi tantangan visual yang kompleks:</p>
+<ol class="arabic simple">
+<li><p><strong>Heterogenitas Objek:</strong> Sepatu memiliki variasi warna, model (sneakers, pantofel, sandal, boots), ukuran, dan bahan (kulit, kain, karet) yang sangat beragam.</p></li>
+<li><p><strong>Variasi Pencahayaan dan Sudut Pengambilan:</strong> Foto diambil pada kondisi cahaya ruangan yang bervariasi (terang, temaram, bayangan tajam) dan sudut pandang kamera (<em>viewing angles</em>) yang beragam (sudut atas/<em>top-down</em> maupun sudut miring/<em>perspective</em>).</p></li>
+<li><p><strong>Pencegahan Kebocoran Data (<em>Data Leakage</em>):</strong> Dataset yang dikumpulkan mencakup foto berurutan (<em>burst shots</em>) dan salinan file identik. Jika foto yang sangat mirip terdistribusi ke data latih (<em>training</em>) dan data uji (<em>testing</em>) secara acak, model akan mengalami <em>overfitting</em> semu dan evaluasi performa tidak lagi valid.</p></li>
+</ol>
+</section>
+<section id="tujuan-proyek">
+<h3>1.3 Tujuan Proyek<a class="headerlink" href="#tujuan-proyek" title="Link to this heading">#</a></h3>
+<p>Tujuan yang dicapai dalam penelitian ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Membangun representasi fitur kuantitatif dari citra sepatu menggunakan kombinasi <strong>9 fitur statistik warna RGB</strong> (Mean, Standard Deviation, dan Skewness) serta <strong>5 fitur tekstur GLCM</strong> (Energy, Entropy, Contrast, Correlation, dan Homogeneity).</p></li>
+<li><p>Membentuk dataset terstruktur berdimensi <strong>200 baris data</strong> dengan <strong>14 fitur prediktor numerik</strong> dan <strong>1 kolom target kelas biner</strong> (<code class="docutils literal notranslate"><span class="pre">rapi</span></code> vs <code class="docutils literal notranslate"><span class="pre">berantakan</span></code>).</p></li>
+<li><p>Menerapkan strategi isolasi kelompok duplikasi citra menggunakan <em>Disjoint-Set Union</em> (DSU) dan <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> untuk menjamin <strong>Zero Data Leakage</strong> antara data latih dan uji.</p></li>
+<li><p>Melatih algoritma klasifikasi ensemble <strong>Random Forest</strong> (<span class="math notranslate nohighlight">\(100\text{ trees}\)</span>, <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">14</span></code>) untuk memisahkan kedua kelas.</p></li>
+<li><p>Mengevaluasi performa model secara komprehensif menggunakan matriks akurasi, presisi makro, recall makro, F1-score, visualisasi Confusion Matrix, dan analisis Feature Importance.</p></li>
+</ol>
+</section>
+<section id="manfaat-penelitian">
+<h3>1.4 Manfaat Penelitian<a class="headerlink" href="#manfaat-penelitian" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Akademis:</strong> Memberikan studi komparatif dan bukti empiris mengenai kontribusi fitur warna orde pertama (<em>first-order color statistics</em>) dan fitur tekstur spasial orde kedua (<em>second-order texture GLCM</em>) pada domain klasifikasi keteraturan objek 3D.</p></li>
+<li><p><strong>Praktis:</strong> Menjadi modul algoritma dasar yang dapat diintegrasikan pada sistem <em>Smart Rack</em> berbasis IoT (Internet of Things), sistem monitoring fasilitas publik, atau aplikasi asrama cerdas untuk memberi notifikasi visual ketika area sepatu membutuhkan penataan ulang.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-understanding">
+<h2>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<section id="spesifikasi-dan-sumber-dataset">
+<h3>2.1 Spesifikasi dan Sumber Dataset<a class="headerlink" href="#spesifikasi-dan-sumber-dataset" title="Link to this heading">#</a></h3>
+<p>Dataset yang digunakan dalam penelitian ini merupakan dataset citra primer yang berfokus secara eksklusif pada <strong>objek susunan sepatu di lantai/rak</strong>, bukan ruangan secara luas ataupun objek lainnya.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter Dataset</p></th>
+<th class="head"><p>Spesifikasi Teknis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Jumlah Total Sampel</strong></p></td>
+<td><p>200 citra</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Keseimbangan Kelas</strong></p></td>
+<td><p>Seimbang sempurna: 100 citra <code class="docutils literal notranslate"><span class="pre">rapi</span></code> (50%) dan 100 citra <code class="docutils literal notranslate"><span class="pre">berantakan</span></code> (50%)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Format Berkas Asli</strong></p></td>
+<td><p>JPG, JPEG, dan HEIC (<em>High Efficiency Image Container</em>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Representasi Warna</strong></p></td>
+<td><p>RGB (<em>Red, Green, Blue</em>) 3 channel</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Kedalaman Bit</strong></p></td>
+<td><p>8-bit per channel (rentang intensitas 0 hingga 255)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Direktori Sumber</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PSD/rapi-20261112T014224Z-1-001/rapi</span></code> dan <code class="docutils literal notranslate"><span class="pre">PSD/berantakan-20261112T020312Z-1-001/berantakan</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="distribusi-ekstensi-berkas-per-kategori">
+<h3>2.2 Distribusi Ekstensi Berkas per Kategori<a class="headerlink" href="#distribusi-ekstensi-berkas-per-kategori" title="Link to this heading">#</a></h3>
+<p>Citra dikumpulkan dari berbagai perangkat ponsel pintar modern, menghasilkan variasi format file:</p>
+<ul class="simple">
+<li><p><strong>Kategori Rapi (100 berkas):</strong> 71 berkas <code class="docutils literal notranslate"><span class="pre">.jpg</span></code>, 26 berkas <code class="docutils literal notranslate"><span class="pre">.jpeg</span></code>, 3 berkas <code class="docutils literal notranslate"><span class="pre">.heic</span></code>.</p></li>
+<li><p><strong>Kategori Berantakan (100 berkas):</strong> 63 berkas <code class="docutils literal notranslate"><span class="pre">.jpg</span></code>, 34 berkas <code class="docutils literal notranslate"><span class="pre">.jpeg</span></code>, 3 berkas <code class="docutils literal notranslate"><span class="pre">.heic</span></code>.</p></li>
+</ul>
+<p>Dekode berkas <code class="docutils literal notranslate"><span class="pre">.heic</span></code> ditangani menggunakan pustaka <code class="docutils literal notranslate"><span class="pre">pillow-heif</span></code> yang terintegrasi dengan <code class="docutils literal notranslate"><span class="pre">PIL.Image</span></code>, sehingga pembacaan seluruh citra dapat berjalan mulus tanpa kegagalan (0 file rusak).</p>
+</section>
+<section id="analisis-duplikasi-citra-dan-kemiripan-visual">
+<h3>2.3 Analisis Duplikasi Citra dan Kemiripan Visual<a class="headerlink" href="#analisis-duplikasi-citra-dan-kemiripan-visual" title="Link to this heading">#</a></h3>
+<p>Pemeriksaan kualitas citra dilakukan secara komprehensif untuk mendeteksi duplikasi langsung maupun foto berurutan (<em>burst</em>):</p>
+<ol class="arabic simple">
+<li><p><strong>Pemeriksaan MD5 Checksum (Duplikasi Biner Identik):</strong>
+Ditemukan <strong>9 kelompok file biner identik</strong> (MD5 checksum sama persis) yang berasal dari salinan file berulang:</p>
+<ul class="simple">
+<li><p>5 kelompok pada kategori rapi (misalnya <code class="docutils literal notranslate"><span class="pre">24-007</span> <span class="pre">Rapi</span> <span class="pre">3.jpg</span></code> identik dengan <code class="docutils literal notranslate"><span class="pre">24-115</span> <span class="pre">Rapi</span> <span class="pre">3.jpg</span></code>).</p></li>
+<li><p>4 kelompok pada kategori berantakan (misalnya <code class="docutils literal notranslate"><span class="pre">24-003</span> <span class="pre">Berantakan</span> <span class="pre">2.jpg</span></code> identik dengan <code class="docutils literal notranslate"><span class="pre">24-034</span> <span class="pre">Berantakan</span> <span class="pre">3.jpg</span></code>).</p></li>
+</ul>
+</li>
+<li><p><strong>Pemeriksaan Perseptual dHash (Kemiripan Visual):</strong>
+<em>Difference Hash</em> (dHash) 64-bit dihitung dengan mengubah ukuran citra ke <span class="math notranslate nohighlight">\(9 \times 8\)</span> piksel grayscale lalu membandingkan gradien horizontal antar piksel bertetangga.</p>
+<ul class="simple">
+<li><p><strong>Jarak Hamming = 0 (Identik Visual):</strong> Ditemukan 19 pasangan citra, termasuk pasangan file berformat HEIC dan JPG dengan isi visual sama persis (misalnya <code class="docutils literal notranslate"><span class="pre">24-007</span> <span class="pre">Rapi</span> <span class="pre">1.heic</span></code> dan <code class="docutils literal notranslate"><span class="pre">24-007</span> <span class="pre">Rapi</span> <span class="pre">1.jpg</span></code>).</p></li>
+<li><p><strong>Jarak Hamming 1 s/d 5 (Sangat Mirip / Burst Photos):</strong> Ditemukan 6 pasangan citra beruntun, misalnya <code class="docutils literal notranslate"><span class="pre">kosong</span> <span class="pre">10.jpg</span></code> <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">kosong</span> <span class="pre">11.jpg</span></code> (jarak Hamming 2), dan satu pasangan lintas kelas dengan jarak Hamming 5 (<code class="docutils literal notranslate"><span class="pre">24-137</span> <span class="pre">rapi</span> <span class="pre">3.jpg</span></code> <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">24-137</span> <span class="pre">berantakan</span> <span class="pre">2.jpeg</span></code>).</p></li>
+</ul>
+</li>
+</ol>
+<p>Seluruh pasangan duplikasi dan kemiripan ini dicatat dalam <code class="docutils literal notranslate"><span class="pre">output/laporan_duplikasi_dataset.json</span></code> dan digunakan pada tahap partisi data agar tidak menimbulkan bias evaluasi.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-preparation">
+<h2>3. Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
+<p>Tahap persiapan data bertujuan mentransformasikan koleksi citra mentah menjadi struktur data tabular yang siap diproses:</p>
+<section id="pembacaan-dan-standardisasi-ruang-warna">
+<h3>3.1 Pembacaan dan Standardisasi Ruang Warna<a class="headerlink" href="#pembacaan-dan-standardisasi-ruang-warna" title="Link to this heading">#</a></h3>
+<p>Citra yang diunggah dari ponsel cerdas dapat memiliki format bervariasi (JPG, JPEG, HEIC) serta mode ruang warna yang berbeda (misal memiliki kanal transparansi RGBA). Pustaka <code class="docutils literal notranslate"><span class="pre">pillow_heif</span></code> didaftarkan terlebih dahulu ke sistem <code class="docutils literal notranslate"><span class="pre">PIL</span></code> agar berkas <code class="docutils literal notranslate"><span class="pre">.heic</span></code> dapat dibuka secara transparan, kemudian seluruh citra dipastikan berada dalam mode warna <strong>RGB 3-channel</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pillow_heif</span>
+
+<span class="c1"># Registrasi plugin heif agar PIL mampu membaca file berekstensi .heic</span>
+<span class="n">pillow_heif</span><span class="o">.</span><span class="n">register_heif_opener</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">read_and_standardize_image</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Membaca berkas citra berbagai format dan menstandardisasi ke format RGB 8-bit.</span>
+<span class="sd">    """</span>
+    <span class="k">with</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">img</span><span class="p">:</span>
+        <span class="c1"># Konversi eksplisit ke RGB 3-channel (mengeliminasi kanal Alpha jika ada)</span>
+        <span class="n">rgb_img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'RGB'</span><span class="p">)</span>
+        <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rgb_img</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        
+        <span class="c1"># Validasi bentuk array: Tinggi x Lebar x 3 kanal</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_array</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">img_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dimensi citra tidak valid: </span><span class="si">{</span><span class="n">img_array</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">rgb_img</span><span class="p">,</span> <span class="n">img_array</span>
+</pre></div>
+</div>
+<p><strong>Penjelasan Parameter dan Fungsi:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pillow_heif.register_heif_opener()</span></code>: Menghubungkan parser libheif ke Pillow. Tanpa pemanggilan ini, fungsi <code class="docutils literal notranslate"><span class="pre">Image.open()</span></code> akan melemparkan kesalahan <code class="docutils literal notranslate"><span class="pre">UnidentifiedImageError</span></code> pada berkas HEIC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.convert('RGB')</span></code>: Memastikan setiap citra memiliki tepat 3 matriks channel (Red, Green, Blue) berkode <code class="docutils literal notranslate"><span class="pre">uint8</span></code> dengan rentang <span class="math notranslate nohighlight">\([0, 255]\)</span>.</p></li>
+</ul>
+</section>
+<section id="partisi-data-bebas-kebocoran-zero-data-leakage-splitting">
+<h3>3.2 Partisi Data Bebas Kebocoran (<em>Zero Data Leakage Splitting</em>)<a class="headerlink" href="#partisi-data-bebas-kebocoran-zero-data-leakage-splitting" title="Link to this heading">#</a></h3>
+<p>Jika data dibagi menggunakan teknik <em>random train-test split</em> konvensional, citra yang berasal dari kelompok duplikasi atau <em>burst</em> yang sama dapat terpecah ke dalam set pelatihan dan set pengujian sekaligus, sehingga model dapat “menghafal” citra uji tersebut.</p>
+<p>Untuk mengatasinya, diterapkan algoritma <em>Disjoint-Set Union</em> (Union-Find) berdasarkan rekaman metadata duplikasi:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedGroupKFold</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_duplicate_groups</span><span class="p">(</span><span class="n">meta_list</span><span class="p">,</span> <span class="n">dup_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Membangun kelompok komponen terhubung (Disjoint-Set Union)</span>
+<span class="sd">    berdasarkan duplikasi MD5 identik dan dHash (Hamming &lt;= 5).</span>
+<span class="sd">    """</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">meta_list</span><span class="p">)))</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span>
+        <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">union</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="n">root_i</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">root_j</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">root_i</span> <span class="o">!=</span> <span class="n">root_j</span><span class="p">:</span>
+            <span class="n">parent</span><span class="p">[</span><span class="n">root_i</span><span class="p">]</span> <span class="o">=</span> <span class="n">root_j</span>
+
+    <span class="n">fn_to_idx</span> <span class="o">=</span> <span class="p">{(</span><span class="n">m</span><span class="p">[</span><span class="s1">'filename'</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]):</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">meta_list</span><span class="p">)}</span>
+    
+    <span class="c1"># 1. Gabungkan duplikasi biner MD5</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">dup_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'duplikasi_md5_exact'</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s1">'files'</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">i1</span> <span class="o">=</span> <span class="n">fn_to_idx</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">files</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">],</span> <span class="n">files</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]))</span>
+            <span class="n">i2</span> <span class="o">=</span> <span class="n">fn_to_idx</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">files</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">],</span> <span class="n">files</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="n">i1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">i2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">union</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span> <span class="n">i2</span><span class="p">)</span>
+                
+    <span class="c1"># 2. Gabungkan kemiripan visual dHash (Hamming &lt;= 5)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">dup_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'kemiripan_visual_dhash'</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="n">i1</span> <span class="o">=</span> <span class="n">fn_to_idx</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="s1">'file1'</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s1">'file1'</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]))</span>
+        <span class="n">i2</span> <span class="o">=</span> <span class="n">fn_to_idx</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="s1">'file2'</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s1">'file2'</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">i1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">i2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">union</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span> <span class="n">i2</span><span class="p">)</span>
+            
+    <span class="c1"># Setiap citra mendapat ID grup independen</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">find</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">meta_list</span><span class="p">))])</span>
+    <span class="k">return</span> <span class="n">groups</span>
+
+<span class="c1"># 1. Baca metadata duplikasi dan bangun ID kelompok independen</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"output/laporan_duplikasi_dataset.json"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">dup_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">meta_list</span> <span class="o">=</span> <span class="n">dup_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"metadata_file"</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">build_duplicate_groups</span><span class="p">(</span><span class="n">meta_list</span><span class="p">,</span> <span class="n">dup_data</span><span class="p">)</span>
+
+<span class="c1"># 2. Baca dataset fitur citra dan pisahkan fitur X serta target y</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"output/dataset_fitur_citra.csv"</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'label'</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span>
+
+<span class="c1"># 3. Pembagian data: Stratified Group K-Fold (5-Fold, rasio 80:20)</span>
+<span class="n">sgkf</span> <span class="o">=</span> <span class="n">StratifiedGroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">sgkf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">))</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+<span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Hasil Partisi Data:</strong></p>
+<ul class="simple">
+<li><p><strong>Kelompok Independen:</strong> 177 kelompok unik dari 200 citra.</p></li>
+<li><p><strong>Data Training:</strong> 162 sampel (81,0%) — 83 <code class="docutils literal notranslate"><span class="pre">rapi</span></code> dan 79 <code class="docutils literal notranslate"><span class="pre">berantakan</span></code>.</p></li>
+<li><p><strong>Data Testing:</strong> 38 sampel (19,0%) — 17 <code class="docutils literal notranslate"><span class="pre">rapi</span></code> dan 21 <code class="docutils literal notranslate"><span class="pre">berantakan</span></code>.</p></li>
+<li><p><strong>Data Leakage:</strong> <strong>0 grup yang tumpang tindih (Zero Leakage)</strong>.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ekstraksi-fitur-citra-rgb">
+<h2>4. Ekstraksi Fitur Citra RGB<a class="headerlink" href="#ekstraksi-fitur-citra-rgb" title="Link to this heading">#</a></h2>
+<section id="relevansi-warna-pada-keteraturan-sepatu">
+<h3>4.1 Relevansi Warna pada Keteraturan Sepatu<a class="headerlink" href="#relevansi-warna-pada-keteraturan-sepatu" title="Link to this heading">#</a></h3>
+<p>Karakteristik warna mencerminkan komposisi spektral citra. Pada susunan sepatu yang rapi, sepatu umumnya ditata berpasangan sejajar dengan orientasi yang seragam. Pola penataan ini menciptakan zonasi warna yang teratur antara permukaan rak/lantai dan bagian atas sepatu. Sebaliknya, pada susunan yang berantakan, sepatu bertumpuk pada sudut acak, memperlihatkan bagian sol bawah yang kotor, bagian dalam sepatu, serta menimbulkan bayangan-bayangan lokal yang tidak beraturan.</p>
+</section>
+<section id="tiga-besaran-statistik-warna-per-kanal">
+<h3>4.2 Tiga Besaran Statistik Warna per Kanal<a class="headerlink" href="#tiga-besaran-statistik-warna-per-kanal" title="Link to this heading">#</a></h3>
+<p>Citra RGB berukuran <span class="math notranslate nohighlight">\(M \times N\)</span> didekomposisi menjadi tiga kanal independen <span class="math notranslate nohighlight">\(I_R\)</span>, <span class="math notranslate nohighlight">\(I_G\)</span>, dan <span class="math notranslate nohighlight">\(I_B\)</span>. Pada setiap kanal <span class="math notranslate nohighlight">\(c \in \{R, G, B\}\)</span>, dihitung tiga besaran statistik:</p>
+<ol class="arabic simple">
+<li><p><strong>Mean (Rata-rata Intensitas):</strong>
+$<span class="math notranslate nohighlight">\(
+\mu_c = \frac{1}{M \cdot N} \sum_{i=1}^{M} \sum_{j=1}^{N} I_c(i, j)
+\)</span>$
+Mengukur intensitas kecerahan rata-rata pada kanal warna terkait.</p></li>
+<li><p><strong>Standard Deviation (Standar Deviasi):</strong>
+$<span class="math notranslate nohighlight">\(
+\sigma_c = \sqrt{\frac{1}{M \cdot N} \sum_{i=1}^{M} \sum_{j=1}^{N} \left(I_c(i, j) - \mu_c\right)^2}
+\)</span>$
+Mengukur dispersi atau variasi sebaran nilai piksel di sekitar rata-rata. Nilai standar deviasi yang besar menandakan kontras warna yang tinggi antarbagian objek.</p></li>
+<li><p><strong>Skewness (Kemencengan Distribusi):</strong>
+$<span class="math notranslate nohighlight">\(
+\gamma_c = \frac{\frac{1}{M \cdot N} \sum_{i=1}^{M} \sum_{j=1}^{N} \left(I_c(i, j) - \mu_c\right)^3}{\sigma_c^3}
+\)</span>$
+Mengukur asimetri distribusi intensitas piksel terhadap nilai rata-ratanya:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\gamma_c &gt; 0\)</span>: Ekor distribusi condong ke intensitas tinggi (sebagian besar piksel berada di area gelap/redup).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma_c &lt; 0\)</span>: Ekor distribusi condong ke intensitas rendah (sebagian besar piksel berada di area terang).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma_c \approx 0\)</span>: Distribusi intensitas relatif simetris.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="implementasi-kode-ekstraksi-fitur-rgb">
+<h3>4.3 Implementasi Kode Ekstraksi Fitur RGB<a class="headerlink" href="#implementasi-kode-ekstraksi-fitur-rgb" title="Link to this heading">#</a></h3>
+<p>Potongan kode berikut diambil dari <code class="docutils literal notranslate"><span class="pre">src/ekstraksi_rgb.py</span></code> yang bertugas memisahkan kanal warna dan menghitung nilai statistik secara presisi:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">skew</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_channel_statistics</span><span class="p">(</span><span class="n">img_array</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Mengekstrak 9 fitur statistik warna (Mean, Std Dev, Skewness)</span>
+<span class="sd">    dari matriks citra RGB 3 dimensi.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Pisahkan channel dengan indeks pasti: 0=Red, 1=Green, 2=Blue</span>
+    <span class="n">R_ch</span> <span class="o">=</span> <span class="n">img_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">G_ch</span> <span class="o">=</span> <span class="n">img_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">B_ch</span> <span class="o">=</span> <span class="n">img_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+    
+    <span class="c1"># 1. MEAN menggunakan NumPy float64</span>
+    <span class="n">mean_R</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">R_ch</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+    <span class="n">mean_G</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">G_ch</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+    <span class="n">mean_B</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">B_ch</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+    
+    <span class="c1"># 2. STANDARD DEVIATION dengan ddof=0 (Standar Deviasi Populasi Seluruh Piksel)</span>
+    <span class="n">std_R</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">R_ch</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+    <span class="n">std_G</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">G_ch</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+    <span class="n">std_B</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">B_ch</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+    
+    <span class="c1"># Validasi: deviasi tidak boleh 0 agar tidak terjadi pembagian dengan nol pada skewness</span>
+    <span class="k">for</span> <span class="n">ch_name</span><span class="p">,</span> <span class="n">ch_std</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">'Red'</span><span class="p">,</span> <span class="n">std_R</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Green'</span><span class="p">,</span> <span class="n">std_G</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Blue'</span><span class="p">,</span> <span class="n">std_B</span><span class="p">)]:</span>
+        <span class="k">if</span> <span class="n">ch_std</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Channel </span><span class="si">{</span><span class="n">ch_name</span><span class="si">}</span><span class="s2"> konstan (std=0). Skewness tidak terdefinisi!"</span><span class="p">)</span>
+            
+    <span class="c1"># 3. SKEWNESS menggunakan SciPy dengan bias=True secara konsisten</span>
+    <span class="n">skew_R</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">R_ch</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">skew_G</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">G_ch</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">skew_B</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">skew</span><span class="p">(</span><span class="n">B_ch</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'mean_R'</span><span class="p">:</span> <span class="n">mean_R</span><span class="p">,</span> <span class="s1">'mean_G'</span><span class="p">:</span> <span class="n">mean_G</span><span class="p">,</span> <span class="s1">'mean_B'</span><span class="p">:</span> <span class="n">mean_B</span><span class="p">,</span>
+        <span class="s1">'std_R'</span><span class="p">:</span> <span class="n">std_R</span><span class="p">,</span>   <span class="s1">'std_G'</span><span class="p">:</span> <span class="n">std_G</span><span class="p">,</span>   <span class="s1">'std_B'</span><span class="p">:</span> <span class="n">std_B</span><span class="p">,</span>
+        <span class="s1">'skew_R'</span><span class="p">:</span> <span class="n">skew_R</span><span class="p">,</span> <span class="s1">'skew_G'</span><span class="p">:</span> <span class="n">skew_G</span><span class="p">,</span> <span class="s1">'skew_B'</span><span class="p">:</span> <span class="n">skew_B</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Penjelasan Parameter dan Fungsi Penting:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dtype=np.float64</span></code>: Mencegah <em>overflow</em> integer saat menjumlahkan jutaan nilai piksel citra beresolusi tinggi.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>: Mengatur derajat kebebasan penyebut menjadi <span class="math notranslate nohighlight">\(N\)</span> (bukan <span class="math notranslate nohighlight">\(N-1\)</span>) karena seluruh piksel citra merupakan populasi lengkap dari citra tersebut.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bias=True</span></code> pada <code class="docutils literal notranslate"><span class="pre">skew()</span></code>: Menghitung momen standar ketiga tanpa koreksi bias sampel kecil, menjamin konsistensi matematis pada populasi piksel besar.</p></li>
+<li><p>Hasil ekstraksi disimpan ke dalam <code class="docutils literal notranslate"><span class="pre">output/fitur_rgb_sementara.csv</span></code> berdimensi <span class="math notranslate nohighlight">\(200 \times 10\)</span> (9 fitur numerik + 1 kolom label).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="konversi-citra-ke-grayscale">
+<h2>5. Konversi Citra ke Grayscale<a class="headerlink" href="#konversi-citra-ke-grayscale" title="Link to this heading">#</a></h2>
+<section id="urgensi-reduksi-derajat-keabuan">
+<h3>5.1 Urgensi Reduksi Derajat Keabuan<a class="headerlink" href="#urgensi-reduksi-derajat-keabuan" title="Link to this heading">#</a></h3>
+<p>Analisis tekstur spasial menggunakan GLCM memerlukan komputasi frekuensi kemunculan pasangan derajat keabuan. Jika GLCM dihitung langsung pada ruang warna RGB 24-bit (<span class="math notranslate nohighlight">\(256 \times 256 \times 256 \approx 16,7\text{ juta}\)</span> kombinasi warna), ukuran matriks kookurensi akan membengkak secara eksponensial sehingga tidak realistis secara komputasi. Oleh karena itu, citra harus dikonversi terlebih dahulu ke citra skala abu-abu (<em>grayscale</em>) 8-bit dengan <span class="math notranslate nohighlight">\(L = 256\)</span> tingkat keabuan.</p>
+</section>
+<section id="formulasi-konversi">
+<h3>5.2 Formulasi Konversi<a class="headerlink" href="#formulasi-konversi" title="Link to this heading">#</a></h3>
+<p>Konversi dilakukan menggunakan mode <code class="docutils literal notranslate"><span class="pre">L</span></code> pada Pillow, yang mengimplementasikan standar luminansi persepsi mata manusia ITU-R BT.601-2:</p>
+<div class="math notranslate nohighlight">
+\[
+Y = 0.299 \cdot R + 0.587 \cdot G + 0.114 \cdot B
+\]</div>
+<p>Bobot terbesar diberikan pada kanal hijau (<span class="math notranslate nohighlight">\(G\)</span>) karena mata manusia paling sensitif terhadap panjang gelombang hijau, diikuti kanal merah (<span class="math notranslate nohighlight">\(R\)</span>) dan biru (<span class="math notranslate nohighlight">\(B\)</span>).</p>
+</section>
+<section id="implementasi-kode-konversi-grayscale">
+<h3>5.3 Implementasi Kode Konversi Grayscale<a class="headerlink" href="#implementasi-kode-konversi-grayscale" title="Link to this heading">#</a></h3>
+<p>Potongan kode berikut diambil dari <code class="docutils literal notranslate"><span class="pre">src/konversi_grayscale.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_image_to_grayscale</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">ext_lower</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Mengonversi citra asli ke skala abu-abu 8-bit dan menyimpannya secara lossless/terkontrol.</span>
+<span class="sd">    """</span>
+    <span class="k">with</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">input_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">img</span><span class="p">:</span>
+        <span class="n">orig_size</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span>
+        
+        <span class="c1"># Konversi ke Grayscale 8-bit (mode 'L')</span>
+        <span class="n">gray_img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">'L'</span><span class="p">)</span>
+        
+        <span class="c1"># Validasi resolusi tidak berubah</span>
+        <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">gray_img</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dimensi berubah: aslinya </span><span class="si">{</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">, hasil </span><span class="si">{</span><span class="n">gray_img</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            
+        <span class="c1"># Format HEIC disimpan sebagai PNG lossless; JPG/JPEG dengan quality 95</span>
+        <span class="k">if</span> <span class="n">ext_lower</span> <span class="o">==</span> <span class="s1">'.heic'</span><span class="p">:</span>
+            <span class="n">gray_img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'PNG'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gray_img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'JPEG'</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">95</span><span class="p">)</span>
+            
+    <span class="c1"># Uji verifikasi integritas berkas yang telah disimpan</span>
+    <span class="k">with</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">saved_img</span><span class="p">:</span>
+        <span class="n">saved_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">saved_img</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">saved_img</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s1">'L'</span><span class="p">,</span> <span class="s2">"Mode citra tersimpan bukan 'L'"</span>
+        <span class="k">assert</span> <span class="n">saved_arr</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="s2">"Tipe data tersimpan bukan uint8"</span>
+        <span class="k">assert</span> <span class="n">saved_arr</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">saved_arr</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">255</span><span class="p">,</span> <span class="s2">"Piksel di luar batas 0-255"</span>
+</pre></div>
+</div>
+<p><strong>Penjelasan Parameter dan Fungsi:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.convert('L')</span></code>: Membobotkan kanal warna sesuai rumus luminansi standar menjadi array 1 channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">format='PNG'</span></code> untuk HEIC: Mengatasi keterbatasan modul Pillow yang tidak mendukung penyimpanan berkas format <code class="docutils literal notranslate"><span class="pre">.heic</span></code> secara langsung, sekaligus mempertahankan kualitas piksel secara tanpa kompresi (<em>lossless</em>).</p></li>
+<li><p>Sebanyak 200 citra grayscale tersimpan rapi di <code class="docutils literal notranslate"><span class="pre">output/grayscale/rapi/</span></code> (100) dan <code class="docutils literal notranslate"><span class="pre">output/grayscale/berantakan/</span></code> (100).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ekstraksi-fitur-tekstur-menggunakan-glcm">
+<h2>6. Ekstraksi Fitur Tekstur Menggunakan GLCM<a class="headerlink" href="#ekstraksi-fitur-tekstur-menggunakan-glcm" title="Link to this heading">#</a></h2>
+<section id="landasan-teori-glcm">
+<h3>6.1 Landasan Teori GLCM<a class="headerlink" href="#landasan-teori-glcm" title="Link to this heading">#</a></h3>
+<p><em>Gray-Level Co-occurrence Matrix</em> (GLCM), yang diperkenalkan oleh Robert M. Haralick (1973), merupakan metode statistik orde kedua untuk menganalisis tekstur citra. Jika statistik orde pertama (histogram) hanya memperhitungkan distribusi frekuensi nilai piksel tunggal tanpa memperhatikan posisi spasialnya, statistik orde kedua memperhitungkan hubungan spasial antar-pasangan piksel pada jarak <span class="math notranslate nohighlight">\(d\)</span> dan orientasi <span class="math notranslate nohighlight">\(\theta\)</span> tertentu.</p>
+<p>Elemen matriks <span class="math notranslate nohighlight">\(P(i, j \mid d, \theta)\)</span> menyatakan berapa kali piksel bernilai intensitas <span class="math notranslate nohighlight">\(i\)</span> bertetangga dengan piksel bernilai intensitas <span class="math notranslate nohighlight">\(j\)</span> pada arah <span class="math notranslate nohighlight">\(\theta\)</span> dan jarak <span class="math notranslate nohighlight">\(d\)</span>.</p>
+</section>
+<section id="parameter-glcm-proyek">
+<h3>6.2 Parameter GLCM Proyek<a class="headerlink" href="#parameter-glcm-proyek" title="Link to this heading">#</a></h3>
+<p>Untuk menangkap karakteristik tekstur susunan sepatu secara optimal, parameter GLCM ditetapkan secara konsisten pada seluruh 200 citra:</p>
+<ol class="arabic simple">
+<li><p><strong>Jarak Spasial (<span class="math notranslate nohighlight">\(d\)</span>):</strong> <code class="docutils literal notranslate"><span class="pre">[1]</span></code> (pasangan piksel bertetangga langsung).</p></li>
+<li><p><strong>Orientasi Sudut (<span class="math notranslate nohighlight">\(\theta\)</span>):</strong> 4 arah utama:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta = 0^\circ\)</span> (<span class="math notranslate nohighlight">\(0\text{ rad}\)</span>): Arah horizontal kanan.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta = 45^\circ\)</span> (<span class="math notranslate nohighlight">\(\frac{\pi}{4}\text{ rad}\)</span>): Arah diagonal kanan atas.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta = 90^\circ\)</span> (<span class="math notranslate nohighlight">\(\frac{\pi}{2}\text{ rad}\)</span>): Arah vertikal atas.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta = 135^\circ\)</span> (<span class="math notranslate nohighlight">\(\frac{3\pi}{4}\text{ rad}\)</span>): Arah diagonal kiri atas.</p></li>
+</ul>
+</li>
+<li><p><strong>Level Keabuan (<span class="math notranslate nohighlight">\(levels\)</span>):</strong> 256 tingkat aras keabuan.</p></li>
+<li><p><strong>Matriks Simetris (<span class="math notranslate nohighlight">\(symmetric = True\)</span>):</strong> Memperhitungkan pasangan <span class="math notranslate nohighlight">\((i, j)\)</span> dan <span class="math notranslate nohighlight">\((j, i)\)</span> secara bolak-balik:
+$<span class="math notranslate nohighlight">\(
+P_{\text{sym}}(i, j) = P(i, j) + P(j, i)
+\)</span>$</p></li>
+<li><p><strong>Normalisasi (<span class="math notranslate nohighlight">\(normed = True\)</span>):</strong> Matriks diubah menjadi matriks probabilitas sehingga jumlah seluruh elemen bernilai 1:
+$<span class="math notranslate nohighlight">\(
+p(i, j) = \frac{P_{\text{sym}}(i, j)}{\sum_{i=0}^{255} \sum_{j=0}^{255} P_{\text{sym}}(i, j)}
+\)</span>$</p></li>
+</ol>
+</section>
+<section id="agregasi-invarian-rotasi-rotation-invariant-averaging">
+<h3>6.3 Agregasi Invarian Rotasi (<em>Rotation Invariant Averaging</em>)<a class="headerlink" href="#agregasi-invarian-rotasi-rotation-invariant-averaging" title="Link to this heading">#</a></h3>
+<p>Foto sepatu diambil dari orientasi kamera yang bervariasi. Agar fitur tekstur tidak bergantung pada orientasi kamera tertentu, kelima fitur GLCM dihitung untuk masing-masing sudut <span class="math notranslate nohighlight">\(\theta \in \{0^\circ, 45^\circ, 90^\circ, 135^\circ\}\)</span>, kemudian dirata-ratakan:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Fitur}_{\text{final}} = \frac{1}{4} \sum_{k=1}^{4} \text{Fitur}(\theta_k)
+\]</div>
+</section>
+<section id="implementasi-kode-ekstraksi-glcm">
+<h3>6.4 Implementasi Kode Ekstraksi GLCM<a class="headerlink" href="#implementasi-kode-ekstraksi-glcm" title="Link to this heading">#</a></h3>
+<p>Potongan kode berikut diambil dari <code class="docutils literal notranslate"><span class="pre">src/ekstraksi_glcm.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">skimage.feature</span><span class="w"> </span><span class="kn">import</span> <span class="n">graycomatrix</span><span class="p">,</span> <span class="n">graycoprops</span>
+
+<span class="c1"># Parameter GLCM yang konsisten</span>
+<span class="n">DISTANCES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ANGLES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># 0, 45, 90, 135 derajat</span>
+<span class="n">LEVELS</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">SYMMETRIC</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">NORMED</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_glcm_entropy</span><span class="p">(</span><span class="n">glcm_normalized</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Menghitung entropy untuk setiap sudut k dari matriks GLCM yang telah dinormalisasi:</span>
+<span class="sd">    H_k = - sum_{i,j} P(i,j) * log2(P(i,j))</span>
+<span class="sd">    Elemen dengan probabilitas nol (P=0) diabaikan secara matematis karena lim_{p-&gt;0+} p * log2(p) = 0.</span>
+<span class="sd">    """</span>
+    <span class="n">num_angles</span> <span class="o">=</span> <span class="n">glcm_normalized</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">entropies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_angles</span><span class="p">):</span>
+        <span class="n">P_k</span> <span class="o">=</span> <span class="n">glcm_normalized</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+        <span class="c1"># Ambil hanya elemen dengan probabilitas &gt; 0 untuk menghindari log2(0)</span>
+        <span class="n">nonzero_p</span> <span class="o">=</span> <span class="n">P_k</span><span class="p">[</span><span class="n">P_k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">h_k</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nonzero_p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">nonzero_p</span><span class="p">))</span>
+        <span class="n">entropies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">h_k</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">entropies</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_glcm_features_single_image</span><span class="p">(</span><span class="n">img_arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Menghitung matriks GLCM dan 5 fitur tekstur dari citra grayscale uint8.</span>
+<span class="sd">    """</span>
+    <span class="c1"># 1. Bentuk matriks GLCM 4 dimensi: (levels, levels, distances, angles)</span>
+    <span class="n">glcm</span> <span class="o">=</span> <span class="n">graycomatrix</span><span class="p">(</span>
+        <span class="n">img_arr</span><span class="p">,</span>
+        <span class="n">distances</span><span class="o">=</span><span class="n">DISTANCES</span><span class="p">,</span>
+        <span class="n">angles</span><span class="o">=</span><span class="n">ANGLES</span><span class="p">,</span>
+        <span class="n">levels</span><span class="o">=</span><span class="n">LEVELS</span><span class="p">,</span>
+        <span class="n">symmetric</span><span class="o">=</span><span class="n">SYMMETRIC</span><span class="p">,</span>
+        <span class="n">normed</span><span class="o">=</span><span class="n">NORMED</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># 2. Hitung 4 fitur standar via graycoprops, lalu ambil rata-rata dari 4 sudut</span>
+    <span class="n">energy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'energy'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">contrast</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'contrast'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">correlation</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'correlation'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">homogeneity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">graycoprops</span><span class="p">(</span><span class="n">glcm</span><span class="p">,</span> <span class="s1">'homogeneity'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+    
+    <span class="c1"># 3. Hitung entropy secara manual</span>
+    <span class="n">entropy</span> <span class="o">=</span> <span class="n">compute_glcm_entropy</span><span class="p">(</span><span class="n">glcm</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">'energy'</span><span class="p">:</span> <span class="n">energy</span><span class="p">,</span>
+        <span class="s1">'entropy'</span><span class="p">:</span> <span class="n">entropy</span><span class="p">,</span>
+        <span class="s1">'contrast'</span><span class="p">:</span> <span class="n">contrast</span><span class="p">,</span>
+        <span class="s1">'correlation'</span><span class="p">:</span> <span class="n">correlation</span><span class="p">,</span>
+        <span class="s1">'homogeneity'</span><span class="p">:</span> <span class="n">homogeneity</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Penjelasan Parameter dan Fungsi:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">distances=[1]</span></code>: Menganalisis korelasi spasial piksel tetangga terdekat.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">angles=[0,</span> <span class="pre">np.pi/4,</span> <span class="pre">np.pi/2,</span> <span class="pre">3*np.pi/4]</span></code>: Menjamin representasi tekstur di segala orientasi mata angin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compute_glcm_entropy</span></code>: Pustaka <code class="docutils literal notranslate"><span class="pre">scikit-image</span></code> tidak menyertakan metrik entropy dalam <code class="docutils literal notranslate"><span class="pre">graycoprops</span></code>. Fungsi kustom ini mengimplementasikan rumus Haralick dengan mengabaikan elemen <span class="math notranslate nohighlight">\(P=0\)</span> secara matematis sesuai prinsip limit kalkulus <span class="math notranslate nohighlight">\(\lim_{p \to 0^+} p \log_2(p) = 0\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-lengkap-14-fitur-beserta-rumusnya">
+<h2>7. Penjelasan Lengkap 14 Fitur Beserta Rumusnya<a class="headerlink" href="#penjelasan-lengkap-14-fitur-beserta-rumusnya" title="Link to this heading">#</a></h2>
+<p>Berikut adalah deskripsi matematis dan fisis dari seluruh <strong>14 fitur</strong> yang digunakan dalam klasifikasi citra susunan sepatu:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>No</p></th>
+<th class="head"><p>Nama Fitur</p></th>
+<th class="head"><p>Kategori</p></th>
+<th class="head text-center"><p>Rentang Nilai</p></th>
+<th class="head"><p>Formula Matematis KaTeX</p></th>
+<th class="head"><p>Interpretasi Fisis / Makna Visual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 255]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_R = \frac{1}{MN} \sum_{i,j} I_R(i, j)\)</span></p></td>
+<td><p>Kecerahan rata-rata spektrum merah pada citra</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 255]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_G = \frac{1}{MN} \sum_{i,j} I_G(i, j)\)</span></p></td>
+<td><p>Kecerahan rata-rata spektrum hijau pada citra</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 255]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu_B = \frac{1}{MN} \sum_{i,j} I_B(i, j)\)</span></p></td>
+<td><p>Kecerahan rata-rata spektrum biru pada citra</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 127.5]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_R = \sqrt{\frac{1}{MN} \sum_{i,j} (I_R - \mu_R)^2}\)</span></p></td>
+<td><p>Kontras dan variasi intensitas warna merah</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 127.5]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_G = \sqrt{\frac{1}{MN} \sum_{i,j} (I_G - \mu_G)^2}\)</span></p></td>
+<td><p>Kontras dan variasi intensitas warna hijau</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 127.5]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sigma_B = \sqrt{\frac{1}{MN} \sum_{i,j} (I_B - \mu_B)^2}\)</span></p></td>
+<td><p>Kontras dan variasi intensitas warna biru</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-\infty, +\infty]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\gamma_R = \frac{\frac{1}{MN} \sum (I_R - \mu_R)^3}{\sigma_R^3}\)</span></p></td>
+<td><p>Derajat asimetri distribusi warna merah</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-\infty, +\infty]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\gamma_G = \frac{\frac{1}{MN} \sum (I_G - \mu_G)^3}{\sigma_G^3}\)</span></p></td>
+<td><p>Derajat asimetri distribusi warna hijau</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-\infty, +\infty]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\gamma_B = \frac{\frac{1}{MN} \sum (I_B - \mu_B)^3}{\sigma_B^3}\)</span></p></td>
+<td><p>Derajat asimetri distribusi warna biru</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">energy</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 1]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{Energy} = \sqrt{\sum_{i,j} p(i, j)^2}\)</span></p></td>
+<td><p>Keseragaman (<em>uniformity</em>) tekstur; bernilai tinggi jika tekstur homogen/monoton</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, \log_2(256)]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{Entropy} = -\sum_{i,j} p(i, j) \log_2 p(i, j)\)</span></p></td>
+<td><p>Derajat keacakan atau kompleksitas tekstur spasial citra</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">contrast</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, (255)^2]\)</span></p></td>
+<td><p>$\text{Contrast} = \sum_{i,j}</p></td>
+<td><p>i - j</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([-1, 1]\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{Corr} = \sum_{i,j} \frac{(i - \mu_i)(j - \mu_j) p(i, j)}{\sigma_i \sigma_j}\)</span></p></td>
+<td><p>Derajat ketergantungan linier nilai keabuan pasangan piksel</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">homogeneity</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\([0, 1]\)</span></p></td>
+<td><p>$\text{Homog} = \sum_{i,j} \frac{p(i, j)}{1 +</p></td>
+<td><p>i - j</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="implementasi-penggabungan-fitur-ke-csv-utama">
+<h3>7.1 Implementasi Penggabungan Fitur ke CSV Utama<a class="headerlink" href="#implementasi-penggabungan-fitur-ke-csv-utama" title="Link to this heading">#</a></h3>
+<p>Penggabungan data tidak dilakukan secara <em>blind concatenation</em>, melainkan divalidasi silang berdasarkan metadata nama berkas dan label kelas untuk menjamin pasangan baris tidak tertukar (<code class="docutils literal notranslate"><span class="pre">src/pembuatan_csv.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">merge_and_validate_features</span><span class="p">(</span><span class="n">df_rgb</span><span class="p">,</span> <span class="n">df_glcm</span><span class="p">,</span> <span class="n">meta_rgb</span><span class="p">,</span> <span class="n">meta_glcm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Memvalidasi dan menggabungkan fitur RGB dan GLCM menjadi satu DataFrame utama.</span>
+<span class="sd">    """</span>
+    <span class="c1"># 1. Validasi jumlah baris dan keseimbangan label</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_rgb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">200</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_glcm</span><span class="p">)</span> <span class="o">==</span> <span class="mi">200</span><span class="p">,</span> <span class="s2">"Jumlah baris tidak 200!"</span>
+    <span class="k">assert</span> <span class="n">df_rgb</span><span class="p">[</span><span class="s1">'label'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="o">==</span> <span class="p">{</span><span class="s1">'rapi'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">'berantakan'</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+    
+    <span class="c1"># 2. Validasi kesesuaian baris per baris berdasarkan nama file asal</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+        <span class="n">fn_rgb</span> <span class="o">=</span> <span class="n">meta_rgb</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'filename'</span><span class="p">]</span>
+        <span class="n">fn_glcm</span> <span class="o">=</span> <span class="n">meta_glcm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'original_filename'</span><span class="p">]</span>
+        <span class="n">lbl_rgb</span> <span class="o">=</span> <span class="n">meta_rgb</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]</span>
+        <span class="n">lbl_glcm</span> <span class="o">=</span> <span class="n">meta_glcm</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'label'</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">fn_rgb</span> <span class="o">!=</span> <span class="n">fn_glcm</span> <span class="ow">or</span> <span class="n">lbl_rgb</span> <span class="o">!=</span> <span class="n">lbl_glcm</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Baris ke-</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> tidak cocok: </span><span class="si">{</span><span class="n">fn_rgb</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">fn_glcm</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            
+    <span class="c1"># 3. Gabungkan 9 fitur RGB + 5 fitur GLCM + 1 kolom label</span>
+    <span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'mean_R'</span><span class="p">,</span> <span class="s1">'mean_G'</span><span class="p">,</span> <span class="s1">'mean_B'</span><span class="p">,</span>
+        <span class="s1">'std_R'</span><span class="p">,</span> <span class="s1">'std_G'</span><span class="p">,</span> <span class="s1">'std_B'</span><span class="p">,</span>
+        <span class="s1">'skew_R'</span><span class="p">,</span> <span class="s1">'skew_G'</span><span class="p">,</span> <span class="s1">'skew_B'</span><span class="p">,</span>
+        <span class="s1">'energy'</span><span class="p">,</span> <span class="s1">'entropy'</span><span class="p">,</span> <span class="s1">'contrast'</span><span class="p">,</span> <span class="s1">'correlation'</span><span class="p">,</span> <span class="s1">'homogeneity'</span><span class="p">,</span>
+        <span class="s1">'label'</span>
+    <span class="p">]</span>
+    
+    <span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+        <span class="n">df_rgb</span><span class="p">[[</span><span class="s1">'mean_R'</span><span class="p">,</span> <span class="s1">'mean_G'</span><span class="p">,</span> <span class="s1">'mean_B'</span><span class="p">,</span> <span class="s1">'std_R'</span><span class="p">,</span> <span class="s1">'std_G'</span><span class="p">,</span> <span class="s1">'std_B'</span><span class="p">,</span> <span class="s1">'skew_R'</span><span class="p">,</span> <span class="s1">'skew_G'</span><span class="p">,</span> <span class="s1">'skew_B'</span><span class="p">]],</span>
+        <span class="n">df_glcm</span><span class="p">[[</span><span class="s1">'energy'</span><span class="p">,</span> <span class="s1">'entropy'</span><span class="p">,</span> <span class="s1">'contrast'</span><span class="p">,</span> <span class="s1">'correlation'</span><span class="p">,</span> <span class="s1">'homogeneity'</span><span class="p">,</span> <span class="s1">'label'</span><span class="p">]]</span>
+    <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="n">feature_columns</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">df_merged</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>Akses Berkas Dataset:</strong><br />
+Berkas CSV dataset final dapat diunduh langsung melalui tautan berikut:<br />
+<a class="reference download internal" download="" href="_downloads/77f0e567c25e6de172b00dfa5463a95a/dataset_fitur_citra.csv"><span class="xref download myst">📥 Unduh dataset_fitur_citra.csv</span></a></p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exploratory-data-analysis-eda">
+<h2>8. Exploratory Data Analysis (EDA)<a class="headerlink" href="#exploratory-data-analysis-eda" title="Link to this heading">#</a></h2>
+<p>Analisis eksplorasi data dilakukan untuk memahami karakteristik statistik dari 14 fitur numerik pada keseluruhan dataset maupun perbandingan antarkelas target.</p>
+<section id="statistik-deskriptif-keseluruhan-dataset-n-200">
+<h3>8.1 Statistik Deskriptif Keseluruhan Dataset (<span class="math notranslate nohighlight">\(N = 200\)</span>)<a class="headerlink" href="#statistik-deskriptif-keseluruhan-dataset-n-200" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head text-center"><p>Rata-rata (Mean)</p></th>
+<th class="head text-center"><p>Standar Deviasi</p></th>
+<th class="head text-center"><p>Nilai Minimum</p></th>
+<th class="head text-center"><p>Median (<span class="math notranslate nohighlight">\(Q_2\)</span>)</p></th>
+<th class="head text-center"><p>Nilai Maksimum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mean_R</span></code></p></td>
+<td class="text-center"><p>137,1234</p></td>
+<td class="text-center"><p>18,8412</p></td>
+<td class="text-center"><p>73,9678</p></td>
+<td class="text-center"><p>139,3930</p></td>
+<td class="text-center"><p>176,5663</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean_G</span></code></p></td>
+<td class="text-center"><p>127,1417</p></td>
+<td class="text-center"><p>17,4211</p></td>
+<td class="text-center"><p>65,0996</p></td>
+<td class="text-center"><p>129,8565</p></td>
+<td class="text-center"><p>168,2256</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mean_B</span></code></p></td>
+<td class="text-center"><p>119,1258</p></td>
+<td class="text-center"><p>17,9968</p></td>
+<td class="text-center"><p>64,3838</p></td>
+<td class="text-center"><p>117,7409</p></td>
+<td class="text-center"><p>164,5440</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std_R</span></code></p></td>
+<td class="text-center"><p>59,7590</p></td>
+<td class="text-center"><p>10,3947</p></td>
+<td class="text-center"><p>36,2813</p></td>
+<td class="text-center"><p>60,0504</p></td>
+<td class="text-center"><p>89,3089</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">std_G</span></code></p></td>
+<td class="text-center"><p>61,3709</p></td>
+<td class="text-center"><p>7,6582</p></td>
+<td class="text-center"><p>34,4731</p></td>
+<td class="text-center"><p>61,8745</p></td>
+<td class="text-center"><p>85,1581</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std_B</span></code></p></td>
+<td class="text-center"><p>62,1967</p></td>
+<td class="text-center"><p>7,4006</p></td>
+<td class="text-center"><p>32,0401</p></td>
+<td class="text-center"><p>62,6939</p></td>
+<td class="text-center"><p>80,2947</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">skew_R</span></code></p></td>
+<td class="text-center"><p>-0,2955</p></td>
+<td class="text-center"><p>0,4638</p></td>
+<td class="text-center"><p>-1,4997</p></td>
+<td class="text-center"><p>-0,2761</p></td>
+<td class="text-center"><p>0,8801</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">skew_G</span></code></p></td>
+<td class="text-center"><p>-0,1054</p></td>
+<td class="text-center"><p>0,3985</p></td>
+<td class="text-center"><p>-1,2584</p></td>
+<td class="text-center"><p>-0,1470</p></td>
+<td class="text-center"><p>0,8593</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">skew_B</span></code></p></td>
+<td class="text-center"><p>-0,0456</p></td>
+<td class="text-center"><p>0,3964</p></td>
+<td class="text-center"><p>-1,1159</p></td>
+<td class="text-center"><p>-0,1058</p></td>
+<td class="text-center"><p>0,8824</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">energy</span></code></p></td>
+<td class="text-center"><p>0,0327</p></td>
+<td class="text-center"><p>0,0221</p></td>
+<td class="text-center"><p>0,0138</p></td>
+<td class="text-center"><p>0,0257</p></td>
+<td class="text-center"><p>0,2049</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code></p></td>
+<td class="text-center"><p>11,6373</p></td>
+<td class="text-center"><p>0,7721</p></td>
+<td class="text-center"><p>8,6353</p></td>
+<td class="text-center"><p>11,7192</p></td>
+<td class="text-center"><p>13,3113</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">contrast</span></code></p></td>
+<td class="text-center"><p>103,7315</p></td>
+<td class="text-center"><p>65,5152</p></td>
+<td class="text-center"><p>11,7534</p></td>
+<td class="text-center"><p>94,6923</p></td>
+<td class="text-center"><p>358,4288</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code></p></td>
+<td class="text-center"><p>0,9852</p></td>
+<td class="text-center"><p>0,0090</p></td>
+<td class="text-center"><p>0,9608</p></td>
+<td class="text-center"><p>0,9870</p></td>
+<td class="text-center"><p>0,9988</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">homogeneity</span></code></p></td>
+<td class="text-center"><p>0,3915</p></td>
+<td class="text-center"><p>0,1181</p></td>
+<td class="text-center"><p>0,1676</p></td>
+<td class="text-center"><p>0,3760</p></td>
+<td class="text-center"><p>0,7537</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="statistik-komparatif-per-kelas-target">
+<h3>8.2 Statistik Komparatif per Kelas Target<a class="headerlink" href="#statistik-komparatif-per-kelas-target" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head text-center"><p>Rata-rata Kategori Rapi (<span class="math notranslate nohighlight">\(n=100\)</span>)</p></th>
+<th class="head text-center"><p>Rata-rata Kategori Berantakan (<span class="math notranslate nohighlight">\(n=100\)</span>)</p></th>
+<th class="head text-center"><p>Selisih Mean (<span class="math notranslate nohighlight">\(\Delta\)</span>)</p></th>
+<th class="head text-center"><p>Korelasi Point-Biserial (<span class="math notranslate nohighlight">\(r\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">std_B</span></code></p></td>
+<td class="text-center"><p><strong>63,3692</strong></p></td>
+<td class="text-center"><p>61,0243</p></td>
+<td class="text-center"><p>+2,3449</p></td>
+<td class="text-center"><p><strong>+0,1588</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">energy</span></code></p></td>
+<td class="text-center"><p>0,0301</p></td>
+<td class="text-center"><p><strong>0,0353</strong></p></td>
+<td class="text-center"><p>-0,0052</p></td>
+<td class="text-center"><p><strong>-0,1194</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">std_R</span></code></p></td>
+<td class="text-center"><p>58,7915</p></td>
+<td class="text-center"><p><strong>60,7266</strong></p></td>
+<td class="text-center"><p>-1,9351</p></td>
+<td class="text-center"><p><strong>-0,0933</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code></p></td>
+<td class="text-center"><p><strong>11,6955</strong></p></td>
+<td class="text-center"><p>11,5791</p></td>
+<td class="text-center"><p>+0,1164</p></td>
+<td class="text-center"><p>+0,0755</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">homogeneity</span></code></p></td>
+<td class="text-center"><p>0,3838</p></td>
+<td class="text-center"><p><strong>0,3992</strong></p></td>
+<td class="text-center"><p>-0,0154</p></td>
+<td class="text-center"><p>-0,0654</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean_B</span></code></p></td>
+<td class="text-center"><p><strong>120,2580</strong></p></td>
+<td class="text-center"><p>117,9935</p></td>
+<td class="text-center"><p>+2,2645</p></td>
+<td class="text-center"><p>+0,0631</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">skew_G</span></code></p></td>
+<td class="text-center"><p><strong>-0,0804</strong></p></td>
+<td class="text-center"><p>-0,1303</p></td>
+<td class="text-center"><p>+0,0499</p></td>
+<td class="text-center"><p>+0,0627</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">skew_R</span></code></p></td>
+<td class="text-center"><p><strong>-0,2764</strong></p></td>
+<td class="text-center"><p>-0,3146</p></td>
+<td class="text-center"><p>+0,0382</p></td>
+<td class="text-center"><p>+0,0413</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">skew_B</span></code></p></td>
+<td class="text-center"><p>-0,0537</p></td>
+<td class="text-center"><p><strong>-0,0374</strong></p></td>
+<td class="text-center"><p>-0,0163</p></td>
+<td class="text-center"><p>-0,0207</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std_G</span></code></p></td>
+<td class="text-center"><p><strong>61,5013</strong></p></td>
+<td class="text-center"><p>61,2406</p></td>
+<td class="text-center"><p>+0,2607</p></td>
+<td class="text-center"><p>+0,0171</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mean_R</span></code></p></td>
+<td class="text-center"><p>136,8299</p></td>
+<td class="text-center"><p><strong>137,4170</strong></p></td>
+<td class="text-center"><p>-0,5871</p></td>
+<td class="text-center"><p>-0,0156</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code></p></td>
+<td class="text-center"><p>0,9852</p></td>
+<td class="text-center"><p><strong>0,9853</strong></p></td>
+<td class="text-center"><p>-0,0001</p></td>
+<td class="text-center"><p>-0,0027</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">contrast</span></code></p></td>
+<td class="text-center"><p>103,6362</p></td>
+<td class="text-center"><p><strong>103,8269</strong></p></td>
+<td class="text-center"><p>-0,1907</p></td>
+<td class="text-center"><p>-0,0015</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mean_G</span></code></p></td>
+<td class="text-center"><p>127,1236</p></td>
+<td class="text-center"><p><strong>127,1599</strong></p></td>
+<td class="text-center"><p>-0,0363</p></td>
+<td class="text-center"><p>-0,0010</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>(Keterangan: Label target di-encode Rapi = 1, Berantakan = 0)</em></p>
+</section>
+<section id="matriks-korelasi-antarfitur">
+<h3>8.3 Matriks Korelasi Antarfitur<a class="headerlink" href="#matriks-korelasi-antarfitur" title="Link to this heading">#</a></h3>
+<p>Korelasi linear antarseluruh fitur divisualisasikan menggunakan matriks korelasi Pearson:</p>
+<figure class="align-center" id="fig-eda-korelasi">
+<a class="reference internal image-reference" href="_images/eda_korelasi_fitur.png"><img alt="_images/eda_korelasi_fitur.png" src="_images/eda_korelasi_fitur.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Matriks Korelasi Pearson 14 Fitur Citra dan Label Target (Rapi vs Berantakan).</span><a class="headerlink" href="#fig-eda-korelasi" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Temuan Analisis Korelasi:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Multikolinieritas Warna Alami:</strong> Terdapat korelasi positif yang sangat kuat antar-mean kanal warna (<code class="docutils literal notranslate"><span class="pre">mean_R</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_G</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_B</span></code> dengan <span class="math notranslate nohighlight">\(r &gt; 0.90\)</span>). Hal ini merupakan fenomena alami pada fotografi karena pencahayaan terang meningkatkan intensitas di ketiga kanal secara serentak.</p></li>
+<li><p><strong>Korelasi Terbalik Tekstur (Contrast vs Homogeneity):</strong> Fitur <code class="docutils literal notranslate"><span class="pre">contrast</span></code> memiliki korelasi negatif yang kuat dengan <code class="docutils literal notranslate"><span class="pre">homogeneity</span></code> (<span class="math notranslate nohighlight">\(r \approx -0.80\)</span>). Ketika kontras lokal tinggi (banyak transisi tajam antarpiksel), tingkat homogenitas permukaan menurun.</p></li>
+<li><p><strong>Korelasi Linier Rendah terhadap Label:</strong> Seluruh fitur individual memiliki korelasi linier point-biserial yang moderat hingga rendah terhadap label target (<span class="math notranslate nohighlight">\(|r| \le 0.16\)</span>). Ini membuktikan bahwa <strong>masalah klasifikasi keteraturan sepatu tidak dapat diselesaikan dengan pemisahan linier sederhana (linear thresholding)</strong>, melainkan membutuhkan model non-linear yang mampu menangkap interaksi multi-dimensi antarfitur.</p></li>
+</ol>
+</section>
+<section id="distribusi-fitur-teratas-antarkelas">
+<h3>8.4 Distribusi Fitur Teratas Antarkelas<a class="headerlink" href="#distribusi-fitur-teratas-antarkelas" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="fig-eda-distribusi">
+<a class="reference internal image-reference" href="_images/eda_distribusi_fitur.png"><img alt="_images/eda_distribusi_fitur.png" src="_images/eda_distribusi_fitur.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Diagram Boxplot Perbandingan Distribusi 4 Fitur Teratas Antarkelas Target.</span><a class="headerlink" href="#fig-eda-distribusi" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Pada diagram boxplot di atas, terlihat perbedaan sebaran kuartil dan variasi interkuartil antara kelas Rapi dan Berantakan pada fitur-fitur kunci seperti <code class="docutils literal notranslate"><span class="pre">skew_G</span></code>, <code class="docutils literal notranslate"><span class="pre">std_R</span></code>, <code class="docutils literal notranslate"><span class="pre">correlation</span></code>, dan <code class="docutils literal notranslate"><span class="pre">skew_B</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="implementasi-dan-alur-klasifikasi-random-forest">
+<h2>9. Implementasi dan Alur Klasifikasi Random Forest<a class="headerlink" href="#implementasi-dan-alur-klasifikasi-random-forest" title="Link to this heading">#</a></h2>
+<section id="mengapa-memilih-random-forest">
+<h3>9.1 Mengapa Memilih Random Forest?<a class="headerlink" href="#mengapa-memilih-random-forest" title="Link to this heading">#</a></h3>
+<p>Algoritma <strong>Random Forest Classifier</strong> dipilih sebagai model klasifikasi berdasarkan karakteristik teoritis dan empirisnya:</p>
+<ol class="arabic simple">
+<li><p><strong>Invarian terhadap Skala Fitur (<em>Scale Invariant</em>):</strong> Pohon keputusan mempartisi ruang fitur berdasarkan aturan pemisahan (<em>splitting rules</em>) nilai ordinal (<span class="math notranslate nohighlight">\(x_j \le \theta\)</span>). Oleh karena itu, fitur dengan rentang nilai berbeda—seperti <code class="docutils literal notranslate"><span class="pre">contrast</span></code> (berorde ratusan) dan <code class="docutils literal notranslate"><span class="pre">energy</span></code> (berorde desimal <span class="math notranslate nohighlight">\(0,01\)</span>)—dapat diproses secara harmonis tanpa memerlukan normalisasi (MinMaxScaler) atau standarisasi (StandardScaler).</p></li>
+<li><p><strong>Kekebalan terhadap Multikolinieritas:</strong> Berkat mekanisme pemilihan subset fitur acak (<em>random subspace method</em>), Random Forest tidak rentan terhadap korelasi tinggi antarfitur RGB.</p></li>
+<li><p><strong>Kemampuan Generalisasi Tinggi:</strong> Kombinasi <em>Bootstrap Aggregating</em> (<em>Bagging</em>) dari ratusan pohon keputusan mereduksi varians (<em>variance reduction</em>) secara efektif, sehingga mencegah <em>overfitting</em>.</p></li>
+</ol>
+</section>
+<section id="alur-pemrosesan-klasifikasi-pipeline-architecture">
+<h3>9.2 Alur Pemrosesan Klasifikasi (<em>Pipeline Architecture</em>)<a class="headerlink" href="#alur-pemrosesan-klasifikasi-pipeline-architecture" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> [Dataset 200 Citra Sepatu]
+ (100 Rapi, 100 Berantakan)
+             │
+             ▼
+ [Pemeriksaan Duplikasi]
+ (MD5 Exact + dHash Hamming &lt;= 5)
+             │
+             ▼
+ [Pengelompokan 177 Grup Independen]
+ (Disjoint-Set Union / Union-Find)
+             │
+             ▼
+ [StratifiedGroupKFold (5-Split, random_state=14)]
+             ├── Data Training (162 Citra: 83 Rapi, 79 Berantakan) ──► [Pelatihan Random Forest (100 Trees)]
+             │                                                                         │
+             │                                                                         ▼
+             └── Data Testing  (38 Citra: 17 Rapi, 21 Berantakan)  ──► [Inferensi &amp; Evaluasi Performa]
+                                                                                       │
+                                                                                       ▼
+                                                                        [Akurasi 71.05%, Macro F1 69.33%]
+                                                                        [Confusion Matrix &amp; Feature Importance]
+</pre></div>
+</div>
+</section>
+<section id="implementasi-kode-pelatihan-random-forest">
+<h3>9.3 Implementasi Kode Pelatihan Random Forest<a class="headerlink" href="#implementasi-kode-pelatihan-random-forest" title="Link to this heading">#</a></h3>
+<p>Berikut adalah implementasi pelatihan model dari <code class="docutils literal notranslate"><span class="pre">src/klasifikasi.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># Inisialisasi model ensemble Random Forest</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      <span class="c1"># Jumlah pohon keputusan dalam ensemble</span>
+    <span class="n">criterion</span><span class="o">=</span><span class="s1">'gini'</span><span class="p">,</span>      <span class="c1"># Fungsi kriteria pemisahan (Gini Impurity)</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>       <span class="c1"># Seed untuk menjamin reprodusibilitas pembagian dan bootstrap</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>              <span class="c1"># Memanfaatkan seluruh core prosesor untuk komputasi paralel</span>
+<span class="p">)</span>
+
+<span class="c1"># Pelatihan strictly menggunakan data training (162 sampel)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Penjelasan Parameter Kunci:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code>: Menetapkan jumlah pohon sebesar 100 untuk memberikan stabilitas voting ensemble tanpa memberatkan komputasi.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">random_state=14</span></code>: Mengunci seed generator bilangan acak sehingga hasil pemilihan sampel bootstrap dan subset fitur identik di setiap eksekusi.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">criterion='gini'</span></code>: Menghitung ketidakmurnian pemisahan dengan rumus <span class="math notranslate nohighlight">\(I_G(p) = 1 - \sum p_i^2\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hasil-pengujian-dan-evaluasi-model">
+<h2>10. Hasil Pengujian dan Evaluasi Model<a class="headerlink" href="#hasil-pengujian-dan-evaluasi-model" title="Link to this heading">#</a></h2>
+<p>Evaluasi model dilakukan secara ketat pada <strong>data uji independen sebanyak 38 citra</strong> yang belum pernah dilihat oleh model selama proses pelatihan.</p>
+<section id="implementasi-kode-evaluasi">
+<h3>10.1 Implementasi Kode Evaluasi<a class="headerlink" href="#implementasi-kode-evaluasi" title="Link to this heading">#</a></h3>
+<p>Potongan kode evaluasi performa dari <code class="docutils literal notranslate"><span class="pre">src/klasifikasi.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="c1"># Prediksi label kelas pada data pengujian</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Perhitungan metrik evaluasi global</span>
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">prec_macro</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'rapi'</span><span class="p">,</span> <span class="s1">'berantakan'</span><span class="p">],</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">)</span>
+<span class="n">rec_macro</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'rapi'</span><span class="p">,</span> <span class="s1">'berantakan'</span><span class="p">],</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">)</span>
+<span class="n">f1_macro</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'rapi'</span><span class="p">,</span> <span class="s1">'berantakan'</span><span class="p">],</span> <span class="n">average</span><span class="o">=</span><span class="s1">'macro'</span><span class="p">)</span>
+
+<span class="c1"># Laporan performa rinci per kelas</span>
+<span class="n">report_text</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'rapi'</span><span class="p">,</span> <span class="s1">'berantakan'</span><span class="p">],</span> <span class="n">digits</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ringkasan-metrik-kinerja-global">
+<h3>10.2 Ringkasan Metrik Kinerja Global<a class="headerlink" href="#ringkasan-metrik-kinerja-global" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik Evaluasi</p></th>
+<th class="head text-center"><p>Nilai Uji</p></th>
+<th class="head"><p>Interpretasi Metrik</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Akurasi (<em>Accuracy</em>)</strong></p></td>
+<td class="text-center"><p><strong>71,05%</strong></p></td>
+<td><p>Sebanyak 27 dari 38 citra uji berhasil diklasifikasikan dengan benar</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Macro Average Precision</strong></p></td>
+<td class="text-center"><p><strong>72,12%</strong></p></td>
+<td><p>Rata-rata proporsi prediksi positif yang benar pada kedua kelas</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Macro Average Recall</strong></p></td>
+<td class="text-center"><p><strong>69,33%</strong></p></td>
+<td><p>Rata-rata proporsi sampel aktual yang berhasil dideteksi</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Macro Average F1-Score</strong></p></td>
+<td class="text-center"><p><strong>69,33%</strong></p></td>
+<td><p>Rata-rata harmonik antara presisi dan recall</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Weighted Average F1-Score</strong></p></td>
+<td class="text-center"><p><strong>70,10%</strong></p></td>
+<td><p>Rata-rata F1 terbobot berdasarkan jumlah sampel tiap kelas</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="laporan-klasifikasi-rinci-classification-report">
+<h3>10.3 Laporan Klasifikasi Rinci (<em>Classification Report</em>)<a class="headerlink" href="#laporan-klasifikasi-rinci-classification-report" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas Target</p></th>
+<th class="head text-center"><p>Precision</p></th>
+<th class="head text-center"><p>Recall</p></th>
+<th class="head text-center"><p>F1-Score</p></th>
+<th class="head text-center"><p>Jumlah Sampel Uji (<em>Support</em>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Rapi</strong></p></td>
+<td class="text-center"><p><strong>0,7500 (75,00%)</strong></p></td>
+<td class="text-center"><p>0,5294 (52,94%)</p></td>
+<td class="text-center"><p>0,6207 (62,07%)</p></td>
+<td class="text-center"><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Berantakan</strong></p></td>
+<td class="text-center"><p>0,6923 (69,23%)</p></td>
+<td class="text-center"><p><strong>0,8571 (85,71%)</strong></p></td>
+<td class="text-center"><p><strong>0,7660 (76,60%)</strong></p></td>
+<td class="text-center"><p>21</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Akurasi Global</strong></p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p><strong>0,7105 (71,05%)</strong></p></td>
+<td class="text-center"><p>38</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Macro Average</strong></p></td>
+<td class="text-center"><p><strong>0,7212 (72,12%)</strong></p></td>
+<td class="text-center"><p><strong>0,6933 (69,33%)</strong></p></td>
+<td class="text-center"><p><strong>0,6933 (69,33%)</strong></p></td>
+<td class="text-center"><p>38</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Weighted Average</strong></p></td>
+<td class="text-center"><p><strong>0,7181 (71,81%)</strong></p></td>
+<td class="text-center"><p><strong>0,7105 (71,05%)</strong></p></td>
+<td class="text-center"><p><strong>0,7010 (70,10%)</strong></p></td>
+<td class="text-center"><p>38</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="confusion-matrix-dan-pembahasannya">
+<h2>11. Confusion Matrix dan Pembahasannya<a class="headerlink" href="#confusion-matrix-dan-pembahasannya" title="Link to this heading">#</a></h2>
+<section id="implementasi-pembuatan-confusion-matrix">
+<h3>11.1 Implementasi Pembuatan Confusion Matrix<a class="headerlink" href="#implementasi-pembuatan-confusion-matrix" title="Link to this heading">#</a></h3>
+<p>Berikut adalah kode pembuatan dan ekstraksi kuadran Confusion Matrix dari <code class="docutils literal notranslate"><span class="pre">src/klasifikasi.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="n">LABELS_ORDER</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'rapi'</span><span class="p">,</span> <span class="s1">'berantakan'</span><span class="p">]</span>
+
+<span class="c1"># Pembentukan matriks kontingensi (baris = kelas aktual, kolom = kelas prediksi)</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">LABELS_ORDER</span><span class="p">)</span>
+
+<span class="c1"># Ekstraksi kuadran dengan kelas positif = 'rapi'</span>
+<span class="n">TP</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># Aktual rapi, Prediksi rapi</span>
+<span class="n">FN</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># Aktual rapi, Prediksi berantakan</span>
+<span class="n">FP</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># Aktual berantakan, Prediksi rapi</span>
+<span class="n">TN</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">cm</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># Aktual berantakan, Prediksi berantakan</span>
+</pre></div>
+</div>
+</section>
+<section id="visualisasi-matriks-kontingensi">
+<h3>11.2 Visualisasi Matriks Kontingensi<a class="headerlink" href="#visualisasi-matriks-kontingensi" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="fig-confusion-matrix">
+<a class="reference internal image-reference" href="_images/confusion_matrix_sepatu.png"><img alt="_images/confusion_matrix_sepatu.png" src="_images/confusion_matrix_sepatu.png" style="width: 75%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Confusion Matrix Hasil Pengujian Random Forest pada 38 Citra Testing.</span><a class="headerlink" href="#fig-confusion-matrix" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="distribusi-kuadran-prediksi">
+<h3>11.3 Distribusi Kuadran Prediksi<a class="headerlink" href="#distribusi-kuadran-prediksi" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas Aktual \ Kelas Prediksi</p></th>
+<th class="head text-center"><p>Prediksi: Rapi</p></th>
+<th class="head text-center"><p>Prediksi: Berantakan</p></th>
+<th class="head text-center"><p>Total Sampel Aktual</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Aktual: Rapi</strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(TP = 9\)</span></strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(FN = 8\)</span></strong></p></td>
+<td class="text-center"><p>17</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Aktual: Berantakan</strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(FP = 3\)</span></strong></p></td>
+<td class="text-center"><p><strong><span class="math notranslate nohighlight">\(TN = 18\)</span></strong></p></td>
+<td class="text-center"><p>21</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Total Prediksi Model</strong></p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>26</p></td>
+<td class="text-center"><p>38</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pembahasan-mendalam-hasil-prediksi">
+<h3>11.4 Pembahasan Mendalam Hasil Prediksi<a class="headerlink" href="#pembahasan-mendalam-hasil-prediksi" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Sensitivitas Tinggi pada Kelas Berantakan (<span class="math notranslate nohighlight">\(Recall = 85,71\%\)</span>):</strong><br />
+Dari 21 citra susunan sepatu berantakan pada data uji, sebanyak <strong>18 citra (<span class="math notranslate nohighlight">\(85,71\%\)</span>) berhasil dideteksi dengan benar sebagai berantakan</strong>, dan hanya 3 citra yang salah diklasifikasikan sebagai rapi (<em>False Positive</em>). Hal ini menunjukkan bahwa kombinasi fitur warna dan tekstur GLCM sangat efektif dalam menangkap pola ketidakteraturan, tumpukan asimetris, dan bayangan tajam yang menjadi ciri khas sepatu berantakan.</p></li>
+<li><p><strong>Presisi Tinggi pada Kelas Rapi (<span class="math notranslate nohighlight">\(Precision = 75,00\%\)</span>):</strong><br />
+Ketika model memprediksi suatu susunan sebagai rapi, tingkat kepastiannya mencapai <strong><span class="math notranslate nohighlight">\(75\%\)</span></strong> (9 dari 12 prediksi terbukti benar).</p></li>
+<li><p><strong>Analisis Kesalahan Klasifikasi False Negative (<span class="math notranslate nohighlight">\(FN = 8\)</span>):</strong><br />
+Sebanyak 8 citra rapi terprediksi keliru sebagai berantakan. Berdasarkan penelusuran citra uji, fenomena ini dipicu oleh dua faktor utama:</p>
+<ul class="simple">
+<li><p><strong>Variasi Warna Sepatu yang Mencolok:</strong> Beberapa susunan sepatu yang sebenarnya tertata sejajar rapi terdiri atas sepatu-sepatu dengan warna yang sangat kontras (misal sepatu putih terang bersebelahan dengan sepatu hitam pekat). Kontras lokal yang tinggi ini menghasilkan nilai fitur GLCM <code class="docutils literal notranslate"><span class="pre">contrast</span></code> yang tinggi dan <code class="docutils literal notranslate"><span class="pre">skew_G</span></code> yang ekstrem, sehingga pohon keputusan mengira terdapat ketidakteraturan spasial.</p></li>
+<li><p><strong>Sudut Pengambilan Miring (<em>Perspective Distortion</em>):</strong> Sudut kamera yang terlalu miring membuat barisan sepatu yang sejajar terlihat konvergen dan tumpang-tindih dalam proyeksi 2D, menyerupai pola susunan berantakan.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="feature-importance-dan-interpretasinya">
+<h2>12. Feature Importance dan Interpretasinya<a class="headerlink" href="#feature-importance-dan-interpretasinya" title="Link to this heading">#</a></h2>
+<p>Tingkat signifikansi fitur dalam membentuk pemisahan keputusan dianalisis melalui rata-rata penurunan ketidakmurnian Gini (<em>Mean Decrease in Gini Impurity</em>) pada seluruh 100 pohon keputusan.</p>
+<section id="implementasi-kode-feature-importance">
+<h3>12.1 Implementasi Kode Feature Importance<a class="headerlink" href="#implementasi-kode-feature-importance" title="Link to this heading">#</a></h3>
+<p>Berikut potongan kode dari <code class="docutils literal notranslate"><span class="pre">src/klasifikasi.py</span></code> untuk mengekstrak dan mengurutkan kepentingan fitur:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ekstraksi skor kepentingan fitur dari model Random Forest</span>
+<span class="n">importances</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Urutkan fitur dari skor tertinggi ke terendah</span>
+<span class="n">sorted_features</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+    <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">importances</span><span class="p">),</span>
+    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">rank</span><span class="p">,</span> <span class="p">(</span><span class="n">feat_name</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sorted_features</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">rank</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">feat_name</span><span class="si">:</span><span class="s2">12s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">score</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualisasi-dan-tabel-kontribusi-fitur">
+<h3>12.2 Visualisasi dan Tabel Kontribusi Fitur<a class="headerlink" href="#visualisasi-dan-tabel-kontribusi-fitur" title="Link to this heading">#</a></h3>
+<figure class="align-center" id="fig-feature-importance">
+<a class="reference internal image-reference" href="_images/feature_importance_sepatu.png"><img alt="_images/feature_importance_sepatu.png" src="_images/feature_importance_sepatu.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Peringkat Tingkat Kepentingan 14 Fitur Citra Berdasarkan Random Forest Feature Importance.</span><a class="headerlink" href="#fig-feature-importance" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Peringkat</p></th>
+<th class="head"><p>Nama Fitur</p></th>
+<th class="head"><p>Domain Fitur</p></th>
+<th class="head text-center"><p>Skor Importance</p></th>
+<th class="head text-center"><p>Persentase Kontribusi</p></th>
+<th class="head"><p>Peran dalam Klasifikasi Keteraturan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><strong>1</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><strong>0,0912</strong></p></td>
+<td class="text-center"><p><strong>9,12%</strong></p></td>
+<td><p>Asimetri distribusi intensitas hijau terhadap bayangan latar</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><strong>2</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><strong>0,0908</strong></p></td>
+<td class="text-center"><p><strong>9,08%</strong></p></td>
+<td><p>Kontras dan variasi warna merah pada material sepatu</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>3</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">correlation</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><strong>0,0869</strong></p></td>
+<td class="text-center"><p><strong>8,69%</strong></p></td>
+<td><p>Keteraturan spasial linear antar-pasangan piksel bertetangga</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><strong>4</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p><strong>0,0860</strong></p></td>
+<td class="text-center"><p><strong>8,60%</strong></p></td>
+<td><p>Asimetri distribusi spektrum biru pada pencahayaan ruangan</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>5</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">contrast</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p><strong>0,0782</strong></p></td>
+<td class="text-center"><p><strong>7,82%</strong></p></td>
+<td><p>Variasi perbedaan intensitas transisi antarpiksel</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p>0,0722</p></td>
+<td class="text-center"><p>7,22%</p></td>
+<td><p>Kecerahan rata-rata kanal biru</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p>0,0706</p></td>
+<td class="text-center"><p>7,06%</p></td>
+<td><p>Kecerahan rata-rata kanal merah</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">entropy</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p>0,0674</p></td>
+<td class="text-center"><p>6,74%</p></td>
+<td><p>Kompleksitas dan keacakan distribusi keabuan</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">homogeneity</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p>0,0649</p></td>
+<td class="text-center"><p>6,49%</p></td>
+<td><p>Keseragaman lokal permukaan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_B</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p>0,0630</p></td>
+<td class="text-center"><p>6,30%</p></td>
+<td><p>Variasi intensitas kanal biru</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mean_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p>0,0622</p></td>
+<td class="text-center"><p>6,22%</p></td>
+<td><p>Kecerahan rata-rata kanal hijau</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">skew_R</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p>0,0602</p></td>
+<td class="text-center"><p>6,02%</p></td>
+<td><p>Asimetri distribusi kanal merah</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">energy</span></code></p></td>
+<td><p>Tekstur (GLCM)</p></td>
+<td class="text-center"><p>0,0553</p></td>
+<td class="text-center"><p>5,53%</p></td>
+<td><p>Keseragaman energi tekstur</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std_G</span></code></p></td>
+<td><p>Warna (RGB)</p></td>
+<td class="text-center"><p>0,0511</p></td>
+<td class="text-center"><p>5,11%</p></td>
+<td><p>Variasi intensitas kanal hijau</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="interpretasi-sinergi-fitur-warna-dan-tekstur">
+<h3>12.3 Interpretasi Sinergi Fitur Warna dan Tekstur<a class="headerlink" href="#interpretasi-sinergi-fitur-warna-dan-tekstur" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dominasi Fitur Warna Orde Ketiga (Skewness):</strong> Fitur <code class="docutils literal notranslate"><span class="pre">skew_G</span></code> (peringkat 1, <span class="math notranslate nohighlight">\(9,12\%\)</span>) dan <code class="docutils literal notranslate"><span class="pre">skew_B</span></code> (peringkat 4, <span class="math notranslate nohighlight">\(8,60\%\)</span>) menunjukkan bahwa bentuk kemencengan histogram warna merupakan pembeda yang sangat kuat. Pada susunan rapi, distribusi warna relatif terpusat di sekitar latar lantai dan bodi sepatu. Sebaliknya, pada susunan berantakan, kemunculan rongga gelap di sela-sela tumpukan sepatu dan bagian dalam sepatu menyebabkan ekor distribusi memanjang, menghasilkan skewness yang berbeda secara signifikan.</p></li>
+<li><p><strong>Peran Kunci Fitur Tekstur Spasial GLCM:</strong> Fitur <code class="docutils literal notranslate"><span class="pre">correlation</span></code> (peringkat 3, <span class="math notranslate nohighlight">\(8,69\%\)</span>) dan <code class="docutils literal notranslate"><span class="pre">contrast</span></code> (peringkat 5, <span class="math notranslate nohighlight">\(7,82\%\)</span>) membuktikan pentingnya informasi spasial orde kedua. Sepatu yang ditata rapi sejajar menghasilkan korelasi spasial berkala pada arah horizontal dan vertikal, sedangkan sepatu berantakan memecah korelasi tersebut dan meningkatkan kontras transisi acak.</p></li>
+<li><p><strong>Keseimbangan Multimodal:</strong> Tidak ada fitur tunggal yang mendominasi secara ekstrem (seluruh fitur memiliki kontribusi seimbang berkisar antara <span class="math notranslate nohighlight">\(5,11\%\)</span> hingga <span class="math notranslate nohighlight">\(9,12\%\)</span>). Hal ini menegaskan bahwa keputusan klasifikasi optimal dicapai melalui sinergi antara karakteristik warna spektral dan tekstur spasial.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-hasil-keterbatasan-dan-kesimpulan">
+<h2>13. Analisis Hasil, Keterbatasan, dan Kesimpulan<a class="headerlink" href="#analisis-hasil-keterbatasan-dan-kesimpulan" title="Link to this heading">#</a></h2>
+<section id="analisis-hasil-keseluruhan">
+<h3>13.1 Analisis Hasil Keseluruhan<a class="headerlink" href="#analisis-hasil-keseluruhan" title="Link to this heading">#</a></h3>
+<p>Eksperimen yang dilakukan membuktikan bahwa integrasi teknik pengolahan citra digital klasik (statistik warna dan GLCM) dengan model machine learning berbasis pohon keputusan mampu mencapai akurasi <strong>71,05%</strong> pada pengujian murni tanpa kebocoran data (<em>zero data leakage</em>).</p>
+<p>Hasil ini sangat kompetitif untuk dataset citra dunia nyata (<em>in-the-wild photos</em>) yang diambil dalam berbagai kondisi lingkungan tanpa pengaturan studio terkontrol, membuktikan bahwa ekstraksi fitur hand-crafted masih relevan, hemat komputasi, dan memiliki interpretabilitas fisis yang jauh lebih transparan dibanding model <em>black-box deep learning</em>.</p>
+</section>
+<section id="keterbatasan-penelitian">
+<h3>13.2 Keterbatasan Penelitian<a class="headerlink" href="#keterbatasan-penelitian" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Ukuran Dataset Efektif:</strong> Total sampel citra adalah 200 citra. Adanya duplikasi berkas dan foto <em>burst</em> mereduksi sampel independen menjadi 177 grup unik, yang membatasi variasi data latih.</p></li>
+<li><p><strong>Ketiadaan Segmentasi Latar Belakang (<em>Background Removal</em>):</strong> Fitur warna dan GLCM diekstraksi dari keseluruhan bidang citra. Jika latar belakang lantai memiliki corak keramik bermotif rumit, tekstur lantai dapat memengaruhi nilai GLCM.</p></li>
+<li><p><strong>Variasi Sudut Pandang Kamera:</strong> Sudut pengambilan yang terlalu miring memicu kesalahan deteksi (<em>false negative</em>) akibat distorsi perspektif.</p></li>
+</ol>
+</section>
+<section id="rekomendasi-pengembangan-mendatang">
+<h3>13.3 Rekomendasi Pengembangan Mendatang<a class="headerlink" href="#rekomendasi-pengembangan-mendatang" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Penerapan pra-pemrosesan segmentasi semantik atau deteksi objek (misalnya YOLO atau Mask R-CNN) untuk mengisolasi area sepatu dari lantai sebelum mengekstraksi fitur warna dan GLCM.</p></li>
+<li><p>Penambahan fitur geometri atau deteksi kontur garis lurus (<em>Hough Line Transform</em>) untuk mengukur tingkat kesejajaran sumbu panjang sepatu secara eksplisit.</p></li>
+<li><p>Peningkatan resolusi sampling sudut GLCM menjadi 8 arah dan variasi jarak <span class="math notranslate nohighlight">\(d \in \{1, 2, 3\}\)</span>.</p></li>
+</ul>
+</section>
+<section id="kesimpulan-akhir">
+<h3>13.4 Kesimpulan Akhir<a class="headerlink" href="#kesimpulan-akhir" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Seluruh 14 fitur yang diinstruksikan—terdiri atas 9 fitur statistik warna RGB (<code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">std</span></code>, <code class="docutils literal notranslate"><span class="pre">skew</span></code> pada kanal R, G, B) dan 5 fitur tekstur GLCM (<code class="docutils literal notranslate"><span class="pre">energy</span></code>, <code class="docutils literal notranslate"><span class="pre">entropy</span></code>, <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, <code class="docutils literal notranslate"><span class="pre">correlation</span></code>, <code class="docutils literal notranslate"><span class="pre">homogeneity</span></code>)—berhasil diekstraksi secara lengkap dan akurat dari 200 citra tanpa cacat data.</p></li>
+<li><p>Penerapan <em>Disjoint-Set Union</em> dan <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> berhasil mengeliminasi risiko kebocoran data (<em>zero data leakage</em>) dengan membagi 162 sampel data latih dan 38 sampel data uji secara independen.</p></li>
+<li><p>Model Random Forest (<span class="math notranslate nohighlight">\(100\text{ trees}\)</span>, <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">14</span></code>) menghasilkan akurasi pengujian sebesar <strong>71,05%</strong>, Macro Precision <strong>72,12%</strong>, Macro Recall <strong>69,33%</strong>, dan F1-Score <strong>69,33%</strong>, dengan sensitivitas deteksi kelas berantakan mencapai <strong>85,71%</strong>.</p></li>
+<li><p>Dokumentasi proyek telah disusun secara akademis dan terintegrasi penuh ke dalam sistem Jupyter Book repositori PSD.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kemungkinan-pertanyaan-dosen-dan-jawaban-singkat">
+<h2>14. Kemungkinan Pertanyaan Dosen dan Jawaban Singkat<a class="headerlink" href="#kemungkinan-pertanyaan-dosen-dan-jawaban-singkat" title="Link to this heading">#</a></h2>
+<p>Bagian ini dirancang khusus sebagai panduan belajar untuk menjawab pertanyaan dosen saat evaluasi dan presentasi proyek Pengolahan Citra Digital:</p>
+<section id="q1-mengapa-menggunakan-kombinasi-fitur-rgb-dan-glcm-bukan-hanya-salah-satunya">
+<h3>Q1: Mengapa menggunakan kombinasi fitur RGB dan GLCM, bukan hanya salah satunya?<a class="headerlink" href="#q1-mengapa-menggunakan-kombinasi-fitur-rgb-dan-glcm-bukan-hanya-salah-satunya" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> Fitur statistik warna RGB merepresentasikan karakteristik orde pertama (distribusi kecerahan global dan kontras warna), namun buta terhadap hubungan spasial antarpiksel. Sebaliknya, GLCM merepresentasikan tekstur spasial orde kedua (keteraturan susunan, perulangan pola, dan kekasaran permukaan) tanpa memperhitungkan warna. Kombinasi keduanya menghasilkan deskriptor visual yang lengkap: GLCM mendeteksi keteraturan orientasi sepatu, sedangkan RGB membedakan kontras sol, bodi sepatu, dan bayangan lantai.</p>
+</div></blockquote>
+</section>
+<section id="q2-mengapa-citra-harus-dikonversi-ke-grayscale-sebelum-menghitung-glcm">
+<h3>Q2: Mengapa citra harus dikonversi ke grayscale sebelum menghitung GLCM?<a class="headerlink" href="#q2-mengapa-citra-harus-dikonversi-ke-grayscale-sebelum-menghitung-glcm" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> GLCM membentuk matriks kookurensi berukuran <span class="math notranslate nohighlight">\(L \times L\)</span>, di mana <span class="math notranslate nohighlight">\(L\)</span> adalah jumlah tingkat intensitas. Pada citra grayscale 8-bit, <span class="math notranslate nohighlight">\(L = 256\)</span>, sehingga ukuran matriks adalah <span class="math notranslate nohighlight">\(256 \times 256 = 65.536\)</span> elemen. Jika dihitung pada RGB 24-bit (<span class="math notranslate nohighlight">\(256^3 \approx 16,7\text{ juta}\)</span> warna), ukuran matriks akan menjadi <span class="math notranslate nohighlight">\((16,7\text{ juta})^2 \approx 2,8 \times 10^{14}\)</span> elemen yang mustahil secara memori dan komputasi.</p>
+</div></blockquote>
+</section>
+<section id="q3-bagaimana-cara-menangani-berkas-heic-dalam-python">
+<h3>Q3: Bagaimana cara menangani berkas HEIC dalam Python?<a class="headerlink" href="#q3-bagaimana-cara-menangani-berkas-heic-dalam-python" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> Menggunakan modul <code class="docutils literal notranslate"><span class="pre">pillow_heif</span></code> dengan memanggil <code class="docutils literal notranslate"><span class="pre">pillow_heif.register_heif_opener()</span></code>. Fungsi ini mendaftarkan decoder HEIF secara global ke Pillow sehingga fungsi standar <code class="docutils literal notranslate"><span class="pre">Image.open()</span></code> dapat membuka berkas <code class="docutils literal notranslate"><span class="pre">.heic</span></code> secara transparan tanpa perlu konversi manual pihak ketiga.</p>
+</div></blockquote>
+</section>
+<section id="q4-mengapa-parameter-ddof-0-digunakan-pada-standar-deviasi-dan-bias-true-pada-skewness">
+<h3>Q4: Mengapa parameter <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code> digunakan pada standar deviasi dan <code class="docutils literal notranslate"><span class="pre">bias=True</span></code> pada skewness?<a class="headerlink" href="#q4-mengapa-parameter-ddof-0-digunakan-pada-standar-deviasi-dan-bias-true-pada-skewness" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> Dalam pengolahan citra digital, seluruh piksel dalam citra dianggap sebagai <strong>populasi lengkap</strong> dari citra tersebut, bukan sampel acak. Oleh karena itu, pembagi pada varians adalah <span class="math notranslate nohighlight">\(N\)</span> (<code class="docutils literal notranslate"><span class="pre">ddof=0</span></code>). Begitu pula pada <code class="docutils literal notranslate"><span class="pre">skew(bias=True)</span></code>, momen standar ketiga dihitung tanpa koreksi sampel kecil (<span class="math notranslate nohighlight">\(N/(N-1)(N-2)\)</span>), yang menjamin konsistensi matematis pada populasi piksel berjumlah jutaan.</p>
+</div></blockquote>
+</section>
+<section id="q5-mengapa-fitur-entropy-glcm-dihitung-secara-manual-dan-tidak-menggunakan-graycoprops">
+<h3>Q5: Mengapa fitur Entropy GLCM dihitung secara manual dan tidak menggunakan <code class="docutils literal notranslate"><span class="pre">graycoprops</span></code>?<a class="headerlink" href="#q5-mengapa-fitur-entropy-glcm-dihitung-secara-manual-dan-tidak-menggunakan-graycoprops" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> Pustaka <code class="docutils literal notranslate"><span class="pre">scikit-image</span></code> pada fungsi <code class="docutils literal notranslate"><span class="pre">graycoprops</span></code> hanya mendukung 6 properti standar: <code class="docutils literal notranslate"><span class="pre">contrast</span></code>, <code class="docutils literal notranslate"><span class="pre">dissimilarity</span></code>, <code class="docutils literal notranslate"><span class="pre">homogeneity</span></code>, <code class="docutils literal notranslate"><span class="pre">energy</span></code>, <code class="docutils literal notranslate"><span class="pre">correlation</span></code>, dan <code class="docutils literal notranslate"><span class="pre">ASM</span></code>. Fitur <code class="docutils literal notranslate"><span class="pre">entropy</span></code> tidak disediakan secara bawaan, sehingga dihitung manual menggunakan formula Shannon Entropy: <span class="math notranslate nohighlight">\(H = -\sum P \log_2(P)\)</span>. Elemen berprobabilitas nol (<span class="math notranslate nohighlight">\(P=0\)</span>) harus disaring terlebih dahulu agar tidak memicu <code class="docutils literal notranslate"><span class="pre">RuntimeWarning</span></code> pembagian logaritma nol (<span class="math notranslate nohighlight">\(\log_2 0\)</span>), sesuai limit kalkulus <span class="math notranslate nohighlight">\(\lim_{p \to 0^+} p \log_2 p = 0\)</span>.</p>
+</div></blockquote>
+</section>
+<section id="q6-apa-yang-dimaksud-dengan-data-leakage-dalam-proyek-ini-dan-bagaimana-cara-mendeteksinya">
+<h3>Q6: Apa yang dimaksud dengan <em>Data Leakage</em> dalam proyek ini dan bagaimana cara mendeteksinya?<a class="headerlink" href="#q6-apa-yang-dimaksud-dengan-data-leakage-dalam-proyek-ini-dan-bagaimana-cara-mendeteksinya" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> <em>Data leakage</em> terjadi jika foto yang hampir identik (misalnya hasil jepretan berurutan/<em>burst</em> atau salinan file yang sama) terpecah ke data training dan testing sekaligus. Model akan memiliki akurasi semu karena telah “melihat” citra uji saat pelatihan. Deteksi dilakukan dengan menghitung MD5 checksum untuk salinan biner dan perceptual dHash 64-bit dengan jarak Hamming <span class="math notranslate nohighlight">\(\le 5\)</span> untuk kemiripan visual.</p>
+</div></blockquote>
+</section>
+<section id="q7-mengapa-memilih-stratifiedgroupkfold-dibandingkan-train-test-split-biasa">
+<h3>Q7: Mengapa memilih <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> dibandingkan <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> biasa?<a class="headerlink" href="#q7-mengapa-memilih-stratifiedgroupkfold-dibandingkan-train-test-split-biasa" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> standar hanya mengacak indeks data secara independen, sehingga foto dari kelompok burst yang sama berisiko masuk ke train dan test (bocor). <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> mengelompokkan data berdasarkan ID grup duplikasi (177 grup hasil Union-Find) dan memastikan seluruh anggota dalam satu grup dialokasikan utuh ke salah satu partisi saja, sembari tetap menjaga proporsi kelas seimbang (stratifikasi 80:20).</p>
+</div></blockquote>
+</section>
+<section id="q8-mengapa-model-random-forest-tidak-memerlukan-normalisasi-data-feature-scaling-seperti-min-max-atau-standard-scaler">
+<h3>Q8: Mengapa model Random Forest tidak memerlukan normalisasi data (<em>feature scaling</em>) seperti Min-Max atau Standard Scaler?<a class="headerlink" href="#q8-mengapa-model-random-forest-tidak-memerlukan-normalisasi-data-feature-scaling-seperti-min-max-atau-standard-scaler" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> Random Forest adalah algoritma berbasis pohon keputusan (<em>decision trees</em>). Pemisahan nodus (<em>splits</em>) ditentukan oleh aturan ordinal ambang batas nilai tunggal (<span class="math notranslate nohighlight">\(x_j \le \text{threshold}\)</span>). Transformasi monotonik linier seperti penskalaan fitur tidak mengubah urutan ordinal nilai data dan tidak memengaruhi penentuan titik potong (<em>split points</em>). Hal ini berbeda dengan algoritma berbasis jarak seperti SVM atau KNN.</p>
+</div></blockquote>
+</section>
+<section id="q9-mengapa-metrik-evaluasi-menggunakan-macro-average-di-samping-akurasi">
+<h3>Q9: Mengapa metrik evaluasi menggunakan <em>Macro Average</em> di samping Akurasi?<a class="headerlink" href="#q9-mengapa-metrik-evaluasi-menggunakan-macro-average-di-samping-akurasi" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> Akurasi mengukur ketepatan global tanpa membedakan performa antarkelas. <em>Macro Average</em> (Macro Precision, Macro Recall, Macro F1) menghitung metrik untuk setiap kelas secara terpisah lalu mengambil rata-rata aritmatika tanpa membobotkan jumlah sampel. Hal ini memastikan bahwa performa pada kelas minoritas (atau kelas dengan sampel lebih sedikit di test set) memiliki bobot evaluasi yang setara.</p>
+</div></blockquote>
+</section>
+<section id="q10-bagaimana-interpretasi-nilai-korelasi-linier-fitur-yang-rendah-terhadap-label-pada-tahap-eda">
+<h3>Q10: Bagaimana interpretasi nilai korelasi linier fitur yang rendah terhadap label pada tahap EDA?<a class="headerlink" href="#q10-bagaimana-interpretasi-nilai-korelasi-linier-fitur-yang-rendah-terhadap-label-pada-tahap-eda" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>Jawaban:</strong> Korelasi linier point-biserial yang rendah (<span class="math notranslate nohighlight">\(|r| \le 0,16\)</span>) membuktikan bahwa kelas Rapi dan Berantakan <strong>tidak dapat dipisahkan secara linier oleh satu fitur tunggal</strong>. Hal ini memvalidasi penggunaan model ensemble non-linear seperti Random Forest, yang mampu memetakan interaksi multi-dimensi antarfitur warna dan tekstur untuk membentuk batas keputusan (<em>decision boundary</em>) yang kompleks.</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="struktur-berkas-dan-panduan-eksekusi">
+<h2>15. Struktur Berkas dan Panduan Eksekusi<a class="headerlink" href="#struktur-berkas-dan-panduan-eksekusi" title="Link to this heading">#</a></h2>
+<p>Seluruh kode sumber, notebook, laporan, dan model tersimpan rapi di dalam repositori:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>PSD/
+├── _config.yml                             # Konfigurasi Jupyter Book
+├── _toc.yml                                # Struktur navigasi buku (Proyek 1 &amp; Proyek 2)
+├── _static/
+│   ├── eda_korelasi_fitur.png              # Visualisasi korelasi fitur
+│   ├── eda_distribusi_fitur.png            # Visualisasi boxplot distribusi fitur
+│   ├── confusion_matrix_sepatu.png         # Visualisasi confusion matrix
+│   ├── feature_importance_sepatu.png       # Visualisasi feature importance
+│   └── dataset_fitur_citra.csv             # Berkas dataset utama untuk unduhan web
+├── klasifikasi_sepatu.md                   # Dokumen utama bab klasifikasi sepatu (file ini)
+└── klasifikasi_citra_sepatu/
+    ├── README.md                           # Dokumentasi teknis proyek
+    ├── notebooks/
+    │   └── klasifikasi_citra_sepatu.ipynb  # Jupyter Notebook alur klasifikasi lengkap
+    ├── output/
+    │   ├── dataset_fitur_citra.csv         # Dataset final (200 baris × 15 kolom)
+    │   ├── fitur_rgb_sementara.csv         # Hasil ekstraksi 9 fitur RGB
+    │   ├── fitur_glcm_sementara.csv        # Hasil ekstraksi 5 fitur GLCM
+    │   ├── model_random_forest.pkl         # Model Random Forest tersimpan
+    │   ├── hasil_evaluasi.json             # Metrik evaluasi lengkap JSON
+    │   ├── laporan_klasifikasi.txt         # Laporan ringkas klasifikasi
+    │   └── grayscale/                      # 200 citra hasil konversi grayscale 8-bit
+    └── src/
+        ├── ekstraksi_rgb.py                # Ekstraksi 9 fitur warna RGB
+        ├── konversi_grayscale.py           # Konversi citra ke grayscale 8-bit
+        ├── ekstraksi_glcm.py               # Ekstraksi 5 fitur tekstur GLCM
+        ├── pembuatan_csv.py                # Penggabungan fitur ke CSV utama
+        └── klasifikasi.py                  # Pelatihan Random Forest dan evaluasi
+</pre></div>
+</div>
+<section id="panduan-menjalankan-program-dari-terminal">
+<h3>Panduan Menjalankan Program dari Terminal<a class="headerlink" href="#panduan-menjalankan-program-dari-terminal" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Pindah ke direktori sumber program</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">"klasifikasi_citra_sepatu/src"</span>
+
+<span class="c1"># 2. Menjalankan pipeline lengkap</span>
+python<span class="w"> </span>ekstraksi_rgb.py
+python<span class="w"> </span>konversi_grayscale.py
+python<span class="w"> </span>ekstraksi_glcm.py
+python<span class="w"> </span>pembuatan_csv.py
+python<span class="w"> </span>klasifikasi.py
+</pre></div>
+</div>
+</section>
+<section id="panduan-menjalankan-notebook-interaktif">
+<h3>Panduan Menjalankan Notebook Interaktif<a class="headerlink" href="#panduan-menjalankan-notebook-interaktif" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span><span class="s2">"klasifikasi_citra_sepatu/notebooks"</span>
+jupyter<span class="w"> </span>notebook<span class="w"> </span>klasifikasi_citra_sepatu.ipynb
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="klasifikasi_sawah.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Klasifikasi Lahan Jawa Timur</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumusan-masalah">1.2 Rumusan Masalah</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">1.3 Tujuan Proyek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat-penelitian">1.4 Manfaat Penelitian</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spesifikasi-dan-sumber-dataset">2.1 Spesifikasi dan Sumber Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-ekstensi-berkas-per-kategori">2.2 Distribusi Ekstensi Berkas per Kategori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-duplikasi-citra-dan-kemiripan-visual">2.3 Analisis Duplikasi Citra dan Kemiripan Visual</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembacaan-dan-standardisasi-ruang-warna">3.1 Pembacaan dan Standardisasi Ruang Warna</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partisi-data-bebas-kebocoran-zero-data-leakage-splitting">3.2 Partisi Data Bebas Kebocoran (<em>Zero Data Leakage Splitting</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-citra-rgb">4. Ekstraksi Fitur Citra RGB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevansi-warna-pada-keteraturan-sepatu">4.1 Relevansi Warna pada Keteraturan Sepatu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiga-besaran-statistik-warna-per-kanal">4.2 Tiga Besaran Statistik Warna per Kanal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-ekstraksi-fitur-rgb">4.3 Implementasi Kode Ekstraksi Fitur RGB</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-citra-ke-grayscale">5. Konversi Citra ke Grayscale</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#urgensi-reduksi-derajat-keabuan">5.1 Urgensi Reduksi Derajat Keabuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulasi-konversi">5.2 Formulasi Konversi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-konversi-grayscale">5.3 Implementasi Kode Konversi Grayscale</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tekstur-menggunakan-glcm">6. Ekstraksi Fitur Tekstur Menggunakan GLCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#landasan-teori-glcm">6.1 Landasan Teori GLCM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-glcm-proyek">6.2 Parameter GLCM Proyek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-invarian-rotasi-rotation-invariant-averaging">6.3 Agregasi Invarian Rotasi (<em>Rotation Invariant Averaging</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-ekstraksi-glcm">6.4 Implementasi Kode Ekstraksi GLCM</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-lengkap-14-fitur-beserta-rumusnya">7. Penjelasan Lengkap 14 Fitur Beserta Rumusnya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-penggabungan-fitur-ke-csv-utama">7.1 Implementasi Penggabungan Fitur ke CSV Utama</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis-eda">8. Exploratory Data Analysis (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-keseluruhan-dataset-n-200">8.1 Statistik Deskriptif Keseluruhan Dataset (<span class="math notranslate nohighlight">\(N = 200\)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-komparatif-per-kelas-target">8.2 Statistik Komparatif per Kelas Target</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-korelasi-antarfitur">8.3 Matriks Korelasi Antarfitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-fitur-teratas-antarkelas">8.4 Distribusi Fitur Teratas Antarkelas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-dan-alur-klasifikasi-random-forest">9. Implementasi dan Alur Klasifikasi Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-memilih-random-forest">9.1 Mengapa Memilih Random Forest?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-pemrosesan-klasifikasi-pipeline-architecture">9.2 Alur Pemrosesan Klasifikasi (<em>Pipeline Architecture</em>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-pelatihan-random-forest">9.3 Implementasi Kode Pelatihan Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pengujian-dan-evaluasi-model">10. Hasil Pengujian dan Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-evaluasi">10.1 Implementasi Kode Evaluasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-metrik-kinerja-global">10.2 Ringkasan Metrik Kinerja Global</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#laporan-klasifikasi-rinci-classification-report">10.3 Laporan Klasifikasi Rinci (<em>Classification Report</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-dan-pembahasannya">11. Confusion Matrix dan Pembahasannya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-pembuatan-confusion-matrix">11.1 Implementasi Pembuatan Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-matriks-kontingensi">11.2 Visualisasi Matriks Kontingensi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kuadran-prediksi">11.3 Distribusi Kuadran Prediksi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pembahasan-mendalam-hasil-prediksi">11.4 Pembahasan Mendalam Hasil Prediksi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance-dan-interpretasinya">12. Feature Importance dan Interpretasinya</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-feature-importance">12.1 Implementasi Kode Feature Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-dan-tabel-kontribusi-fitur">12.2 Visualisasi dan Tabel Kontribusi Fitur</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-sinergi-fitur-warna-dan-tekstur">12.3 Interpretasi Sinergi Fitur Warna dan Tekstur</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-keterbatasan-dan-kesimpulan">13. Analisis Hasil, Keterbatasan, dan Kesimpulan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-keseluruhan">13.1 Analisis Hasil Keseluruhan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keterbatasan-penelitian">13.2 Keterbatasan Penelitian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rekomendasi-pengembangan-mendatang">13.3 Rekomendasi Pengembangan Mendatang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-akhir">13.4 Kesimpulan Akhir</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kemungkinan-pertanyaan-dosen-dan-jawaban-singkat">14. Kemungkinan Pertanyaan Dosen dan Jawaban Singkat</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-mengapa-menggunakan-kombinasi-fitur-rgb-dan-glcm-bukan-hanya-salah-satunya">Q1: Mengapa menggunakan kombinasi fitur RGB dan GLCM, bukan hanya salah satunya?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-mengapa-citra-harus-dikonversi-ke-grayscale-sebelum-menghitung-glcm">Q2: Mengapa citra harus dikonversi ke grayscale sebelum menghitung GLCM?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-bagaimana-cara-menangani-berkas-heic-dalam-python">Q3: Bagaimana cara menangani berkas HEIC dalam Python?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-mengapa-parameter-ddof-0-digunakan-pada-standar-deviasi-dan-bias-true-pada-skewness">Q4: Mengapa parameter <code class="docutils literal notranslate"><span class="pre">ddof=0</span></code> digunakan pada standar deviasi dan <code class="docutils literal notranslate"><span class="pre">bias=True</span></code> pada skewness?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-mengapa-fitur-entropy-glcm-dihitung-secara-manual-dan-tidak-menggunakan-graycoprops">Q5: Mengapa fitur Entropy GLCM dihitung secara manual dan tidak menggunakan <code class="docutils literal notranslate"><span class="pre">graycoprops</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-apa-yang-dimaksud-dengan-data-leakage-dalam-proyek-ini-dan-bagaimana-cara-mendeteksinya">Q6: Apa yang dimaksud dengan <em>Data Leakage</em> dalam proyek ini dan bagaimana cara mendeteksinya?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-mengapa-memilih-stratifiedgroupkfold-dibandingkan-train-test-split-biasa">Q7: Mengapa memilih <code class="docutils literal notranslate"><span class="pre">StratifiedGroupKFold</span></code> dibandingkan <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> biasa?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q8-mengapa-model-random-forest-tidak-memerlukan-normalisasi-data-feature-scaling-seperti-min-max-atau-standard-scaler">Q8: Mengapa model Random Forest tidak memerlukan normalisasi data (<em>feature scaling</em>) seperti Min-Max atau Standard Scaler?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q9-mengapa-metrik-evaluasi-menggunakan-macro-average-di-samping-akurasi">Q9: Mengapa metrik evaluasi menggunakan <em>Macro Average</em> di samping Akurasi?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q10-bagaimana-interpretasi-nilai-korelasi-linier-fitur-yang-rendah-terhadap-label-pada-tahap-eda">Q10: Bagaimana interpretasi nilai korelasi linier fitur yang rendah terhadap label pada tahap EDA?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-berkas-dan-panduan-eksekusi">15. Struktur Berkas dan Panduan Eksekusi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-menjalankan-program-dari-terminal">Panduan Menjalankan Program dari Terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#panduan-menjalankan-notebook-interaktif">Panduan Menjalankan Notebook Interaktif</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Riska Nana Nuril Fadilah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
