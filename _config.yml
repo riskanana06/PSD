@@ -31,3 +31,13 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+# Abaikan folder dataset citra mentah berukuran besar dari build Sphinx
+sphinx:
+  config:
+    exclude_patterns:
+      - "rapi-*/**"
+      - "berantakan-*/**"
+      - "klasifikasi_citra_sepatu/grayscale/**"
+      - "klasifikasi_citra_sepatu/output/grayscale/**"
+      - "klasifikasi_citra_sepatu/.mplconfig/**"

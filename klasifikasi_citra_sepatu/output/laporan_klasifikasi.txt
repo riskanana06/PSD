@@ -1,0 +1,70 @@
+====================================================================
+        LAPORAN HASIL KLASIFIKASI MACHINE LEARNING (RANDOM FOREST)  
+====================================================================
+
+1. DATASET DAN KONFIGURASI MODEL:
+   - File dataset utama     : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\dataset_fitur_citra.csv
+   - Total data             : 200 baris (14 fitur numerik + 1 label)
+   - Algoritma              : Random Forest Classifier
+   - Parameter Model        : n_estimators=100, random_state=14
+   - Penggunaan Scaler      : Tidak digunakan (Random Forest invarian terhadap skala fitur)
+
+2. PEMBAGIAN DATA DAN PENCEGAHAN DATA LEAKAGE:
+   - Strategi Pembagian     : Stratified Group Split (Zero Data Leakage)
+   - Alasan Penyesuaian Rasio:
+     Terdapat 23 citra yang memiliki duplikasi exact (MD5) dan kemiripan visual tinggi
+     (dHash jarak Hamming <= 5). Untuk mencegah data testing bocor ke data training,
+     seluruh anggota grup duplikasi diisolasi ke satu partisi secara ketat.
+   - Data Training          : 162 baris (81.0%) -> {'rapi': 83, 'berantakan': 79}
+   - Data Testing           : 38 baris (19.0%) -> {'berantakan': 21, 'rapi': 17}
+   - Overlapping Groups     : 0 grup (100% bebas kebocoran data)
+
+3. HASIL EVALUASI MODEL PADA DATA TESTING:
+   - Accuracy               : 0.7105 (71.05%)
+   - Precision (Macro Avg)  : 0.7212
+   - Recall (Macro Avg)     : 0.6933
+   - F1-Score (Macro Avg)   : 0.6933
+
+4. CLASSIFICATION REPORT:
+              precision    recall  f1-score   support
+
+        rapi     0.7500    0.5294    0.6207        17
+  berantakan     0.6923    0.8571    0.7660        21
+
+    accuracy                         0.7105        38
+   macro avg     0.7212    0.6933    0.6933        38
+weighted avg     0.7181    0.7105    0.7010        38
+
+5. CONFUSION MATRIX (Labels: ['rapi', 'berantakan']):
+   Matrix:
+[[ 9  8]
+ [ 3 18]]
+
+   Interpretasi Komponen Confusion Matrix:
+   * True Positive (TP)  : 9 citra rapi benar diprediksi sebagai rapi.
+   * False Negative (FN) : 8 citra rapi salah diprediksi sebagai berantakan.
+   * False Positive (FP) : 3 citra berantakan salah diprediksi sebagai rapi.
+   * True Negative (TN)  : 18 citra berantakan benar diprediksi sebagai berantakan.
+
+6. PERINGKAT PENGARUH FITUR (FEATURE IMPORTANCE TOP 5):
+    1. skew_G      : 0.0912 (9.12%)
+    2. std_R       : 0.0908 (9.08%)
+    3. correlation : 0.0869 (8.69%)
+    4. skew_B      : 0.0860 (8.60%)
+    5. contrast    : 0.0782 (7.82%)
+    6. mean_B      : 0.0722 (7.22%)
+    7. mean_R      : 0.0706 (7.06%)
+    8. entropy     : 0.0674 (6.74%)
+    9. homogeneity : 0.0649 (6.49%)
+   10. std_B       : 0.0630 (6.30%)
+   11. mean_G      : 0.0622 (6.22%)
+   12. skew_R      : 0.0602 (6.02%)
+   13. energy      : 0.0553 (5.53%)
+   14. std_G       : 0.0511 (5.11%)
+
+7. LOKASI FILE ARTIFAK:
+   - Model Terlatih         : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\model_random_forest.pkl
+   - Visual Confusion Matrix: D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\confusion_matrix.png
+   - Visual Feature Import. : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\feature_importance.png
+   - Evaluasi JSON Lengkap  : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\hasil_evaluasi.json
+   - Laporan Teks           : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\laporan_klasifikasi.txt

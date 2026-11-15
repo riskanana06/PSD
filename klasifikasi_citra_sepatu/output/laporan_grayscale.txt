@@ -1,0 +1,35 @@
+====================================================================
+             LAPORAN HASIL KONVERSI CITRA GRAYSCALE 8-BIT           
+====================================================================
+
+Total gambar berhasil dikonversi : 200
+Total gambar gagal dikonversi    : 0
+
+1. DISTRIBUSI PER KATEGORI:
+   - Kategori RAPI      : 100 gambar
+   - Kategori BERANTAKAN: 100 gambar
+
+2. KARAKTERISTIK CITRA GRAYSCALE HASIL KONVERSI:
+   - Mode citra          : L (8-bit grayscale)
+   - Jumlah channel      : 1 channel (matriks 2 dimensi)
+   - Tipe data array     : uint8 (unsigned integer 8-bit)
+   - Rentang nilai piksel: [0, 255]
+   - Integritas dimensi  : 100% resolusi citra sama persis dengan citra asli
+
+3. STRUKTUR DAN LOKASI PENYIMPANAN:
+   - Folder Utama        : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\grayscale
+   - Subfolder Rapi      : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\grayscale\rapi
+   - Subfolder Berantakan: D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\grayscale\berantakan
+
+4. PENANGANAN FORMAT HEIC (6 File):
+   Karena format HEIC tidak mendukung penyimpanan langsung grayscale pada Pillow,
+   keenam file HEIC dikonversi dan disimpan dalam format PNG lossless dengan nama dasar sama:
+   * [rapi] Asli: '24-007 Rapi 1.heic' -> Hasil: '24-007 Rapi 1.png'
+   * [rapi] Asli: '24-007 Rapi 2.heic' -> Hasil: '24-007 Rapi 2.png'
+   * [rapi] Asli: '24-007 Rapi 3.heic' -> Hasil: '24-007 Rapi 3.png'
+   * [berantakan] Asli: '24-007 Berantakan 1.heic' -> Hasil: '24-007 Berantakan 1.png'
+   * [berantakan] Asli: '24-007 Berantakan 2.heic' -> Hasil: '24-007 Berantakan 2.png'
+   * [berantakan] Asli: '24-007 Berantakan 3.heic' -> Hasil: '24-007 Berantakan 3.png'
+
+5. STATUS KEGAGALAN:
+   Tidak ada gambar yang gagal (0 file gagal).

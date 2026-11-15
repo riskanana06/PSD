@@ -1,0 +1,56 @@
+====================================================================
+            LAPORAN EKSTRAKSI LIMA FITUR TEKSTUR GLCM               
+====================================================================
+
+Total citra berhasil diekstraksi : 200
+Total citra gagal                : 0
+Dimensi DataFrame CSV            : (200, 6) (200 baris, 6 kolom)
+
+1. PARAMETER GLCM:
+   - Jarak piksel (distances)    : [1]
+   - Arah sudut (angles)         : 4 sudut [0, 45, 90, 135] derajat (dalam radian)
+   - Nilai aras keabuan (levels) : 256 (sesuai citra grayscale 8-bit)
+   - Matriks simetris (symmetric): True (menghitung pasangan bolak-balik)
+   - Normalisasi (normed)        : True (matriks berupa nilai probabilitas sum=1)
+   - Agregasi sudut              : Rata-rata aritmatika dari keempat sudut
+
+2. DEFINISI DAN METODE PERHITUNGAN FITUR:
+   a. ENERGY:
+      Mengukur keseragaman distribusi intensitas pada matriks GLCM.
+      Dihitung melalui graycoprops(glcm, 'energy') sebagai akar kuadrat dari
+      Angular Second Moment (ASM): Energy = sqrt(sum_{i,j} P(i,j)^2).
+   b. ENTROPY:
+      Mengukur keacakan atau kompleksitas tekstur citra.
+      Dihitung secara manual per sudut: H = - sum_{i,j} P(i,j) * log2(P(i,j))
+      dengan mengabaikan elemen berprobabilitas nol (P=0), lalu dirata-ratakan.
+   c. CONTRAST:
+      Mengukur besarnya variasi lokal intensitas piksel berpasangan:
+      Contrast = sum_{i,j} |i - j|^2 * P(i,j).
+   d. CORRELATION:
+      Mengukur ketergantungan linear aras keabuan antar piksel berdekatan:
+      Correlation = sum_{i,j} (i - mu_i)*(j - mu_j)*P(i,j) / (sigma_i * sigma_j).
+   e. HOMOGENEITY:
+      Mengukur kedekatan distribusi elemen GLCM terhadap diagonal utama:
+      Homogeneity = sum_{i,j} P(i,j) / (1 + |i - j|).
+
+3. DISTRIBUSI KELAS DATA:
+   - Label 'rapi': 100 baris data
+   - Label 'berantakan': 100 baris data
+
+4. PEMERIKSAAN NILAI TIDAK VALID (NaN / Infinity):
+   - Missing Values (NaN)  : 0 nilai
+   - Nilai Infinity (Inf)  : 0 nilai
+   - Seluruh nilai fitur berstatus valid dan finite.
+
+5. STATISTIK DESKRIPTIF FITUR GLCM (MIN, MAX, MEAN):
+                   Min         Max        Mean
+energy        0.013801    0.204913    0.032685
+entropy       8.635288   13.311319   11.637296
+contrast     11.753383  358.428779  103.731533
+correlation   0.960776    0.998817    0.985227
+homogeneity   0.167596    0.753661    0.391467
+
+6. LOKASI PENYIMPANAN FILE:
+   - CSV Fitur GLCM Sementara : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\fitur_glcm_sementara.csv
+   - File Metadata Detail     : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\metadata_glcm.json
+   - File Laporan Teks        : D:\semester 5\psd new\Klasifikasi_Citra_Sepatu\output\laporan_glcm.txt

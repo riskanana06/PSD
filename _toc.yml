@@ -1,13 +1,19 @@
 format: jb-book
 root: intro
 
-chapters:
-  - file: business_understanding
-  - file: data_understanding
-  - file: wilayah
-  - file: preprocessing
-  - file: time_series
-  - file: tsfel_features
-  - file: postgresql_aiven
-  - file: clustering
-  - file: klasifikasi_sawah
+parts:
+  - caption: "Proyek 1: Polutan Udara Asem Rowo"
+    chapters:
+      - file: business_understanding
+      - file: data_understanding
+      - file: wilayah
+      - file: preprocessing
+      - file: time_series
+      - file: tsfel_features
+      - file: postgresql_aiven
+      - file: clustering
+      - file: klasifikasi_sawah
+
+  - caption: "Proyek 2: Klasifikasi Citra Sepatu"
+    chapters:
+      - file: klasifikasi_sepatu

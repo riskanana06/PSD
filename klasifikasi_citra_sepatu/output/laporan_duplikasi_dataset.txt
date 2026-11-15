@@ -1,0 +1,74 @@
+====================================================================
+      LAPORAN ANALISIS DUPLIKASI DAN KEMIRIPAN CITRA DATASET        
+====================================================================
+
+Total gambar tercatat : 200
+
+1. DUPLIKASI FILE BINER IDENTIK (MD5 Checksum Sama Persis)
+   File-file ini memiliki hash biner yang sama persis (salinan langsung):
+   * Kelompok EXACT_MD5_1 (MD5: f0832666d6173d3ae40482ccb75f58e2):
+       - [rapi] 24-007 Rapi 3.jpg
+       - [rapi] 24-115 Rapi 3.jpg
+   * Kelompok EXACT_MD5_2 (MD5: a0c44c23aa22a0bbc37ddb37342e5c90):
+       - [rapi] 24-031 Rapi1.jpg
+       - [rapi] 24-034 Rapi 2.jpg
+   * Kelompok EXACT_MD5_3 (MD5: ece3fcc68e87381d93abf7a5ac4a24d4):
+       - [rapi] 24-034 Rapi 3.jpeg
+       - [rapi] 24-068 Rapi 2.jpeg
+   * Kelompok EXACT_MD5_4 (MD5: 7865ed2f0d5746826a860c17bf213503):
+       - [rapi] 24-081 Rapi 3.jpg
+       - [rapi] 24-115 Rapi 2.jpg
+       - [rapi] 24-145 Rapi 3.jpg
+   * Kelompok EXACT_MD5_5 (MD5: 804f8b49b3c5487b3de225230f200f66):
+       - [rapi] 24-169 Rapi 2.jpg
+       - [rapi] 24-228 Rapi 2.jpeg
+   * Kelompok EXACT_MD5_6 (MD5: 95acb74b78e253a235d54c6bf4340a89):
+       - [berantakan] 24-003 Berantakan 2.jpg
+       - [berantakan] 24-034 Berantakan 3.jpg
+   * Kelompok EXACT_MD5_7 (MD5: 796d2a446599cc2edef23e06554704cb):
+       - [berantakan] 24-026 Berantakan 2.jpeg
+       - [berantakan] 24-115 Berantakan 3.jpeg
+   * Kelompok EXACT_MD5_8 (MD5: d82769cc2b9bc677b77c8d02ceacd58a):
+       - [berantakan] 24-079 Berantakan 2.jpeg
+       - [berantakan] 24-115 Berantakan 2.jpeg
+   * Kelompok EXACT_MD5_9 (MD5: 2134da5e6197b7877d4c89c41ea77969):
+       - [berantakan] 24-115 berantakan 1.jpg
+       - [berantakan] 24-131 berantakan 3.jpg
+   Total kelompok file identik: 9
+
+2. ANALISIS KEMIRIPAN VISUAL dHash BERDASARKAN JARAK HAMMING
+   Keterangan Ambang Batas (Threshold):
+   - Jarak Hamming = 0 : Identik visual (contoh: pasangan format HEIC & JPG)
+   - Jarak Hamming 1-5 : Sangat mirip visual (burst photos, sudut hampir identik)
+
+   A. Pasangan Identik Visual (Jarak Hamming = 0):
+      - [rapi] 24-007 Rapi 1.heic <==> [rapi] 24-007 Rapi 1.jpg
+      - [rapi] 24-007 Rapi 2.heic <==> [rapi] 24-007 Rapi 2.jpg
+      - [rapi] 24-007 Rapi 3.heic <==> [rapi] 24-007 Rapi 3.jpg
+      - [rapi] 24-007 Rapi 3.heic <==> [rapi] 24-115 Rapi 3.jpg
+      - [rapi] 24-007 Rapi 3.jpg <==> [rapi] 24-115 Rapi 3.jpg
+      - [rapi] 24-031 Rapi1.jpg <==> [rapi] 24-034 Rapi 2.jpg
+      - [rapi] 24-034 Rapi 3.jpeg <==> [rapi] 24-068 Rapi 2.jpeg
+      - [rapi] 24-081 Rapi 3.jpg <==> [rapi] 24-115 Rapi 2.jpg
+      - [rapi] 24-081 Rapi 3.jpg <==> [rapi] 24-145 Rapi 3.jpg
+      - [rapi] 24-115 Rapi 2.jpg <==> [rapi] 24-145 Rapi 3.jpg
+      - [rapi] 24-125_Rapi3.jpg <==> [rapi] 24-145 Rapi 2.jpg
+      - [rapi] 24-169 Rapi 2.jpg <==> [rapi] 24-228 Rapi 2.jpeg
+      - [berantakan] 24-003 Berantakan 2.jpg <==> [berantakan] 24-034 Berantakan 3.jpg
+      - [berantakan] 24-007 Berantakan 1.heic <==> [berantakan] 24-007 Berantakan 1.jpg
+      - [berantakan] 24-007 Berantakan 2.heic <==> [berantakan] 24-007 Berantakan 2.jpg
+      - [berantakan] 24-007 Berantakan 3.heic <==> [berantakan] 24-007 Berantakan 3.jpg
+      - [berantakan] 24-026 Berantakan 2.jpeg <==> [berantakan] 24-115 Berantakan 3.jpeg
+      - [berantakan] 24-079 Berantakan 2.jpeg <==> [berantakan] 24-115 Berantakan 2.jpeg
+      - [berantakan] 24-115 berantakan 1.jpg <==> [berantakan] 24-131 berantakan 3.jpg
+      Total pasangan: 19
+
+   B. Pasangan Sangat Mirip Visual (Jarak Hamming 1 s/d 5):
+      - [Jarak 5] [rapi] 24-137 rapi 3.jpg <==> [berantakan] 24-137 berantakan 2.jpeg
+      - [Jarak 5] [rapi] kosong 1.jpg <==> [rapi] kosong 2.jpg
+      - [Jarak 2] [rapi] kosong 10.jpg <==> [rapi] kosong 11.jpg
+      - [Jarak 4] [rapi] kosong 12.jpg <==> [rapi] kosong 13.jpg
+      - [Jarak 4] [rapi] kosong 3.jpg <==> [rapi] kosong 4.jpg
+      - [Jarak 4] [rapi] kosong 7.jpg <==> [rapi] kosong 8.jpg
+      Total pasangan: 6
+

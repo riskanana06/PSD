@@ -1,0 +1,1711 @@
+{
+  "total_gambar_diproses": 200,
+  "ambang_jarak_hamming": {
+    "identik_visual": "Hamming Distance = 0",
+    "sangat_mirip_visual": "Hamming Distance <= 5"
+  },
+  "duplikasi_md5_exact": [
+    {
+      "group_id": "EXACT_MD5_1",
+      "type": "exact_binary_md5",
+      "md5": "f0832666d6173d3ae40482ccb75f58e2",
+      "count": 2,
+      "files": [
+        {
+          "label": "rapi",
+          "filename": "24-007 Rapi 3.jpg"
+        },
+        {
+          "label": "rapi",
+          "filename": "24-115 Rapi 3.jpg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_2",
+      "type": "exact_binary_md5",
+      "md5": "a0c44c23aa22a0bbc37ddb37342e5c90",
+      "count": 2,
+      "files": [
+        {
+          "label": "rapi",
+          "filename": "24-031 Rapi1.jpg"
+        },
+        {
+          "label": "rapi",
+          "filename": "24-034 Rapi 2.jpg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_3",
+      "type": "exact_binary_md5",
+      "md5": "ece3fcc68e87381d93abf7a5ac4a24d4",
+      "count": 2,
+      "files": [
+        {
+          "label": "rapi",
+          "filename": "24-034 Rapi 3.jpeg"
+        },
+        {
+          "label": "rapi",
+          "filename": "24-068 Rapi 2.jpeg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_4",
+      "type": "exact_binary_md5",
+      "md5": "7865ed2f0d5746826a860c17bf213503",
+      "count": 3,
+      "files": [
+        {
+          "label": "rapi",
+          "filename": "24-081 Rapi 3.jpg"
+        },
+        {
+          "label": "rapi",
+          "filename": "24-115 Rapi 2.jpg"
+        },
+        {
+          "label": "rapi",
+          "filename": "24-145 Rapi 3.jpg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_5",
+      "type": "exact_binary_md5",
+      "md5": "804f8b49b3c5487b3de225230f200f66",
+      "count": 2,
+      "files": [
+        {
+          "label": "rapi",
+          "filename": "24-169 Rapi 2.jpg"
+        },
+        {
+          "label": "rapi",
+          "filename": "24-228 Rapi 2.jpeg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_6",
+      "type": "exact_binary_md5",
+      "md5": "95acb74b78e253a235d54c6bf4340a89",
+      "count": 2,
+      "files": [
+        {
+          "label": "berantakan",
+          "filename": "24-003 Berantakan 2.jpg"
+        },
+        {
+          "label": "berantakan",
+          "filename": "24-034 Berantakan 3.jpg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_7",
+      "type": "exact_binary_md5",
+      "md5": "796d2a446599cc2edef23e06554704cb",
+      "count": 2,
+      "files": [
+        {
+          "label": "berantakan",
+          "filename": "24-026 Berantakan 2.jpeg"
+        },
+        {
+          "label": "berantakan",
+          "filename": "24-115 Berantakan 3.jpeg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_8",
+      "type": "exact_binary_md5",
+      "md5": "d82769cc2b9bc677b77c8d02ceacd58a",
+      "count": 2,
+      "files": [
+        {
+          "label": "berantakan",
+          "filename": "24-079 Berantakan 2.jpeg"
+        },
+        {
+          "label": "berantakan",
+          "filename": "24-115 Berantakan 2.jpeg"
+        }
+      ]
+    },
+    {
+      "group_id": "EXACT_MD5_9",
+      "type": "exact_binary_md5",
+      "md5": "2134da5e6197b7877d4c89c41ea77969",
+      "count": 2,
+      "files": [
+        {
+          "label": "berantakan",
+          "filename": "24-115 berantakan 1.jpg"
+        },
+        {
+          "label": "berantakan",
+          "filename": "24-131 berantakan 3.jpg"
+        }
+      ]
+    }
+  ],
+  "kemiripan_visual_dhash": [
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 1.heic"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 1.jpg"
+      },
+      "dhash1": "0x99d9fab4fec4ddbd",
+      "dhash2": "0x99d9fab4fec4ddbd",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 2.heic"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 2.jpg"
+      },
+      "dhash1": "0x12ab8b2b2b292",
+      "dhash2": "0x12ab8b2b2b292",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 3.heic"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 3.jpg"
+      },
+      "dhash1": "0xb13938da3e7e7bb3",
+      "dhash2": "0xb13938da3e7e7bb3",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 3.heic"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-115 Rapi 3.jpg"
+      },
+      "dhash1": "0xb13938da3e7e7bb3",
+      "dhash2": "0xb13938da3e7e7bb3",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-007 Rapi 3.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-115 Rapi 3.jpg"
+      },
+      "dhash1": "0xb13938da3e7e7bb3",
+      "dhash2": "0xb13938da3e7e7bb3",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-031 Rapi1.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-034 Rapi 2.jpg"
+      },
+      "dhash1": "0x87c0ecbcfe76dede",
+      "dhash2": "0x87c0ecbcfe76dede",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-034 Rapi 3.jpeg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-068 Rapi 2.jpeg"
+      },
+      "dhash1": "0x402818944cc4a4a3",
+      "dhash2": "0x402818944cc4a4a3",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-081 Rapi 3.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-115 Rapi 2.jpg"
+      },
+      "dhash1": "0x83820f0e46c0d82",
+      "dhash2": "0x83820f0e46c0d82",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-081 Rapi 3.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-145 Rapi 3.jpg"
+      },
+      "dhash1": "0x83820f0e46c0d82",
+      "dhash2": "0x83820f0e46c0d82",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-115 Rapi 2.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-145 Rapi 3.jpg"
+      },
+      "dhash1": "0x83820f0e46c0d82",
+      "dhash2": "0x83820f0e46c0d82",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-125_Rapi3.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-145 Rapi 2.jpg"
+      },
+      "dhash1": "0x99d1b1f4fcece47d",
+      "dhash2": "0x99d1b1f4fcece47d",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 5,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-137 rapi 3.jpg"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-137 berantakan 2.jpeg"
+      },
+      "dhash1": "0x6068e08c2c326049",
+      "dhash2": "0x686cd48c2c326049",
+      "category": "sangat_mirip_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "rapi",
+        "filename": "24-169 Rapi 2.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "24-228 Rapi 2.jpeg"
+      },
+      "dhash1": "0xb42d6de0dbdedddd",
+      "dhash2": "0xb42d6de0dbdedddd",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 5,
+      "file1": {
+        "label": "rapi",
+        "filename": "kosong 1.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "kosong 2.jpg"
+      },
+      "dhash1": "0x10143e3d2d2d2f3",
+      "dhash2": "0x14143e3d6d6f2e3",
+      "category": "sangat_mirip_visual"
+    },
+    {
+      "hamming_distance": 2,
+      "file1": {
+        "label": "rapi",
+        "filename": "kosong 10.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "kosong 11.jpg"
+      },
+      "dhash1": "0x8800c1c386a4a968",
+      "dhash2": "0x8800c0c386a42968",
+      "category": "sangat_mirip_visual"
+    },
+    {
+      "hamming_distance": 4,
+      "file1": {
+        "label": "rapi",
+        "filename": "kosong 12.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "kosong 13.jpg"
+      },
+      "dhash1": "0x301801c3c3a6b6b6",
+      "dhash2": "0x30180143c3e7f6b6",
+      "category": "sangat_mirip_visual"
+    },
+    {
+      "hamming_distance": 4,
+      "file1": {
+        "label": "rapi",
+        "filename": "kosong 3.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "kosong 4.jpg"
+      },
+      "dhash1": "0xc0c08183062c2828",
+      "dhash2": "0xc0c0e083063c2828",
+      "category": "sangat_mirip_visual"
+    },
+    {
+      "hamming_distance": 4,
+      "file1": {
+        "label": "rapi",
+        "filename": "kosong 7.jpg"
+      },
+      "file2": {
+        "label": "rapi",
+        "filename": "kosong 8.jpg"
+      },
+      "dhash1": "0xe06102c6c6e4a4a4",
+      "dhash2": "0xe06322c2c6e4e4a4",
+      "category": "sangat_mirip_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "berantakan",
+        "filename": "24-003 Berantakan 2.jpg"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-034 Berantakan 3.jpg"
+      },
+      "dhash1": "0x840468503431a9c9",
+      "dhash2": "0x840468503431a9c9",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "berantakan",
+        "filename": "24-007 Berantakan 1.heic"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-007 Berantakan 1.jpg"
+      },
+      "dhash1": "0xc11b16a303270b1",
+      "dhash2": "0xc11b16a303270b1",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "berantakan",
+        "filename": "24-007 Berantakan 2.heic"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-007 Berantakan 2.jpg"
+      },
+      "dhash1": "0xcdcb33637b7ddcdc",
+      "dhash2": "0xcdcb33637b7ddcdc",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "berantakan",
+        "filename": "24-007 Berantakan 3.heic"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-007 Berantakan 3.jpg"
+      },
+      "dhash1": "0x6de7d17dbf7f7e7c",
+      "dhash2": "0x6de7d17dbf7f7e7c",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "berantakan",
+        "filename": "24-026 Berantakan 2.jpeg"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-115 Berantakan 3.jpeg"
+      },
+      "dhash1": "0xdf206c991c32006c",
+      "dhash2": "0xdf206c991c32006c",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "berantakan",
+        "filename": "24-079 Berantakan 2.jpeg"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-115 Berantakan 2.jpeg"
+      },
+      "dhash1": "0x69096876464f1c1d",
+      "dhash2": "0x69096876464f1c1d",
+      "category": "identik_visual"
+    },
+    {
+      "hamming_distance": 0,
+      "file1": {
+        "label": "berantakan",
+        "filename": "24-115 berantakan 1.jpg"
+      },
+      "file2": {
+        "label": "berantakan",
+        "filename": "24-131 berantakan 3.jpg"
+      },
+      "dhash1": "0x64676754f766662",
+      "dhash2": "0x64676754f766662",
+      "category": "identik_visual"
+    }
+  ],
+  "metadata_file": [
+    {
+      "filename": "24-003 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "f317020152bea638caaf652aa936d90d",
+      "dhash": "0xebf9b0b1b1b0783c"
+    },
+    {
+      "filename": "24-003 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "940fb153535b6d41b93c16aeff269033",
+      "dhash": "0x1080b8b82869"
+    },
+    {
+      "filename": "24-003 Rapi.jpeg",
+      "label": "rapi",
+      "md5": "5a3738a2bc3f5c40e24e081d436320ca",
+      "dhash": "0xf1b97a4ae3dddd79"
+    },
+    {
+      "filename": "24-006 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "18345574a9f213c50ae9b72e1f680c54",
+      "dhash": "0x486890c4c0e2c040"
+    },
+    {
+      "filename": "24-006 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "1b749c07370d5821e1b50a332f8009d7",
+      "dhash": "0xc3efd8d0fcf6f4f5"
+    },
+    {
+      "filename": "24-006 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "cbc031c6f09c028735822467e96156c0",
+      "dhash": "0xc478088c8464a416"
+    },
+    {
+      "filename": "24-007 Rapi 1.heic",
+      "label": "rapi",
+      "md5": "c6422b86dcf5581366cd65f74c55b2a1",
+      "dhash": "0x99d9fab4fec4ddbd"
+    },
+    {
+      "filename": "24-007 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "22adeb24eeb0f384592bb195f5a6b486",
+      "dhash": "0x99d9fab4fec4ddbd"
+    },
+    {
+      "filename": "24-007 Rapi 2.heic",
+      "label": "rapi",
+      "md5": "5a825e49ea6ea359ba25e811c35464d7",
+      "dhash": "0x12ab8b2b2b292"
+    },
+    {
+      "filename": "24-007 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "570be63e4f8a20cf9e27a3c5f0697f2d",
+      "dhash": "0x12ab8b2b2b292"
+    },
+    {
+      "filename": "24-007 Rapi 3.heic",
+      "label": "rapi",
+      "md5": "0e3f2975a60f1e374efc3438bcd44e46",
+      "dhash": "0xb13938da3e7e7bb3"
+    },
+    {
+      "filename": "24-007 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "f0832666d6173d3ae40482ccb75f58e2",
+      "dhash": "0xb13938da3e7e7bb3"
+    },
+    {
+      "filename": "24-026 Rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "fc9ca092a0482c59de6d79fd8d34cc88",
+      "dhash": "0x1bcd3e6981959103"
+    },
+    {
+      "filename": "24-026 Rapi 2.jpeg",
+      "label": "rapi",
+      "md5": "27d0cbaf4736607229f03989bf8117ec",
+      "dhash": "0x6ff3d0fcf599fdfc"
+    },
+    {
+      "filename": "24-026 Rapi 3.jpeg",
+      "label": "rapi",
+      "md5": "08be5198d7435825e34fa5c1104e85d2",
+      "dhash": "0x31cf4e1a0363030"
+    },
+    {
+      "filename": "24-027 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "41d4f750457b41dad4e38be802bfd1ee",
+      "dhash": "0xfdfcb6d8e9e3d8d9"
+    },
+    {
+      "filename": "24-027 Rapi2.jpg",
+      "label": "rapi",
+      "md5": "3a1eaa94a2811d0ae171c54a02dc837c",
+      "dhash": "0x7b9dddd6e6e4fcf4"
+    },
+    {
+      "filename": "24-027 Rapi3.jpg",
+      "label": "rapi",
+      "md5": "4ad79dc4d389fb757acdb664e4f65dcc",
+      "dhash": "0x3034206460e0e0e0"
+    },
+    {
+      "filename": "24-031 Rapi1.jpg",
+      "label": "rapi",
+      "md5": "a0c44c23aa22a0bbc37ddb37342e5c90",
+      "dhash": "0x87c0ecbcfe76dede"
+    },
+    {
+      "filename": "24-031 Rapi2.jpg",
+      "label": "rapi",
+      "md5": "f9f22b0801e8976e4b91bc8c03f956f3",
+      "dhash": "0xe1b9dbb5f6fcbcee"
+    },
+    {
+      "filename": "24-031 Rapi3.jpg",
+      "label": "rapi",
+      "md5": "87eedecc6f084dffc463ea2490a9a337",
+      "dhash": "0x3130307818631949"
+    },
+    {
+      "filename": "24-034 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "33990fffdaff30bedad8b617e5568fac",
+      "dhash": "0xbfff3f78e9e7f6f2"
+    },
+    {
+      "filename": "24-034 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "a0c44c23aa22a0bbc37ddb37342e5c90",
+      "dhash": "0x87c0ecbcfe76dede"
+    },
+    {
+      "filename": "24-034 Rapi 3.jpeg",
+      "label": "rapi",
+      "md5": "ece3fcc68e87381d93abf7a5ac4a24d4",
+      "dhash": "0x402818944cc4a4a3"
+    },
+    {
+      "filename": "24-053 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "e4f66d29fec5b2382f631bdb11d0d1a3",
+      "dhash": "0xaf5b1aa3e7f35353"
+    },
+    {
+      "filename": "24-053 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "80e073a3d693496117bce419a57a158b",
+      "dhash": "0x716072594a4c4ccc"
+    },
+    {
+      "filename": "24-053 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "1d0d50974ecb25f7fe51753b3a7995fb",
+      "dhash": "0xc7c0c0cbc6c6cbcb"
+    },
+    {
+      "filename": "24-068 Rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "4c0f73435116af1549226d353f39451f",
+      "dhash": "0xb4b5f165e7dd547a"
+    },
+    {
+      "filename": "24-068 Rapi 2.jpeg",
+      "label": "rapi",
+      "md5": "ece3fcc68e87381d93abf7a5ac4a24d4",
+      "dhash": "0x402818944cc4a4a3"
+    },
+    {
+      "filename": "24-068 Rapi 3.jpeg",
+      "label": "rapi",
+      "md5": "2d6d6e861a4123a902caecc60d4f64ff",
+      "dhash": "0x1143424048a8281"
+    },
+    {
+      "filename": "24-074 Rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "666d7e41706fcf271d7d402a0d376d7d",
+      "dhash": "0x459d9e960eca5e4"
+    },
+    {
+      "filename": "24-074 Rapi 2.jpeg",
+      "label": "rapi",
+      "md5": "dcc00c3f8089d98b66fe32e8f1d44d07",
+      "dhash": "0x6ccc88a030d0f0cf"
+    },
+    {
+      "filename": "24-074 Rapi 3.jpeg",
+      "label": "rapi",
+      "md5": "ba1ef4486557469694d230e36cd0268b",
+      "dhash": "0x48c4d010604848a4"
+    },
+    {
+      "filename": "24-078 Rapi 3.jpeg",
+      "label": "rapi",
+      "md5": "02a98a43a791f2b047667ef0cb17ec96",
+      "dhash": "0x1268e0809b9a93"
+    },
+    {
+      "filename": "24-079 Rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "8eca020cd3c649b70c5a8b8f504aa8fb",
+      "dhash": "0x32687870f080a020"
+    },
+    {
+      "filename": "24-081 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "7865ed2f0d5746826a860c17bf213503",
+      "dhash": "0x83820f0e46c0d82"
+    },
+    {
+      "filename": "24-081 rapi 1.jpg",
+      "label": "rapi",
+      "md5": "4a758375d7b74c81e944445650769359",
+      "dhash": "0xe0c181879ccf899"
+    },
+    {
+      "filename": "24-081 rapi 2.jpg",
+      "label": "rapi",
+      "md5": "353339bbfe5b01cacbb35a944e118f41",
+      "dhash": "0xce0eb879dbcac9c9"
+    },
+    {
+      "filename": "24-087 rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "5bd35fdf26eeaf2e2b10baf733682343",
+      "dhash": "0x108088086869"
+    },
+    {
+      "filename": "24-087 rapi 2.jpeg",
+      "label": "rapi",
+      "md5": "7fa4c2a06ef38d1cfa3d9095760c1d99",
+      "dhash": "0x80c840a0886071c0"
+    },
+    {
+      "filename": "24-087 rapi 3.jpeg",
+      "label": "rapi",
+      "md5": "87e8fbe2b1c493376b109c40f87cb37d",
+      "dhash": "0xbbc7cbffaeee9efe"
+    },
+    {
+      "filename": "24-098 rapi 1.jpg",
+      "label": "rapi",
+      "md5": "605a570010ff2872553c31baef2a60cf",
+      "dhash": "0xccc0c089c8cece7e"
+    },
+    {
+      "filename": "24-101 Sepatu rapi1.jpg",
+      "label": "rapi",
+      "md5": "bf86e62c273530604514548361de3812",
+      "dhash": "0xc7e16f7f8fb6979f"
+    },
+    {
+      "filename": "24-101 Sepatu rapi2.jpg",
+      "label": "rapi",
+      "md5": "bff7147401eb70d0879e708767e5ed68",
+      "dhash": "0xe5fefcec12767c71"
+    },
+    {
+      "filename": "24-101 Sepatu rapi3.jpg",
+      "label": "rapi",
+      "md5": "d8563f7673f8fb2aaa0da971f10e4803",
+      "dhash": "0xbb4161b97a3f6e7e"
+    },
+    {
+      "filename": "24-115 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "7865ed2f0d5746826a860c17bf213503",
+      "dhash": "0x83820f0e46c0d82"
+    },
+    {
+      "filename": "24-115 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "f0832666d6173d3ae40482ccb75f58e2",
+      "dhash": "0xb13938da3e7e7bb3"
+    },
+    {
+      "filename": "24-119 1.jpg",
+      "label": "rapi",
+      "md5": "11ff52dc8de0523bfb3582234807017b",
+      "dhash": "0x535332b2c041c343"
+    },
+    {
+      "filename": "24-119 2.jpg",
+      "label": "rapi",
+      "md5": "4d7687953d76c249e6f23eca27b5afbc",
+      "dhash": "0xc86d68e27ab01333"
+    },
+    {
+      "filename": "24-119 3.jpg",
+      "label": "rapi",
+      "md5": "f79cb0a5c32b1afac88a88d787905e0b",
+      "dhash": "0x6664703144e102a0"
+    },
+    {
+      "filename": "24-125_Rapi1.jpg",
+      "label": "rapi",
+      "md5": "9754ecec34e12ff9765163816a18c0bd",
+      "dhash": "0xd190c8b090c4c082"
+    },
+    {
+      "filename": "24-125_Rapi2.jpg",
+      "label": "rapi",
+      "md5": "bf308d0f74e2a09bbb0368bfc3146dfb",
+      "dhash": "0x4c5858980801d040"
+    },
+    {
+      "filename": "24-125_Rapi3.jpg",
+      "label": "rapi",
+      "md5": "8bcce9187e79ffad0c85c48b9707a36f",
+      "dhash": "0x99d1b1f4fcece47d"
+    },
+    {
+      "filename": "24-137 rapi 3.jpg",
+      "label": "rapi",
+      "md5": "ed764050a6d09dd327c98c14c46a85b2",
+      "dhash": "0x6068e08c2c326049"
+    },
+    {
+      "filename": "24-145 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "3b0957c776cb7fc294e85fc02e08ad7c",
+      "dhash": "0x2160e0a144c2e2c2"
+    },
+    {
+      "filename": "24-145 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "9467331f4c76c305debee4d891c885df",
+      "dhash": "0x99d1b1f4fcece47d"
+    },
+    {
+      "filename": "24-145 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "7865ed2f0d5746826a860c17bf213503",
+      "dhash": "0x83820f0e46c0d82"
+    },
+    {
+      "filename": "24-157 rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "ea8976da9e0f0d9678b5cf5fb54dfec7",
+      "dhash": "0x4d6571d94bdcdca6"
+    },
+    {
+      "filename": "24-169 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "0f86d97428191cb5144d86b6bdaf72cc",
+      "dhash": "0x58cce4b4b9dbfb3f"
+    },
+    {
+      "filename": "24-169 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "804f8b49b3c5487b3de225230f200f66",
+      "dhash": "0xb42d6de0dbdedddd"
+    },
+    {
+      "filename": "24-169 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "62e1f4e45938d07514664c1fe869fd1b",
+      "dhash": "0xbff1f9d8b1bc7d7d"
+    },
+    {
+      "filename": "24-179 rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "fb9112fbebc8ef94f697780830eb8c8a",
+      "dhash": "0x2133234383e6e623"
+    },
+    {
+      "filename": "24-179 rapi 3.jpg",
+      "label": "rapi",
+      "md5": "dd59bc6cf418ee6349b958ed53f8bf9b",
+      "dhash": "0xb868109060c48d"
+    },
+    {
+      "filename": "24-190 Rapi 1.jpg",
+      "label": "rapi",
+      "md5": "574d2b5e9cb14c5100d5420d01a57710",
+      "dhash": "0x3098e87870b0e0e0"
+    },
+    {
+      "filename": "24-190 Rapi 2.jpg",
+      "label": "rapi",
+      "md5": "2d1d394eaa1a8cf4913eea7d604270cb",
+      "dhash": "0xa3a898e8e8b89826"
+    },
+    {
+      "filename": "24-190 Rapi 3.jpg",
+      "label": "rapi",
+      "md5": "9ce94fd7d829204369f96b4381536949",
+      "dhash": "0xe78cac848c888991"
+    },
+    {
+      "filename": "24-196 rapi1.jpeg",
+      "label": "rapi",
+      "md5": "4787f365da0418472d7f933b07c9e2bf",
+      "dhash": "0xc8d3f2d2e3707697"
+    },
+    {
+      "filename": "24-196 rapi2.jpeg",
+      "label": "rapi",
+      "md5": "367f56fc22ae2be9b979e6b14a835b03",
+      "dhash": "0x3c78d8c890903a36"
+    },
+    {
+      "filename": "24-196 rapi3.jpeg",
+      "label": "rapi",
+      "md5": "00670f9a222b8ac536b63818106cda02",
+      "dhash": "0x706499cad9c0999b"
+    },
+    {
+      "filename": "24-201_Rapi1.jpg",
+      "label": "rapi",
+      "md5": "920eea57601fb0f9726f04c31489c2b1",
+      "dhash": "0xbeb6bc9cbcb8b9b9"
+    },
+    {
+      "filename": "24-202 rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "c1cd05f732339271d847830c119968d2",
+      "dhash": "0x1d091c3c64240293"
+    },
+    {
+      "filename": "24-202 rapi 2.jpeg",
+      "label": "rapi",
+      "md5": "a4e8a426ac0cf6374f69cfc1b1b9167f",
+      "dhash": "0x67e7d3f0f8f9a733"
+    },
+    {
+      "filename": "24-228 Rapi 1.jpeg",
+      "label": "rapi",
+      "md5": "b4c18e20f68c0209eed161b70435d226",
+      "dhash": "0xd34b6998b8ddbffe"
+    },
+    {
+      "filename": "24-228 Rapi 2.jpeg",
+      "label": "rapi",
+      "md5": "804f8b49b3c5487b3de225230f200f66",
+      "dhash": "0xb42d6de0dbdedddd"
+    },
+    {
+      "filename": "24-228 Rapi 3.jpeg",
+      "label": "rapi",
+      "md5": "ae307688ed2aa615933371d3a3e2c92c",
+      "dhash": "0xfae89ad979dbdf7f"
+    },
+    {
+      "filename": "IMG_20261106_171240745_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "6f57a711d5c0ab17a98bf87268339190",
+      "dhash": "0x80acc64b69688"
+    },
+    {
+      "filename": "IMG_20261106_172109429_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "2c9620b34e9bcc2fcc0be6dca71f200c",
+      "dhash": "0xfe9d8eccccec6c6c"
+    },
+    {
+      "filename": "IMG_20261106_172122645_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "a03ca4a61e1eac8a1048b6c09dc9e341",
+      "dhash": "0xfedfc7f0f26e9ef6"
+    },
+    {
+      "filename": "IMG_20261106_172600557_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "8a3e9820d9552784fbadb2eebcd1743c",
+      "dhash": "0x187060e0638390"
+    },
+    {
+      "filename": "IMG_20261106_172617108_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "e85d36874ec846a9f659495ec7c09df5",
+      "dhash": "0xf3f3e3939bab3139"
+    },
+    {
+      "filename": "IMG_20261106_172629701_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "3b44cdda858ea3d4ceaf3fad22f258ca",
+      "dhash": "0x60647870606240c0"
+    },
+    {
+      "filename": "IMG_20261106_172641731_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "88f6f2823edd056ddadb29b7726869c9",
+      "dhash": "0xc3c3e1e9e1839391"
+    },
+    {
+      "filename": "IMG_20261106_172700436_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "8cfd18fac6aeb100a29671c939cffa1a",
+      "dhash": "0x666471606160b0b0"
+    },
+    {
+      "filename": "IMG_20261106_172708490_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "d9cd4c22e8dd08dc2daf605870065e70",
+      "dhash": "0x45cf0c0c4406242"
+    },
+    {
+      "filename": "IMG_20261106_172717410_BURST0020.jpg",
+      "label": "rapi",
+      "md5": "ee29a9c3e544a74246bf9d436970b928",
+      "dhash": "0xcdc7d1d0fce6e4dc"
+    },
+    {
+      "filename": "IMG_20261107_160808.jpg",
+      "label": "rapi",
+      "md5": "05ae09243fff8dcff582130b75362c1e",
+      "dhash": "0xf37dcff3e7c5c5fc"
+    },
+    {
+      "filename": "IMG_20261107_161405.jpg",
+      "label": "rapi",
+      "md5": "9eac3d4148fcfca57090483f11f4565a",
+      "dhash": "0x19d9d9c091908b8d"
+    },
+    {
+      "filename": "IMG_20261108_190600_064.jpg",
+      "label": "rapi",
+      "md5": "ce4f2e33bf858b7f3baa8664de4fece3",
+      "dhash": "0xcebca9dbf69ff9f9"
+    },
+    {
+      "filename": "kosong 1.jpg",
+      "label": "rapi",
+      "md5": "61afa04477610df31c76a67ea16bfe26",
+      "dhash": "0x10143e3d2d2d2f3"
+    },
+    {
+      "filename": "kosong 10.jpg",
+      "label": "rapi",
+      "md5": "bc16b6305501a15feec65a1da8d6c2ff",
+      "dhash": "0x8800c1c386a4a968"
+    },
+    {
+      "filename": "kosong 11.jpg",
+      "label": "rapi",
+      "md5": "c6b776505b020c0ec121147612c328bd",
+      "dhash": "0x8800c0c386a42968"
+    },
+    {
+      "filename": "kosong 12.jpg",
+      "label": "rapi",
+      "md5": "fc5c6b075d4209e000bf04dad527d60d",
+      "dhash": "0x301801c3c3a6b6b6"
+    },
+    {
+      "filename": "kosong 13.jpg",
+      "label": "rapi",
+      "md5": "f5397a1ee2f494f439276baa2b2a961d",
+      "dhash": "0x30180143c3e7f6b6"
+    },
+    {
+      "filename": "kosong 2.jpg",
+      "label": "rapi",
+      "md5": "2cc2a8f74506dd3791b4781ef1c6fe21",
+      "dhash": "0x14143e3d6d6f2e3"
+    },
+    {
+      "filename": "kosong 3.jpg",
+      "label": "rapi",
+      "md5": "6e3f0cbe4921e9b5147de3b7615c9a35",
+      "dhash": "0xc0c08183062c2828"
+    },
+    {
+      "filename": "kosong 4.jpg",
+      "label": "rapi",
+      "md5": "6a69f326b3c188eae42f3d4bd171e147",
+      "dhash": "0xc0c0e083063c2828"
+    },
+    {
+      "filename": "kosong 5.jpg",
+      "label": "rapi",
+      "md5": "7e6b3bd3452ce9806183fdd8f65069bb",
+      "dhash": "0xfefe7e7e7cf4d4e4"
+    },
+    {
+      "filename": "kosong 7.jpg",
+      "label": "rapi",
+      "md5": "9b4263d8255bbaaa0358f357a0fb8602",
+      "dhash": "0xe06102c6c6e4a4a4"
+    },
+    {
+      "filename": "kosong 8.jpg",
+      "label": "rapi",
+      "md5": "3580edf8200564063aba27dcda0570c4",
+      "dhash": "0xe06322c2c6e4e4a4"
+    },
+    {
+      "filename": "kosong 9.jpg",
+      "label": "rapi",
+      "md5": "d703c256c11e778aaccea905011c71b0",
+      "dhash": "0x4306c6c6e4aca4c4"
+    },
+    {
+      "filename": "24-003 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "95acb74b78e253a235d54c6bf4340a89",
+      "dhash": "0x840468503431a9c9"
+    },
+    {
+      "filename": "24-003 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "c789350c3df7636b56e5edccd30ae49e",
+      "dhash": "0x71acf57dbb767e7c"
+    },
+    {
+      "filename": "24-003 berantakan.jpg",
+      "label": "berantakan",
+      "md5": "b3ab6bfdbbed09ad6fb0877cb499709c",
+      "dhash": "0x1be0a6223c1c5a58"
+    },
+    {
+      "filename": "24-006 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "805fab9381daa9ed689b119b46e9b0d7",
+      "dhash": "0x2d2e353524ddc7d2"
+    },
+    {
+      "filename": "24-006 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "495afef2660df055e4943437e2f902c6",
+      "dhash": "0xcd8d95b3622e084c"
+    },
+    {
+      "filename": "24-006 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "b7664addeab9ddf87d26ac225714622a",
+      "dhash": "0x120d0d2b3023261e"
+    },
+    {
+      "filename": "24-007 Berantakan 1.heic",
+      "label": "berantakan",
+      "md5": "a911708d0b3ecdca55fd7c0e4f3f12dc",
+      "dhash": "0xc11b16a303270b1"
+    },
+    {
+      "filename": "24-007 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "044d87f189317d7310f8856f6c648f51",
+      "dhash": "0xc11b16a303270b1"
+    },
+    {
+      "filename": "24-007 Berantakan 2.heic",
+      "label": "berantakan",
+      "md5": "72f533ea99120160c92473c6e33ee9cf",
+      "dhash": "0xcdcb33637b7ddcdc"
+    },
+    {
+      "filename": "24-007 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "c4778b4559e753c0874b4419682748fb",
+      "dhash": "0xcdcb33637b7ddcdc"
+    },
+    {
+      "filename": "24-007 Berantakan 3.heic",
+      "label": "berantakan",
+      "md5": "bad674ab55f07dbe91f808f7c9b81b63",
+      "dhash": "0x6de7d17dbf7f7e7c"
+    },
+    {
+      "filename": "24-007 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "b8974e1a95cc938215fe45307f8a24ff",
+      "dhash": "0x6de7d17dbf7f7e7c"
+    },
+    {
+      "filename": "24-026 Berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "d9b396092a8c14a50085e048eed73c2e",
+      "dhash": "0x1f72e9cdabdb9f93"
+    },
+    {
+      "filename": "24-026 Berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "796d2a446599cc2edef23e06554704cb",
+      "dhash": "0xdf206c991c32006c"
+    },
+    {
+      "filename": "24-026 Berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "53752f2d840307f7b73c0579c4442b8a",
+      "dhash": "0x9db799cb3abe9cc2"
+    },
+    {
+      "filename": "24-027 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "d2f948a98e07628b8f8f126a54c5f31c",
+      "dhash": "0xe4f0f2e4e8e4b09b"
+    },
+    {
+      "filename": "24-027 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "6324b5d17ca9adaefb63b5f6178f3ead",
+      "dhash": "0xd6cecec3d330b2d2"
+    },
+    {
+      "filename": "24-027 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "24a9b0fc0059c6cfa636d100b4491f49",
+      "dhash": "0xcd9ccde9d8ecb5f6"
+    },
+    {
+      "filename": "24-031 Berantakan1.jpg",
+      "label": "berantakan",
+      "md5": "e94d2c7bd496d7faff94ca83e47134ab",
+      "dhash": "0x6c2c54981c3689cd"
+    },
+    {
+      "filename": "24-031 Berantakan2.jpg",
+      "label": "berantakan",
+      "md5": "7b6d85ee4c6a9c3901b11f14fa64da39",
+      "dhash": "0xa9e4d53130417149"
+    },
+    {
+      "filename": "24-031 Berantakan3.jpg",
+      "label": "berantakan",
+      "md5": "32216c4cbdf6783cacaf45f43b735089",
+      "dhash": "0x5db6524dc5f6dccc"
+    },
+    {
+      "filename": "24-034 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "9b16906e2748cab82558138f6b3dd4ec",
+      "dhash": "0x6f2c92dcd84cec7e"
+    },
+    {
+      "filename": "24-034 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "ac757c028c1b3691970c50f322d1f21a",
+      "dhash": "0xd7edf3e3d7f6b4ec"
+    },
+    {
+      "filename": "24-034 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "95acb74b78e253a235d54c6bf4340a89",
+      "dhash": "0x840468503431a9c9"
+    },
+    {
+      "filename": "24-053 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "ee0a2c44d4cbf096df985c3afb2d424a",
+      "dhash": "0xa0ac88d3c6c69e96"
+    },
+    {
+      "filename": "24-053 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "9e359a82e6cca6c6191a2f84ec56365d",
+      "dhash": "0xa3e8e8d4d4d89898"
+    },
+    {
+      "filename": "24-053 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "4e587acdf144be46c2c56eddd7b7cbdb",
+      "dhash": "0x9992922e3d185a58"
+    },
+    {
+      "filename": "24-068 Berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "0fc6f71554e51fc3f985e5b70a863a5e",
+      "dhash": "0x5367e1d12d598be5"
+    },
+    {
+      "filename": "24-068 Berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "a5150a9f86bba28fc784b183313adb5f",
+      "dhash": "0x2fbdd1e7b9ec743e"
+    },
+    {
+      "filename": "24-068 Berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "39107c75f93fbb07fc2df599c2bc00ce",
+      "dhash": "0x745b73616a707463"
+    },
+    {
+      "filename": "24-071 berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "35a86894827d66dfff40e56794e082a1",
+      "dhash": "0xda9adccca4ecf4f6"
+    },
+    {
+      "filename": "24-071 berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "c8831bbf0c2ac71ac4ad3cac24100f2c",
+      "dhash": "0x4e343469c0481106"
+    },
+    {
+      "filename": "24-071 berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "f9f48df53dfcec48c63994f8559f3a09",
+      "dhash": "0x73738710232470d8"
+    },
+    {
+      "filename": "24-074 Berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "4086486a9bc1594eb6fe6a7129efa26d",
+      "dhash": "0x9edcec7f6b6a7bd9"
+    },
+    {
+      "filename": "24-074 Berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "219adb5c666db982b3f264642bde9b02",
+      "dhash": "0xe3cc3ab3f0ec6eee"
+    },
+    {
+      "filename": "24-074 Berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "8895ccb41a2cb9b299fa62fdb3279542",
+      "dhash": "0x4864998270e99032"
+    },
+    {
+      "filename": "24-078 Berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "e304de856affa85483b0eec660657dd5",
+      "dhash": "0x8ca43a7cdcfa7d3f"
+    },
+    {
+      "filename": "24-078 Berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "54a43aed0098a224e25149d65f03f4df",
+      "dhash": "0xcf61316cd9ba26e4"
+    },
+    {
+      "filename": "24-078 Berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "15218d95997871e80fc676a88b73d419",
+      "dhash": "0x193a0c3c32325228"
+    },
+    {
+      "filename": "24-079 Berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "a4047b69359fee42a95fd3f614345369",
+      "dhash": "0xf7abacf8f9bccce9"
+    },
+    {
+      "filename": "24-079 Berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "d82769cc2b9bc677b77c8d02ceacd58a",
+      "dhash": "0x69096876464f1c1d"
+    },
+    {
+      "filename": "24-079 Berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "d6e977ce2c299213dbe57b30cbdd5c00",
+      "dhash": "0x5b9cbd37bdfbf9fd"
+    },
+    {
+      "filename": "24-081 berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "87889911ead2f6b98fa890dfa95f8068",
+      "dhash": "0x38ccd0b4cc58f2e6"
+    },
+    {
+      "filename": "24-081 berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "33e7783b8aab269ff5588adf9b288a49",
+      "dhash": "0x673b61b19def5c4"
+    },
+    {
+      "filename": "24-081 berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "a2fc1d5c603330e3de3b485f7af1578e",
+      "dhash": "0x303196b4a8607143"
+    },
+    {
+      "filename": "24-087 berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "7c1d3b4dc8424460c72e7829d28aaf1b",
+      "dhash": "0x14243d0bb0317091"
+    },
+    {
+      "filename": "24-087 berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "b6e23f4fc3dcf49806022d80f4dcf4a4",
+      "dhash": "0xd3a5b4d84987cd9b"
+    },
+    {
+      "filename": "24-087 berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "a976f68f43a79d2c1bf6f474143295fe",
+      "dhash": "0xb1b4b0f15b6a4e96"
+    },
+    {
+      "filename": "24-098 berangakan 1.jpg",
+      "label": "berantakan",
+      "md5": "4a9afe3d6aa43972b502fb626e7ab342",
+      "dhash": "0xc69991d6f3397d66"
+    },
+    {
+      "filename": "24-098 berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "870dffd7ff77bfd78d83cc3750069a2d",
+      "dhash": "0x1999d6a5b6febf8b"
+    },
+    {
+      "filename": "24-098 berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "d82154efb6e68dd5c49bde0ed52243bb",
+      "dhash": "0xdc5a5b3b265c4a60"
+    },
+    {
+      "filename": "24-100 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "5316ecc418256018c6395d2f10b49c68",
+      "dhash": "0xdbf0b12224e6f3b3"
+    },
+    {
+      "filename": "24-100 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "d672724c336e4e20510bb310bba00f69",
+      "dhash": "0xfefe7bbebebe7e3c"
+    },
+    {
+      "filename": "24-100 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "2fe69d15a710635aaf0afdd83de07196",
+      "dhash": "0x31e0c2c0dc62c0e"
+    },
+    {
+      "filename": "24-101 Sepatu berantakan1.jpg",
+      "label": "berantakan",
+      "md5": "52cf05552a48ff5538e68e3f29004b4b",
+      "dhash": "0x626858a869ccecc"
+    },
+    {
+      "filename": "24-101 Sepatu berantakan2.jpg",
+      "label": "berantakan",
+      "md5": "75517017fa4499e404377e943ab0a172",
+      "dhash": "0x637272b4b6b4c002"
+    },
+    {
+      "filename": "24-101 Sepatu berantakan3.jpg",
+      "label": "berantakan",
+      "md5": "5fae9321784438a7f3cecb970b508188",
+      "dhash": "0x1212936d23878713"
+    },
+    {
+      "filename": "24-115 Berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "d82769cc2b9bc677b77c8d02ceacd58a",
+      "dhash": "0x69096876464f1c1d"
+    },
+    {
+      "filename": "24-115 Berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "796d2a446599cc2edef23e06554704cb",
+      "dhash": "0xdf206c991c32006c"
+    },
+    {
+      "filename": "24-115 berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "2134da5e6197b7877d4c89c41ea77969",
+      "dhash": "0x64676754f766662"
+    },
+    {
+      "filename": "24-119 1.jpg",
+      "label": "berantakan",
+      "md5": "a256181f295440a374329f2fe2765872",
+      "dhash": "0x320e9c1446040c8c"
+    },
+    {
+      "filename": "24-119 2.jpg",
+      "label": "berantakan",
+      "md5": "dfd91b7b36fb71278774dd7d924b2792",
+      "dhash": "0xe8c89c6c6c603331"
+    },
+    {
+      "filename": "24-119 3.jpg",
+      "label": "berantakan",
+      "md5": "c960dd86ab7ee8f7dc051b81ef07a761",
+      "dhash": "0x7e5a3838e94ce6e6"
+    },
+    {
+      "filename": "24-123 Berantakan.jpg",
+      "label": "berantakan",
+      "md5": "c7c9b31222695515ceb6a12b275111cc",
+      "dhash": "0xb3fc9db7f23e06df"
+    },
+    {
+      "filename": "24-123 Berantakan2.jpg",
+      "label": "berantakan",
+      "md5": "6043d2473b01370de73870016d2cd706",
+      "dhash": "0x6f1f3f3d1c3e1bc9"
+    },
+    {
+      "filename": "24-125_Berantakan1.jpg",
+      "label": "berantakan",
+      "md5": "3a21e67994fc1f99979c5de87f5decc0",
+      "dhash": "0x7e6c67bda85c9c9c"
+    },
+    {
+      "filename": "24-125_Berantakan2.jpg",
+      "label": "berantakan",
+      "md5": "91efad35ffb3228c4d04fca02bcca6a1",
+      "dhash": "0x80c1a383cddc9c9c"
+    },
+    {
+      "filename": "24-125_berantakan3.jpg",
+      "label": "berantakan",
+      "md5": "006134ca5d22afea80fd19917306baf4",
+      "dhash": "0x4c2cb613484a59f2"
+    },
+    {
+      "filename": "24-131 berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "4278206318de285b4e876a4b15edf251",
+      "dhash": "0xc764e887beeedbbb"
+    },
+    {
+      "filename": "24-131 berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "c82bf6ef30ffd0a94612bfeff16e3cad",
+      "dhash": "0x1d9e36b9d8988c8c"
+    },
+    {
+      "filename": "24-131 berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "2134da5e6197b7877d4c89c41ea77969",
+      "dhash": "0x64676754f766662"
+    },
+    {
+      "filename": "24-137 berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "995766d622f832c88271561b3b1db3f5",
+      "dhash": "0x686cd48c2c326049"
+    },
+    {
+      "filename": "24-137 berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "67745b7388e8051272080891621d32a3",
+      "dhash": "0xc8ade393987c7fb9"
+    },
+    {
+      "filename": "24-145 berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "ca427a841ee361ffdf1533a1f32687e7",
+      "dhash": "0x1b74f2f052131131"
+    },
+    {
+      "filename": "24-145 berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "0fa733b2aa76b681baf95a28c2e45a58",
+      "dhash": "0xbfa7f66667775b6b"
+    },
+    {
+      "filename": "24-145 berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "a0d50367daba35ff6666817801f1e63f",
+      "dhash": "0xf6eddffdd2d3f8ec"
+    },
+    {
+      "filename": "24-157 berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "1fd2f178e9d4fb81891b27803e5f34ae",
+      "dhash": "0x649c383d3b0c9c9c"
+    },
+    {
+      "filename": "24-157 berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "dfdaff3dbabd577ed3dbe280fc60eb60",
+      "dhash": "0xcb4e73cec6f6f6b6"
+    },
+    {
+      "filename": "24-157 berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "5dad7ded48c4f2f08df1deb46c862ff0",
+      "dhash": "0xde4566cec5ececae"
+    },
+    {
+      "filename": "24-169 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "97e476af987ceb90c5ac9b621942971e",
+      "dhash": "0xca4d663000f6d6f2"
+    },
+    {
+      "filename": "24-169 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "e5648375bf26e76c07b89f676ce20241",
+      "dhash": "0xd4d4b8b6ce7278f8"
+    },
+    {
+      "filename": "24-169 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "2a6cbaa211e026f4bfb1a035dec8e5dc",
+      "dhash": "0x572d364c949092ba"
+    },
+    {
+      "filename": "24-179 berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "11dd0a4c3a8d11dfd28d3e449d928221",
+      "dhash": "0x6ff9b1b4b1994d8d"
+    },
+    {
+      "filename": "24-179 berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "b66553b172035aa14f73f6ec9e4a29ed",
+      "dhash": "0xc6d9b5b69a6c6fd6"
+    },
+    {
+      "filename": "24-179 berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "950f707dbf75fdd13e403e8d02101fb1",
+      "dhash": "0x56674b5b3451d356"
+    },
+    {
+      "filename": "24-190 Berantakan 1.jpg",
+      "label": "berantakan",
+      "md5": "ae36eac601017a8e8bf4ec94b3fa7f6b",
+      "dhash": "0x713288e8e5d9a581"
+    },
+    {
+      "filename": "24-190 Berantakan 2.jpg",
+      "label": "berantakan",
+      "md5": "67fd16179fc9acc2e3d2cbea51ab78e3",
+      "dhash": "0x1939abf3d69f2707"
+    },
+    {
+      "filename": "24-190 Berantakan 3.jpg",
+      "label": "berantakan",
+      "md5": "164819fa44262877c01dba7421500816",
+      "dhash": "0xb0e4264c44b2e2e"
+    },
+    {
+      "filename": "24-196 berantakan1.jpeg",
+      "label": "berantakan",
+      "md5": "5bac98bd45147639d569f9c5443421e4",
+      "dhash": "0x912e2cb0e048ceca"
+    },
+    {
+      "filename": "24-196 berantakan2.jpeg",
+      "label": "berantakan",
+      "md5": "1529013d3d00134aa3814f763d65317b",
+      "dhash": "0x4b39b199fabeb656"
+    },
+    {
+      "filename": "24-196 berantakan3.jpeg",
+      "label": "berantakan",
+      "md5": "f639b888a3e879f929d916fe057dcb95",
+      "dhash": "0x6cc8a796f0c0cade"
+    },
+    {
+      "filename": "24-201_Berantakan1.jpg",
+      "label": "berantakan",
+      "md5": "fd3e60c07dace061305500c9a0bc1b10",
+      "dhash": "0x9a185b4ccca6a3b2"
+    },
+    {
+      "filename": "24-201_Berantakan2.jpg",
+      "label": "berantakan",
+      "md5": "72a942b9ed484504e3895f3efa25a33a",
+      "dhash": "0xa8bc3438b0b8b9b9"
+    },
+    {
+      "filename": "24-201_Berantakan3.jpg",
+      "label": "berantakan",
+      "md5": "abad01ad545b8dc7fedf775083d941ef",
+      "dhash": "0xec39272abcecdad9"
+    },
+    {
+      "filename": "24-202 berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "adcd577765c6dd947e08941f5b0c119d",
+      "dhash": "0x53432626840c0802"
+    },
+    {
+      "filename": "24-202 berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "61674a240d0ca622fdffeec8307a8738",
+      "dhash": "0xb3935696caa6bde"
+    },
+    {
+      "filename": "24-202 berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "767d6082dce64e81fe586dde14fbb594",
+      "dhash": "0x2f515a3255c17574"
+    },
+    {
+      "filename": "24-228 Berantakan 1.jpeg",
+      "label": "berantakan",
+      "md5": "4f9cc35db6990d53d7d64ae3c75b6a9f",
+      "dhash": "0x4088916469726e6c"
+    },
+    {
+      "filename": "24-228 Berantakan 2.jpeg",
+      "label": "berantakan",
+      "md5": "1c171116602778ca0619fa8c485cc413",
+      "dhash": "0x992e4c5874d1d191"
+    },
+    {
+      "filename": "24-228 Berantakan 3.jpeg",
+      "label": "berantakan",
+      "md5": "18559c249cd88e0fccbc7aac24d7e133",
+      "dhash": "0xfb5b7627278787a3"
+    }
+  ]
+}
